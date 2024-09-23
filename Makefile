@@ -31,28 +31,13 @@ $(TARGET): $(OBJS)
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# ===================================================
-# # Default target
-# all: $(TARGET)
-
-# # Rule to build the target
-# $(TARGET): $(OBJS)
-# 	@mkdir -p $(BINDIR)
-# 	$(CC) $(CFLAGS) $(OBJS) -o $@
-
-# # Rule to build object files and track dependencies
-# $(OBJDIR)/%.o: $(SRCDIR)/%.c
-# 	@mkdir -p $(OBJDIR)
-# 	$(CC) $(CFLAGS) -c $< -o $@
-# ===================================================
-
-
 # Include the dependency files
 -include $(DEPS)
 
 # Clean build (removes objects, dependencies, and binaries)
 clean:
-	rm -rf $(OBJDIR) $(BINDIR)
+	@if exist $(OBJDIR) rmdir /S /Q $(OBJDIR)
+	@if exist $(BINDIR) rmdir /S /Q $(BINDIR)
 
 # Rebuild target (clean + build)
 rebuild: clean all
