@@ -21,7 +21,7 @@ all: dir $(TARGET)
 
 # Create necessary directories for obj and bin
 dir:
-	@mkdir -p $(OBJDIR) $(BINDIR)
+	@mkdir $(OBJDIR) $(BINDIR)
 
 # Rule to build the target
 $(TARGET): $(OBJS)
