@@ -5,7 +5,7 @@
 int main()
 {
     int a;
-    printf("size : %d\n", sizeof(bigint));
+    printf("size : %llu\n", sizeof(bigint));
     printf("hello world!\n");
 
     bigint* x = NULL;

@@ -1,3 +1,7 @@
+#ifndef CONFIG_H
+#define CONFIG_H
+
+
 #include <stdio.h>
 #include <stdint.h>
 #include <stddef.h>
@@ -20,3 +24,5 @@ typedef struct{
     u32     wordlen; // wordlen >= 0
     word*         a; // address for big integer
 } bigint;
+
+#endif

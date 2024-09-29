@@ -26,6 +26,7 @@ void bi_delete(bigint** x)
     *x = NULL;
 }
 
+/*
 //2.6
 void bi_assign(bigint** y, bigint* x)
 {
@@ -34,19 +35,20 @@ void bi_assign(bigint** y, bigint* x)
 
     bi_new(y, x->wordlen);
     (*y)->sign = x->sign;
-    array_copy((*y)->a, x->a, x->wordlen);
+    array_copy((*y)->a, x->a, x->wordlen);  //array_copy 
 }
 
 //2.7
+
 void bi_gen_rand(bigint**x, int sign, int wordlen)
 {
     bi_new(x, wordlen);
     (*x)->sign = sign;
     array_rand((*x)->a, wordlen);
 
-    bi_refine(*x);
+    bi_refine(*x);                          //bi_refine 
 }
-
+*/
 //byte--> u8
 void array_rand(word* dst, int wordlen)
 {
