@@ -1,4 +1,11 @@
-# 2024_fall_BigInt
+# 2024 Fall BigInt Project
+
+## Overview
+This project implements a Big Integer (BigInt) library that supports multi-precision arithmetic operations, such as addition, subtraction, multiplication, and division. The goal is to handle large numbers that cannot fit within standard data types in C.
+
+## Project Structure
+
+```plaintext
 /project-root
 │
 ├── /bin                // Output binary files 
