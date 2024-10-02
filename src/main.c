@@ -7,6 +7,7 @@ int main()
     int a;
     printf("size : %llu\n", sizeof(bigint));
     printf("hello world!\n");
+    printf("hello jieon!\n");
 
     bigint* x = NULL;
     bigint* y = NULL;
