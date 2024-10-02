@@ -7,12 +7,15 @@ int main()
     int a;
     printf("size : %llu\n", sizeof(bigint));
     printf("hello world!\n");
-    printf("hello jieon!\n");
 
     bigint* x = NULL;
     bigint* y = NULL;
     bigint* z = NULL;
 
     bi_new(&x, 4);
+
+    test_bi_show_hex();
+
+
     return 0;
 }
