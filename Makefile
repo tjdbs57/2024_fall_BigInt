@@ -7,10 +7,13 @@ SRCDIR = src
 INCDIR = include
 OBJDIR = obj
 BINDIR = bin
+TESTDIR = test
 
 # Source, Object, and Dependency files
 SOURCES = $(wildcard $(SRCDIR)/*.c)
+# TESTS = $(wildcard $(TESTDIR)/*.c)
 OBJS = $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SOURCES))
+# TOBJS = $(patsubst $(TESTDIR)/%.c,$(OBJDIR)/%.o,$(TESTS))
 DEPS = $(OBJS:.o=.d)
 
 # Output binary file
@@ -24,11 +27,11 @@ dir:
 	@mkdir $(OBJDIR) $(BINDIR)
 
 # Rule to build the target
-$(TARGET): $(OBJS)
+$(TARGET): $(OBJS) 
 	$(CC) $(CFLAGS) $(OBJS) -o $@
 
 # Rule to build object files and track dependencies
-$(OBJDIR)/%.o: $(SRCDIR)/%.c
+$(OBJDIR)/%.o: $(SRCDIR)/%.c 
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Include the dependency files

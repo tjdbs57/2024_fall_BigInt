@@ -1,12 +1,18 @@
 #include "utils.h"
 
 //2.2
-void bi_new(bigint** x, u32 wordlen)
+void bi_new(bigint** x, int wordlen)
 {
     if(*x != NULL)
         bi_delete(x);
 
-    *x = (bigint*)malloc(sizeof(bigint));
+    *x = (bigint*)calloc(1, sizeof(bigint));
+    if (*x == NULL)
+    {
+        printf("Memeory allocation failed for bigint structure.\n");
+        exit(1);
+    }
+
     (*x)->sign = NON_NEGATIVE; // 0
     (*x)->wordlen = wordlen;
     (*x)->a = (word*)calloc(wordlen, sizeof(word));
@@ -26,19 +32,62 @@ void bi_delete(bigint** x)
     *x = NULL;
 }
 
-/*
-//2.6
-void bi_assign(bigint** y, bigint* x)
+void bi_set_one(bigint** x)
 {
-    if(*y != NULL)
-        bi_delete(y);
-
-    bi_new(y, x->wordlen);
-    (*y)->sign = x->sign;
-    array_copy((*y)->a, x->a, x->wordlen);  //array_copy 
+    bi_new(x, 1);
+    (*x)->sign = NON_NEGATIVE;
+    (*x)->a[0] = 0x1;
 }
 
-//2.7
+void bi_set_zero(bigint** x)
+{
+    bi_new(x, 1);
+    (*x)->sign = NON_NEGATIVE;
+    (*x)->a[0] = 0x0;
+}
+//======================================================================
+
+
+void bi_assign(bigint** dest, bigint* src)
+{
+    if(*dest != NULL)
+        bi_delete(dest);
+    
+    bi_new(dest, src->wordlen);
+
+    (*dest)->sign = src->sign;
+    (*dest)->wordlen = src->wordlen;
+
+    //array_copy()
+    for (int i = 0; i < src->wordlen; i++) {
+        (*dest)->a[i] = src->a[i]; // 각 요소를 복사
+    }
+
+}
+
+
+void bi_refine(bigint* x)
+{
+    if(x == NULL)
+        return;
+    int new_wordlen = x->wordlen;
+    while(new_wordlen > 1) // at least one word needed
+    {
+        if(x->a[new_wordlen- 1] != 0)
+            break;
+        new_wordlen--;
+    }
+
+    if (x->wordlen != new_wordlen)
+    {
+        x->wordlen = new_wordlen;
+        x->a = (word*)realloc(x->a, sizeof(word)*new_wordlen);
+    }
+
+    if((x->wordlen == 1) && (x->a[0] == 0x0))
+        x->sign = NON_NEGATIVE;
+ }
+
 
 void bi_gen_rand(bigint**x, int sign, int wordlen)
 {
@@ -46,10 +95,10 @@ void bi_gen_rand(bigint**x, int sign, int wordlen)
     (*x)->sign = sign;
     array_rand((*x)->a, wordlen);
 
-    bi_refine(*x);                          //bi_refine 
+    bi_refine(*x);
 }
-*/
-//byte--> u8
+
+
 void array_rand(word* dst, int wordlen)
 {
     u8* p = (u8*)dst;
@@ -60,5 +109,25 @@ void array_rand(word* dst, int wordlen)
         p++;
         cnt--;
     }
- }
+}
+
+
+void bi_set_by_array(bigint** x, int sign, word* a, int wordlen) {
+    // 입력 배열이 NULL인지 확인
+    if (a == NULL || wordlen <= 0) return -1;
+
+    // bigint 초기화
+    bi_new(x, wordlen);
+    
+    // 부호 설정
+    (*x)->sign = (sign == NEGATIVE) ? NEGATIVE : NON_NEGATIVE;  // 부호 설정 (양수 또는 음수)
+    
+    // 주어진 배열을 bigint의 배열에 복사
+    for (int i = 0; i < wordlen; i++) {
+        (*x)->a[i] = a[i];
+    }
+    
+}
+
+
  

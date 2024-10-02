@@ -1,17 +1,23 @@
 #include <stdio.h>
 #include "config.h"
 #include "utils.h"
+#include "test.h"
 
 int main()
 {
-    int a;
-    printf("size : %llu\n", sizeof(bigint));
-    printf("hello world!\n");
+    test_set_by_array();
+    //test_set_by_string(); // bi_set_by_string 테스트 실행
 
-    bigint* x = NULL;
-    bigint* y = NULL;
-    bigint* z = NULL;
+/*
+    char* str1 = "hello";
+    char str2[] = "hello";
+    
+    str1[0] = 'C';
+    // str2[0] = 'C';
+    printf("%c", str2[0]);
 
-    bi_new(&x, 4);
+*/
+
+
     return 0;
 }
