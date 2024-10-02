@@ -62,3 +62,23 @@ void array_rand(word* dst, int wordlen)
     }
  }
  
+
+void bi_show_hex(bigint* x) {
+
+    if (x == NULL || x->a == NULL || x->wordlen == 0) {
+        printf("Invalid bigint\n");
+        return;
+    }
+
+    // Check the sign and print it
+    if (x->sign) {
+        printf("-");
+    }
+
+    // Print the bigint in hexadecimal format
+    for (int i = x->wordlen - 1; i >= 0; i--) {
+        printf("%08x", x->a[i]);
+    }
+
+    printf("\n");
+}
