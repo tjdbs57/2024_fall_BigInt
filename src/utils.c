@@ -106,3 +106,12 @@ int get_jth_bit(bigint* x, unsigned int j) {
     word mask = (1 << bit_index);
     return (x->a[word_index] & mask) ? 1 : 0;
 }
+
+int get_sign_bit(bigint* x) {
+
+    if (x == NULL) {
+        fprintf(stderr, "Invalid bigint\n"); // Print error message for NULL input
+        return -1; // Return -1 in case of an error
+    }
+    return x->sign; // Return the sign field of the bigint
+}

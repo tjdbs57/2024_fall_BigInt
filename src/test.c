@@ -82,3 +82,17 @@ void test_get_jth_bit(){
     bi_delete(&num);
 
 }
+
+void test_get_sign_bit(){
+    bigint* number;
+    bi_new(&number, 1);
+    number->sign = NON_NEGATIVE; // Set to non_negative
+    number->a[0] = 0x012345678;
+
+    if (get_sign_bit(number) == NON_NEGATIVE) {
+        printf("The number is non-negative.(0)\n");
+    } else {
+        printf("The number is negative.(1)\n");
+    }
+
+}

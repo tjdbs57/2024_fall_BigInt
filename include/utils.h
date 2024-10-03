@@ -28,3 +28,18 @@ void bi_show_hex(bigint* x);
  * @return 0 if the bit is 0, 1 if the bit is 1, and -1 if the input is invalid.
  */
 int get_jth_bit(bigint* x, unsigned int j);
+
+/**
+ * @brief Retrieves the sign bit of a bigint.
+ *
+ * This function checks if the provided bigint pointer is valid
+ * and returns its sign. A return value of 0 indicates a 
+ * non-negative number, while a return value of 1 indicates a 
+ * negative number. If the input is NULL, an error message 
+ * is printed, and -1 is returned to indicate an error.
+ *
+ * @param[in] x Pointer to the bigint from which to retrieve the sign.
+ * @return int The sign of the bigint (0 for non-negative, 1 for negative).
+ *             Returns -1 if the input is NULL.
+ */
+int get_sign_bit(bigint* x);
