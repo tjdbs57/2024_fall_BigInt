@@ -65,20 +65,26 @@ void array_rand(word* dst, int wordlen)
 
 void bi_show_hex(bigint* x) {
 
-    if (x == NULL || x->a == NULL || x->wordlen == 0) {
+    if (x == NULL) {
         printf("Invalid bigint\n");
         return;
     }
 
-    // Check the sign and print it
-    if (x->sign) {
+    // 추가 검사
+    if (x->a == NULL || x->wordlen == 0) {
+        printf("Invalid bigint data\n");
+        return;
+    }
+
+    // 부호 출력
+    if (x->sign == 1) {
         printf("-");
     }
 
-    // Print the bigint in hexadecimal format
+    // 비트 출력
     for (int i = x->wordlen - 1; i >= 0; i--) {
-        printf("%08x", x->a[i]);
+        printf("0x%08x", x->a[i]);
     }
-
     printf("\n");
+
 }

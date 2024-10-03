@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include "config.h"
 #include "utils.h"
+#include "test.h"
 
 int main()
 {
+    /* 
     int a;
     printf("size : %llu\n", sizeof(bigint));
     printf("hello world!\n");
@@ -13,9 +15,10 @@ int main()
     bigint* z = NULL;
 
     bi_new(&x, 4);
-
+    */
+   
     test_bi_show_hex();
-
 
     return 0;
 }
+

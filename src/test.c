@@ -3,66 +3,66 @@
 #include "utils.h"
 #include "test.h"
 
-// Function to create a bigint for testing
-bigint* create_bigint(u8 sign, u32 wordlen, word* values) {
-    bigint* x = (bigint*)malloc(sizeof(bigint));
-    if (x == NULL) return NULL; // memory allocation failed
+// bi_show_hex 테스트 함수 구현
+void test_bi_show_hex() {
 
-    x->sign = sign;
-    x->wordlen = wordlen;
-    x->a = (word*)malloc(wordlen * sizeof(word));
-    if (x->a == NULL) {
-        free(x);
-        return NULL; // memory allocation failed
-    }
+   // 1. 양수 big integer 테스트
+    printf("Test 1: Positive bigint\n");
+    bigint* x1 = NULL;
+    bi_new(&x1, 3);
+    x1->a[0] = 0x12345678;
+    x1->a[1] = 0x9ABCDEF0;
+    x1->a[2] = 0xFEDCBA98;
+    bi_show_hex(x1);  // 예상 출력: 0xFEDCBA989ABCDEF012345678
+    bi_delete(&x1);
 
-    for (u32 i = 0; i < wordlen; i++) {
-        x->a[i] = values[i];
-    }
+    // 2. 음수 big integer 테스트
+    printf("Test 2: Negative bigint\n");
+    bigint* x2 = NULL;
+    bi_new(&x2, 1);
+    x2->sign = 1;  // 음수
+    x2->a[0] = 0xFFFFFFFF;
+    bi_show_hex(x2);  // 예상 출력: -ffffffff
+    bi_delete(&x2); 
 
-    return x;
-}
+    // 3. 0 big integer 테스트
+    printf("Test 3: Zero bigint\n");
+    bigint* x3 = NULL;
+    bi_new(&x3, 1);
+    x3->a[0] = 0x00000000;
+    bi_show_hex(x3);  // 예상 출력: 00000000
+    bi_delete(&x3);
 
+    // 4. NULL 포인터에 대한 테스트
+    printf("Test 4: NULL bigint\n");
+    bigint* x4 = NULL;
+    bi_show_hex(x4); // 예상 출력: Invalid bigint
 
-void free_bigint(bigint* x) {
-    if (x) {
-        free(x->a);
-        free(x);
-    }
-}
+    // 5. 음수 big integer 테스트 (여러 word)
+    printf("Test 5: Negative bigint with multiple words\n");
+    bigint* x5 = NULL;
+    bi_new(&x5, 2);
+    x5->sign = 1;  // 음수
+    x5->a[0] = 0x012345678;
+    x5->a[1] = 0x9abcdef;
+    bi_show_hex(x5);  // 예상 출력: -9abcdef012345678
+    bi_delete(&x5);
 
+    // 6. 2진수 입력 테스트
+    printf("Test 6: Binary input\n");
+    bigint* x6 = NULL;
+    bi_new(&x6, 2);
+    x6->a[0] = 0b110111; // 55 in decimal
+    x6->sign = 0;  // 양수
+    bi_show_hex(x6);  // 예상 출력: 0x0000000000000037
+    bi_delete(&x6);
 
-void test_bi_show_hex(){
-     
-    // Test case 1: Positive bigint
-    word values1[] = {0x00000001, 0x00000002, 0x00000003}; // 0x030201
-    bigint* b1 = create_bigint(0, 3, values1);
-    printf("Test Case 1: Positive bigint: ");
-    bi_show_hex(b1);
-    free_bigint(b1);
-
-    // Test case 2: Negative bigint
-    word values2[] = {0x00000001, 0x00000002, 0x00000003}; // -0x030201
-    bigint* b2 = create_bigint(1, 3, values2);
-    printf("Test Case 2: Negative bigint: ");
-    bi_show_hex(b2);
-    free_bigint(b2);
-
-    // Test case 3: Zero bigint
-    word values3[] = {0x00000000}; // 0x0
-    bigint* b3 = create_bigint(0, 1, values3);
-    printf("Test Case 3: Zero bigint: ");
-    bi_show_hex(b3);
-    free_bigint(b3);
-
-    // Test case 4: Invalid bigint (NULL pointer)
-    printf("Test Case 4: Invalid bigint (NULL pointer): ");
-    bi_show_hex(NULL);
-
-    // Test case 5: Invalid bigint (empty)
-    bigint empty = {0, 0, NULL};
-    printf("Test Case 5: Invalid bigint (empty): ");
-    bi_show_hex(&empty);
-
-    return 0;
+    // 7. 10진수 입력 테스트
+    printf("Test 7: Decimal input\n");
+    bigint* x7 = NULL;
+    bi_new(&x7, 2);
+    x7->a[0] = 12345; // 12345 in decimal
+    x7->sign = 0;  // 양수
+    bi_show_hex(x7);  // 예상 출력: 0x0000000000003039
+    bi_delete(&x7);
 }
