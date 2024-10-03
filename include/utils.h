@@ -17,3 +17,14 @@ void array_rand(word* dst, int wordlen);
  *              If NULL, an error message is printed.
  */
 void bi_show_hex(bigint* x); 
+
+/**
+ * @brief Gets the j-th bit of a bigint.
+ *
+ * This function retrieves the value of the j-th bit in the bigint.
+ *
+ * @param[in] x Pointer to the bigint from which the bit is retrieved.
+ * @param[in] j The index of the bit to retrieve (0-based).
+ * @return 0 if the bit is 0, 1 if the bit is 1, and -1 if the input is invalid.
+ */
+int get_jth_bit(bigint* x, unsigned int j);

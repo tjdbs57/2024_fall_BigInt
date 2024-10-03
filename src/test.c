@@ -66,3 +66,19 @@ void test_bi_show_hex() {
     bi_show_hex(x7);  // 예상 출력: 0x0000000000003039
     bi_delete(&x7);
 }
+
+void test_get_jth_bit(){
+
+    bigint* num =NULL;
+    bi_new(&num, 2); // Assume we create a bigint with 2 words
+    num->a[0] = 0xFFFFFFFF; // Set some values
+    num->a[1] = 0x00000000;
+
+    // Get the 0th bit
+    int bit_value = get_jth_bit(num, 31); // Returns 1
+    printf("Bit 0: %d\n", bit_value);
+
+    // Clean up
+    bi_delete(&num);
+
+}

@@ -17,7 +17,9 @@ int main()
     bi_new(&x, 4);
     */
    
-    test_bi_show_hex();
+    //test_bi_show_hex();
+
+    test_get_jth_bit();
 
     return 0;
 }

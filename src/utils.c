@@ -88,3 +88,21 @@ void bi_show_hex(bigint* x) {
     printf("\n");
 
 }
+
+int get_jth_bit(bigint* x, unsigned int j) {
+
+    if (x == NULL || x->a == NULL || j >= (x->wordlen * 32)) {
+        return -1;  // Invalid input
+    }
+
+    unsigned int word_index = j / 32;      // Determine which word contains the bit
+    unsigned int bit_index = j % 32;       // Determine the position of the bit in the word
+
+    if (word_index >= x->wordlen) {
+        return -1;  // Out of bounds
+    }
+
+    // Extract the bit value
+    word mask = (1 << bit_index);
+    return (x->a[word_index] & mask) ? 1 : 0;
+}
