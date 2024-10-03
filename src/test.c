@@ -96,3 +96,36 @@ void test_get_sign_bit(){
     }
 
 }
+
+void test_flip_sign_bit(){
+
+    printf("test case 1 : \n");
+    bigint* number1 = NULL;
+    bi_new(&number1, 1); // Assuming this creates a bigint
+    number1->sign = NON_NEGATIVE; // Set to non-negative
+    printf("Original sign: %d\n", get_sign_bit(number1)); // Should print 0
+    flip_sign_bit(number1);
+    printf("Flipped sign: %d\n", get_sign_bit(number1)); // Should print 1
+    flip_sign_bit(number1);
+    printf("Flipped sign again: %d\n", get_sign_bit(number1)); // Should print 0
+    
+    printf("\ntest case 2 : \n");
+    bigint* number2 = NULL;
+    bi_new(&number2, 1); // Assuming this creates a bigint
+    number2->sign = 0; // Set to non-negative
+    printf("Original sign: %d\n", get_sign_bit(number2)); // Should print 0
+    flip_sign_bit(number2);
+    printf("Flipped sign: %d\n", get_sign_bit(number2)); // Should print 1
+    flip_sign_bit(number2);
+    printf("Flipped sign again: %d\n", get_sign_bit(number2)); // Should print 0
+
+    printf("\ntest case 3 : \n");
+    bigint* number3 = NULL;
+    bi_new(&number3, 1); // Assuming this creates a bigint
+    number3->sign = 1; // Set to non-negative
+    printf("Original sign: %d\n", get_sign_bit(number3)); // Should print 0
+    flip_sign_bit(number3);
+    printf("Flipped sign: %d\n", get_sign_bit(number3)); // Should print 1
+    flip_sign_bit(number3);
+    printf("Flipped sign again: %d\n", get_sign_bit(number3)); // Should print 0
+}

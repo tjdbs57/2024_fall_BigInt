@@ -43,3 +43,16 @@ int get_jth_bit(bigint* x, unsigned int j);
  *             Returns -1 if the input is NULL.
  */
 int get_sign_bit(bigint* x);
+
+/**
+ * @brief Flips the sign bit of a bigint.
+ *
+ * This function checks if the provided bigint pointer is valid.
+ * If valid, it toggles the sign of the bigint. A sign of 0 
+ * becomes 1 (negative), and a sign of 1 becomes 0 (non-negative).
+ * If the input is NULL, an error message is printed, and the
+ * function does not perform any operation.
+ *
+ * @param[in,out] x Pointer to the bigint whose sign bit will be flipped.
+ */
+void flip_sign_bit(bigint* x);

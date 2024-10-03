@@ -115,3 +115,14 @@ int get_sign_bit(bigint* x) {
     }
     return x->sign; // Return the sign field of the bigint
 }
+
+void flip_sign_bit(bigint* x) {
+
+    if (x == NULL) {
+        fprintf(stderr, "Invalid bigint\n"); // Print error message for NULL input
+        return; // Exit the function if input is NULL
+    }
+
+    // Toggle the sign
+    x->sign = (x->sign == 0) ? 1 : 0; // If sign is 0, set to 1; otherwise, set to 0
+}

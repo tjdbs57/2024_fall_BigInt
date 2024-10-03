@@ -9,4 +9,6 @@ void test_get_jth_bit();
 
 void test_get_sign_bit();
 
+void test_flip_sign_bit();
+
 #endif
