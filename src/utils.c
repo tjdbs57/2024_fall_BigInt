@@ -83,7 +83,7 @@ void bi_show_hex(bigint* x) {
 
     // 비트 출력
     for (int i = x->wordlen - 1; i >= 0; i--) {
-        printf("0x%08x", x->a[i]);
+        printf("0x%08x ", x->a[i]);
     }
     printf("\n");
 

@@ -17,10 +17,10 @@ int main()
     bi_new(&x, 4);
     */
    
-    //test_bi_show_hex();
+    test_bi_show_hex();
     //test_get_jth_bit();
     //test_get_sign_bit();
-    test_flip_sign_bit();
+    //test_flip_sign_bit();
     
     return 0;
 }
