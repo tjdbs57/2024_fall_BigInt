@@ -42,7 +42,7 @@ void test_bi_show_hex() {
     printf("Test 5: Negative bigint with multiple words\n");
     bigint* x5 = NULL;
     bi_new(&x5, 2);
-    x5->sign = 1;  // 음수
+    x5->sign = -1;  // 음수
     x5->a[0] = 0x012345678;
     x5->a[1] = 0x9abcdef;
     bi_show_hex(x5);  // 예상 출력: -9abcdef012345678
