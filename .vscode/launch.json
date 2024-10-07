@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/seoyu/2024_fall_BigInt/src",
-      "program": "c:/Users/seoyu/2024_fall_BigInt/src/build/Debug/outDebug",
+      "cwd": "c:/Users/seoyu/source/2024_fall_BigInt/src",
+      "program": "c:/Users/seoyu/source/2024_fall_BigInt/src/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
