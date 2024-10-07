@@ -2,6 +2,7 @@
 
 void bi_new(bigint** x, int wordlen);
 void bi_delete(bigint** x);
+void bi_show_hex(bigint* x);
 
 /**
  * Function: bi_set_by_array
@@ -87,7 +88,6 @@ void bi_set_one(bigint** x);
  * @param[out] x Pointer to the bigint structure to be initialized and set to zero.
  */
 void bi_set_zero(bigint** x);
-
 
 
 

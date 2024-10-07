@@ -5,8 +5,9 @@
 
 int main()
 {
-    test_set_by_array();
+    //test_set_by_array();
     //test_set_by_string(); // bi_set_by_string 테스트 실행
+    //test_bigint_functions();
 
 /*
     char* str1 = "hello";

@@ -32,6 +32,29 @@ void bi_delete(bigint** x)
     *x = NULL;
 }
 
+void bi_show_hex(bigint* x) {
+
+    if (x == NULL || x->a == NULL || x->wordlen == 0) {
+        printf("Invalid bigint\n");
+        return;
+    }
+
+    // Check the sign and print it
+    if (x->sign) {
+        printf("-");
+    }
+
+    // Print the bigint in hexadecimal format
+    for (int i = x->wordlen - 1; i >= 0; i--) {
+        printf("%08x", x->a[i]); // 각 워드의 값을 8자리 16진수로 출력
+        if (i > 0) {
+            printf(" "); // 마지막 워드를 제외하고 공백 추가
+        }
+    }
+
+    printf("\n");
+}
+
 void bi_set_one(bigint** x)
 {
     bi_new(x, 1);
@@ -45,6 +68,8 @@ void bi_set_zero(bigint** x)
     (*x)->sign = NON_NEGATIVE;
     (*x)->a[0] = 0x0;
 }
+
+
 //======================================================================
 
 
@@ -114,7 +139,11 @@ void array_rand(word* dst, int wordlen)
 
 void bi_set_by_array(bigint** x, int sign, word* a, int wordlen) {
     // 입력 배열이 NULL인지 확인
-    if (a == NULL || wordlen <= 0) return -1;
+    if (a == NULL || wordlen <= 0) 
+    {
+        printf("set array fail!\n");
+        exit(1);
+    }
 
     // bigint 초기화
     bi_new(x, wordlen);
@@ -128,6 +157,9 @@ void bi_set_by_array(bigint** x, int sign, word* a, int wordlen) {
     }
     
 }
+
+
+
 
 
  

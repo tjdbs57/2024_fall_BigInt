@@ -4,21 +4,6 @@
 #include "test.h"
 
 
-// bigint의 내용을 출력하는 함수
-void print_bigint(bigint* x) {
-    if (x == NULL) {
-        printf("bigint is NULL\n");
-        return;
-    }
-
-    printf("Sign: %d\n", x->sign);
-    printf("Word Length: %u\n", x->wordlen);
-    printf("Array: ");
-    for (u32 i = 0; i < x->wordlen; i++) {
-        printf("%08x ", x->a[i]);
-    }
-    printf("\n");
-}
 
 void test_rand_assign() {
     bigint* original_bigint = NULL;
@@ -30,26 +15,14 @@ void test_rand_assign() {
     bi_gen_rand(&original_bigint, sign, wordlen);
 
     // 할당된 bigint 출력
-    printf("Original bigint:\n");
-    printf("Sign: %d\n", original_bigint->sign);
-    printf("Word Length: %u\n", original_bigint->wordlen);
-    printf("Array: ");
-    for (u32 i = 0; i < original_bigint->wordlen; i++) {
-        printf("%u ", original_bigint->a[i]);
-    }
+    bi_show_hex(original_bigint);
     printf("\n");
 
     // bi_assign 함수로 값 할당
     bi_assign(&assigned_bigint, original_bigint);
 
     // 할당된 bigint 출력
-    printf("Assigned bigint:\n");
-    printf("Sign: %d\n", assigned_bigint->sign);
-    printf("Word Length: %u\n", assigned_bigint->wordlen);
-    printf("Array: ");
-    for (u32 i = 0; i < assigned_bigint->wordlen; i++) {
-        printf("%u ", assigned_bigint->a[i]);
-    }
+    bi_show_hex(assigned_bigint);
     printf("\n");
 
     // 메모리 해제
@@ -58,28 +31,6 @@ void test_rand_assign() {
 }
 
 
-void test_set_by_string() {
-    char test_string[256]; // 최대 255자 + 널 문자
-
-    printf("Enter a number (can be in decimal, hexadecimal (0x), or binary (0b)): ");
-    fgets(test_string, sizeof(test_string), stdin);
-    
-    // fgets로 읽은 문자열에서 개행 문자 제거
-    test_string[strcspn(test_string, "\n")] = 0; 
-
-    bigint* x;
-    i32 sign;
-    bi_set_by_string(&x, sign, test_string, 10); // 문자열로 변환
-    printf("Assigned bigint from string:\n");
-    printf("Sign: %d\n", x->sign);
-    printf("Word Length: %d\n", x->wordlen);
-    printf("Array: ");
-    for (int i = 0; i < x->wordlen; i++) {
-        printf("%08x ", x->a[i]);
-    }
-    printf("\n");
-    bi_delete(&x); // 메모리 해제
-}
 
 void test_set_by_array() 
 {
@@ -93,8 +44,34 @@ void test_set_by_array()
 
     // 결과 출력
     printf("Assigned bigint from array:\n");
-    print_bigint(x);
+    bi_show_hex(x);
 
     // 메모리 해제
     bi_delete(&x);
 }
+
+void test_bigint_functions() {
+    bigint* num1 = NULL;
+    bigint* num2 = NULL;
+
+    // bi_set_by_array 테스트
+    word array[] = {0x12345678, 0x9ABCDEF0}; // 예시 값
+    int sign1 = NON_NEGATIVE;
+    bi_set_by_array(&num1, sign1, array, 2);
+    printf("Testing bi_set_by_array:\n");
+    bi_show_hex(num1);
+    printf("\n");
+
+    // // bi_set_by_string 테스트
+    // char* str = "123456789ABCDEF0";
+    // int sign2 = NEGATIVE;
+    // bi_set_by_string(&num2, sign2, str, 16); // 16진수로 문자열 설정
+    // printf("Testing bi_set_by_string:\n");
+    // bi_show_hex(num2);
+    // printf("\n");
+
+    // 메모리 해제
+    bi_delete(&num1);
+    bi_delete(&num2);
+}
+
