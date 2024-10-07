@@ -6,5 +6,6 @@
 int main()
 {
     printf("Hello world\n");
+    test_bigint_functions();
     return 0;
 }
