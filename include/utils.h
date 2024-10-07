@@ -14,7 +14,7 @@ void array_rand(word* dst, int wordlen);
  * @param y Pointer to the second bigint number.
  * @return 1 if |x| > |y|, -1 if |x| < |y|, or 0 if |x| == |y|.
  */
-int compareABS(bigint* x, bigint* y)
+int compareABS(bigint* x, bigint* y);
 
 /**
  * Compare two bigint numbers, taking into account their signs.
@@ -23,4 +23,4 @@ int compareABS(bigint* x, bigint* y)
  * @param y Pointer to the second bigint number.
  * @return 1 if x > y, -1 if x < y, or 0 if x == y.
  */
-int compare(bigint* x, bigint* y)
+int compare(bigint* x, bigint* y);

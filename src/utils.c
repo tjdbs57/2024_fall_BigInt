@@ -1,8 +1,8 @@
 #include "utils.h"
+#include "config.h"
 
 //2.2
-void bi_new(bigint** x, u32 wordlen)
-{
+void bi_new(bigint** x, u32 wordlen){
     if(*x != NULL)
         bi_delete(x);
 
@@ -16,8 +16,7 @@ void bi_new(bigint** x, u32 wordlen)
     (*x)->a = (word*)calloc(wordlen, sizeof(word));
 }
 
-void bi_delete(bigint** x)
-{
+void bi_delete(bigint** x){
     if(*x == NULL)
         return;
 #ifdef ZERORIZE
@@ -54,8 +53,7 @@ void bi_gen_rand(bigint**x, int sign, int wordlen)
 }
 */
 //byte--> u8
-void array_rand(word* dst, int wordlen)
-{
+void array_rand(word* dst, int wordlen){
     u8* p = (u8*)dst;
     int cnt = wordlen * sizeof(word);
     while(cnt > 0)
@@ -64,10 +62,9 @@ void array_rand(word* dst, int wordlen)
         p++;
         cnt--;
     }
- }
+}
  
-int compareABS(bigint* x, bigint* y)
-{
+int compareABS(bigint* x, bigint* y){
     int n = x->wordlen;
     int m = y->wordlen;
 
@@ -78,7 +75,7 @@ int compareABS(bigint* x, bigint* y)
         return -1;
     }
     else{
-        for(int j=n-1; j=0; j--){
+        for(int j=n-1; j>=0; j--){
             if(x->a[j]>y->a[j]){
                 return 1;
             }
