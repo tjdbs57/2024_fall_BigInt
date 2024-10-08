@@ -5,8 +5,13 @@
 
 int main()
 {
-    printf("Hello world jieon\n");
+    //printf("Hello world jieon\n");
     //test_bi_show_hex();
-    
+    //test_get_sign_bit();
+    //test_flip_sign_bit();
+    //test_get_word_length();
+    test_get_bit_length();
+
+
     return 0;
 }
