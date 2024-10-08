@@ -156,3 +156,88 @@ void test_get_bit_length() {
     printf("Bit length of -128: %d\n", get_bit_length(x)); // 기대값: 9 (부호 비트 포함)
     bi_delete(&x);
 }
+
+
+
+void test_left_shift() {
+    bigint* num;
+    bi_new(&num, 2); // bigint 생성
+
+    num->a[0] = 0x00000000;  // 예시 값
+    num->a[1] = 0x00000001;  // 예시 값
+
+    printf("Before left shift:\n");
+    bi_show_hex(num);
+
+    // 왼쪽으로 5비트 시프트
+    left_shift(num, 5);
+
+    printf("After left shift by 5 bits:\n");
+    bi_show_hex(num);
+
+    // 메모리 해제
+    bi_delete(&num);
+}
+
+void test_right_shift() {
+    bigint* num;
+    bi_new(&num, 2); // bigint 생성
+
+    num->a[0] = 0xFFFFFFFF;  // 예시 값
+    num->a[1] = 0x00000001;  // 예시 값
+
+    printf("Before right shift:\n");
+    bi_show_hex(num);
+
+    // 오른쪽으로 5비트 시프트
+    right_shift(num, 5);
+
+    printf("After right shift by 5 bits:\n");
+    bi_show_hex(num);
+
+    // 메모리 해제
+    bi_delete(&num);
+}
+
+
+void test_reduction() {
+    bigint *num, *result;
+    bi_new(&num, 3); // Create a bigint with 3 words
+
+    // Test case 1: Modulus with r = 32 (exactly one word)
+    bi_gen_rand(&num, NON_NEGATIVE, 3);
+    
+    bi_new(&result, 0); // Create an empty result bigint
+    reduction(num, 32, result); // Perform modulus with r = 32
+    
+    printf("Test case 1: Modulus by 32 bits:\n");
+    bi_show_hex(result); // Expected: 0x000000FF
+    bi_delete(&result);
+
+    // Test case 2: Modulus with r = 32 (maximum single word)
+    num->a[0] = 0xFFFFFFFF; 
+    bi_new(&result, 0);
+    reduction(num, 32, result); // Perform modulus with r = 32
+    
+    printf("Test case 2: Modulus by 64 bits (max value):\n");
+    bi_show_hex(result); // Expected: 0xFFFFFFFF
+    bi_delete(&result);
+
+    // Test case 3: Modulus with r = 32 (zero in higher words)
+    bi_gen_rand(&num, NON_NEGATIVE, 3);
+    bi_new(&result, 0);
+    reduction(num, 64, result); // Perform modulus with r = 32
+    
+    printf("Test case 3: Modulus by 8 bits (higher words zero):\n");
+    bi_show_hex(result); // Expected: 0x00000001
+    bi_delete(&result);
+
+    // Test case 4: Modulus with r = 32 (higher word non-zero)
+    bi_gen_rand(&num, NON_NEGATIVE, 3);
+    bi_new(&result, 0);
+    reduction(num, 8, result); // Perform modulus with r = 32
+
+
+    // Clean up
+    bi_delete(&num);
+}
