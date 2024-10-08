@@ -108,12 +108,82 @@ void bi_show_hex(bigint* x) {
 
 int get_jth_bit(bigint* x, unsigned int j) {
 
+<<<<<<< Updated upstream
     if (x == NULL || x->a == NULL || j >= ((unsigned int)x->wordlen * 32)) {
         return -1;  // Invalid input
     }
 
     unsigned int word_index = j / 32;      // Determine which word contains the bit
     unsigned int bit_index = j % 32;       // Determine the position of the bit in the word
+=======
+void bi_set_one(bigint** x)
+{
+    bi_new(x, 1);
+    (*x)->sign = NON_NEGATIVE;
+    (*x)->a[0] = 0x1;
+}
+
+void bi_set_zero(bigint** x)
+{
+    bi_new(x, 1);
+    (*x)->sign = NON_NEGATIVE;
+    (*x)->a[0] = 0x0;
+}
+
+int compareABS(bigint* x, bigint* y){
+    int n = x->wordlen;
+    int m = y->wordlen;
+
+    if (n>m){
+        return 1;
+    }
+    else if(n<m){
+        return -1;
+    }
+    else{
+        for(int j=n-1; j>=0; j--){
+            if(x->a[j]>y->a[j]){
+                return 1;
+            }
+            else if(x->a[j]<y->a[j]){
+                return -1;
+            }
+        }
+    }
+    return 0;
+}
+
+int compare(bigint* x, bigint* y)
+{
+    if(x->sign == 0 && y->sign ==1){
+        return 1;
+    }
+    else if(x->sign == 1 && y->sign == 0){
+        return -1;
+    }
+    else{
+        int ret = compareABS(x, y);
+        if(x->sign == 0){
+            return ret;
+        }
+        else{
+            return ret*(-1);
+        }
+    } 
+}
+
+int get_jth_bit(bigint* x, u32 j) {
+
+    CHECK_MEM_ALLOCATION(x);
+    CHECK_MEM_ALLOCATION(x->a);
+
+    if (j >= ((u32)x->wordlen * (8*sizeof(word)))) {
+        exit(1);  // Invalid input
+    }
+
+    u32 word_index = j / (8*sizeof(word));      // Determine which word contains the bit
+    u32 bit_index = j % (8*sizeof(word));       // Determine the position of the bit in the word
+>>>>>>> Stashed changes
 
     if (word_index >= (unsigned int)x->wordlen) {
         return -1;  // Out of bounds
@@ -126,21 +196,25 @@ int get_jth_bit(bigint* x, unsigned int j) {
 
 int get_sign_bit(bigint* x) {
 
+<<<<<<< Updated upstream
     if (x == NULL) {
         fprintf(stderr, "Invalid bigint\n"); // Print error message for NULL input
         return 1; //error 
     }
+=======
+    CHECK_MEM_ALLOCATION(x);
+    CHECK_MEM_ALLOCATION(x->a);
+
+>>>>>>> Stashed changes
     return x->sign; // Return the sign field of the bigint
 }
 
 void flip_sign_bit(bigint* x) {
 
-    if (x == NULL) {
-        fprintf(stderr, "Invalid bigint\n"); // Print error message for NULL input
-        return; // Exit the function if input is NULL
-    }
-
+    CHECK_MEM_ALLOCATION(x);
+    
     // Toggle the sign
+<<<<<<< Updated upstream
     x->sign = (x->sign == 0) ? -1 : 0; // If sign is 0, set to 1; otherwise, set to 0
 }
 
@@ -166,6 +240,21 @@ int get_bit_length(bigint* a) {
     //if (a->wordlen == 0 || (a->wordlen == 1 && a->a[0] == 0)) {
     //    return 1;
     //}
+=======
+    x->sign = (x->sign == NON_NEGATIVE) ? NEGATIVE : NON_NEGATIVE; // If sign is 0, set to 1; otherwise, set to 0
+}
+
+ int get_word_length(bigint* a) {
+    
+    CHECK_MEM_ALLOCATION(a);
+
+    return a->wordlen; // wordlen을 반환
+}
+
+int get_bit_length(bigint* a) {
+    
+    CHECK_MEM_ALLOCATION(a);
+>>>>>>> Stashed changes
 
     // Calculate the bit length of the absolute value
     int bit_length = (a-> wordlen + 1) * 32; // Each word is 32 bits
@@ -186,6 +275,7 @@ int get_bit_length(bigint* a) {
     }
 
     return bit_length; // Return the total bit length
+<<<<<<< Updated upstream
 }
 
 void left_shift(bigint* a, int shift) {
@@ -300,4 +390,6 @@ void reduction(bigint* A, int r, bigint* result) {
     while (result->wordlen > 1 && result->a[result->wordlen - 1] == 0) {
         result->wordlen--; // Reduce the word length if upper words are zero
     }
+=======
+>>>>>>> Stashed changes
 }

@@ -3,6 +3,7 @@
 
 #include "config.h"  // bigint 구조체가 정의된 헤더 파일 포함
 
+<<<<<<< Updated upstream
 void test_bi_show_hex();  
 
 void test_get_jth_bit();
@@ -22,3 +23,8 @@ void test_right_shift();
 void test_reduction();
 
 #endif
+=======
+void test_bi_show_hex();
+
+#endif
+>>>>>>> Stashed changes

@@ -57,6 +57,7 @@ int get_sign_bit(bigint* x);
  */
 void flip_sign_bit(bigint* x);
 
+<<<<<<< Updated upstream
 /**
  * @brief Returns the number of words in a bigint structure.
  *
@@ -68,6 +69,15 @@ void flip_sign_bit(bigint* x);
  *         an error code of -1 is returned.
  */
 int get_word_length(bigint* a);
+=======
+
+
+#define CHECK_MEM_ALLOCATION(x)                                      \
+    if ((x) == NULL) {                                               \
+        printf("Memory allocation failed.\n");                       \
+        exit(1);                                                     \
+    }
+>>>>>>> Stashed changes
 
 /**
  * @brief Calculate the bit length of a bigint.
@@ -85,6 +95,7 @@ int get_word_length(bigint* a);
  */
 int get_bit_length(bigint* a);
 
+<<<<<<< Updated upstream
 /**
  * @brief Performs a left bitwise shift on a bigint structure by a specified number of bits.
  * 
@@ -124,3 +135,10 @@ void reduction(bigint* A, int r, bigint* result);
 
 
 void bi_assign(bigint** dest, bigint* src);
+=======
+#define CHECK_SET_ARRAY(a, wordlen)                               \
+    if ((a) == NULL || (wordlen) <= 0) {                          \
+        printf("set array fail!\n");                              \
+        exit(1);                                                  \
+    }
+>>>>>>> Stashed changes

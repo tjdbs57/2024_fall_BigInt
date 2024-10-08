@@ -5,6 +5,7 @@
 
 int main()
 {
+<<<<<<< Updated upstream
     /* 
     int a;
     printf("size : %llu\n", sizeof(bigint));
@@ -26,6 +27,11 @@ int main()
     //test_left_shift();
     //test_right_shift();
     test_reduction();
+=======
+    printf("Hello world\n");
+    
+    test_bi_show_hex();
+>>>>>>> Stashed changes
     
     return 0;
 }
