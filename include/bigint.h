@@ -1,7 +1,5 @@
 #include "config.h"
 
-<<<<<<< Updated upstream
-=======
 
 /* Return Maximum of x1 and x2. */
 #define MAXIMUM(x1, x2) (x1 > x2 ? x1 : x2)
@@ -22,6 +20,3 @@ typedef u32 word;
 typedef u64 word;
 #define ONE (u64)1
 #endif
-
-#define Invalid_Bigint "Invalid Bigint"
->>>>>>> Stashed changes

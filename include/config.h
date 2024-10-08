@@ -1,14 +1,16 @@
-#ifndef CONFIG_H
-#define CONFIG_H
-
-
 #include <stdio.h>
 #include <stdint.h>
 #include <stddef.h>
 #include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <time.h>
 
-#define NON_NEGATIVE 0   
-#define NEGATIVE -1
+#ifndef CONFIG_H
+#define CONFIG_H
+
+#define NON_NEGATIVE    0
+#define NEGATIVE       -1
 
 typedef int8_t    i8;
 typedef int32_t  i32;
@@ -26,4 +28,4 @@ typedef struct{
     word*         a; // address for big integer
 } bigint;
 
-#endif
+#endif 

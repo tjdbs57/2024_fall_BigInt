@@ -1,11 +1,28 @@
 #include "config.h"
 
-void bi_new(bigint** x, u32 wordlen);
-void bi_delete(bigint** x);
+/**
+ * @brief Allocates memory for a new bigint structure.
+ *
+ * This function creates a new bigint structure and initializes it with the specified
+ * word length. The pointer to the newly created bigint is stored in the provided
+ * pointer to a pointer (x).
+ *
+ * @param[out] x      Pointer to the bigint structure to be initialized.
+ * @param[in]  wordlen The number of words to allocate for the bigint.
+ * @return void
+ */
+void bi_new(bigint** x, int wordlen);
 
-void bi_assign(bigint** y, bigint* x);
-void bi_gen_rand(bigint**x, int sign, int wordlen);
-void array_rand(word* dst, int wordlen);
+/**
+ * @brief Frees the memory occupied by a bigint structure.
+ *
+ * This function releases the memory allocated for the bigint structure and sets the
+ * pointer to NULL to avoid dangling references.
+ *
+ * @param[in,out] x Pointer to the bigint structure to be deleted.
+ * @return void
+ */
+void bi_delete(bigint** x);
 
 /**
  * @brief Displays the hexadecimal representation of a bigint.
@@ -19,6 +36,114 @@ void array_rand(word* dst, int wordlen);
 void bi_show_hex(bigint* x); 
 
 /**
+ * @brief Initializes a bigint structure using an array of words and sets its sign.
+ * 
+ * @param x      Pointer to the bigint structure to be initialized.
+ * @param sign   The sign of the bigint (NEGATIVE or NON_NEGATIVE).
+ * @param a      Array of words to set the value of the bigint.
+ * @param wordlen Length of the word array.
+ * @return int
+ */
+int bi_set_by_array(bigint** x, int sign, word* a, int wordlen);
+
+/**
+ * @brief Initializes a bigint structure from a character string representing a number.
+ * 
+ * @param x     Pointer to the bigint structure to be initialized.
+ * @param sign   The sign of the bigint (NEGATIVE or NON_NEGATIVE).
+ * @param str    The string representation of the number to be converted.
+ * @param base   The base of the number system (e.g., 10 for decimal).
+ * @return int
+ */
+int bi_set_by_string(bigint** x, int sign, char* str, int base);
+
+/**
+ * @brief Refines the bigint structure by removing leading zeros.
+ *
+ * This function updates the word length of the bigint and reallocates memory
+ * if necessary. It also sets the sign to NON_NEGATIVE if the bigint becomes zero.
+ *
+ * @param[in,out] x Pointer to the bigint to be refined.
+ */
+void bi_refine(bigint* x);
+
+/**
+ * @brief Assigns the value of one bigint to another.
+ *
+ * This function deletes the existing destination bigint, 
+ * creates a new bigint of the same word length as the source, 
+ * and copies the sign, word length, and value from the source bigint.
+ *
+ * @param[out] dest Pointer to the destination bigint to be assigned to.
+ * @param[in] src Pointer to the source bigint to copy from.
+ */
+void bi_assign(bigint** y, bigint* x);
+
+/**
+ * @brief Generates a random bigint with a specified sign and word length.
+ *
+ * This function creates a new bigint, sets its sign, generates random values
+ * for its word array, and then refines it to remove any leading zeros.
+ *
+ * @param[out] x Pointer to the bigint to be generated.
+ * @param[in] sign The sign of the bigint (NEGATIVE or NON_NEGATIVE).
+ * @param[in] wordlen The desired length of the word array.
+ */
+void bi_gen_rand(bigint**x, int sign, int wordlen);
+
+/**
+ * @brief Fills an array with random bytes.
+ *
+ * This function populates the specified array with random bytes using the rand function.
+ *
+ * @param[out] dst Pointer to the array to be filled with random values.
+ * @param[in] wordlen The number of words to fill.
+ */
+void array_rand(word* dst, int wordlen);
+
+/**
+ * @brief Sets a bigint to the value of one.
+ *
+ * This function initializes a new bigint structure and sets its value to one.
+ * The sign of the bigint is set to NON_NEGATIVE.
+ *
+ * @param[out] x Pointer to the bigint structure to be initialized and set to one.
+ */
+void bi_set_one(bigint** x);
+
+/**
+ * @brief Sets a bigint to the value of zero.
+ *
+ * This function initializes a new bigint structure and sets its value to zero.
+ * The sign of the bigint is set to NON_NEGATIVE.
+ *
+ * @param[out] x Pointer to the bigint structure to be initialized and set to zero.
+ */
+void bi_set_zero(bigint** x);
+
+/**
+ * @brief Compare the absolute values of two bigint numbers.
+ * 
+ * This function compares the magnitudes of two bigint numbers without considering their signs.
+ * 
+ * @param x Pointer to the first bigint number.
+ * @param y Pointer to the second bigint number.
+ * @return 1 if |x| > |y|, -1 if |x| < |y|, or 0 if |x| == |y|.
+ */
+int compareABS(bigint* x, bigint* y);
+
+/**
+ * @brief Compare two bigint numbers, taking into account their signs.
+ *
+ * This function compares two bigint numbers, considering both their magnitudes and signs.
+ * 
+ * @param x Pointer to the first bigint number.
+ * @param y Pointer to the second bigint number.
+ * @return 1 if x > y, -1 if x < y, or 0 if x == y.
+ */
+int compare(bigint* x, bigint* y);
+
+/**
  * @brief Gets the j-th bit of a bigint.
  *
  * This function retrieves the value of the j-th bit in the bigint.
@@ -27,7 +152,7 @@ void bi_show_hex(bigint* x);
  * @param[in] j The index of the bit to retrieve (0-based).
  * @return 0 if the bit is 0, 1 if the bit is 1, and -1 if the input is invalid.
  */
-int get_jth_bit(bigint* x, unsigned int j);
+int get_jth_bit(bigint* x, u32 j);
 
 /**
  * @brief Retrieves the sign bit of a bigint.
@@ -57,88 +182,20 @@ int get_sign_bit(bigint* x);
  */
 void flip_sign_bit(bigint* x);
 
-<<<<<<< Updated upstream
-/**
- * @brief Returns the number of words in a bigint structure.
- *
- * This function retrieves the word length of the provided bigint structure.
- *
- * @param a A pointer to the bigint structure. This must not be NULL.
- *
- * @return The word length of the bigint structure. If the input is NULL,
- *         an error code of -1 is returned.
- */
-int get_word_length(bigint* a);
-=======
-
-
 #define CHECK_MEM_ALLOCATION(x)                                      \
     if ((x) == NULL) {                                               \
         printf("Memory allocation failed.\n");                       \
         exit(1);                                                     \
     }
->>>>>>> Stashed changes
 
-/**
- * @brief Calculate the bit length of a bigint.
- * 
- * This function computes the number of bits required to represent a
- * given bigint. It takes into account the sign of the bigint and
- * counts leading zeros to accurately determine the bit length.
- *
- * @param a Pointer to the bigint structure whose bit length is to be calculated.
- *          If a is NULL, an error message will be printed, and -1 will be returned.
- *
- * @return The bit length of the bigint as an integer.
- *         If the bigint is zero, the return value is 1.
- *         If a is NULL, the return value is -1 indicating an error.
- */
-int get_bit_length(bigint* a);
+#define CHECK_SET_STRING(str, base)                                   \
+    if ((str) == NULL || (base) < 2 || (base) > 16) {              \
+        printf("Error: Invalid input for string or base!\n");      \
+        exit(1);                                                    \
+    }
 
-<<<<<<< Updated upstream
-/**
- * @brief Performs a left bitwise shift on a bigint structure by a specified number of bits.
- * 
- * This function shifts the bigint `a` to the left by `shift` bits. It handles both word-level 
- * and bit-level shifts. If necessary, it allocates more memory to accommodate the larger result. 
- * It also ensures that unnecessary leading zeros are removed from the bigint after the shift.
- * 
- * @param a Pointer to the bigint structure that will be shifted.
- *          The structure is modified in place.
- * @param shift The number of bits to shift left.
- *              Must be a positive integer greater than zero.
- * 
- * @note If the bigint `a` is NULL or `shift` is less than or equal to 0, the function returns 
- *       without making any changes.
- * 
- * @warning This function allocates new memory for the bigint's internal array.
- *          Make sure to handle memory management carefully to avoid memory leaks.
- * 
- * @note After the shift, the function automatically reduces the word length (`wordlen`) if there 
- *       are leading words with zero values.
- * 
- * @warning If memory allocation for the new array fails, the program will terminate with an error message.
- */
-void left_shift(bigint* a, int l);
-
-/**
- * @brief Performs a right bit shift on a bigint.
- * 
- * Shifts the given bigint structure to the right by the specified number of bits.
- * 
- * @param a Pointer to the bigint structure to be shifted. If NULL, no operation is performed.
- * @param shift The number of bits to shift to the right. No operation is performed if less than or equal to 0.
- */
-void right_shift(bigint* a, int shift);
-
-void reduction(bigint* A, int r, bigint* result);
-
-
-void bi_assign(bigint** dest, bigint* src);
-=======
 #define CHECK_SET_ARRAY(a, wordlen)                               \
     if ((a) == NULL || (wordlen) <= 0) {                          \
-        printf("set array fail!\n");                              \
+        printf("set array fail!\n");                               \
         exit(1);                                                  \
     }
->>>>>>> Stashed changes
