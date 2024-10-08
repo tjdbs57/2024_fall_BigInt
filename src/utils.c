@@ -61,6 +61,23 @@ void array_rand(word* dst, int wordlen)
         cnt--;
     }
  }
+
+ void bi_assign(bigint** dest, bigint* src)
+{
+    if(*dest != NULL)
+        bi_delete(dest);
+    
+    bi_new(dest, src->wordlen);
+
+    (*dest)->sign = src->sign;
+    (*dest)->wordlen = src->wordlen;
+
+    //array_copy()
+    for (int i = 0; i < src->wordlen; i++) {
+        (*dest)->a[i] = src->a[i]; // 각 요소를 복사
+    }
+
+}
  
 
 void bi_show_hex(bigint* x) {
@@ -146,12 +163,15 @@ int get_bit_length(bigint* a) {
     }
 
     // If the bigint is zero, it requires 1 bit to represent
-    if (a->wordlen == 0 || (a->wordlen == 1 && a->a[0] == 0)) {
-        return 1;
-    }
+    //if (a->wordlen == 0 || (a->wordlen == 1 && a->a[0] == 0)) {
+    //    return 1;
+    //}
 
     // Calculate the bit length of the absolute value
     int bit_length = (a-> wordlen + 1) * 32; // Each word is 32 bits
+    if (a->wordlen == 0 || (a->wordlen == 1 && a->a[0] == 0)) {
+        bit_length = 1;
+    }
     word last_word = a->a[a->wordlen - 1];
 
     // Count leading zeros in the last word

@@ -121,3 +121,6 @@ void left_shift(bigint* a, int l);
 void right_shift(bigint* a, int shift);
 
 void reduction(bigint* A, int r, bigint* result);
+
+
+void bi_assign(bigint** dest, bigint* src);
