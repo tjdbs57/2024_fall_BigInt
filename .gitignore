@@ -52,5 +52,5 @@ Mkfile.old
 dkms.conf
 
 #Exclude test files
-test.c
+test/test.c
 test.h
