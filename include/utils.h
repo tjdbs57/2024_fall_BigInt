@@ -42,9 +42,9 @@ void bi_show_hex(bigint* x);
  * @param sign   The sign of the bigint (NEGATIVE or NON_NEGATIVE).
  * @param a      Array of words to set the value of the bigint.
  * @param wordlen Length of the word array.
- * @return void
+ * @return int
  */
-void bi_set_by_array(bigint** x, int sign, word* a, int wordlen);
+int bi_set_by_array(bigint** x, int sign, word* a, int wordlen);
 
 /**
  * @brief Initializes a bigint structure from a character string representing a number.
@@ -53,9 +53,9 @@ void bi_set_by_array(bigint** x, int sign, word* a, int wordlen);
  * @param sign   The sign of the bigint (NEGATIVE or NON_NEGATIVE).
  * @param str    The string representation of the number to be converted.
  * @param base   The base of the number system (e.g., 10 for decimal).
- * @return void
+ * @return int
  */
-void bi_set_by_string(bigint** x, int sign, char* str, int base);
+int bi_set_by_string(bigint** x, int sign, char* str, int base);
 
 /**
  * @brief Refines the bigint structure by removing leading zeros.
@@ -181,3 +181,21 @@ int get_sign_bit(bigint* x);
  * @param[in,out] x Pointer to the bigint whose sign bit will be flipped.
  */
 void flip_sign_bit(bigint* x);
+
+#define CHECK_MEM_ALLOCATION(x)                                      \
+    if ((x) == NULL) {                                               \
+        printf("Memory allocation failed.\n");                       \
+        exit(1);                                                     \
+    }
+
+#define CHECK_SET_STRING(str, base)                                   \
+    if ((str) == NULL || (base) < 2 || (base) > 16) {              \
+        printf("Error: Invalid input for string or base!\n");      \
+        exit(1);                                                    \
+    }
+
+#define CHECK_SET_ARRAY(a, wordlen)                               \
+    if ((a) == NULL || (wordlen) <= 0) {                          \
+        printf("set array fail!\n");                               \
+        exit(1);                                                  \
+    }

@@ -2,20 +2,23 @@
 
 void bi_new(bigint** x, int wordlen)
 {
-    if(*x != NULL)
+    // 기존 객체가 있으면 삭제
+    if (*x != NULL)
         bi_delete(x);
 
+    // 매크로를 이용해 메모리 할당 체크
     *x = (bigint*)calloc(1, sizeof(bigint));
-    if (*x == NULL)
-    {
-        printf("Memeory allocation failed for bigint structure.\n");
-        exit(1);
-    }
+    CHECK_MEM_ALLOCATION(*x);
 
+    // 초기화
     (*x)->sign = NON_NEGATIVE; // 0
     (*x)->wordlen = wordlen;
+
+    // wordlen만큼 추가 메모리 할당 및 체크
     (*x)->a = (word*)calloc(wordlen, sizeof(word));
+    CHECK_MEM_ALLOCATION((*x)->a);
 }
+
 
 void bi_delete(bigint** x)
 {
@@ -57,13 +60,9 @@ void bi_show_hex(bigint* x) {
 
 }
 
-void bi_set_by_array(bigint** x, int sign, word* a, int wordlen) {
+int bi_set_by_array(bigint** x, int sign, word* a, int wordlen) {
     // 입력 배열이 NULL인지 확인
-    if (a == NULL || wordlen <= 0) 
-    {
-        printf("set array fail!\n");
-        exit(1);
-    }
+    CHECK_SET_ARRAY(a, wordlen);
 
     // bigint 초기화
     bi_new(x, wordlen);
@@ -75,8 +74,77 @@ void bi_set_by_array(bigint** x, int sign, word* a, int wordlen) {
     for (int i = 0; i < wordlen; i++) {
         (*x)->a[i] = a[i];
     }
-    
+
+    return 0; // 성공적으로 완료
 }
+
+int bi_set_by_string(bigint** x, int sign, char* str, int base) {
+    // 문자열이 NULL인지 확인
+    CHECK_SET_ARRAY(str, base);
+
+    // 문자열 길이 계산
+    size_t len = strlen(str);
+    // 최대 word 개수는 문자열 길이보다 작거나 같음
+    u32 wordlen = (len + (sizeof(word) * 2 - 1)) / (sizeof(word) * 2);
+    // 새로운 bigint 생성
+    bi_new(x, wordlen);
+    (*x)->sign = sign; // 부호 설정
+
+    // 배열 a 할당
+    word* a = (word*)calloc(wordlen, sizeof(word));
+    CHECK_MEM_ALLOCATION(a);
+    CHECK_SET_ARRAY(a, wordlen);
+
+    // 문자열을 단어로 변환
+    size_t current_word = 0;
+    size_t digit_pos = 0;
+
+    // 문자열을 역순으로 읽어 단어를 구성
+    for (size_t i = len; i > 0; i--) {
+        char c = str[i - 1];
+        int value;
+
+        // 문자를 숫자 값으로 변환
+        if (isdigit(c)) {
+            value = c - '0'; // 0-9의 경우
+        } else if (isxdigit(c)) {
+            value = tolower(c) - 'a' + 10; // 16진수 A-F의 경우
+        } else {
+            free(a); // 잘못된 문자가 있는 경우 메모리 해제
+            printf("Invalid character in string: %c\n", c);
+            return -1; // 잘못된 문자에 대한 오류 반환
+        }
+
+        // 현재 단어에 값 업데이트
+            a[current_word] |= (value << (digit_pos * 4));
+
+        // 자리수를 증가시키고 단어 오버플로우 체크
+        if (++digit_pos >= sizeof(word) * 2) {
+            current_word++;
+            digit_pos = 0;
+
+            // 현재 단어의 인덱스가 wordlen을 초과하지 않도록 검사
+            if (current_word >= wordlen) {
+                free(a);
+                printf("Overflow: too many digits for allocated word length.\n");
+                return -1; // 오버플로우 오류 반환
+            }
+        }
+    }
+
+    // bi_set_by_array 함수를 사용하여 bigint에 배열 저장
+    if (bi_set_by_array(x, sign, a, wordlen) != 0) {
+        free(a); // 오류 발생 시 메모리 해제
+        return -1; // 배열 설정 실패
+    }
+
+    // 할당한 메모리 해제
+    free(a);
+    return 0; // 성공적으로 수행됨
+}
+
+
+
 
 void bi_refine(bigint* x)
 {
