@@ -27,11 +27,14 @@ void bi_delete(bigint** x);
 /**
  * @brief Displays the hexadecimal representation of a bigint.
  *
- * This function prints the value of the bigint in hexadecimal format. 
- * It also handles the sign of the bigint and checks for invalid inputs.
+ * This function prints the contents of a bigint structure in hexadecimal format.
+ * It checks for null pointers and handles error messages accordingly.
  *
- * @param[in] x Pointer to the bigint to be displayed. 
- *              If NULL, an error message is printed.
+ * @param x A pointer to the bigint structure to be displayed. 
+ *          It must not be NULL and its internal array must be allocated.
+ * 
+ * @note If the bigint is negative, it will display a '-' sign before the hexadecimal values.
+ *       If the bigint is invalid (e.g., uninitialized or empty), an error message will be printed.
  */
 void bi_show_hex(bigint* x); 
 
@@ -182,20 +185,21 @@ int get_sign_bit(bigint* x);
  */
 void flip_sign_bit(bigint* x);
 
+
 #define CHECK_MEM_ALLOCATION(x)                                      \
     if ((x) == NULL) {                                               \
         printf("Memory allocation failed.\n");                       \
         exit(1);                                                     \
     }
 
-#define CHECK_SET_STRING(str, base)                                   \
+#define CHECK_SET_STRING(str, base)                                  \
     if ((str) == NULL || (base) < 2 || (base) > 16) {              \
-        printf("Error: Invalid input for string or base!\n");      \
-        exit(1);                                                    \
+        printf("Error: Invalid input for string or base!\n");        \
+        exit(1);                                                     \
     }
 
-#define CHECK_SET_ARRAY(a, wordlen)                               \
-    if ((a) == NULL || (wordlen) <= 0) {                          \
-        printf("set array fail!\n");                               \
-        exit(1);                                                  \
+#define CHECK_SET_ARRAY(a, wordlen)                                  \
+    if ((a) == NULL || (wordlen) <= 0) {                             \
+        printf("set array fail!\n");                                 \
+        exit(1);                                                     \
     }

@@ -35,20 +35,17 @@ void bi_delete(bigint** x)
 }
 
 void bi_show_hex(bigint* x) {
-
-    if (x == NULL) {
-        printf("Invalid bigint\n");
-        return;
-    }
+    CHECK_MEM_ALLOCATION(x);
 
     // 추가 검사
-    if (x->a == NULL || x->wordlen == 0) {
-        printf("Invalid bigint data\n");
+    CHECK_MEM_ALLOCATION(x->a);
+    if (x->wordlen == 0) {
+        printf("Invalid Bigint(에러 메시지 매크로로 수정 요함)\n");
         return;
     }
 
     // 부호 출력
-    if (x->sign == 1) {
+    if (x->sign == NEGATIVE) {
         printf("-");
     }
 
@@ -57,7 +54,6 @@ void bi_show_hex(bigint* x) {
         printf("0x%08x ", x->a[i]);
     }
     printf("\n");
-
 }
 
 int bi_set_by_array(bigint** x, int sign, word* a, int wordlen) {
