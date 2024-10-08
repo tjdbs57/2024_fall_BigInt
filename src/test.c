@@ -86,7 +86,7 @@ void test_get_jth_bit(){
 void test_get_sign_bit(){
     bigint* number;
     bi_new(&number, 1);
-    number->sign = NON_NEGATIVE; // Set to non_negative
+    number->sign = NEGATIVE; // Set to non_negative
     number->a[0] = 0x012345678;
 
     if (get_sign_bit(number) == NON_NEGATIVE) {
@@ -122,10 +122,222 @@ void test_flip_sign_bit(){
     printf("\ntest case 3 : \n");
     bigint* number3 = NULL;
     bi_new(&number3, 1); // Assuming this creates a bigint
-    number3->sign = 1; // Set to non-negative
+    number3->sign = NEGATIVE; // Set to non-negative
     printf("Original sign: %d\n", get_sign_bit(number3)); // Should print 0
     flip_sign_bit(number3);
     printf("Flipped sign: %d\n", get_sign_bit(number3)); // Should print 1
     flip_sign_bit(number3);
     printf("Flipped sign again: %d\n", get_sign_bit(number3)); // Should print 0
 }
+
+void test_get_word_length(){
+
+    bigint* num1 = NULL;
+    bi_new(&num1, 5); // 단어 길이를 5로 새로 생성
+
+    printf("Word Length: %d\n", get_word_length(num1)); // 예상 출력: Word Length: 5
+
+    bi_delete(&num1); // 메모리 해제
+}
+
+void test_get_bit_length() {
+    // Create test cases
+    bigint* num1 = NULL;
+    bi_new(&num1, 1); // Allocate space for 1 word
+    if (!num1) {
+        fprintf(stderr, "Failed to allocate bigint for num1\n");
+        return;
+    }
+    num1->a[0] = 0; // Representing zero
+    num1->sign = NON_NEGATIVE;
+
+    bigint* num2 = NULL;
+    bi_new(&num2, 1);
+    if (!num2) {
+        fprintf(stderr, "Failed to allocate bigint for num2\n");
+        return;
+    }
+    num2->a[0] = 1; // Representing 1
+    num2->sign = NON_NEGATIVE;
+
+    bigint* num3 = NULL;
+    bi_new(&num3, 1);
+    if (!num3) {
+        fprintf(stderr, "Failed to allocate bigint for num3\n");
+        return;
+    }
+    num3->a[0] = 0xFFFFFFFF; // Maximum 32-bit unsigned value
+    num3->sign = NON_NEGATIVE;
+
+    bigint* num4 = NULL;
+    bi_new(&num4, 1);
+    if (!num4) {
+        fprintf(stderr, "Failed to allocate bigint for num4\n");
+        return;
+    }
+    num4->a[0] = 1; // Representing 1
+    num4->sign = NEGATIVE;
+
+    bigint* num5 = NULL;
+    bi_new(&num5, 2);
+    if (!num5) {
+        fprintf(stderr, "Failed to allocate bigint for num5\n");
+        return;
+    }
+    num5->a[0] = 0xFFFFFFFE; // 4294967294
+    num5->a[1] = 0xFFFFFFFD; // 4294967293
+    num5->sign = NEGATIVE;
+
+    printf("Test 1 - Bit Length of ");
+    bi_show_hex(num1); // Print the hexadecimal representation
+    printf("%d \n", get_bit_length(num1));
+
+    printf("Test 2 - Bit Length of ");
+    bi_show_hex(num2); // Print the hexadecimal representation
+    printf("%d \n", get_bit_length(num2));
+
+    printf("Test 3 - Bit Length of ");
+    bi_show_hex(num3); // Print the hexadecimal representation
+    printf("%d \n", get_bit_length(num3));
+
+    printf("Test 4 - Bit Length of ");
+    bi_show_hex(num4); // Print the hexadecimal representation
+    printf("%d \n", get_bit_length(num4));
+
+    printf("Test 5 - Bit Length of ");
+    bi_show_hex(num5); // Print the hexadecimal representation
+    printf("%d \n", get_bit_length(num5));
+   
+    // Clean up
+    bi_delete(&num1);
+    bi_delete(&num2);
+    bi_delete(&num3);
+    bi_delete(&num4);
+    bi_delete(&num5);
+}
+
+
+void test_left_shift() {
+    bigint* num;
+    bi_new(&num, 2); // bigint 생성
+
+    num->a[0] = 0x00000000;  // 예시 값
+    num->a[1] = 0x00000001;  // 예시 값
+
+    printf("Before left shift:\n");
+    bi_show_hex(num);
+
+    // 왼쪽으로 5비트 시프트
+    left_shift(num, 5);
+
+    printf("After left shift by 5 bits:\n");
+    bi_show_hex(num);
+
+    // 메모리 해제
+    bi_delete(&num);
+}
+
+void test_right_shift() {
+    bigint* num;
+    bi_new(&num, 2); // bigint 생성
+
+    num->a[0] = 0xFFFFFFFF;  // 예시 값
+    num->a[1] = 0x00000001;  // 예시 값
+
+    printf("Before right shift:\n");
+    bi_show_hex(num);
+
+    // 오른쪽으로 5비트 시프트
+    right_shift(num, 5);
+
+    printf("After right shift by 5 bits:\n");
+    bi_show_hex(num);
+
+    // 메모리 해제
+    bi_delete(&num);
+}
+
+void test_reduction() {
+    bigint *num, *result;
+    bi_new(&num, 3); // Create a bigint with 3 words
+
+    // Test case 1: Modulus with r = 32 (exactly one word)
+    num->a[0] = 0x000000FF; 
+    num->a[1] = 0x00000001; 
+    num->a[2] = 0x00000002;
+    
+    bi_new(&result, 0); // Create an empty result bigint
+    reduction(num, 32, result); // Perform modulus with r = 32
+    
+    printf("Test case 1: Modulus by 32 bits:\n");
+    bi_show_hex(result); // Expected: 0x000000FF
+    bi_delete(&result);
+
+    // Test case 2: Modulus with r = 32 (maximum single word)
+    num->a[0] = 0xFFFFFFFF; 
+    bi_new(&result, 0);
+    reduction(num, 32, result); // Perform modulus with r = 32
+    
+    printf("Test case 2: Modulus by 32 bits (max value):\n");
+    bi_show_hex(result); // Expected: 0xFFFFFFFF
+    bi_delete(&result);
+
+    // Test case 3: Modulus with r = 32 (zero in higher words)
+    num->a[0] = 0x00000001; 
+    num->a[1] = 0x00000000; 
+    num->a[2] = 0x00000000;
+    bi_new(&result, 0);
+    reduction(num, 32, result); // Perform modulus with r = 32
+    
+    printf("Test case 3: Modulus by 32 bits (higher words zero):\n");
+    bi_show_hex(result); // Expected: 0x00000001
+    bi_delete(&result);
+
+    // Test case 4: Modulus with r = 32 (higher word non-zero)
+    num->a[0] = 0x00000000; 
+    num->a[1] = 0x00000002; 
+    num->a[2] = 0x00000000;
+    bi_new(&result, 0);
+    reduction(num, 32, result); // Perform modulus with r = 32
+    
+    printf("Test case 4: Modulus by 32 bits (higher word non-zero):\n");
+    bi_show_hex(result); // Expected: 0x00000000
+    bi_delete(&result);
+
+    // Test case 5: Modulus with r = 32 (all words are the same)
+    num->a[0] = 0x00000005; 
+    num->a[1] = 0x00000005; 
+    num->a[2] = 0x00000005;
+    bi_new(&result, 0);
+    reduction(num, 32, result); // Perform modulus with r = 32
+    
+    printf("Test case 5: Modulus by 32 bits (all words same):\n");
+    bi_show_hex(result); // Expected: 0x00000005
+    bi_delete(&result);
+
+    // Test case 6: Modulus with r = 32 (overflow scenario)
+    num->a[0] = 0x00000000; 
+    num->a[1] = 0xFFFFFFFF; 
+    num->a[2] = 0xFFFFFFFF;
+    bi_new(&result, 0);
+    reduction(num, 32, result); // Perform modulus with r = 32
+    
+    printf("Test case 6: Modulus by 32 bits (overflow scenario):\n");
+    bi_show_hex(result); // Expected: 0xFFFFFFFF
+    bi_delete(&result);
+
+    // Test case 7: Modulus with r = 32 (max integer representation)
+    num->a[0] = 0x7FFFFFFF; 
+    num->a[1] = 0x00000000; 
+    num->a[2] = 0x00000000;
+    bi_new(&result, 0);
+    reduction(num, 32, result); // Perform modulus with r = 32
+    
+    printf("Test case 7: Modulus by 32 bits (max int):\n");
+    bi_show_hex(result); // Expected: 0x7FFFFFFF
+    bi_delete(&result);
+
+    // Clean up
+    bi_delete(&num);
+}
+

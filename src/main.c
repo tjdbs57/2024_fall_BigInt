@@ -20,7 +20,12 @@ int main()
     //test_bi_show_hex();
     //test_get_jth_bit();
     //test_get_sign_bit();
-    test_flip_sign_bit();
+    //test_flip_sign_bit();
+    //test_get_word_length();
+    test_get_bit_length();
+    //test_left_shift();
+    //test_right_shift();
+    //test_reduction();
     
     return 0;
 }
