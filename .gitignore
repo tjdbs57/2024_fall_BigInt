@@ -53,4 +53,4 @@ dkms.conf
 
 #Exclude test files
 test/test.c
-test.h
+include/test.h
