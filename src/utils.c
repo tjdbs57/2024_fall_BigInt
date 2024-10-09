@@ -151,9 +151,9 @@ void bi_refine(bigint* x)
     if(x == NULL)
         return;
     int new_wordlen = x->wordlen;
-    while(new_wordlen > 1) // at least one word needed
-    {
-        if(x->a[new_wordlen- 1] != 0)
+
+    while (new_wordlen > 1) { // at least one word needed
+        if(x->a[new_wordlen-1] != 0)
             break;
         new_wordlen--;
     }
@@ -162,6 +162,7 @@ void bi_refine(bigint* x)
     {
         x->wordlen = new_wordlen;
         x->a = (word*)realloc(x->a, sizeof(word)*new_wordlen);
+        if (new_wordlen > 0) CHECK_MEM_ALLOCATION(x->a);
     }
 
     if((x->wordlen == 1) && (x->a[0] == 0x0))

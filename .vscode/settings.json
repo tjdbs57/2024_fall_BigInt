@@ -59,6 +59,7 @@
   "files.associations": {
     "stdint.h": "c",
     "stdio.h": "c",
-    "config.h": "c"
+    "config.h": "c",
+    "bigint.h": "c"
   }
 }
