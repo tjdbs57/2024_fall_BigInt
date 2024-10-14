@@ -6,6 +6,6 @@
 
 int main()
 {
-    test_add_core();
+    test_bi_refine();
     return 0;
 }
