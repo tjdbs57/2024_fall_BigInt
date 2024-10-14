@@ -127,10 +127,6 @@ int bi_set_by_string(bigint** x, int sign, char* str, int base) {
     return 0; // 성공적으로 수행됨
 }
 
-
-
-
-
 void bi_refine(bigint* x)
 {
     if(x == NULL)
@@ -248,15 +244,15 @@ int compareABS(bigint* x, bigint* y){
 
 int compare(bigint* x, bigint* y)
 {
-    if(x->sign == 0 && y->sign ==1){
+    if(x->sign == NON_NEGATIVE && y->sign == NEGATIVE){
         return 1;
     }
-    else if(x->sign == 1 && y->sign == 0){
+    else if(x->sign == NEGATIVE && y->sign == NON_NEGATIVE){
         return -1;
     }
     else{
         int ret = compareABS(x, y);
-        if(x->sign == 0){
+        if(x->sign == NON_NEGATIVE){
             return ret;
         }
         else{
