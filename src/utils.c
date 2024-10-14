@@ -138,7 +138,6 @@ void bi_refine(bigint* x)
 
     int wl = x->wordlen;
     
-    //printf("wl = %d\n", wl);
     for(int i=0;i<wl;i++){
         if(x->a[i]!=0){
             break;
@@ -171,36 +170,6 @@ void bi_refine(bigint* x)
         x->sign = NON_NEGATIVE;
  }
 
-/*
-void bi_refine(bigint* x)
-{
-    if (x == NULL) return;
-
-    int new_wordlen = x->wordlen;
-
-    // 선행 제로를 제거
-    while (new_wordlen > 1 && x->a[new_wordlen - 1] == 0) {
-        new_wordlen--;
-    }
-
-    // 워드 길이 변경 필요 시 처리
-    if (x->wordlen != new_wordlen) {
-        x->wordlen = new_wordlen;
-        word* new_a = (word*)realloc(x->a, sizeof(word) * new_wordlen);
-        if (new_a != NULL) {
-            x->a = new_a; // 재할당에 성공하면 새 포인터를 할당
-        } else {
-            fprintf(stderr, "Memory reallocation failed.\n");
-            exit(EXIT_FAILURE); // 재할당 실패 시 프로그램 종료
-        }
-    }
-
-    // bigint가 0이 되었을 경우 부호를 NON_NEGATIVE로 설정
-    if (x->wordlen == 1 && x->a[0] == 0x0) {
-        x->sign = NON_NEGATIVE;
-    }
-}
-*/
 
 void bi_assign(bigint** dest, bigint* src)
 {
