@@ -328,8 +328,7 @@ void flip_sign_bit(bigint* x) {
     x->sign = (x->sign == NEGATIVE) ? NON_NEGATIVE : NEGATIVE; // If sign is 0, set to 1; otherwise, set to 0
 }
 
- void right_shift(bigint* a, int shift) {
-    CHECK_MEM_ALLOCATION(a);
+void right_shift(bigint* a, int shift) {
 
     int word_shift = shift / (8*sizeof(word));  // 얼마나 워드 단위로 이동하는지
     int bit_shift = shift % (8*sizeof(word));   // 워드 내에서의 비트 이동
@@ -343,10 +342,7 @@ void flip_sign_bit(bigint* x) {
 
     // 메모리 확장 (직접 할당)
     word* new_array = (word*)calloc(new_wordlen, sizeof(word));
-    if (new_array == NULL) {
-        fprintf(stderr, "Memory allocation error\n");
-        exit(EXIT_FAILURE);
-    }
+    CHECK_MEM_ALLOCATION(new_array);
 
     // 각 워드를 오른쪽으로 시프트
     for (int i = 0; i < new_wordlen; i++) {
@@ -368,7 +364,6 @@ void flip_sign_bit(bigint* x) {
 }
 
 void left_shift(bigint* a, int shift) {
-    CHECK_MEM_ALLOCATION(a);
 
     int word_shift = shift / (8*sizeof(word));  // 얼마나 워드 단위로 이동하는지
     int bit_shift = shift % (8*sizeof(word));   // 워드 내에서의 비트 이동
@@ -377,10 +372,7 @@ void left_shift(bigint* a, int shift) {
 
     // 메모리 확장 (직접 할당)
     word* new_array = (word*)calloc(new_wordlen, sizeof(word));
-    if (new_array == NULL) {
-        fprintf(stderr, "Memory allocation error\n");
-        exit(EXIT_FAILURE);
-    }
+    CHECK_MEM_ALLOCATION(new_array);
 
     // 각 워드를 왼쪽으로 시프트
     for (int i = 0; i < old_wordlen; i++) {
@@ -417,13 +409,15 @@ void reduction(bigint* A, int r, bigint* result) {
         result->a[0] = 0; // Result is zero
         return;
     }
-
+    CHECK_MEM_ALLOCATION(result);
+    
     // Initialize result bigint
     result->sign = A->sign;
 
     // Set the word length of the result to word_shift (can also include a partial word)
     result->wordlen = word_shift + (bit_shift > 0 ? 1 : 0); 
     result->a = (word*)calloc(result->wordlen + 1, sizeof(word)); // Allocate space for result
+    CHECK_MEM_ALLOCATION(result);
 
     // Copy the relevant parts of A into result
     for (int i = 0; i < word_shift; i++) {

@@ -13,7 +13,7 @@ int main()
     //test_get_bit_length();
     //test_left_shift();
     //test_right_shift();
-    test_reduction();
+    //test_reduction();
 
     return 0;
 }

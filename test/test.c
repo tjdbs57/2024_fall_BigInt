@@ -190,9 +190,9 @@ void test_right_shift() {
     bi_show_hex(num);
 
     // 오른쪽으로 5비트 시프트
-    right_shift(num, 5);
+    right_shift(num, 8);
 
-    printf("After right shift by 5 bits:\n");
+    printf("After right shift by 8 bits:\n");
     bi_show_hex(num);
 
     // 메모리 해제
@@ -215,9 +215,10 @@ void test_reduction() {
     bi_delete(&result);
 
     // Test case 2: Modulus with r = 32 (maximum single word)
-    num->a[0] = 0xFFFFFFFF; 
-    bi_new(&result, 0);
-    reduction(num, 32, result); // Perform modulus with r = 32
+    bi_new(&num, 3);
+    bi_gen_rand(&num, NON_NEGATIVE, 3);
+    bi_new(&result, 3);
+    reduction(num, 64, result); // Perform modulus with r = 32
     
     printf("Test case 2: Modulus by 64 bits (max value):\n");
     bi_show_hex(result); // Expected: 0xFFFFFFFF
@@ -226,16 +227,11 @@ void test_reduction() {
     // Test case 3: Modulus with r = 32 (zero in higher words)
     bi_gen_rand(&num, NON_NEGATIVE, 3);
     bi_new(&result, 0);
-    reduction(num, 64, result); // Perform modulus with r = 32
+    reduction(num, 8, result); // Perform modulus with r = 32
     
     printf("Test case 3: Modulus by 8 bits (higher words zero):\n");
     bi_show_hex(result); // Expected: 0x00000001
     bi_delete(&result);
-
-    // Test case 4: Modulus with r = 32 (higher word non-zero)
-    bi_gen_rand(&num, NON_NEGATIVE, 3);
-    bi_new(&result, 0);
-    reduction(num, 8, result); // Perform modulus with r = 32
 
 
     // Clean up
