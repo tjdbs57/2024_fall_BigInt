@@ -34,14 +34,15 @@ void test_bi_show_hex() {
     printf("Test 4: NULL bigint\n");
     bigint* x4 = NULL;
     bi_show_hex(x4); // 예상 출력: Invalid bigint
+    bi_delete(&x4);
 
     // 5. 음수 big integer 테스트 (여러 word)
     printf("Test 5: Negative bigint with multiple words\n");
     bigint* x5 = NULL;
     bi_new(&x5, 2);
-    x5->sign = -1;  // 음수
+    x5->sign = NEGATIVE;  // 음수
     x5->a[0] = 0x012345678;
-    x5->a[1] = 0x9abcdef;
+    x5->a[1] = 0x09abcdef;
     bi_show_hex(x5);  // 예상 출력: -9abcdef012345678
     bi_delete(&x5);
 

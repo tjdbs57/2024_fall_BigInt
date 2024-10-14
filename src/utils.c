@@ -35,10 +35,13 @@ void bi_delete(bigint** x)
 }
 
 void bi_show_hex(bigint* x) {
-    CHECK_MEM_ALLOCATION(x);
 
+    if (x == NULL) {
+        printf("Invalid bigint\n");
+        return;
+    }    
+    
     // 추가 검사
-    CHECK_MEM_ALLOCATION(x->a);
     if (x->wordlen == 0) {
         printf("Invalid Bigint(에러 메시지 매크로로 수정 요함)\n");
         return;
@@ -259,7 +262,6 @@ int compare(bigint* x, bigint* y)
 }
 
 int get_bit_length(bigint* num) {
-    CHECK_MEM_ALLOCATION(num); // bigint 포인터 검사
 
     if (num->wordlen == 0) {
         return 0; // 단어가 없으면 0을 반환
@@ -286,14 +288,10 @@ int get_bit_length(bigint* num) {
 
 int get_word_length(bigint* x) {
     
-    CHECK_MEM_ALLOCATION(x);
-
     return x->wordlen; // Return the word length
 }
 
 int get_jth_bit(bigint* x, u32 j) {
-    CHECK_MEM_ALLOCATION(x); // Check if bigint pointer is NULL
-    CHECK_MEM_ALLOCATION(x->a); // Check if array pointer is NULL
 
     // Check if j is within valid range
     if (j >= ((u32)x->wordlen * sizeof(word))) {
@@ -315,15 +313,11 @@ int get_jth_bit(bigint* x, u32 j) {
 
 
 int get_sign_bit(bigint* x) {
-    CHECK_MEM_ALLOCATION(x);
-
     return x->sign; // Return the sign field of the bigint
 }
 
 
 void flip_sign_bit(bigint* x) {
-    CHECK_MEM_ALLOCATION(x);
-
     // Toggle the sign
     x->sign = (x->sign == NEGATIVE) ? NON_NEGATIVE : NEGATIVE; // If sign is 0, set to 1; otherwise, set to 0
 }
@@ -395,7 +389,6 @@ void left_shift(bigint* a, int shift) {
 
 
 void reduction(bigint* A, int r, bigint* result) {
-    CHECK_MEM_ALLOCATION(A);
 
     int word_size = sizeof(word) * 8; // Number of bits in a word
     int word_shift = r / word_size; // Number of full words to shift
@@ -410,7 +403,7 @@ void reduction(bigint* A, int r, bigint* result) {
         return;
     }
     CHECK_MEM_ALLOCATION(result);
-    
+
     // Initialize result bigint
     result->sign = A->sign;
 
