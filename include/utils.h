@@ -148,17 +148,17 @@ int compare(bigint* x, bigint* y);
 
 
 /**
- * @brief Get the value of the j-th bit from a bigint.
+ * @brief Calculate the bit length of a given bigint.
  *
- * This function retrieves the value of the specified bit (j) from the given 
- * bigint. The indexing is 0-based, where the least significant bit is at index 0.
+ * This function calculates the bit length of the absolute value of a bigint.
+ * It accounts for the number of leading zeros in the last word and adds an 
+ * extra bit for the sign if the bigint is negative.
  *
- * @param x Pointer to the bigint structure from which the bit will be retrieved.
- * @param j The index of the bit to retrieve (0-based).
- * @return Returns 1 if the bit is set, 0 if the bit is not set, or -1 if 
- *         the input is invalid (e.g., NULL pointer, out of bounds).
+ * @param num A pointer to the bigint structure.
+ * @return The bit length of the bigint. If there are no words, returns 0.
+ *         If the bigint is negative, an extra bit for the sign is included.
  */
-int get_jth_bit(bigint* x, u32 j);
+int get_bit_length(bigint* num);
 
 
 /**
@@ -174,15 +174,18 @@ int get_jth_bit(bigint* x, u32 j);
 int get_word_length(bigint* x);
 
 /**
- * @brief Gets the j-th bit of a bigint.
+ * @brief Get the value of the j-th bit from a bigint.
  *
- * This function retrieves the value of the j-th bit in the bigint.
+ * This function retrieves the value of the specified bit (j) from the given 
+ * bigint. The indexing is 0-based, where the least significant bit is at index 0.
  *
- * @param[in] x Pointer to the bigint from which the bit is retrieved.
- * @param[in] j The index of the bit to retrieve (0-based).
- * @return 0 if the bit is 0, 1 if the bit is 1, and -1 if the input is invalid.
+ * @param x Pointer to the bigint structure from which the bit will be retrieved.
+ * @param j The index of the bit to retrieve (0-based).
+ * @return Returns 1 if the bit is set, 0 if the bit is not set, or -1 if 
+ *         the input is invalid (e.g., NULL pointer, out of bounds).
  */
 int get_jth_bit(bigint* x, u32 j);
+
 
 /**
  * @brief Retrieves the sign of the bigint.

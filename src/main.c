@@ -11,9 +11,9 @@ int main()
     //test_flip_sign_bit();
     //test_get_word_length();
     //test_get_bit_length();
-    test_left_shift();
-    test_right_shift();
-
+    //test_left_shift();
+    //test_right_shift();
+    test_reduction();
 
     return 0;
 }
