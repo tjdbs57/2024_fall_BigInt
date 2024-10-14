@@ -58,12 +58,13 @@ int bi_set_by_array(bigint** x, int sign, word* a, int wordlen);
 int bi_set_by_string(bigint** x, int sign, char* str, int base);
 
 /**
- * @brief Refines the bigint structure by removing leading zeros.
+ * @brief Refines a bigint by removing leading zeros and adjusting its length.
  *
- * This function updates the word length of the bigint and reallocates memory
- * if necessary. It also sets the sign to NON_NEGATIVE if the bigint becomes zero.
+ * This function modifies the given bigint by removing any leading zeros,
+ * updating its word length accordingly, and ensuring that the sign is set
+ * correctly if the bigint becomes zero.
  *
- * @param[in,out] x Pointer to the bigint to be refined.
+ * @param x Pointer to the bigint to be refined. If NULL, the function does nothing.
  */
 void bi_refine(bigint* x);
 

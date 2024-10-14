@@ -129,11 +129,13 @@ int bi_set_by_string(bigint** x, int sign, char* str, int base) {
 
 void bi_refine(bigint* x)
 {
+    // NULL 체크
     if(x == NULL)
         return;
 
     int wl = x->wordlen;
     
+    // 선행 0 제거된 길이 구하기
     for(int i=0;i<wl;i++){
         if(x->a[i]!=0){
             break;
@@ -142,6 +144,7 @@ void bi_refine(bigint* x)
     }
     int new_wordlen = wl;
 
+    // 선행 0가 제거된 wordlen이 기존 wordlen과 다를 경우
     if (x->wordlen != new_wordlen){
         bigint* c = NULL;
         int sign = x->sign;
@@ -149,6 +152,7 @@ void bi_refine(bigint* x)
         bi_new(&c,new_wordlen);
         c->sign = sign;
 
+        // 선행 0 제외 원래 배열 복사하기
         for(int i=x->wordlen-1;i>=x->wordlen-new_wordlen;i--){
             c->a[i-(x->wordlen-new_wordlen)]= x->a[i];
         }
@@ -159,9 +163,12 @@ void bi_refine(bigint* x)
         x->sign = sign;
         if (new_wordlen > 0) CHECK_MEM_ALLOCATION(x->a);
         
+        // 복사 
         bi_assign(&x, c);
         bi_delete(&c);        
     }
+    
+    // 만약 x가 0이라면 부호를 NON_NEGATIVE로 설정
     if((x->wordlen == 1) && (x->a[0] == 0x0))
         x->sign = NON_NEGATIVE;
  }
