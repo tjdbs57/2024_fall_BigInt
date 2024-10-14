@@ -52,7 +52,7 @@ void bi_show_hex(bigint* x) {
     }
 
     // 부호 출력
-    if (x->sign == 1) {
+    if (x->sign == NEGATIVE) {
         printf("-");
     }
     

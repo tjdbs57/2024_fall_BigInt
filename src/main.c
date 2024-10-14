@@ -12,5 +12,6 @@ int main()
     //printf("Hello world\n");
     //test_single_word();
     //test_add_carry();
+    //test_rand_assign();
     return 0;
 }

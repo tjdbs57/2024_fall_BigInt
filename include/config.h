@@ -16,7 +16,23 @@ typedef uint8_t   u8;
 typedef uint32_t u32;
 typedef uint64_t u64;
 
-typedef u32     word;
+typedef int8_t    i8;
+typedef int32_t  i32;
+typedef int64_t  i64;
+
+#define WORD_BITLEN 32
+
+// Conditional compilation based on the word size for data type flexibility
+#if WORD_BITLEN == 8
+typedef u8 word;
+#define ONE (u8)1
+#elif WORD_BITLEN == 32
+typedef u32 word;
+#define ONE (u32)1
+#else
+typedef u64 word;
+#define ONE (u64)1
+#endif
 
 typedef struct{
     int         sign; // NEGATIVE or NON-NEGATIVE
@@ -28,6 +44,3 @@ typedef struct{
 
 
 
-typedef int8_t    i8;
-typedef int32_t  i32;
-typedef int64_t  i64;
