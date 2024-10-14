@@ -6,5 +6,6 @@
 
 int main()
 {
+    test_add_core();
     return 0;
 }
