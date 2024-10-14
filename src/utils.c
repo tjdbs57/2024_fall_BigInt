@@ -1,4 +1,6 @@
 #include "utils.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 void bi_new(bigint** x, int wordlen)
 {
@@ -128,30 +130,48 @@ int bi_set_by_string(bigint** x, int sign, char* str, int base) {
 
 
 
-/*
+
 void bi_refine(bigint* x)
 {
     if(x == NULL)
         return;
-    int new_wordlen = x->wordlen;
 
-    while (new_wordlen > 1) { // at least one word needed
-        if(x->a[new_wordlen-1] != 0)
+    int wl = x->wordlen;
+    
+    //printf("wl = %d\n", wl);
+    for(int i=0;i<wl;i++){
+        if(x->a[i]!=0){
             break;
-        new_wordlen--;
+        }
+        wl--;
     }
+    int new_wordlen = wl;
 
-    if (x->wordlen != new_wordlen)
-    {
-        x->wordlen = new_wordlen;
-        x->a = (word*)realloc(x->a, sizeof(word)*new_wordlen);
+    if (x->wordlen != new_wordlen){
+        bigint* c = NULL;
+        int sign = x->sign;
+
+        bi_new(&c,new_wordlen);
+        c->sign = sign;
+
+        for(int i=x->wordlen-1;i>=x->wordlen-new_wordlen;i--){
+            c->a[i-(x->wordlen-new_wordlen)]= x->a[i];
+        }
+        
+        bi_delete(&x);
+        bi_new(&x, new_wordlen);
+
+        x->sign = sign;
         if (new_wordlen > 0) CHECK_MEM_ALLOCATION(x->a);
+        
+        bi_assign(&x, c);
+        bi_delete(&c);        
     }
-
     if((x->wordlen == 1) && (x->a[0] == 0x0))
         x->sign = NON_NEGATIVE;
  }
-*/
+
+/*
 void bi_refine(bigint* x)
 {
     if (x == NULL) return;
@@ -180,6 +200,7 @@ void bi_refine(bigint* x)
         x->sign = NON_NEGATIVE;
     }
 }
+*/
 
 void bi_assign(bigint** dest, bigint* src)
 {

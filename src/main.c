@@ -6,6 +6,9 @@
 
 int main()
 {
-    test_bi_refine();
+    //test_bi_refine();
+    test_add_core();
+    test_swap_bigint();
+
     return 0;
 }
