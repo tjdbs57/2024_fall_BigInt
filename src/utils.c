@@ -125,32 +125,45 @@ int bi_set_by_string(bigint** x, int sign, char* str, int base) {
     return 0; // 성공적으로 수행됨
 }
 
-
-
-
-
 void bi_refine(bigint* x)
 {
     if(x == NULL)
         return;
-    int new_wordlen = x->wordlen;
 
-    while (new_wordlen > 1) { // at least one word needed
-        if(x->a[new_wordlen-1] != 0)
+    int wl = x->wordlen;
+    
+    for(int i=0;i<wl;i++){
+        if(x->a[i]!=0){
             break;
-        new_wordlen--;
+        }
+        wl--;
     }
+    int new_wordlen = wl;
 
-    if (x->wordlen != new_wordlen)
-    {
-        x->wordlen = new_wordlen;
-        x->a = (word*)realloc(x->a, sizeof(word)*new_wordlen);
+    if (x->wordlen != new_wordlen){
+        bigint* c = NULL;
+        int sign = x->sign;
+
+        bi_new(&c,new_wordlen);
+        c->sign = sign;
+
+        for(int i=x->wordlen-1;i>=x->wordlen-new_wordlen;i--){
+            c->a[i-(x->wordlen-new_wordlen)]= x->a[i];
+        }
+        
+        bi_delete(&x);
+        bi_new(&x, new_wordlen);
+
+        x->sign = sign;
         if (new_wordlen > 0) CHECK_MEM_ALLOCATION(x->a);
+        
+        bi_assign(&x, c);
+        bi_delete(&c);        
     }
-
     if((x->wordlen == 1) && (x->a[0] == 0x0))
         x->sign = NON_NEGATIVE;
  }
+
 
 void bi_assign(bigint** dest, bigint* src)
 {
@@ -229,15 +242,15 @@ int compareABS(bigint* x, bigint* y){
 
 int compare(bigint* x, bigint* y)
 {
-    if(x->sign == 0 && y->sign ==1){
+    if(x->sign == NON_NEGATIVE && y->sign == NEGATIVE){
         return 1;
     }
-    else if(x->sign == 1 && y->sign == 0){
+    else if(x->sign == NEGATIVE && y->sign == NON_NEGATIVE){
         return -1;
     }
     else{
         int ret = compareABS(x, y);
-        if(x->sign == 0){
+        if(x->sign == NON_NEGATIVE){
             return ret;
         }
         else{
@@ -246,15 +259,47 @@ int compare(bigint* x, bigint* y)
     } 
 }
 
+int get_bit_length(bigint* num) {
+
+    if (num->wordlen == 0) {
+        return 0; // 단어가 없으면 0을 반환
+    }
+
+    // 각 단어의 비트 길이를 WORD_BITLEN으로 정의
+    int total_bit_length = (num->wordlen - 1) * (8 * sizeof(word)); // 각 단어의 비트 길이 계산
+
+    word last_word = num->a[num->wordlen - 1];
+
+    // 마지막 단어의 선행 0 비트 계산
+    while (last_word > 0) {
+        last_word >>= 1; // 가장 낮은 비트를 제거
+        total_bit_length++; // 비트 길이 증가
+    }
+
+    // 만약 bigint가 음수이면 부호 비트 추가
+    if (num->sign == NEGATIVE) {
+        total_bit_length++; // 부호 비트를 고려
+    }
+
+    return total_bit_length; // 총 비트 길이 반환
+}
+
+int get_word_length(bigint* x) {
+    
+    return x->wordlen; // Return the word length
+}
+
 int get_jth_bit(bigint* x, u32 j) {
 
-    if (x == NULL || x->a == NULL || j >= ((u32)x->wordlen * 32)) {
+    // Check if j is within valid range
+    if (j >= ((u32)x->wordlen * sizeof(word))) {
         return -1;  // Invalid input
     }
 
-    u32 word_index = j / 32;      // Determine which word contains the bit
-    u32 bit_index = j % 32;       // Determine the position of the bit in the word
+    u32 word_index = j / sizeof(word); // Determine which word contains the bit
+    u32 bit_index = j % sizeof(word);  // Determine the position of the bit in the word
 
+    // Check if the calculated word index is out of bounds
     if (word_index >= (u32)x->wordlen) {
         return -1;  // Out of bounds
     }
@@ -263,25 +308,120 @@ int get_jth_bit(bigint* x, u32 j) {
     word mask = (1 << bit_index);
     return (x->a[word_index] & mask) ? 1 : 0;
 }
-
 int get_sign_bit(bigint* x) {
-
-    if (x == NULL) {
-        fprintf(stderr, "Invalid bigint\n"); // Print error message for NULL input
-        return -1; // Return -1 in case of an error
-    }
     return x->sign; // Return the sign field of the bigint
 }
 
-void flip_sign_bit(bigint* x) {
 
-    if (x == NULL) {
-        fprintf(stderr, "Invalid bigint\n"); // Print error message for NULL input
-        return; // Exit the function if input is NULL
+void flip_sign_bit(bigint* x) {
+    // Toggle the sign
+    x->sign = (x->sign == NEGATIVE) ? NON_NEGATIVE : NEGATIVE; // If sign is 0, set to 1; otherwise, set to 0
+}
+
+void right_shift(bigint* a, int shift) {
+
+    int word_shift = shift / (8*sizeof(word));  // 얼마나 워드 단위로 이동하는지
+    int bit_shift = shift % (8*sizeof(word));   // 워드 내에서의 비트 이동
+    int old_wordlen = a->wordlen;
+    
+    // 오른쪽으로 시프트 한 후 남은 워드 수 계산
+    int new_wordlen = old_wordlen - word_shift;
+    if (new_wordlen < 1) {
+        new_wordlen = 1; // 최소 1 워드는 남겨둡니다.
     }
 
-    // Toggle the sign
-    x->sign = (x->sign == 0) ? 1 : 0; // If sign is 0, set to 1; otherwise, set to 0
+    // 메모리 확장 (직접 할당)
+    word* new_array = (word*)calloc(new_wordlen, sizeof(word));
+    CHECK_MEM_ALLOCATION(new_array);
+
+    // 각 워드를 오른쪽으로 시프트
+    for (int i = 0; i < new_wordlen; i++) {
+        new_array[i] = a->a[i + word_shift] >> bit_shift; // 오른쪽 시프트
+        if (i + word_shift + 1 < old_wordlen && bit_shift > 0) {
+            new_array[i] |= (a->a[i + word_shift + 1] << ((8*sizeof(word)) - bit_shift)); // 하위 비트
+        }
+    }
+
+    // 기존 값 해제 및 새로운 배열로 교체
+    free(a->a);
+    a->a = new_array;
+    a->wordlen = new_wordlen;
+
+    // 불필요한 상위 워드가 0인 경우 제거
+    while (a->wordlen > 1 && a->a[a->wordlen - 1] == 0) {
+        a->wordlen--;
+    }
+}
+
+void left_shift(bigint* a, int shift) {
+
+    int word_shift = shift / (8*sizeof(word));  // 얼마나 워드 단위로 이동하는지
+    int bit_shift = shift % (8*sizeof(word));   // 워드 내에서의 비트 이동
+    int old_wordlen = a->wordlen;
+    int new_wordlen = old_wordlen + word_shift + 1;
+
+    // 메모리 확장 (직접 할당)
+    word* new_array = (word*)calloc(new_wordlen, sizeof(word));
+    CHECK_MEM_ALLOCATION(new_array);
+
+    // 각 워드를 왼쪽으로 시프트
+    for (int i = 0; i < old_wordlen; i++) {
+        new_array[i + word_shift] |= (a->a[i] << bit_shift); // 왼쪽 시프트
+        if (i + word_shift + 1 < new_wordlen && bit_shift > 0) {
+            new_array[i + word_shift + 1] |= (a->a[i] >> ((8*sizeof(word)) - bit_shift)); // 상위 비트
+        }
+    }
+
+    // 기존 값 해제 및 새로운 배열로 교체
+    free(a->a);
+    a->a = new_array;
+    a->wordlen = new_wordlen;
+
+    // 불필요한 상위 워드가 0인 경우 제거
+    while (a->wordlen > 1 && a->a[a->wordlen - 1] == 0) {
+        a->wordlen--;
+    }
+}
+
+
+void reduction(bigint* A, int r, bigint* result) {
+
+    int word_size = sizeof(word) * 8; // Number of bits in a word
+    int word_shift = r / word_size; // Number of full words to shift
+    int bit_shift = r % word_size; // Remaining bits to shift
+
+    // Handle the case when r is greater than or equal to the total bit length
+    if (word_shift >= A->wordlen) {
+        result->sign = A->sign;
+        result->wordlen = 1; // Result is zero
+        result->a = (word*)calloc(1, sizeof(word)); // Allocate one word
+        result->a[0] = 0; // Result is zero
+        return;
+    }
+    CHECK_MEM_ALLOCATION(result);
+
+    // Initialize result bigint
+    result->sign = A->sign;
+
+    // Set the word length of the result to word_shift (can also include a partial word)
+    result->wordlen = word_shift + (bit_shift > 0 ? 1 : 0); 
+    result->a = (word*)calloc(result->wordlen + 1, sizeof(word)); // Allocate space for result
+    CHECK_MEM_ALLOCATION(result);
+
+    // Copy the relevant parts of A into result
+    for (int i = 0; i < word_shift; i++) {
+        result->a[i] = A->a[i]; // Copy full words
+    }
+
+    // Handle remaining bits
+    if (bit_shift > 0 && word_shift < A->wordlen) {
+        result->a[word_shift] = A->a[word_shift] & ((1 << bit_shift) - 1); // Get lower bits
+    }
+
+    // Clean up result if needed
+    while (result->wordlen > 1 && result->a[result->wordlen - 1] == 0) {
+        result->wordlen--; // Reduce the word length if upper words are zero
+    }
 }
 
  
