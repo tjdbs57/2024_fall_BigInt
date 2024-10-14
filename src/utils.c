@@ -6,7 +6,6 @@ void bi_new(bigint** x, int wordlen)
     if (*x != NULL)
         bi_delete(x);
 
-    // 매크로를 이용해 메모리 할당 체크
     *x = (bigint*)calloc(1, sizeof(bigint));
     CHECK_MEM_ALLOCATION(*x);
 
@@ -19,6 +18,11 @@ void bi_new(bigint** x, int wordlen)
     CHECK_MEM_ALLOCATION((*x)->a);
 }
 
+void array_init(word* array, int length) {
+    for (int i = 0; i < length; i++) {
+        array[i] = 0x00000000;  
+    }
+}
 
 void bi_delete(bigint** x)
 {
@@ -51,10 +55,11 @@ void bi_show_hex(bigint* x) {
     if (x->sign == 1) {
         printf("-");
     }
-
-    // 비트 출력
-    for (int i = x->wordlen - 1; i >= 0; i--) {
-        printf("0x%08x ", x->a[i]);
+    
+    // 워드 출력
+    for(int i= 0 ; i <x->wordlen; i++)
+    {
+        printf("%08x ", x->a[i]);    
     }
     printf("\n");
 
@@ -129,37 +134,22 @@ void bi_refine(bigint* x)
 {
     if(x == NULL)
         return;
-
-    int wl = x->wordlen;
     
-    for(int i=0;i<wl;i++){
-        if(x->a[i]!=0){
+    int new_wordlen = x->wordlen;
+    
+    while(new_wordlen > 1) // at least one word needed
+    {
+        if(x->a[new_wordlen- 1] != 0)
             break;
-        }
-        wl--;
+        new_wordlen--; 
     }
-    int new_wordlen = wl;
 
-    if (x->wordlen != new_wordlen){
-        bigint* c = NULL;
-        int sign = x->sign;
-
-        bi_new(&c,new_wordlen);
-        c->sign = sign;
-
-        for(int i=x->wordlen-1;i>=x->wordlen-new_wordlen;i--){
-            c->a[i-(x->wordlen-new_wordlen)]= x->a[i];
-        }
-        
-        bi_delete(&x);
-        bi_new(&x, new_wordlen);
-
-        x->sign = sign;
-        if (new_wordlen > 0) CHECK_MEM_ALLOCATION(x->a);
-        
-        bi_assign(&x, c);
-        bi_delete(&c);        
+    if (x->wordlen != new_wordlen)
+    {
+        x->wordlen = new_wordlen;
+        x->a = (word*)realloc(x->a, sizeof(word)*new_wordlen);
     }
+    
     if((x->wordlen == 1) && (x->a[0] == 0x0))
         x->sign = NON_NEGATIVE;
  }

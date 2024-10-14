@@ -21,17 +21,6 @@ typedef u64 word;
 #define ONE (u64)1
 #endif
 
-/**
- * @brief Swaps two bigint pointers.
- *
- * This function takes two pointers to bigint structures and swaps
- * their values. It is useful for ensuring that the larger bigint
- * is processed first in operations like addition.
- *
- * @param x Pointer to the first bigint pointer.
- * @param y Pointer to the second bigint pointer.
- */
-void swap_bigint(bigint** x, bigint** y);
 
 /**
  * @brief Adds two words with carry handling.
@@ -49,13 +38,28 @@ void swap_bigint(bigint** x, bigint** y);
 void add_carry(word A, word B, word carry_in, word* carry_out, word* result);
 
 /**
- * @brief Core function for adding two bigints.
+ * @brief Adds two big integers and stores the result in a third bigint.
  *
- * This function adds two bigints (x and y) and stores the result in z.
- * It handles carry propagation and ensures the result has the correct length.
+ * This function takes two big integers represented as `bigint` structures, 
+ * adds them together, and stores the resulting bigint in a third `bigint`.
+ * It ensures that both numbers have the same length by padding with zeros 
+ * if necessary. The addition is performed in reverse order to handle 
+ * carry appropriately.
  *
- * @param x Pointer to the first bigint (augend).
- * @param y Pointer to the second bigint (addend).
- * @param z Pointer to the bigint where the result will be stored.
+ * @param x Pointer to the first bigint to add.
+ * @param y Pointer to the second bigint to add.
+ * @param z Pointer to the result bigint where the sum will be stored.
+ *
+ * This function performs the following steps:
+ * - Determines the lengths of the input big integers.
+ * - Allocates memory for the result bigint based on the maximum length of the inputs.
+ * - Iteratively adds each corresponding word from the two input big integers,
+ *   starting from the least significant word, while handling any carry from previous additions.
+ * - Stores the result in the appropriate position in the result bigint.
+ * - Handles any carry that may remain after the final addition.
+ * - Calls `bi_refine` to remove any leading zeros from the result.
+ *
+ * @note The input big integers should be properly initialized and should not be NULL.
+ *       The result bigint will be allocated and must be freed by the caller when no longer needed.
  */
 void add_core(bigint** x, bigint** y, bigint** z);

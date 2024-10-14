@@ -1,5 +1,24 @@
 #include "config.h"
 
+#define CHECK_MEM_ALLOCATION(x)                                      \
+    if ((x) == NULL) {                                               \
+        printf("Memory allocation failed.\n");                       \
+        exit(1);                                                     \
+    }
+
+#define CHECK_SET_STRING(str, base)                                   \
+    if ((str) == NULL || (base) < 2 || (base) > 16) {              \
+        printf("Error: Invalid input for string or base!\n");      \
+        exit(1);                                                    \
+    }
+
+#define CHECK_SET_ARRAY(a, wordlen)                               \
+    if ((a) == NULL || (wordlen) <= 0) {                          \
+        printf("set array fail!\n");                               \
+        exit(1);                                                  \
+    }
+
+    
 /**
  * @brief Allocates memory for a new bigint structure.
  *
@@ -12,6 +31,23 @@
  * @return void
  */
 void bi_new(bigint** x, int wordlen);
+
+/**
+ * @brief Initializes an array with a given length to a default value (0x00000000).
+ *
+ * This function sets all elements of the input array to 0. It is typically
+ * used to clear or reset an array before performing other operations like
+ * big integer addition or multiplication.
+ *
+ * @param array The pointer to the array to be initialized.
+ * @param length The number of elements (length) of the array to initialize.
+ *
+ * @return void This function does not return any value.
+ *
+ * @note Ensure that the array has enough allocated memory to hold `length` elements.
+ * @warning This function assumes the array is writable and properly allocated.
+ */
+void array_init(word* array, int length);
 
 /**
  * @brief Frees the memory occupied by a bigint structure.
@@ -261,21 +297,3 @@ void left_shift(bigint* a, int shift);
  *       The caller is responsible for freeing the memory used by result.
  */
 void reduction(bigint* A, int r, bigint* result);
-
-#define CHECK_MEM_ALLOCATION(x)                                      \
-    if ((x) == NULL) {                                               \
-        printf("Memory allocation failed.\n");                       \
-        exit(1);                                                     \
-    }
-
-#define CHECK_SET_STRING(str, base)                                   \
-    if ((str) == NULL || (base) < 2 || (base) > 16) {              \
-        printf("Error: Invalid input for string or base!\n");      \
-        exit(1);                                                    \
-    }
-
-#define CHECK_SET_ARRAY(a, wordlen)                               \
-    if ((a) == NULL || (wordlen) <= 0) {                          \
-        printf("set array fail!\n");                               \
-        exit(1);                                                  \
-    }
