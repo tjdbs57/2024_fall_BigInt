@@ -1,22 +1,20 @@
-#include "config.h"
+#ifndef BIGINT_H
+#include "bigint.h"
 
-#define CHECK_MEM_ALLOCATION(x)                                      \
-    if ((x) == NULL) {                                               \
-        printf("Memory allocation failed.\n");                       \
-        exit(1);                                                     \
-    }
+#define MEM_ALLOCATION_FAIL                                                    \
+    fprintf(stderr, "Error: Memory allocation failed at %s:%d\n", __FILE__, __LINE__); 
 
-#define CHECK_SET_STRING(str, base)                                   \
-    if ((str) == NULL || (base) < 2 || (base) > 16) {              \
-        printf("Error: Invalid input for string or base!\n");      \
-        exit(1);                                                    \
-    }
+#define SET_STRING_FAIL                                                     \
+    fprintf(stderr, "Error: Invalid input for string or base at %s:%d\n", __FILE__, __LINE__);
 
-#define CHECK_SET_ARRAY(a, wordlen)                               \
-    if ((a) == NULL || (wordlen) <= 0) {                          \
-        printf("set array fail!\n");                               \
-        exit(1);                                                  \
-    }
+
+#define SET_ARRAY_FAIL                                          \
+    fprintf(stderr, "Error: Set array failed at %s:%d\n", __FILE__, __LINE__);
+
+
+#define INVAILD_DATA                               \
+    fprintf(stderr, "Error: Invalid data at %s:%d\n", __FILE__, __LINE__); 
+
 
     
 /**
@@ -191,20 +189,8 @@ int compare(bigint* x, bigint* y);
  * @return The bit length of the bigint. If there are no words, returns 0.
  *         If the bigint is negative, an extra bit for the sign is included.
  */
-int get_bit_length(bigint* num);
+int get_bit_length(bigint* x);
 
-
-/**
- * @brief Retrieves the word length of the bigint.
- *
- * This function returns the number of words that represent the given bigint.
- *
- * @param x Pointer to the bigint whose word length is to be retrieved. It must not be NULL.
- * @return The word length of the bigint.
- *
- * @note The function checks if the bigint pointer is valid before accessing its word length.
- */
-int get_word_length(bigint* x);
 
 /**
  * @brief Get the value of the j-th bit from a bigint.
@@ -217,35 +203,8 @@ int get_word_length(bigint* x);
  * @return Returns 1 if the bit is set, 0 if the bit is not set, or -1 if 
  *         the input is invalid (e.g., NULL pointer, out of bounds).
  */
-int get_jth_bit(bigint* x, u32 j);
+int get_jth_bit(bigint* x, word j);
 
-/**
- * @brief Retrieves the sign of the bigint.
- *
- * This function returns the sign of the given bigint. The sign indicates whether the
- * bigint is positive or negative. A value of 0 indicates a non-negative bigint, while
- * a value of -1 indicates a negative bigint.
- *
- * @param x Pointer to the bigint from which the sign is to be retrieved. It must not be NULL.
- *
- * @return The sign of the bigint. Returns 0 for non-negative and -1 for negative.
- *
- * @note The function checks if the bigint pointer is valid before accessing the sign field.
- */
-int get_sign_bit(bigint* x);
-
-/**
- * @brief Flips the sign of the bigint.
- *
- * This function toggles the sign of the given bigint. If the current sign is
- * negative, it changes it to non-negative (0). If the current sign is non-negative,
- * it changes it to negative (-1).
- *
- * @param x Pointer to the bigint whose sign is to be flipped. It must not be NULL.
- *
- * @note The function checks if the bigint pointer is valid before attempting to flip the sign.
- */
-void flip_sign_bit(bigint* x);
 
 /**
  * @brief Perform a right shift operation on a bigint.
@@ -262,7 +221,7 @@ void flip_sign_bit(bigint* x);
  *       message if memory allocation fails. It also removes any leading zero words 
  *       after the shift operation.
  */
-void right_shift(bigint* a, int shift);
+void right_shift(bigint* x, int shift);
 
 
 /**
@@ -279,7 +238,7 @@ void right_shift(bigint* a, int shift);
  *       message if memory allocation fails. It also removes any leading zero words 
  *       after the shift operation.
  */
-void left_shift(bigint* a, int shift);
+void left_shift(bigint* x, int shift);
 
 /**
  * @brief Perform a reduction operation on a bigint.
@@ -296,4 +255,6 @@ void left_shift(bigint* a, int shift);
  * @note Memory for the result bigint is allocated inside this function. 
  *       The caller is responsible for freeing the memory used by result.
  */
-void reduction(bigint* A, int r, bigint* result);
+void reduction(bigint* x, int r, bigint* result);
+
+#endif

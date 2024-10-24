@@ -7,11 +7,8 @@
 int main()
 {
     srand(time(NULL));
+    //test_set_by_array();
     //test_bi_string();
-    test_add_bigint();
-    //printf("Hello world\n");
-    //test_single_word();
-    //test_add_carry();
-    //test_rand_assign();
+    test_add();
     return 0;
 }

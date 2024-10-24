@@ -60,6 +60,7 @@
     "stdint.h": "c",
     "stdio.h": "c",
     "config.h": "c",
-    "bigint.h": "c"
+    "bigint.h": "c",
+    "utils.h": "c"
   }
 }
