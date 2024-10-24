@@ -28,7 +28,7 @@
  * @param[in]  wordlen The number of words to allocate for the bigint.
  * @return void
  */
-void bi_new(bigint** x, int wordlen);
+void bi_new(IN bigint** x, IN int wordlen);
 
 /**
  * @brief Initializes an array with a given length to a default value (0x00000000).
@@ -37,15 +37,15 @@ void bi_new(bigint** x, int wordlen);
  * used to clear or reset an array before performing other operations like
  * big integer addition or multiplication.
  *
- * @param array The pointer to the array to be initialized.
- * @param length The number of elements (length) of the array to initialize.
+ * @param[in] array The pointer to the array to be initialized.
+ * @param[in] length The number of elements (length) of the array to initialize.
  *
  * @return void This function does not return any value.
  *
  * @note Ensure that the array has enough allocated memory to hold `length` elements.
  * @warning This function assumes the array is writable and properly allocated.
  */
-void array_init(word* array, int length);
+void array_init(IN word* array, IN int length) ;
 
 /**
  * @brief Frees the memory occupied by a bigint structure.
@@ -56,7 +56,7 @@ void array_init(word* array, int length);
  * @param[in,out] x Pointer to the bigint structure to be deleted.
  * @return void
  */
-void bi_delete(bigint** x);
+void bi_delete(INOUT bigint** x);
 
 /**
  * @brief Displays the hexadecimal representation of a bigint.
@@ -67,29 +67,29 @@ void bi_delete(bigint** x);
  * @param[in] x Pointer to the bigint to be displayed. 
  *              If NULL, an error message is printed.
  */
-void bi_show_hex(bigint* x); 
+void bi_show_hex(IN bigint* x) ;
 
 /**
  * @brief Initializes a bigint structure using an array of words and sets its sign.
  * 
- * @param x      Pointer to the bigint structure to be initialized.
- * @param sign   The sign of the bigint (NEGATIVE or NON_NEGATIVE).
- * @param a      Array of words to set the value of the bigint.
- * @param wordlen Length of the word array.
- * @return int
+ * @param[out] x      Pointer to the bigint structure to be initialized.
+ * @param[in] sign   The sign of the bigint (NEGATIVE or NON_NEGATIVE).
+ * @param[in] a      Array of words to set the value of the bigint.
+ * @param[in] wordlen Length of the word array.
+ * @return int Returns 0 on success, non-zero on failure.
  */
-int bi_set_by_array(bigint** x, int sign, word* a, int wordlen);
+int bi_set_by_array(OUT bigint** x, IN int sign, IN word* a, IN int wordlen); 
 
 /**
  * @brief Initializes a bigint structure from a character string representing a number.
  * 
- * @param x     Pointer to the bigint structure to be initialized.
- * @param sign   The sign of the bigint (NEGATIVE or NON_NEGATIVE).
- * @param str    The string representation of the number to be converted.
- * @param base   The base of the number system (e.g., 10 for decimal).
- * @return int
+ * @param[out] x     Pointer to the bigint structure to be initialized (output).
+ * @param[in]  sign   The sign of the bigint (NEGATIVE or NON_NEGATIVE) (input).
+ * @param[in]  str    The string representation of the number to be converted (input).
+ * @param[in]  base   The base of the number system (e.g., 10 for decimal) (input).
+ * @return int Returns 0 on success, non-zero on failure.
  */
-int bi_set_by_string(bigint** x, int sign, char* str, int base);
+int bi_set_by_string(OUT bigint** x, IN int sign, IN char* str, IN int base); 
 
 /**
  * @brief Refines the bigint structure by removing leading zeros.
@@ -97,9 +97,9 @@ int bi_set_by_string(bigint** x, int sign, char* str, int base);
  * This function updates the word length of the bigint and reallocates memory
  * if necessary. It also sets the sign to NON_NEGATIVE if the bigint becomes zero.
  *
- * @param[in,out] x Pointer to the bigint to be refined.
+ * @param[in,out] x Pointer to the bigint to be refined (input/output).
  */
-void bi_refine(bigint* x);
+void bi_refine(INOUT bigint* x);
 
 /**
  * @brief Assigns the value of one bigint to another.
@@ -111,7 +111,7 @@ void bi_refine(bigint* x);
  * @param[out] dest Pointer to the destination bigint to be assigned to.
  * @param[in] src Pointer to the source bigint to copy from.
  */
-void bi_assign(bigint** y, bigint* x);
+void bi_assign(OUT bigint** dest, IN bigint* src);
 
 /**
  * @brief Generates a random bigint with a specified sign and word length.
@@ -123,7 +123,7 @@ void bi_assign(bigint** y, bigint* x);
  * @param[in] sign The sign of the bigint (NEGATIVE or NON_NEGATIVE).
  * @param[in] wordlen The desired length of the word array.
  */
-void bi_gen_rand(bigint**x, int sign, int wordlen);
+void bi_gen_rand(OUT bigint** x, IN int sign, IN int wordlen);
 
 /**
  * @brief Fills an array with random bytes.
@@ -133,7 +133,7 @@ void bi_gen_rand(bigint**x, int sign, int wordlen);
  * @param[out] dst Pointer to the array to be filled with random values.
  * @param[in] wordlen The number of words to fill.
  */
-void array_rand(word* dst, int wordlen);
+void array_rand(OUT word* dst, IN int wordlen);
 
 /**
  * @brief Sets a bigint to the value of one.
@@ -143,7 +143,7 @@ void array_rand(word* dst, int wordlen);
  *
  * @param[out] x Pointer to the bigint structure to be initialized and set to one.
  */
-void bi_set_one(bigint** x);
+void bi_set_one(OUT bigint** x);
 
 /**
  * @brief Sets a bigint to the value of zero.
@@ -153,29 +153,29 @@ void bi_set_one(bigint** x);
  *
  * @param[out] x Pointer to the bigint structure to be initialized and set to zero.
  */
-void bi_set_zero(bigint** x);
+void bi_set_zero(OUT bigint** x);
 
 /**
  * @brief Compare the absolute values of two bigint numbers.
  * 
  * This function compares the magnitudes of two bigint numbers without considering their signs.
  * 
- * @param x Pointer to the first bigint number.
- * @param y Pointer to the second bigint number.
+ * @param[in] x Pointer to the first bigint number (input).
+ * @param[in] y Pointer to the second bigint number (input).
  * @return 1 if |x| > |y|, -1 if |x| < |y|, or 0 if |x| == |y|.
  */
-int compareABS(bigint* x, bigint* y);
+int compareABS(IN bigint* x, IN bigint* y);
 
 /**
  * @brief Compare two bigint numbers, taking into account their signs.
  *
  * This function compares two bigint numbers, considering both their magnitudes and signs.
  * 
- * @param x Pointer to the first bigint number.
- * @param y Pointer to the second bigint number.
+ * @param[in] x Pointer to the first bigint number (input).
+ * @param[in] y Pointer to the second bigint number (input).
  * @return 1 if x > y, -1 if x < y, or 0 if x == y.
  */
-int compare(bigint* x, bigint* y);
+int compare(IN bigint* x, IN bigint* y);
 
 
 /**
@@ -185,11 +185,11 @@ int compare(bigint* x, bigint* y);
  * It accounts for the number of leading zeros in the last word and adds an 
  * extra bit for the sign if the bigint is negative.
  *
- * @param num A pointer to the bigint structure.
+ * @param[in] x A pointer to the bigint structure (input).
  * @return The bit length of the bigint. If there are no words, returns 0.
  *         If the bigint is negative, an extra bit for the sign is included.
  */
-int get_bit_length(bigint* x);
+int get_bit_length(IN bigint* x);
 
 
 /**
@@ -198,12 +198,12 @@ int get_bit_length(bigint* x);
  * This function retrieves the value of the specified bit (j) from the given 
  * bigint. The indexing is 0-based, where the least significant bit is at index 0.
  *
- * @param x Pointer to the bigint structure from which the bit will be retrieved.
- * @param j The index of the bit to retrieve (0-based).
+ * @param[in] x Pointer to the bigint structure from which the bit will be retrieved (input).
+ * @param[in] j The index of the bit to retrieve (0-based) (input).
  * @return Returns 1 if the bit is set, 0 if the bit is not set, or -1 if 
  *         the input is invalid (e.g., NULL pointer, out of bounds).
  */
-int get_jth_bit(bigint* x, word j);
+int get_jth_bit(IN bigint* x, IN word j);
 
 
 /**
@@ -214,14 +214,14 @@ int get_jth_bit(bigint* x, word j);
  * and updates the word length accordingly. If the shift results in fewer than one word,
  * the function ensures that at least one word remains.
  *
- * @param a Pointer to the bigint to be shifted.
- * @param shift The number of bits to shift to the right.
+ * @param[in,out] x Pointer to the bigint to be shifted (input/output).
+ * @param[in] shift The number of bits to shift to the right (input).
  *
  * @note The function handles memory allocation and will exit the program with an error
  *       message if memory allocation fails. It also removes any leading zero words 
  *       after the shift operation.
  */
-void right_shift(bigint* x, int shift);
+void right_shift(INOUT bigint* x, IN int shift);
 
 
 /**
@@ -231,14 +231,14 @@ void right_shift(bigint* x, int shift);
  * of positions. It reallocates memory for the underlying array to accommodate the shift
  * and updates the word length accordingly.
  *
- * @param a Pointer to the bigint to be shifted.
- * @param shift The number of bits to shift to the left.
+ * @param[inout] x Pointer to the bigint to be shifted.
+ * @param[in] shift The number of bits to shift to the left.
  *
  * @note The function handles memory allocation and will exit the program with an error
  *       message if memory allocation fails. It also removes any leading zero words 
  *       after the shift operation.
  */
-void left_shift(bigint* x, int shift);
+void left_shift(INOUT bigint* x, IN int shift);
 
 /**
  * @brief Perform a reduction operation on a bigint.
@@ -248,13 +248,13 @@ void left_shift(bigint* x, int shift);
  * bigint result. If r is greater than or equal to the total bit length of A,
  * the result will be zero. The sign of the result will match the sign of A.
  *
- * @param A Pointer to the bigint to be reduced.
- * @param r The number of bits to shift to the right.
- * @param result Pointer to the bigint where the result will be stored.
+ * @param[in] x Pointer to the bigint to be reduced.
+ * @param[in] r The number of bits to shift to the right.
+ * @param[out] result Pointer to the bigint where the result will be stored.
  *
  * @note Memory for the result bigint is allocated inside this function. 
  *       The caller is responsible for freeing the memory used by result.
  */
-void reduction(bigint* x, int r, bigint* result);
+void reduction(IN bigint* x, IN int r, OUT bigint* result);
 
 #endif

@@ -11,6 +11,7 @@
 
 #define     IN
 #define     OUT
+#define     INOUT
 
 #define NON_NEGATIVE    0
 #define NEGATIVE       -1

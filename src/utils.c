@@ -26,13 +26,14 @@ void bi_new(IN bigint** x, IN int wordlen)
     }
 }
 
-void array_init(word* array, int length) {
+void array_init(IN word* array, IN int length) 
+{
     for (int i = 0; i < length; i++) {
         array[i] = ZERO;  
     }
 }
 
-void bi_delete(bigint** x)
+void bi_delete(INOUT bigint** x)
 {
     if(*x == NULL)
         return;
@@ -46,8 +47,8 @@ void bi_delete(bigint** x)
     *x = NULL;
 }
 
-void bi_show_hex(bigint* x) {
-
+void bi_show_hex(IN bigint* x) 
+{
     if (x == NULL) {
         INVAILD_DATA;
         exit(1);
@@ -72,7 +73,8 @@ void bi_show_hex(bigint* x) {
 
 }
 
-int bi_set_by_array(bigint** x, int sign, word* a, int wordlen) {
+int bi_set_by_array(OUT bigint** x, IN int sign, IN word* a, IN int wordlen) 
+{
     // 입력 배열이 NULL인지 확인
     if (a == NULL || wordlen <= 0) {
         SET_ARRAY_FAIL;
@@ -92,8 +94,8 @@ int bi_set_by_array(bigint** x, int sign, word* a, int wordlen) {
     return 0; // 성공적으로 완료
 }
 
-int bi_set_by_string(bigint** x, int sign, char* str, int base) {
-
+int bi_set_by_string(OUT bigint** x, IN int sign, IN char* str, IN int base) 
+{
     if (str == NULL || base < 2 || base > 16){
         SET_STRING_FAIL;
         exit(1);
@@ -141,7 +143,7 @@ int bi_set_by_string(bigint** x, int sign, char* str, int base) {
     return 0; // 성공적으로 수행됨
 }
 
-void bi_refine(bigint* x)
+void bi_refine(INOUT bigint* x)
 {
     if(x == NULL)
         return;
@@ -166,7 +168,7 @@ void bi_refine(bigint* x)
  }
 
 
-void bi_assign(bigint** dest, bigint* src)
+void bi_assign(OUT bigint** dest, IN bigint* src)
 {
     if(*dest != NULL)
         bi_delete(dest);
@@ -183,7 +185,7 @@ void bi_assign(bigint** dest, bigint* src)
 
 }
 
-void bi_gen_rand(bigint**x, int sign, int wordlen)
+void bi_gen_rand(OUT bigint** x, IN int sign, IN int wordlen)
 {
     bi_new(x, wordlen);
     (*x)->sign = sign;
@@ -192,7 +194,7 @@ void bi_gen_rand(bigint**x, int sign, int wordlen)
     bi_refine(*x);
 }
 
-void array_rand(word* dst, int wordlen)
+void array_rand(OUT word* dst, IN int wordlen)
 {
     u8* p = (u8*)dst;
     int cnt = wordlen * sizeof(word);
@@ -204,21 +206,22 @@ void array_rand(word* dst, int wordlen)
     }
 }
 
-void bi_set_one(bigint** x)
+void bi_set_one(OUT bigint** x)
 {
     bi_new(x, 1);
     (*x)->sign = NON_NEGATIVE;
     (*x)->a[0] = ONE;
 }
 
-void bi_set_zero(bigint** x)
+void bi_set_zero(OUT bigint** x)
 {
     bi_new(x, 1);
     (*x)->sign = NON_NEGATIVE;
     (*x)->a[0] = ZERO;
 }
 
-int compareABS(bigint* x, bigint* y){
+int compareABS(IN bigint* x, IN bigint* y)
+{
     int n = x->wordlen;
     int m = y->wordlen;
 
@@ -241,7 +244,7 @@ int compareABS(bigint* x, bigint* y){
     return 0;
 }
 
-int compare(bigint* x, bigint* y)
+int compare(IN bigint* x, IN bigint* y)
 {
     if(x->sign == NON_NEGATIVE && y->sign == NEGATIVE){
         return 1;
@@ -260,8 +263,8 @@ int compare(bigint* x, bigint* y)
     } 
 }
 
-int get_bit_length(bigint* x) {
-
+int get_bit_length(IN bigint* x) 
+{
     if (x->wordlen == 0){ 
         INVAILD_DATA;
         exit(1);
@@ -287,8 +290,8 @@ int get_bit_length(bigint* x) {
 }
 
 
-int get_jth_bit(bigint* x, word j) {
-
+int get_jth_bit(IN bigint* x, IN word j) 
+{
     // Check if j is within valid range
     if (j >= ((word)x->wordlen * sizeof(word))) 
     { 
@@ -311,8 +314,8 @@ int get_jth_bit(bigint* x, word j) {
     return (x->a[word_index] & mask) ? 1 : 0;
 }
 
-void right_shift(bigint* x, int shift) {
-
+void right_shift(INOUT bigint* x, IN int shift) 
+{
     int word_shift = shift / (8*sizeof(word));  // 얼마나 워드 단위로 이동하는지
     int bit_shift = shift % (8*sizeof(word));   // 워드 내에서의 비트 이동
     int old_wordlen = x->wordlen;
@@ -347,8 +350,8 @@ void right_shift(bigint* x, int shift) {
     bi_refine(x);
 }
 
-void left_shift(bigint* x, int shift) {
-
+void left_shift(INOUT bigint* x, IN int shift) 
+{
     int word_shift = shift / (8*sizeof(word));  // 얼마나 워드 단위로 이동하는지
     int bit_shift = shift % (8*sizeof(word));   // 워드 내에서의 비트 이동
     int old_wordlen = x->wordlen;
@@ -378,8 +381,8 @@ void left_shift(bigint* x, int shift) {
 }
 
 
-void reduction(bigint* x, int r, bigint* result) {
-
+void reduction(IN bigint* x, IN int r, OUT bigint* result) 
+{
     int word_size = sizeof(word) * 8; // Number of bits in a word
     int word_shift = r / word_size; // Number of full words to shift
     int bit_shift = r % word_size; // Remaining bits to shift
