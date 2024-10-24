@@ -68,23 +68,76 @@ $(function() {
 <div class="title">bigint Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Structure representing a big integer.  
+ <a href="structbigint.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="bigint_8h_source.html">bigint.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:adb20a09996b54a87246890b0bbe4e87e"><td class="memItemLeft" align="right" valign="top"><a id="adb20a09996b54a87246890b0bbe4e87e"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>sign</b></td></tr>
+<tr class="memitem:adb20a09996b54a87246890b0bbe4e87e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbigint.html#adb20a09996b54a87246890b0bbe4e87e">sign</a></td></tr>
 <tr class="separator:adb20a09996b54a87246890b0bbe4e87e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f1300368b239fadaa10accab0905e57"><td class="memItemLeft" align="right" valign="top"><a id="a2f1300368b239fadaa10accab0905e57"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>wordlen</b></td></tr>
+<tr class="memitem:a2f1300368b239fadaa10accab0905e57"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbigint.html#a2f1300368b239fadaa10accab0905e57">wordlen</a></td></tr>
 <tr class="separator:a2f1300368b239fadaa10accab0905e57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7bf9ddbc114158df55f1bf99a52a3f4"><td class="memItemLeft" align="right" valign="top"><a id="aa7bf9ddbc114158df55f1bf99a52a3f4"></a>
-word *&#160;</td><td class="memItemRight" valign="bottom"><b>a</b></td></tr>
+<tr class="memitem:aa7bf9ddbc114158df55f1bf99a52a3f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bigint_8h.html#aebc41b6d0c2740d77cf66d33521012e3">word</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbigint.html#aa7bf9ddbc114158df55f1bf99a52a3f4">a</a></td></tr>
 <tr class="separator:aa7bf9ddbc114158df55f1bf99a52a3f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="bigint_8h_source.html#l00023">23</a> of file <a class="el" href="bigint_8h_source.html">bigint.h</a>.</p>
-</div><hr/>The documentation for this struct was generated from the following file:<ul>
+<div class="textblock"><p>Structure representing a big integer. </p>
+<p>This structure is used to store large integer values that exceed the storage capacity of standard data types. It consists of an array of words and a sign indicator. </p>
+
+<p class="definition">Definition at line <a class="el" href="bigint_8h_source.html#l00029">29</a> of file <a class="el" href="bigint_8h_source.html">bigint.h</a>.</p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="aa7bf9ddbc114158df55f1bf99a52a3f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7bf9ddbc114158df55f1bf99a52a3f4">&#9670;&nbsp;</a></span>a</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="bigint_8h.html#aebc41b6d0c2740d77cf66d33521012e3">word</a>* bigint::a</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bigint_8h_source.html#l00032">32</a> of file <a class="el" href="bigint_8h_source.html">bigint.h</a>.</p>
+
+</div>
+</div>
+<a id="adb20a09996b54a87246890b0bbe4e87e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb20a09996b54a87246890b0bbe4e87e">&#9670;&nbsp;</a></span>sign</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int bigint::sign</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bigint_8h_source.html#l00030">30</a> of file <a class="el" href="bigint_8h_source.html">bigint.h</a>.</p>
+
+</div>
+</div>
+<a id="a2f1300368b239fadaa10accab0905e57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f1300368b239fadaa10accab0905e57">&#9670;&nbsp;</a></span>wordlen</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int bigint::wordlen</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bigint_8h_source.html#l00031">31</a> of file <a class="el" href="bigint_8h_source.html">bigint.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
 <li>include/<a class="el" href="bigint_8h_source.html">bigint.h</a></li>
 </ul>
 </div><!-- contents -->
