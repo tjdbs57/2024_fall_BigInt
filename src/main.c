@@ -8,7 +8,7 @@ int main()
 {
     srand(time(NULL));
     //test_set_by_array();
-    //test_bi_string();
-    test_add();
+    test_bi_string();
+    //test_add();
     return 0;
 }

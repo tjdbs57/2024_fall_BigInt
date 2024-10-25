@@ -26,6 +26,8 @@ void add_carry(word A, word B, word carry_in, word* carry_out, word* result)
 
 }
 
+
+
 void add_core(bigint** x, bigint** y, bigint** z) {
     
     int n = (*x)->wordlen; // 첫 번째 빅넘버의 워드 길이
@@ -53,10 +55,12 @@ void add_core(bigint** x, bigint** y, bigint** z) {
     if (carry_out != 0) {
         (*z)->a[max_len] = carry_out; // 마지막 워드에 캐리 저장
         (*z)->wordlen = max_len + 1; // 길이 증가
+
     } else {
         (*z)->wordlen = max_len; // 길이 유지
     }
 
     // 불필요한 워드가 없도록 bi_refine 호출
     bi_refine(*z);
+
 }

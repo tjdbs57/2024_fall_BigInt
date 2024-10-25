@@ -14,7 +14,7 @@
  * @param carry_out Pointer to store the carry output.
  * @param result Pointer to store the result of the addition.
  */
-void add_carry(word A, word B, word carry_in, word* carry_out, word* result);
+void add_carry(IN word A, IN word B, IN word carry_in, OUT word* carry_out, OUT word* result);
 
 /**
  * @brief Adds two big integers and stores the result in a third bigint.
@@ -41,6 +41,6 @@ void add_carry(word A, word B, word carry_in, word* carry_out, word* result);
  * @note The input big integers should be properly initialized and should not be NULL.
  *       The result bigint will be allocated and must be freed by the caller when no longer needed.
  */
-void add_core(bigint** x, bigint** y, bigint** z);
+void add_core(IN bigint** x, IN bigint** y, OUT bigint** z);
 
 #endif

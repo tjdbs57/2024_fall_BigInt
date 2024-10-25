@@ -61,6 +61,7 @@
     "stdio.h": "c",
     "config.h": "c",
     "bigint.h": "c",
-    "utils.h": "c"
+    "utils.h": "c",
+    "test.h": "c"
   }
 }

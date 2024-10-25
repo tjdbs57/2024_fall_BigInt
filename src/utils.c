@@ -67,7 +67,7 @@ void bi_show_hex(IN bigint* x)
     
     // 워드 출력
     for (int i = x->wordlen - 1; i >= 0; i--) {
-        printf("%08x", x->a[i]);
+        printf("%x", x->a[i]);
     }
     printf("\n");
 
@@ -94,33 +94,27 @@ int bi_set_by_array(OUT bigint** x, IN int sign, IN word* a, IN int wordlen)
     return 0; // 성공적으로 완료
 }
 
-int bi_set_by_string(OUT bigint** x, IN int sign, IN char* str, IN int base) 
-{
-    if (str == NULL || base < 2 || base > 16){
+int bi_set_by_string(OUT bigint** x, IN int sign, IN char* str, IN int base) {
+    if (str == NULL || base < 2 || base > 16) {
         SET_STRING_FAIL;
         exit(1);
     }
 
     size_t len = strlen(str);
-    size_t wordlen = (len + (sizeof(word) * 2 - 1)) / (sizeof(word) * 2);
- 
+    size_t wordlen = (len + 7) / 8; // 워드 길이 계산 (8자 단위)
+    
     bi_new(x, wordlen);
     (*x)->sign = sign; 
 
-  
-    size_t current_word = 0;
+    // 문자열을 뒤에서부터 읽어 단어를 구성
+    for (size_t current_word = 0; current_word < wordlen; current_word++) {
+        (*x)->a[current_word] = 0; // 현재 워드 초기화
 
-    // 문자열을 8자씩 읽어 단어를 구성
-    for (size_t i = 0; i < len; i += 8) {
-        size_t remaining = len - i;
-        size_t copy_length = remaining < 8 ? remaining : 8;
-
-        // 현재 단어에 값 업데이트
-        (*x)->a[current_word] = 0; // 현재 단어 초기화
-
-        // 8자리 부분을 역순으로 처리하여 단어를 구성
-        for (size_t j = 0; j < copy_length; j++) {
-            char c = str[i + copy_length - 1 - j];
+        // 8자리씩 읽어 현재 워드에 저장
+        for (size_t j = 0; j < 8; j++) {
+            size_t index = len - 1 - (current_word * 8 + j); // 뒤에서부터 인덱스 계산
+            if (index >= len) break;
+            char c = str[index];
             int value;
 
             // 문자를 숫자 값으로 변환
@@ -133,15 +127,18 @@ int bi_set_by_string(OUT bigint** x, IN int sign, IN char* str, IN int base)
                 return -1; // 잘못된 문자에 대한 오류 반환
             }
 
-            // 현재 단어에 값 업데이트
-            (*x)->a[current_word] |= (value << (j * 4));
+            // 현재 워드에 값 업데이트 (워드의 오른쪽 끝에서부터 채움)
+            (*x)->a[current_word] |= (value << (j * 4)); // 비트 이동
         }
-
-        current_word++;
     }
 
     return 0; // 성공적으로 수행됨
 }
+
+
+
+
+
 
 void bi_refine(INOUT bigint* x)
 {
