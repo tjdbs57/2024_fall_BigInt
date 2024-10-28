@@ -6,9 +6,9 @@
 
 int main()
 {
-    //test_bi_refine();
-    test_add_core();
-    test_swap_bigint();
-
+    srand(time(NULL));
+    //test_set_by_array();
+    test_bi_string();
+    //test_add();
     return 0;
 }
