@@ -1,9 +1,6 @@
-<<<<<<< HEAD
 #ifndef CONFIG_H
 #define CONFIG_H
 
-=======
->>>>>>> 4a215fd562bfc2edbb6beaf9a17c670ae369546c
 #include <stdio.h>
 #include <stdint.h>
 #include <stddef.h>
@@ -12,24 +9,12 @@
 #include <ctype.h>
 #include <time.h>
 
-<<<<<<< HEAD
 #define     IN
 #define     OUT
 #define     INOUT
 
 #define NON_NEGATIVE    0
 #define NEGATIVE       -1
-=======
-#ifndef CONFIG_H
-#define CONFIG_H
-
-#define NON_NEGATIVE    0
-#define NEGATIVE       -1
-
-typedef int8_t    i8;
-typedef int32_t  i32;
-typedef int64_t  i64;
->>>>>>> 4a215fd562bfc2edbb6beaf9a17c670ae369546c
 
 typedef uint8_t   u8;
 typedef uint32_t u32;
@@ -41,16 +26,3 @@ typedef int64_t  i64;
 
 
 #endif 
-
-
-<<<<<<< HEAD
-
-=======
-typedef struct{
-    int         sign; // NEGATIVE or NON-NEGATIVE
-    int     wordlen; // wordlen >= 0
-    word*         a; // address for big integer
-} bigint;
-
-#endif 
->>>>>>> 4a215fd562bfc2edbb6beaf9a17c670ae369546c
