@@ -2,6 +2,7 @@
 #define BIGINT_H
 #include "config.h"
 
+<<<<<<< HEAD
 #define WORD_BITLEN 32
 
 // Conditional compilation based on the word size for data type flexibility
@@ -25,6 +26,8 @@ typedef struct{
     int     wordlen; // wordlen >= 0
     word*         a; // address for big integer
 } bigint;
+=======
+>>>>>>> 4a215fd562bfc2edbb6beaf9a17c670ae369546c
 
 /* Return Maximum of x1 and x2. */
 #define MAXIMUM(x1, x2) (x1 > x2 ? x1 : x2)
@@ -32,4 +35,19 @@ typedef struct{
 /* Return Minimum of x1 and x2. */
 #define MINIMUM(x1, x2) (x1 < x2 ? x1 : x2)
 
+<<<<<<< HEAD
+=======
+#define WORD_BITLEN 32
+
+// Conditional compilation based on the word size for data type flexibility
+#if WORD_BITLEN == 8
+typedef u8 word;
+#define ONE (u8)1
+#elif WORD_BITLEN == 32
+typedef u32 word;
+#define ONE (u32)1
+#else
+typedef u64 word;
+#define ONE (u64)1
+>>>>>>> 4a215fd562bfc2edbb6beaf9a17c670ae369546c
 #endif
