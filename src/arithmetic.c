@@ -81,7 +81,7 @@ void sub_core(bigint** x, bigint** y, bigint** z)
 
     // 더 긴 워드 길이에 맞춰 z 초기화
     int max_len = MAXIMUM(n, m);
-    bi_new(z, max_len+1); // 캐리를 위해 1 추가
+    bi_new(z, max_len + 1); // 캐리를 위해 1 추가
 
     word borrow_out = ZERO; 
     word res       = ZERO; 
