@@ -1,4 +1,6 @@
 #include "utils.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 void bi_new(IN bigint** x, IN int wordlen)
 {
@@ -142,6 +144,7 @@ int bi_set_by_string(OUT bigint** x, IN int sign, IN char* str, IN int base) {
 
 void bi_refine(INOUT bigint* x)
 {
+    // NULL 체크
     if(x == NULL)
         return;
     
