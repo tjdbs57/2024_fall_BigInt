@@ -4,14 +4,14 @@
 #include "test.h"
 #include "bigint.h"
 
+
 int main()
 {
     srand(time(NULL));
     //test_set_by_array();
     //test_bi_string();
+
     //test_add();
-    //test_sub_borrow();
-    //test_sub_core();
-    test_subtraction();
+    test_sub();
     return 0;
 }

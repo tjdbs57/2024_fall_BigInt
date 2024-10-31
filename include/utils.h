@@ -16,7 +16,6 @@
     fprintf(stderr, "Error: Invalid data at %s:%d\n", __FILE__, __LINE__); 
 
 
-    
 /**
  * @brief Allocates memory for a new bigint structure.
  *

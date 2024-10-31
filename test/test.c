@@ -1,99 +1,165 @@
 #include "test.h"
-#include "utils.h"
-
-/*
-void test_sub_borrow() {
-    word A, B, borrow_in;
-    word borrow_out, result;
-
-    // Test case 1: A >= B
-    A = 10; 
-    B = 5; 
-    borrow_in = 0; // No previous borrow
-    sub_borrow(A, B, borrow_in, &borrow_out, &result);
-    printf("Test Case 1: A = %u, B = %u, borrow_in = %u => result = %u, borrow_out = %u\n", 
-           A, B, borrow_in, result, borrow_out); 
-    // Expected: result = 5, borrow_out = 0
-
-    // Test case 2: A < B
-    A = 5; 
-    B = 10; 
-    borrow_in = 0;
-    sub_borrow(A, B, borrow_in, &borrow_out, &result);
-    printf("Test Case 2: A = %u, B = %u, borrow_in = %u => result = %u, borrow_out = %u\n", 
-           A, B, borrow_in, result, borrow_out);
-    // Expected: result = 4294967291 (assuming 32-bit unsigned wrap around), borrow_out = 1
-
-    // Test case 3: A = B and borrow_in = 0
-    A = 10; 
-    B = 10; 
-    borrow_in = 0;
-    sub_borrow(A, B, borrow_in, &borrow_out, &result);
-    printf("Test Case 3: A = %u, B = %u, borrow_in = %u => result = %u, borrow_out = %u\n", 
-           A, B, borrow_in, result, borrow_out);
-    // Expected: result = 0, borrow_out = 0
-
-    // Test case 4: A = B and borrow_in = 1
-    A = 10; 
-    B = 10; 
-    borrow_in = 1;
-    sub_borrow(A, B, borrow_in, &borrow_out, &result);
-    printf("Test Case 4: A = %u, B = %u, borrow_in = %u => result = %u, borrow_out = %u\n", 
-           A, B, borrow_in, result, borrow_out);
-    // Expected: result = 4294967295 (assuming 32-bit unsigned wrap around), borrow_out = 1
-
-    // Test case 5: A = 0 and B = 0
-    A = 0; 
-    B = 0; 
-    borrow_in = 0;
-    sub_borrow(A, B, borrow_in, &borrow_out, &result);
-    printf("Test Case 5: A = %u, B = %u, borrow_in = %u => result = %u, borrow_out = %u\n", 
-           A, B, borrow_in, result, borrow_out);
-    // Expected: result = 0, borrow_out = 0
-
-    // Test case 6: A = 0 and B = 1
-    A = 0; 
-    B = 1; 
-    borrow_in = 0;
-    sub_borrow(A, B, borrow_in, &borrow_out, &result);
-    printf("Test Case 6: A = %u, B = %u, borrow_in = %u => result = %u, borrow_out = %u\n", 
-           A, B, borrow_in, result, borrow_out);
-    // Expected: result = 4294967295 (assuming 32-bit unsigned wrap around), borrow_out = 1
-}
-*/
-void test_subtraction() {
+#include "error.h"
+void test_set_by_array() {
     bigint* x = NULL;
     bigint* y = NULL;
     bigint* z = NULL;
 
-    // 큰 정수 x = 123456789, y = 987654321
-    bi_new(&x, 2); // 2워드 길이의 빅넘버 생성
-    x->a[0] = 123456789; // 낮은 32비트
-    x->a[1] = 0; // 높은 32비트 (0으로 초기화)
+    word arr[] = {0xed04eed1, 0x41c55066, 0x3a3181eb, 0x74b06684, 0x451512f1, 0x427430bd, 
+    0x8533a1b8, 0xc2e6467a, 0x1a852c23, 0x2e5a9840}; // Example array
+    word arr2[] = {0x8dfd1a18, 0x02b33a56, 0x4801e61}; 
 
-    bi_new(&y, 2); // 2워드 길이의 빅넘버 생성
-    y->a[0] = 987654321; // 낮은 32비트
-    y->a[1] = 0; // 높은 32비트 (0으로 초기화)
+    int sign = NON_NEGATIVE; // Set sign
+    //int wordlen = sizeof(arr) / sizeof(arr[0]); // Calculate array length
 
-    // 뺄셈 수행
-    sub_core(&x, &y, &z);
+    // Set bigint using bi_set_by_array
+    bi_set_by_array(&x, sign, arr, 10);
+    printf("input 1 :\n");
+    bi_show_hex(x);
+    
+    bi_set_by_array(&y, sign, arr2, 3);
+    printf("\ninput 2: \n");
+    bi_show_hex(y);
 
-    // 결과 출력
-    printf("Result: ");
-    for (int i = 0; i < z->wordlen; i++) {
-        printf("%u ", z->a[i]); // 결과 출력
-    }
-    printf("\n");
 
-    // 예상 결과 확인
-    // 987654321 - 123456789 = 864197532
-    // 부호를 무시하고 unsigned로 보면 3435769764가 나옴 (unsigned wrap around)
-    if (z->wordlen > 0) {
-        printf("Expected Result: 3435769764\n");
-    }
+    add_core(&x, &y, &z);
 
-    // 메모리 해제
+    printf("output :\n");
+    bi_show_hex(z);
+    // Free memory
     bi_delete(&x);
     bi_delete(&y);
     bi_delete(&z);
+
+}
+
+void test_bi_string() {
+    bigint* x = NULL; 
+    bigint* y = NULL; 
+    bigint* z = NULL;
+    char* test_str1 = "123456789"; 
+    char* test_str2 = "987654321"; 
+
+    int base = 16; 
+    int sign = NON_NEGATIVE; 
+
+
+    if (bi_set_by_string(&x, sign, test_str1, base) != 0) {
+        printf("Failed to set bigint from string '%s'.\n", test_str1);
+        return;
+    }
+    printf("\n");
+
+    if (bi_set_by_string(&y, sign, test_str2, base) != 0) {
+        printf("Failed to set bigint from string '%s'.\n", test_str2);
+        bi_delete(&x);
+        return;
+    }
+    printf("\nSecond bigint: ");
+    bi_show_hex(y);
+
+    sub_core(&x, &y, &z);
+    // print_bi_hex_py(x);                         
+    // printf(" - "); print_bi_hex_py(y);                    
+    // printf(" == "); print_bi_hex_py(z);                            
+    // printf("\n"); 
+    printf("Result : ");
+    bi_show_hex(z);
+
+    bi_delete(&x);
+    bi_delete(&y);
+}
+
+void print_bi_hex_py(IN const bigint* x) 
+{
+    if (!(x)) 
+    {
+        INVAILD_DATA;
+        exit(1);
+    }
+    if (!(x)->a) 
+    {
+        INVAILD_DATA;
+        exit(1);
+    }
+    if ((x)->sign == -1) { printf("-"); }  
+    printf("0x");                           
+    
+    for (int i = (x)->wordlen - 1; i >= 0; i--) 
+    {
+#if WORD_BITLEN == 8
+        // For 8-bit words, use %02x format specifier for printing
+        printf("%02x", (x)->a[i]);
+#elif WORD_BITLEN == 64
+        // For 64-bit words, use %016llx format specifier for printing
+        printf("%016llx", (x)->a[i]);
+#else
+        // For other word sizes (typically 32-bit), use %08x format specifier for printing
+        printf("%08x", (x)->a[i]);
+#endif
+    }
+}
+
+void test_add() 
+{  
+    for(int i = 0 ; i < TEST_CASE; i++)
+    {
+        bigint *x = NULL;
+        bigint *y = NULL;
+        bigint *z = NULL;
+
+        int wordlen1 = rand() % 128 + 1; 
+        int wordlen2 = rand() % 128 + 1;  
+        int sign = NON_NEGATIVE;
+
+        bi_gen_rand(&x, sign, wordlen1);
+        bi_gen_rand(&y, sign, wordlen2);
+        
+        add_core(&x, &y, &z);
+        print_bi_hex_py(x);                         
+        printf(" + "); print_bi_hex_py(y);                    
+        printf(" == "); print_bi_hex_py(z);                            
+        printf("\n");  
+
+        bi_delete(&x);
+        bi_delete(&y);
+        bi_delete(&z);
+    }
+}
+
+void test_sub() 
+{  
+    for(int i = 0 ; i < TEST_CASE; i++)
+    {
+        bigint *x = NULL;
+        bigint *y = NULL;
+        bigint *z = NULL;
+
+        int wordlen1 = rand() % 96 + 1; 
+        int wordlen2 = rand() % 96 + 1;  
+        int sign = NON_NEGATIVE;
+
+        bi_gen_rand(&x, sign, wordlen1);
+        bi_gen_rand(&y, sign, wordlen2);
+        
+        sub_core(&x, &y, &z);
+        print_bi_hex_py(x);                         
+        printf(" - "); print_bi_hex_py(y);                    
+        printf(" == "); print_bi_hex_py(z);                            
+        printf("\n");  
+
+        bi_delete(&x);
+        bi_delete(&y);
+        bi_delete(&z);
+    }
+
+}
+
+void measure_time()
+{
+    clock_t start = clock();
+    test_sub();
+    clock_t end = clock();
+    double seconds = (double)(end - start) / CLOCKS_PER_SEC;
+    printf("It has been %f seconds from point begin to end", seconds);
 }
