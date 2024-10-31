@@ -12,4 +12,5 @@ int main()
     test_bi_string();
     //test_add();
     //helloㅎㅎ
+    //push 잘 됐는지 연습했슴당
 }
