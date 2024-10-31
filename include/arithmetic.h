@@ -43,4 +43,6 @@ void add_carry(IN word A, IN word B, IN word carry_in, OUT word* carry_out, OUT 
  */
 void add_core(IN bigint** x, IN bigint** y, OUT bigint** z);
 
+void add_include_Neg(bigint** x, bigint** y, bigint** z);
+
 #endif

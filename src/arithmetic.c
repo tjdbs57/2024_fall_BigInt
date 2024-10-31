@@ -64,3 +64,33 @@ void add_core(bigint** x, bigint** y, bigint** z) {
     bi_refine(*z);
 
 }
+
+void add_include_Neg(bigint** x, bigint** y, bigint** z) { //덧셈에서 음수 처리까지 포함
+    // Check for zero cases
+    if ((*x)->wordlen == 0) {
+        *z = *y; // x가 0이면 y 반환
+        return;
+    }
+    if ((*y)->wordlen == 0) {
+        *z = *x; // y가 0이면 x 반환
+        return;
+    }
+
+    // Check signs and perform subtraction if needed
+    if ((*x)->sign > 0 && (*y)->sign < 0) {
+        (*y)->sign = NON_NEGATIVE;
+        SUB(x, y, z); // x가 양수이고 y가 음수일 때 x - |y|
+        return;
+    }
+    else if ((*x)->sign < 0 && (*y)->sign > 0) {
+        SUB(y, x, z); // x가 음수이고 y가 양수일 때 y - x
+        return;
+    }
+
+    // 두 정수가 같은 부호일 때 덧셈
+    add_core(x, y, z); // 두 빅넘버를 더함
+
+    // 결과의 부호 설정
+    (*z)->sign = (*x)->sign; // 두 수가 같은 부호이므로 x의 부호를 사용
+}
+
