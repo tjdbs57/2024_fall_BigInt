@@ -2,6 +2,7 @@
 #include "config.h"
 #include "utils.h"
 #include "test.h"
+
 #include "bigint.h"
 
 int main()
@@ -11,5 +12,4 @@ int main()
     test_bi_string();
     //test_add();
     //helloㅎㅎ
-    return 0;
 }

@@ -50,8 +50,5 @@ rebuild: clean all
 run: $(TARGET)
 	$(RUN)
 
-<<<<<<< HEAD
 .PHONY: all clean rebuild run
-=======
-.PHONY: all clean rebuild run
->>>>>>> 4a215fd562bfc2edbb6beaf9a17c670ae369546c
+

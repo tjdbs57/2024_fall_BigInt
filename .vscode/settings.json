@@ -58,15 +58,10 @@
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
     "stdint.h": "c",
-<<<<<<< HEAD
     "stdio.h": "c",
     "config.h": "c",
     "bigint.h": "c",
     "utils.h": "c",
     "test.h": "c"
-=======
-    "utils.h": "c",
-    "stdlib.h": "c"
->>>>>>> 4a215fd562bfc2edbb6beaf9a17c670ae369546c
   }
 }

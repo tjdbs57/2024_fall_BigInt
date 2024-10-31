@@ -251,7 +251,9 @@ int compare(IN bigint* x, IN bigint* y)
     }
     else{
         int ret = compareABS(x, y);
+
         if(x->sign == NON_NEGATIVE){
+
             return ret;
         }
         else{
