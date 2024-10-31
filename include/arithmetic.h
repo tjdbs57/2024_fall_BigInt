@@ -43,4 +43,32 @@ void add_carry(IN word A, IN word B, IN word carry_in, OUT word* carry_out, OUT 
  */
 void add_core(IN bigint** x, IN bigint** y, OUT bigint** z);
 
+/**
+ * @brief Performs subtraction of B from A and manages borrowing.
+ *
+ * This function subtracts the second word (B) from the first word (A),
+ * taking into account any previous borrowing. It updates the result 
+ * and the borrow status accordingly.
+ *
+ * @param A          The first word, the value from which to subtract.
+ * @param B          The second word, the value to be subtracted.
+ * @param borrow_in  The previous borrow value.
+ * @param borrow_out Pointer to store the resulting borrow status.
+ * @param result     Pointer to store the subtraction result.
+ */
+void sub_borrow(IN word A, IN word B, IN word borrow_in, OUT word* borrow_out, OUT word* result);
+
+/**
+ * @brief Performs subtraction of two big integers.
+ *
+ * This function subtracts the big integer y from the big integer x and stores 
+ * the result in z. It handles borrowing during subtraction and manages the 
+ * necessary memory for the result.
+ *
+ * @param x Pointer to the first bigint, the minuend.
+ * @param y Pointer to the second bigint, the subtrahend.
+ * @param z Pointer to store the result of the subtraction.
+ */
+void sub_core(bigint** x, bigint** y, bigint** z);
+
 #endif
