@@ -51,59 +51,45 @@ void add_core(IN bigint** x, IN bigint** y, OUT bigint** z)
 
 }
 
-void sub_borrow(IN word A, IN word B, IN word borrow_in, OUT word* borrow_out, OUT word* result) {
-    // borrow_out을 0으로 초기화
+void sub_single_word(IN word A, IN word B, IN word borrow_in, OUT word* borrow_out, OUT word* result) 
+{
+    word sub = A - borrow_in;
     *borrow_out = ZERO;
-
-    // A에서 borrow_in을 뺀 값을 temp_A에 저장
-    word temp_A = A - borrow_in;
-
-    // borrow_in이 A보다 큰 경우 빌리기가 필요하므로 borrow_out을 1로 설정
-    if (temp_A > A) {
-        *borrow_out = ONE; // 빌리기 필요
-        temp_A = A; // 빌리기가 필요한 경우, temp_A는 A로 설정
+    
+    if (A < borrow_in) {
+        *borrow_out = ONE;
     }
 
-    // temp_A에서 B를 빼고 결과를 result에 저장
-    *result = temp_A - B;
-
-    // 결과가 temp_A보다 큰 경우 추가로 빌리기가 발생했음을 의미
-    if (*result > temp_A) {
-        *borrow_out += ONE; // 추가 빌리기 발생
+    if (sub < B) {
+        *borrow_out += ONE;
     }
+    
+    *result = sub - B;  
 }
 
-void sub_core(bigint** x, bigint** y, bigint** z) 
+void sub_core(IN bigint** x, IN bigint** y, OUT bigint** z) 
 {
     
-    int n = (*x)->wordlen; // 첫 번째 빅넘버의 워드 길이
-    int m = (*y)->wordlen; // 두 번째 빅넘버의 워드 길이
+    int n = (*x)->wordlen; 
+    int m = (*y)->wordlen; 
 
-    // 더 긴 워드 길이에 맞춰 z 초기화
     int max_len = MAXIMUM(n, m);
-    bi_new(z, max_len + 1); // 캐리를 위해 1 추가
+    bi_new(z, max_len); 
 
     word borrow_out = ZERO; 
-    word res       = ZERO; 
+    word res        = ZERO; 
 
-    // 워드 길이에 맞추기 위해 짧은 쪽에 0 추가
     for (int i = 0; i < max_len; i++) {
 
         word x_word = (i < n) ? (*x)->a[i] : 0; 
         word y_word = (i < m) ? (*y)->a[i] : 0; 
 
-        // 뺄셈 수행
-        sub_borrow(x_word, y_word, borrow_out, &borrow_out, &res);
-        (*z)->a[i] = res; // 결과 저장
-        //printf("a[%d] : %u\n", i,(*z)->a[i]);
-    }
-    int l = n - 1;
-    while (l >= 0 && (*z)->a[l] == 0) {
-        l--;
-    }
-    l+=1;
+        sub_single_word(x_word, y_word, borrow_out, &borrow_out, &res);
+        (*z)->a[i] = res; 
 
-    (*z)->wordlen = l;
+    }
 
+    bi_refine(*x);
+    bi_refine(*y);
     bi_refine(*z);
 }

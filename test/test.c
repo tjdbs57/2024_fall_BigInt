@@ -37,8 +37,8 @@ void test_bi_string() {
     bigint* x = NULL; 
     bigint* y = NULL; 
     bigint* z = NULL;
-    char* test_str1 = "123456789"; 
-    char* test_str2 = "987654321"; 
+    char* test_str1 = "987654321"; 
+    char* test_str2 = "123456789"; 
 
     int base = 16; 
     int sign = NON_NEGATIVE; 
@@ -110,8 +110,8 @@ void test_add()
         bigint *y = NULL;
         bigint *z = NULL;
 
-        int wordlen1 = rand() % 128 + 1; 
-        int wordlen2 = rand() % 128 + 1;  
+        int wordlen1 = rand() % 313 + 1; 
+        int wordlen2 = rand() % 313 + 1;  
         int sign = NON_NEGATIVE;
 
         bi_gen_rand(&x, sign, wordlen1);
@@ -144,17 +144,52 @@ void test_sub()
         bi_gen_rand(&x, sign, wordlen1);
         bi_gen_rand(&y, sign, wordlen2);
         
+        if (compare(x, y) == 0) {
+            bigint *temp = x;
+            x = y;
+            y = temp;
+        }
+
         sub_core(&x, &y, &z);
         print_bi_hex_py(x);                         
         printf(" - "); print_bi_hex_py(y);                    
         printf(" == "); print_bi_hex_py(z);                            
-        printf("\n");  
-
+        printf("\n"); 
+        
         bi_delete(&x);
         bi_delete(&y);
         bi_delete(&z);
     }
 
+}
+
+
+void test_sub_single_word() {
+    word borrow_out, result;
+
+    // 테스트 케이스 1: A > B, borrow_in = 0
+    sub_single_word(0x0000000A, 0x00000005, 0x0, &borrow_out, &result);
+    printf("Test 1 - Expected: result=0x00000005, borrow_out=0 | Actual: result=0x%08X, borrow_out=%u\n", result, borrow_out);
+
+    // 테스트 케이스 2: A < B, borrow_in = 0
+    sub_single_word(0x00000005, 0x0000000A, 0x0, &borrow_out, &result);
+    printf("Test 2 - Expected: result=0xFFFFFFF5, borrow_out=1 | Actual: result=0x%08X, borrow_out=%u\n", result, borrow_out);
+
+    // 테스트 케이스 3: A == B, borrow_in = 0
+    sub_single_word(0x00000005, 0x00000005, 0x0, &borrow_out, &result);
+    printf("Test 3 - Expected: result=0x00000000, borrow_out=0 | Actual: result=0x%08X, borrow_out=%u\n", result, borrow_out);
+
+    // 테스트 케이스 4: A < B, borrow_in = 1
+    sub_single_word(0x00000005, 0x0000000A, 0x1, &borrow_out, &result);
+    printf("Test 4 - Expected: result=0xFFFFFFF4, borrow_out=1 | Actual: result=0x%08X, borrow_out=%u\n", result, borrow_out);
+
+    // 테스트 케이스 5: A > B, borrow_in = 1
+    sub_single_word(0x0000000A, 0x00000005, 0x1, &borrow_out, &result);
+    printf("Test 5 - Expected: result=0x00000004, borrow_out=0 | Actual: result=0x%08X, borrow_out=%u\n", result, borrow_out);
+
+    // 테스트 케이스 6: A == B, borrow_in = 1
+    sub_single_word(0x00000005, 0x00000005, 0x1, &borrow_out, &result);
+    printf("Test 6 - Expected: result=0xFFFFFFFF, borrow_out=1 | Actual: result=0x%08X, borrow_out=%u\n", result, borrow_out);
 }
 
 void measure_time()
