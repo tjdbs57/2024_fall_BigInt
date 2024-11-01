@@ -258,4 +258,15 @@ void left_shift(INOUT bigint* x, IN int shift);
  */
 void reduction(IN bigint* x, IN int r, OUT bigint* result);
 
+
+/**
+ * @brief Check if a bigint is zero.
+ *
+ * This function checks whether the given bigint structure represents the value zero.
+ * It verifies if the word length is zero or if all the words in the array are zero.
+ *
+ * @param x A pointer to the bigint structure to be checked.
+ * @return Returns 1 (ONE) if the bigint is zero, otherwise returns 0 (ZERO).
+ */
+int is_zero(bigint* x);
 #endif

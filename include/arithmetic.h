@@ -43,9 +43,6 @@ void add_carry(IN word A, IN word B, IN word carry_in, OUT word* carry_out, OUT 
  */
 void add_core(IN bigint** x, IN bigint** y, OUT bigint** z);
 
-<<<<<<< HEAD
-void add_include_Neg(bigint** x, bigint** y, bigint** z);
-=======
 /**
  * @brief Performs subtraction of B from A and manages borrowing.
  *
@@ -73,6 +70,5 @@ void sub_borrow(IN word A, IN word B, IN word borrow_in, OUT word* borrow_out, O
  * @param z Pointer to store the result of the subtraction.
  */
 void sub_core(bigint** x, bigint** y, bigint** z);
->>>>>>> 4b6953869376c1bd3328d721e11770aef56d53c2
 
 #endif

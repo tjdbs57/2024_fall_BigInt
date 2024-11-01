@@ -7,5 +7,4 @@ void test_add();
 void test_sub_borrow();
 void test_sub_core();
 void test_subtraction();
-void test_add_include_negative();
 #endif

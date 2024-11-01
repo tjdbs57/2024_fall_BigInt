@@ -13,6 +13,8 @@ int main()
     //test_add();
     //test_sub_borrow();
     //test_sub_core();
-    test_subtraction();
+    //test_subtraction();
+    
+    
     return 0;
 }
