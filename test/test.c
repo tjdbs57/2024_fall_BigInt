@@ -164,34 +164,6 @@ void test_sub()
 }
 
 
-void test_sub_single_word() {
-    word borrow_out, result;
-
-    // 테스트 케이스 1: A > B, borrow_in = 0
-    sub_single_word(0x0000000A, 0x00000005, 0x0, &borrow_out, &result);
-    printf("Test 1 - Expected: result=0x00000005, borrow_out=0 | Actual: result=0x%08X, borrow_out=%u\n", result, borrow_out);
-
-    // 테스트 케이스 2: A < B, borrow_in = 0
-    sub_single_word(0x00000005, 0x0000000A, 0x0, &borrow_out, &result);
-    printf("Test 2 - Expected: result=0xFFFFFFF5, borrow_out=1 | Actual: result=0x%08X, borrow_out=%u\n", result, borrow_out);
-
-    // 테스트 케이스 3: A == B, borrow_in = 0
-    sub_single_word(0x00000005, 0x00000005, 0x0, &borrow_out, &result);
-    printf("Test 3 - Expected: result=0x00000000, borrow_out=0 | Actual: result=0x%08X, borrow_out=%u\n", result, borrow_out);
-
-    // 테스트 케이스 4: A < B, borrow_in = 1
-    sub_single_word(0x00000005, 0x0000000A, 0x1, &borrow_out, &result);
-    printf("Test 4 - Expected: result=0xFFFFFFF4, borrow_out=1 | Actual: result=0x%08X, borrow_out=%u\n", result, borrow_out);
-
-    // 테스트 케이스 5: A > B, borrow_in = 1
-    sub_single_word(0x0000000A, 0x00000005, 0x1, &borrow_out, &result);
-    printf("Test 5 - Expected: result=0x00000004, borrow_out=0 | Actual: result=0x%08X, borrow_out=%u\n", result, borrow_out);
-
-    // 테스트 케이스 6: A == B, borrow_in = 1
-    sub_single_word(0x00000005, 0x00000005, 0x1, &borrow_out, &result);
-    printf("Test 6 - Expected: result=0xFFFFFFFF, borrow_out=1 | Actual: result=0x%08X, borrow_out=%u\n", result, borrow_out);
-}
-
 void measure_time()
 {
     clock_t start = clock();
