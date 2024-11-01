@@ -129,7 +129,7 @@ void test_add()
     }
 }
 
-void test_sub() 
+void test_sub_core() 
 {  
     for(int i = 0 ; i < TEST_CASE; i++)
     {
@@ -167,8 +167,13 @@ void test_sub()
 void measure_time()
 {
     clock_t start = clock();
-    test_sub();
+    test_add();
     clock_t end = clock();
     double seconds = (double)(end - start) / CLOCKS_PER_SEC;
-    printf("It has been %f seconds from point begin to end", seconds);
+
+    FILE *log_file = fopen("log.txt", "a");
+    if (log_file != NULL) {
+        fprintf(log_file, "Creating test vector time: %f seconds\n", seconds);
+        fclose(log_file);
+    }
 }

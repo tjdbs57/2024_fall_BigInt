@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import time
 
 def evaluate_expression(expression):
     parts = expression.replace(' ', '').split('==')
@@ -58,7 +59,16 @@ def plot_success_rate(success_rate, success_count, total_count):
     plt.show()
 
 
-file_path = 'test.txt'  
+file_path = 'test.txt' 
+ 
+# start time
+start_time = time.time() 
 success_rate, success_count, total_count = read_success_rate_from_file(file_path)
+end_time = time.time()
+execution_time = end_time - start_time
+
+with open("log.txt", "a") as log_file:
+    log_file.write(f"verifying took {execution_time: f} seconds\n")
+
 if total_count > 0:
     plot_success_rate(success_rate, success_count, total_count)

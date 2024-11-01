@@ -93,3 +93,29 @@ void sub_core(IN bigint** x, IN bigint** y, OUT bigint** z)
     bi_refine(*y);
     bi_refine(*z);
 }
+
+
+/*
+void mul_single_word(IN word A, IN word B, OUT word* result)
+{
+    const int half_bit = WORD_BITLEN / 2;
+    int mask           = ONE << half_bit;
+
+    word A0 = A & mask;
+    word A1 = A >> half_bit;
+    
+    word B0 = B & mask;
+    word B1 = B >> half_bit;
+
+    word T0 = A0 * B1;
+    word T1 = A1 * B0;
+
+    T0 = T0 + T1;
+    T1 = T0 < T1;
+
+    word C0 = B & mask;
+    word C1 = B >> half_bit;
+    
+
+}
+*/
