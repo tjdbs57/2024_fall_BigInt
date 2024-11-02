@@ -16,7 +16,6 @@
     fprintf(stderr, "Error: Invalid data at %s:%d\n", __FILE__, __LINE__); 
 
 
-    
 /**
  * @brief Allocates memory for a new bigint structure.
  *
@@ -269,4 +268,5 @@ void reduction(IN bigint* x, IN int r, OUT bigint* result);
  * @return Returns 1 (ONE) if the bigint is zero, otherwise returns 0 (ZERO).
  */
 int is_zero(bigint* x);
+ 
 #endif

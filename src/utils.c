@@ -4,7 +4,6 @@
 
 void bi_new(IN bigint** x, IN int wordlen)
 {
-    // 기존 객체가 있으면 삭제
     if (*x != NULL)
         bi_delete(x);
 
@@ -15,11 +14,9 @@ void bi_new(IN bigint** x, IN int wordlen)
         exit(1);
     }
 
-    // 초기화
     (*x)->sign = NON_NEGATIVE; // 0
     (*x)->wordlen = wordlen;
 
-    // wordlen만큼 추가 메모리 할당 및 체크
     (*x)->a = (word*)calloc(wordlen, sizeof(word));
     if ((*x)->a == NULL) 
     {
@@ -56,45 +53,38 @@ void bi_show_hex(IN bigint* x)
         exit(1);
     }
 
-    // 추가 검사
     if (x->a == NULL || x->wordlen == 0) {
         INVAILD_DATA;
         exit(1);
     }
 
-    // 부호 출력
     if (x->sign == NEGATIVE) {
         printf("-");
     }
     
-    // 워드 출력
     for (int i = x->wordlen - 1; i >= 0; i--) {
         printf("%x", x->a[i]);
     }
-    printf("\n");
 
 }
 
 int bi_set_by_array(OUT bigint** x, IN int sign, IN word* a, IN int wordlen) 
 {
-    // 입력 배열이 NULL인지 확인
     if (a == NULL || wordlen <= 0) {
         SET_ARRAY_FAIL;
         exit(1);
     }
-    // bigint 초기화
     bi_new(x, wordlen);
     
-    // 부호 설정
-    (*x)->sign = (sign == NEGATIVE) ? NEGATIVE : NON_NEGATIVE;  // 부호 설정 (양수 또는 음수)
+    (*x)->sign = (sign == NEGATIVE) ? NEGATIVE : NON_NEGATIVE; 
     
-    // 주어진 배열을 bigint의 배열에 복사
     for (int i = 0; i < wordlen; i++) {
         (*x)->a[i] = a[i];
     }
 
-    return 0; // 성공적으로 완료
+    return 0;
 }
+
 
 int bi_set_by_string(OUT bigint** x, IN int sign, IN char* str, IN int base) {
     if (str == NULL || base < 2 || base > 16) {
@@ -103,43 +93,37 @@ int bi_set_by_string(OUT bigint** x, IN int sign, IN char* str, IN int base) {
     }
 
     size_t len = strlen(str);
-    size_t wordlen = (len + 7) / 8; // 워드 길이 계산 (8자 단위)
+    size_t wordlen = (len * 4 + (WORD_BITLEN - 1)) / WORD_BITLEN;
     
     bi_new(x, wordlen);
     (*x)->sign = sign; 
 
-    // 문자열을 뒤에서부터 읽어 단어를 구성
     for (size_t current_word = 0; current_word < wordlen; current_word++) {
-        (*x)->a[current_word] = 0; // 현재 워드 초기화
+        (*x)->a[current_word] = 0; 
 
-        // 8자리씩 읽어 현재 워드에 저장
-        for (size_t j = 0; j < 8; j++) {
-            size_t index = len - 1 - (current_word * 8 + j); // 뒤에서부터 인덱스 계산
+        size_t bits_per_word = WORD_BITLEN / 4;
+        for (size_t j = 0; j < bits_per_word; j++) {
+            size_t index = len - 1 - (current_word * bits_per_word + j); 
             if (index >= len) break;
             char c = str[index];
             int value;
 
-            // 문자를 숫자 값으로 변환
             if (isdigit(c)) {
-                value = c - '0'; // 0-9의 경우
+                value = c - '0'; 
             } else if (isxdigit(c)) {
-                value = tolower(c) - 'a' + 10; // 16진수 A-F의 경우
+                value = tolower(c) - 'a' + 10;
             } else {
-                printf("Invalid character in string: %c\n", c);
-                return -1; // 잘못된 문자에 대한 오류 반환
+                INVAILD_DATA;
+                exit(1);
             }
 
-            // 현재 워드에 값 업데이트 (워드의 오른쪽 끝에서부터 채움)
-            (*x)->a[current_word] |= (value << (j * 4)); // 비트 이동
+            (*x)->a[current_word] |= (value << (j * 4)); 
+    
         }
     }
 
-    return 0; // 성공적으로 수행됨
+    return 0; 
 }
-
-
-
-
 
 
 void bi_refine(INOUT bigint* x)
@@ -180,7 +164,7 @@ void bi_assign(OUT bigint** dest, IN bigint* src)
 
     //array_copy()
     for (int i = 0; i < src->wordlen; i++) {
-        (*dest)->a[i] = src->a[i]; // 각 요소를 복사
+        (*dest)->a[i] = src->a[i]; 
     }
 
 }
@@ -200,7 +184,7 @@ void array_rand(OUT word* dst, IN int wordlen)
     int cnt = wordlen * sizeof(word);
     while(cnt > 0)
     {
-        *p = rand() & 0xff; // rand = DRBG
+        *p = rand() & 0xff; 
         p++;
         cnt--;
     }
@@ -272,63 +256,55 @@ int get_bit_length(IN bigint* x)
         exit(1);
     }
 
-    // 각 단어의 비트 길이를 WORD_BITLEN으로 정의
-    int total_bit_length = (x->wordlen - 1) * (8 * sizeof(word)); // 각 단어의 비트 길이 계산
+    int total_bit_length = (x->wordlen - 1) * (8 * sizeof(word));
 
     word last_word = x->a[x->wordlen - 1];
 
-    // 마지막 단어의 선행 0 비트 계산
     while (last_word > 0) {
-        last_word >>= 1; // 가장 낮은 비트를 제거
-        total_bit_length++; // 비트 길이 증가
+        last_word >>= 1; 
+        total_bit_length++; 
     }
 
-    // 만약 bigint가 음수이면 부호 비트 추가
     if (x->sign == NEGATIVE) {
-        total_bit_length++; // 부호 비트를 고려
+        total_bit_length++; 
     }
 
-    return total_bit_length; // 총 비트 길이 반환
+    return total_bit_length;
 }
 
 
 int get_jth_bit(IN bigint* x, IN word j) 
 {
-    // Check if j is within valid range
     if (j >= ((word)x->wordlen * sizeof(word))) 
     { 
         INVAILD_DATA;
         exit(1);
     }
 
-    word word_index = j / sizeof(word); // Determine which word contains the bit
-    word bit_index = j % sizeof(word);  // Determine the position of the bit in the word
+    word word_index = j / sizeof(word); 
+    word bit_index = j % sizeof(word);  
 
-    // Check if the calculated word index is out of bounds
     if (word_index >= (word)x->wordlen)
     { 
         INVAILD_DATA;
         exit(1);
     }
 
-    // Extract the bit value
     word mask = (1 << bit_index);
     return (x->a[word_index] & mask) ? 1 : 0;
 }
 
 void right_shift(INOUT bigint* x, IN int shift) 
 {
-    int word_shift = shift / (8*sizeof(word));  // 얼마나 워드 단위로 이동하는지
-    int bit_shift = shift % (8*sizeof(word));   // 워드 내에서의 비트 이동
+    int word_shift = shift / (8*sizeof(word));  
+    int bit_shift = shift % (8*sizeof(word));  
     int old_wordlen = x->wordlen;
     
-    // 오른쪽으로 시프트 한 후 남은 워드 수 계산
     int new_wordlen = old_wordlen - word_shift;
     if (new_wordlen < 1) {
         new_wordlen = 1; 
     }
 
-    // 메모리 확장 (직접 할당)
     word* new_array = (word*)calloc(new_wordlen, sizeof(word));
     if (new_array == NULL) 
     { 
@@ -336,15 +312,12 @@ void right_shift(INOUT bigint* x, IN int shift)
         exit(1);
     }
 
-    // 각 워드를 오른쪽으로 시프트
     for (int i = 0; i < new_wordlen; i++) {
-        new_array[i] = x->a[i + word_shift] >> bit_shift; // 오른쪽 시프트
+        new_array[i] = x->a[i + word_shift] >> bit_shift; 
         if (i + word_shift + 1 < old_wordlen && bit_shift > 0) {
-            new_array[i] |= (x->a[i + word_shift + 1] << ((8*sizeof(word)) - bit_shift)); // 하위 비트
+            new_array[i] |= (x->a[i + word_shift + 1] << ((8*sizeof(word)) - bit_shift)); 
         }
     }
-
-    // 기존 값 해제 및 새로운 배열로 교체
     free(x->a);
     x->a = new_array;
     x->wordlen = new_wordlen;
@@ -354,27 +327,25 @@ void right_shift(INOUT bigint* x, IN int shift)
 
 void left_shift(INOUT bigint* x, IN int shift) 
 {
-    int word_shift = shift / (8*sizeof(word));  // 얼마나 워드 단위로 이동하는지
-    int bit_shift = shift % (8*sizeof(word));   // 워드 내에서의 비트 이동
+    int word_shift = shift / (8*sizeof(word)); 
+    int bit_shift = shift % (8*sizeof(word));   
     int old_wordlen = x->wordlen;
     int new_wordlen = old_wordlen + word_shift + 1;
 
-    // 메모리 확장 (직접 할당)
     word* new_array = (word*)calloc(new_wordlen, sizeof(word));
     if (new_array == NULL) 
     { 
         MEM_ALLOCATION_FAIL;
         exit(1);
     }
-    // 각 워드를 왼쪽으로 시프트
+
     for (int i = 0; i < old_wordlen; i++) {
-        new_array[i + word_shift] |= (x->a[i] << bit_shift); // 왼쪽 시프트
+        new_array[i + word_shift] |= (x->a[i] << bit_shift);
         if (i + word_shift + 1 < new_wordlen && bit_shift > 0) {
-            new_array[i + word_shift + 1] |= (x->a[i] >> ((8*sizeof(word)) - bit_shift)); // 상위 비트
+            new_array[i + word_shift + 1] |= (x->a[i] >> ((8*sizeof(word)) - bit_shift)); 
         }
     }
 
-    // 기존 값 해제 및 새로운 배열로 교체
     free(x->a);
     x->a = new_array;
     x->wordlen = new_wordlen;
@@ -447,4 +418,3 @@ int is_zero(bigint* x) {
 
     return ZERO; // All words are zero
 }
- 

@@ -1,66 +1,52 @@
 #include "arithmetic.h"
 
-// ADD function
-void add_carry(word A, word B, word carry_in, word* carry_out, word* result)
+void add_single_word(IN word A, IN word B, IN word carry_in, OUT word* carry_out, OUT word* result)
 {
-
     word sum = A + B;  
     *carry_out = ZERO;  
 
-    // A와 B의 합에서 overflow가 발생했을 경우 carry_out을 1로 설정
     if (sum < A) {
         *carry_out = ONE;
     }
 
-    // 이전의 carry_in 값을 sum에 더함 (이전 덧셈에서 발생한 carry 반영)
     sum += carry_in;
 
-
-
-    // carry_in을 더했을 때 overflow가 발생하면 carry_out을 1 증가시킴
     if (sum < carry_in) {
         *carry_out += ONE;
     }
 
     *result = sum;
-
 }
 
+void add_core(IN bigint** x, IN bigint** y, OUT bigint** z)
+{
+    int n = (*x)->wordlen;
+    int m = (*y)->wordlen; 
 
-
-void add_core(bigint** x, bigint** y, bigint** z) {
-    
-    int n = (*x)->wordlen; // 첫 번째 빅넘버의 워드 길이
-    int m = (*y)->wordlen; // 두 번째 빅넘버의 워드 길이
-
-    // 더 긴 워드 길이에 맞춰 z 초기화
     int max_len = MAXIMUM(n, m);
-    bi_new(z, max_len + 1); // 캐리를 위해 1 추가
+
+    bi_new(z, max_len + 1); 
 
     word carry_out = ZERO; 
     word res       = ZERO; 
 
-    // 워드 길이에 맞추기 위해 짧은 쪽에 0 추가
+  
     for (int i = 0; i < max_len; i++) {
 
         word x_word = (i < n) ? (*x)->a[i] : 0; 
         word y_word = (i < m) ? (*y)->a[i] : 0; 
 
         // 덧셈 수행
-        add_carry(x_word, y_word, carry_out, &carry_out, &res);
-        (*z)->a[i] = res; // 결과 저장
+        add_single_word(x_word, y_word, carry_out, &carry_out, &res);
+        (*z)->a[i] = res;
     }
 
-    // 마지막 워드에서 캐리 처리
     if (carry_out != 0) {
-        (*z)->a[max_len] = carry_out; // 마지막 워드에 캐리 저장
-        (*z)->wordlen = max_len + 1; // 길이 증가
+        (*z)->a[max_len] = carry_out; 
+        (*z)->wordlen = max_len + 1; 
 
-    } else {
-        (*z)->wordlen = max_len; // 길이 유지
-    }
-
-    // 불필요한 워드가 없도록 bi_refine 호출
+    } else (*z)->wordlen = max_len;
+    
     bi_refine(*z);
 
 }
@@ -109,7 +95,7 @@ void sub_core(bigint** x, bigint** y, bigint** z)
         // 뺄셈 수행
         sub_borrow(x_word, y_word, borrow_out, &borrow_out, &res);
         (*z)->a[i] = res; // 결과 저장
-        printf("a[%d] : %u\n", i,(*z)->a[i]);
+        //printf("a[%d] : %u\n", i,(*z)->a[i]);
     }
     int l = n - 1;
     while (l >= 0 && (*z)->a[l] == 0) {
@@ -120,9 +106,10 @@ void sub_core(bigint** x, bigint** y, bigint** z)
     (*z)->wordlen = l;
 
     bi_refine(*z);
+
 }
 
-/*
+
 void sub(bigint** x, bigint** y, bigint** z) {
     // Retrieve A and B from the pointers
     bigint* A = *x;
@@ -157,9 +144,9 @@ void sub(bigint** x, bigint** y, bigint** z) {
     // If 0 < B =< A
     if ((B->sign == NON_NEGATIVE && !is_zero(B)) && (A->sign == NON_NEGATIVE && !is_zero(A))) { // B > 0 && A > 0
         // Use compare to check if B <= A
-        int comparison_result = compare_ABS(B, A);
+        int comparison_result = compareABS(B, A);
         if (comparison_result == -1 || comparison_result == 0) {  // B < A or B == A
-            sub_core(A, B, z);  // Subtract B from A and store the result in result
+            sub_core(&A, &B, z);  // Subtract B from A and store the result in result
             (*z)->sign=NON_NEGATIVE;
             return;
         }
@@ -167,9 +154,9 @@ void sub(bigint** x, bigint** y, bigint** z) {
     // If 0 < A < B
     else if ((B->sign == NON_NEGATIVE && !is_zero(B)) && (A->sign == NON_NEGATIVE && !is_zero(A))) { // B > 0 && A > 0
 
-        int comparison_result = compare_ABS(B, A);
+        int comparison_result = compareABS(B, A);
         if (comparison_result == 1) {  // A < B
-            sub_core(B, A, z);  // Subtract B from A and store the result in result
+            sub_core(&B, &A, z);  // Subtract B from A and store the result in result
             (*z)->sign=NEGATIVE;
             return;
         }
@@ -177,9 +164,9 @@ void sub(bigint** x, bigint** y, bigint** z) {
     // If B <= A < 0
     if ((B->sign == NEGATIVE && !is_zero(B)) && (A->sign == NEGATIVE && !is_zero(A))) { // B > 0 && A > 0
         
-        int comparison_result = compare_ABS(B, A);
+        int comparison_result = compareABS(B, A);
         if (comparison_result == 1 || comparison_result == 0) {  // |A| < |B| or |B| == |A|
-            sub_core(B, A, z);  // Subtract B from A and store the result in result
+            sub_core(&B, &A, z);  // Subtract B from A and store the result in result
             (*z)->sign=NON_NEGATIVE;
             return;
         }
@@ -187,9 +174,9 @@ void sub(bigint** x, bigint** y, bigint** z) {
     //If A < B < 0
     else if ((B->sign == NEGATIVE && !is_zero(B)) && (A->sign == NEGATIVE && !is_zero(A))) { // B > 0 && A > 0
         
-        int comparison_result = compare_ABS(B, A);
+        int comparison_result = compareABS(B, A);
         if (comparison_result == -1) {  // |B| < |A|
-            sub_core(A, B, z);  // Subtract B from A and store the result in result
+            sub_core(&A, &B, z);  // Subtract B from A and store the result in result
             (*z)->sign=NEGATIVE;
             return;
         }
@@ -197,21 +184,21 @@ void sub(bigint** x, bigint** y, bigint** z) {
     
     //If A > 0 and B < 0
     if ((B->sign == NEGATIVE && !is_zero(B)) && (A->sign == NON_NEGATIVE && !is_zero(A))) { // B > 0 && A > 0
-        add_core(A,B,z); //add_core가 맞을지 add가 맞을지
+        add_core(&A,&B,z); //add_core가 맞을지 add가 맞을지
         (*z)->sign=NON_NEGATIVE;
         return;
     }
     
     // If A < 0 and B > 0
     else{
-        add_core(A,B,z); //add_core가 맞을지 add가 맞을지
+        add_core(&A,&B,z); //add_core가 맞을지 add가 맞을지
         (*z)->sign=NEGATIVE;
         return;
     }
 
 }
 
-
+/*
 void add(bigint** x, bigint** y, bigint** z) {
 
     bigint* A = *x;
@@ -256,3 +243,4 @@ void add(bigint** x, bigint** y, bigint** z) {
 //z의 부호 처리!!
 
 */
+

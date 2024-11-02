@@ -62,6 +62,7 @@
     "config.h": "c",
     "bigint.h": "c",
     "utils.h": "c",
-    "test.h": "c"
+    "test.h": "c",
+    "arithmetic.h": "c"
   }
 }

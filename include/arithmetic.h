@@ -8,13 +8,13 @@
  * a carry from a previous addition. It checks for overflow and sets the
  * carry_out accordingly.
  *
- * @param A First word to add.
- * @param B Second word to add.
- * @param carry_in Carry input from a previous addition.
- * @param carry_out Pointer to store the carry output.
- * @param result Pointer to store the result of the addition.
+ * @param[in] A First word to add.
+ * @param[in] B Second word to add.
+ * @param[in] carry_in Carry input from a previous addition.
+ * @param[out] carry_out Pointer to store the carry output.
+ * @param[out] result Pointer to store the result of the addition.
  */
-void add_carry(IN word A, IN word B, IN word carry_in, OUT word* carry_out, OUT word* result);
+void add_single_word(IN word A, IN word B, IN word carry_in, OUT word* carry_out, OUT word* result);
 
 /**
  * @brief Adds two big integers and stores the result in a third bigint.
@@ -25,9 +25,9 @@ void add_carry(IN word A, IN word B, IN word carry_in, OUT word* carry_out, OUT 
  * if necessary. The addition is performed in reverse order to handle 
  * carry appropriately.
  *
- * @param x Pointer to the first bigint to add.
- * @param y Pointer to the second bigint to add.
- * @param z Pointer to the result bigint where the sum will be stored.
+ * @param[in] x Pointer to the first bigint to add.
+ * @param[in] y Pointer to the second bigint to add.
+ * @param[out] z Pointer to the result bigint where the sum will be stored.
  *
  * This function performs the following steps:
  * - Determines the lengths of the input big integers.
@@ -70,5 +70,7 @@ void sub_borrow(IN word A, IN word B, IN word borrow_in, OUT word* borrow_out, O
  * @param z Pointer to store the result of the subtraction.
  */
 void sub_core(bigint** x, bigint** y, bigint** z);
+
+void sub(bigint** x, bigint** y, bigint** z);
 
 #endif

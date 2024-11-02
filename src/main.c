@@ -5,6 +5,7 @@
 
 #include "bigint.h"
 
+
 int main()
 {
     srand(time(NULL));
@@ -12,9 +13,9 @@ int main()
     //test_bi_string();
     //test_add();
     //test_sub_borrow();
-    //test_sub_core();
-    //test_subtraction();
-    
+    test_sub_core();
+    //test_sub();
+    //test_subtract();
     
     return 0;
 }
