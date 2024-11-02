@@ -73,5 +73,22 @@ void sub_core(IN bigint** x, IN bigint** y, OUT bigint** z);
 
 
 void sub(bigint** x, bigint** y, bigint** z);
-//void add(bigint** x, bigint** y, bigint** z);
+
+/**
+ * @brief Adds two bigint numbers and stores the result.
+ *
+ * This function adds two bigint numbers, A and B, and stores the result in `z`.
+ * The behavior depends on the signs of A and B, handling various cases such as:
+ * - If A is zero, it assigns B to z.
+ * - If B is zero, it assigns A to z.
+ * - If A is positive and B is negative, it performs A - B and stores the result in z.
+ * - If A is negative and B is positive, it performs B - A and stores the result in z.
+ * - If A and B have the same sign, it performs addition and assigns the result's sign.
+ *
+ * @param[in] x Pointer to a pointer to the first bigint operand.
+ * @param[in] y Pointer to a pointer to the second bigint operand.
+ * @param[out] z Pointer to a pointer where the result bigint will be stored.
+ */
+//void add(IN bigint **x, IN bigint **y, OUT bigint **z);
+
 #endif

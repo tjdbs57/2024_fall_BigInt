@@ -121,14 +121,14 @@ void mul_single_word(IN word A, IN word B, OUT word* result)
 */
 
 
-void sub(bigint** x, bigint** y, bigint** z) {
+void sub(IN bigint** x, IN bigint** y, OUT bigint** z) {
     bigint* A = *x;
     bigint* B = *y;
 
     // A가 0인지 확인 (모든 요소가 0인지 검사)
     int is_A_zero = 1; // A가 0인지 여부
     for (int i = 0; i < A->wordlen; i++) {
-        if (A->a[i] != 0) {
+        if (A->a[i] != ZERO) {
             is_A_zero = 0; // A가 0이 아니면 0으로 설정
             break;
         }
@@ -137,7 +137,7 @@ void sub(bigint** x, bigint** y, bigint** z) {
     // B가 0인지 확인 (모든 요소가 0인지 검사)
     int is_B_zero = 1; // B가 0인지 여부
     for (int i = 0; i < B->wordlen; i++) {
-        if (B->a[i] != 0) {
+        if (B->a[i] != ZERO) {
             is_B_zero = 0; // B가 0이 아니면 0으로 설정
             break;
         }
@@ -159,7 +159,7 @@ void sub(bigint** x, bigint** y, bigint** z) {
         return;
     }
 
-    // A와 B가 같은 경우 결과는 0
+    // A와 B의 절댓값이 같은 경우
     if (A->wordlen == B->wordlen) {
         int equal = 1; // 두 bigint가 같은지 여부
         for (int i = 0; i < A->wordlen; i++) {
@@ -170,16 +170,24 @@ void sub(bigint** x, bigint** y, bigint** z) {
         }
 
         if (equal) {
-            bi_new(z, 1);
-            (*z)->a[0] = ZERO;
-            (*z)->sign = NON_NEGATIVE;
-            bi_refine(*z);
+            //A와 B의 절댓값과 부호 모두 같은 경우
+            if(A->sign==B->sign){
+                bi_set_zero(z);
+                bi_refine(*z);
+            }
+            //A와 B의 절댓값이 같고 부호가 반대인 경우
+            else{
+                add_core(&B,&A,z);
+                (*z)->sign=A->sign;
+            }
+
             return;
         }
     }
 
     // 둘 다 양수인 경우
     if (A->sign == NON_NEGATIVE && B->sign == NON_NEGATIVE) {
+
         if (compareABS(A, B) > 0) {
             sub_core(&A, &B, z);
             (*z)->sign = NON_NEGATIVE;
@@ -204,72 +212,59 @@ void sub(bigint** x, bigint** y, bigint** z) {
         return;
     }
 
-    // A가 양수이고 B가 음수인 경우 A + |B|
-    if (A->sign == NON_NEGATIVE && B->sign == NEGATIVE) {
+    // A와 B의 부호가 반대인 경우
+    if (A->sign != B->sign) {
         add_core(&A, &B, z);
-        (*z)->sign = NON_NEGATIVE;
+        (*z)->sign = A->sign;
         bi_refine(*z);
         return;
     }
-
-    // A가 음수이고 B가 양수인 경우 -( |A| + B )
-    add_core(&A, &B, z);
-    (*z)->sign = NEGATIVE;
-    bi_refine(*z);
 }
 
 
-/*
-void add(bigint **x, bigint **y, bigint **z) {
+
+/*void add(IN bigint **x, IN bigint **y, OUT bigint **z) {
+
     bigint *A = *x;
     bigint *B = *y;
 
-    // Check for zero cases without using is_zero
     // A가 0인지 확인
-    if (A->wordlen == 1 && A->a[0] == 0) {
-        A->sign=NON_NEGATIVE;
+    if (A->wordlen == 1 && A->a[0] == ZERO) {
         bi_assign(z, B); // A가 0이면 B 반환
         return;
     }
 
     // B가 0인지 확인
-    if (B->wordlen == 1 && B->a[0] == 0) {
-        B->sign=NON_NEGATIVE;
+    if (B->wordlen == 1 && B->a[0] == ZERO) {
         bi_assign(z, A); // B가 0이면 A 반환
         return;
     }
 
-    // A가 양수이고 B가 음수인 경우
+    // Case: A가 양수이고 B가 음수인 경우
     if (A->sign == NON_NEGATIVE && B->sign == NEGATIVE) {
-        // B의 부호를 변환하여 A + |B| 계산
-        B->sign = NON_NEGATIVE; // B를 양수로 변환
-        sub_core(&A, &B, z);           // A - |B| 계산
+        B->sign=NON_NEGATIVE;
+        sub(&A, &B, z);
+
         return;
     }
 
-    // A가 음수이고 B가 양수인 경우 => 반반
+    // A가 음수이고 B가 양수인 경우
     if (A->sign == NEGATIVE && B->sign == NON_NEGATIVE) {
-
-        // A의 부호를 변환하여 |A| + B 계산
-        A->sign = NON_NEGATIVE; // A를 양수로 변환
-        sub_core(&B, &A, z);           // |B| - |A| 계산
-        (*z)->sign = NON_NEGATIVE;
-
         
-        //if(compareABS(A,B)>0){
-        //    (*z)->sign = NON_NEGATIVE;
-        //}
-        //else{
-        //    (*z)->sign = NEGATIVE; // -1 + 2 = -1
-        //}
+        A->sign=NON_NEGATIVE;
+        sub(&B, &A, z);
         return;
     }
 
-    // A와 B의 부호가 같은 경우 => 성공
+    // A와 B의 부호가 같은 경우
     if (A->sign == B->sign) {
-        add_core(&A, &B, z);
+        if(A->wordlen >= B->wordlen){
+            add_core(&A,&B,z);
+        }
+        else{
+            add_core(&B,&A,z);
+        }
         (*z)->sign = A->sign;
     }
 
-}
-*/
+}*/

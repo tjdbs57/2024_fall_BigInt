@@ -186,18 +186,17 @@ void test_sub()
         bigint *y = NULL;
         bigint *z = NULL;
 
-        int wordlen1 = rand() % 96 + 1; 
-        int wordlen2 = rand() % 96 + 1;
+        //int wordlen1 = rand() % 96 + 1; 
+        //int wordlen2 = rand() % 96 + 1;
+        int wordlen1 = 32; 
+        int wordlen2 = 32;
     
-        /*// sign을 랜덤으로 선택 (0이면 NON_NEGATIVE, 1이면 NEGATIVE)
+        // sign을 랜덤으로 선택 (0이면 NON_NEGATIVE, 1이면 NEGATIVE)
         int sign_x = (rand() % 2 == 0) ? NON_NEGATIVE : NEGATIVE;
         int sign_y = (rand() % 2 == 0) ? NON_NEGATIVE : NEGATIVE;
-
+        
         bi_gen_rand(&x, sign_x, wordlen1);
-        bi_gen_rand(&y, sign_y, wordlen2);*/
-
-        bi_gen_rand(&x, NEGATIVE, wordlen1);
-        bi_gen_rand(&y, NEGATIVE, wordlen2);
+        bi_gen_rand(&y, sign_y, wordlen2);
 
         sub(&x, &y, &z);
         print_bi_hex_py(x);                         
@@ -211,8 +210,8 @@ void test_sub()
     }
 }
 
-/*
-void test_addition() 
+
+/*void test_addition() 
 {  
     for(int i = 0 ; i < TEST_CASE; i++)
     {
@@ -220,17 +219,22 @@ void test_addition()
         bigint *y = NULL;
         bigint *z = NULL;
 
-        int wordlen1 = rand() % 96 + 1; 
-        int wordlen2 = rand() % 96 + 1;
+        //int wordlen1 = rand() % 96 + 1; 
+        //int wordlen2 = rand() % 96 + 1;
+        int wordlen1 = 32; 
+        int wordlen2 = 32;
+    
 
-        
         // sign을 랜덤으로 선택 (0이면 NON_NEGATIVE, 1이면 NEGATIVE)
         //int sign_x = (rand() % 2 == 0) ? NON_NEGATIVE : NEGATIVE;
         //int sign_y = (rand() % 2 == 0) ? NON_NEGATIVE : NEGATIVE;
-        
 
-        bi_gen_rand(&x, NEGATIVE, wordlen1);
-        bi_gen_rand(&y, NON_NEGATIVE, wordlen2);
+        bi_gen_rand(&x, NON_NEGATIVE, wordlen1);
+        bi_gen_rand(&y, NEGATIVE, wordlen2);;
+        //bi_new(&y, wordlen2);
+        //bi_assign(&y,x);
+        //y->sign=NEGATIVE;
+
 
         add(&x, &y, &z);
         print_bi_hex_py(x);                         
