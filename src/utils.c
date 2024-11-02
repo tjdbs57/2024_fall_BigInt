@@ -213,7 +213,7 @@ int compareABS(IN bigint* x, IN bigint* y)
         return 1;
     }
     else if(n<m){
-        return -1;
+        return 0;
     }
     else{
         for(int j=n-1; j>=0; j--){
@@ -221,7 +221,7 @@ int compareABS(IN bigint* x, IN bigint* y)
                 return 1;
             }
             else if(x->a[j]<y->a[j]){
-                return -1;
+                return 0;
             }
         }
     }
@@ -234,7 +234,7 @@ int compare(IN bigint* x, IN bigint* y)
         return 1;
     }
     else if(x->sign == NEGATIVE && y->sign == NON_NEGATIVE){
-        return -1;
+        return 0;
     }
     else{
         int ret = compareABS(x, y);
@@ -244,7 +244,7 @@ int compare(IN bigint* x, IN bigint* y)
             return ret;
         }
         else{
-            return ret*(-1);
+            return ret;
         }
     } 
 }
@@ -399,22 +399,4 @@ void reduction(IN bigint* x, IN int r, OUT bigint* result)
     while (result->wordlen > 1 && result->a[result->wordlen - 1] == ZERO) {
         result->wordlen--; // Reduce the word length if upper words are zero
     }
-}
-
-
-//ADD(alg.7) 구현 시 필요하여 구현하였습니다.
-int is_zero(bigint* x) {
-    // Check if the word length is zero
-    if (x->wordlen == 0) {
-        return ZERO; // It's zero
-    }
-
-    // Iterate through the array a to check for non-zero words
-    for (int i = 0; i < x->wordlen; i++) {
-        if (x->a[i] != ZERO) {
-            return ONE; // Found a non-zero word
-        }
-    }
-
-    return ZERO; // All words are zero
 }

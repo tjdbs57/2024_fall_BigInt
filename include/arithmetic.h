@@ -56,7 +56,7 @@ void add_core(IN bigint** x, IN bigint** y, OUT bigint** z);
  * @param borrow_out Pointer to store the resulting borrow status.
  * @param result     Pointer to store the subtraction result.
  */
-void sub_borrow(IN word A, IN word B, IN word borrow_in, OUT word* borrow_out, OUT word* result);
+void sub_single_word(IN word A, IN word B, IN word borrow_in, OUT word* borrow_out, OUT word* result);
 
 /**
  * @brief Performs subtraction of two big integers.
@@ -69,8 +69,9 @@ void sub_borrow(IN word A, IN word B, IN word borrow_in, OUT word* borrow_out, O
  * @param y Pointer to the second bigint, the subtrahend.
  * @param z Pointer to store the result of the subtraction.
  */
-void sub_core(bigint** x, bigint** y, bigint** z);
+void sub_core(IN bigint** x, IN bigint** y, OUT bigint** z);
+
 
 void sub(bigint** x, bigint** y, bigint** z);
-
+//void add(bigint** x, bigint** y, bigint** z);
 #endif

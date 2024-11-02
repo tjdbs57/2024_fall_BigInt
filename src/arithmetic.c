@@ -51,196 +51,225 @@ void add_core(IN bigint** x, IN bigint** y, OUT bigint** z)
 
 }
 
-void sub_borrow(IN word A, IN word B, IN word borrow_in, OUT word* borrow_out, OUT word* result) {
-    // borrow_out을 0으로 초기화
+void sub_single_word(IN word A, IN word B, IN word borrow_in, OUT word* borrow_out, OUT word* result) 
+{
+    word sub = A - borrow_in;
     *borrow_out = ZERO;
-
-    // A에서 borrow_in을 뺀 값을 temp_A에 저장
-    word temp_A = A - borrow_in;
-
-    // borrow_in이 A보다 큰 경우 빌리기가 필요하므로 borrow_out을 1로 설정
-    if (temp_A > A) {
-        *borrow_out = ONE; // 빌리기 필요
-        temp_A = A; // 빌리기가 필요한 경우, temp_A는 A로 설정
+    
+    if (A < borrow_in) {
+        *borrow_out = ONE;
     }
 
-    // temp_A에서 B를 빼고 결과를 result에 저장
-    *result = temp_A - B;
-
-    // 결과가 temp_A보다 큰 경우 추가로 빌리기가 발생했음을 의미
-    if (*result > temp_A) {
-        *borrow_out += ONE; // 추가 빌리기 발생
+    if (sub < B) {
+        *borrow_out += ONE;
     }
+    
+    *result = sub - B;  
 }
 
-void sub_core(bigint** x, bigint** y, bigint** z) 
+void sub_core(IN bigint** x, IN bigint** y, OUT bigint** z) 
 {
     
-    int n = (*x)->wordlen; // 첫 번째 빅넘버의 워드 길이
-    int m = (*y)->wordlen; // 두 번째 빅넘버의 워드 길이
+    int n = (*x)->wordlen; 
+    int m = (*y)->wordlen; 
 
-    // 더 긴 워드 길이에 맞춰 z 초기화
     int max_len = MAXIMUM(n, m);
-    bi_new(z, max_len + 1); // 캐리를 위해 1 추가
+    bi_new(z, max_len); 
 
     word borrow_out = ZERO; 
-    word res       = ZERO; 
+    word res        = ZERO; 
 
-    // 워드 길이에 맞추기 위해 짧은 쪽에 0 추가
     for (int i = 0; i < max_len; i++) {
 
         word x_word = (i < n) ? (*x)->a[i] : 0; 
         word y_word = (i < m) ? (*y)->a[i] : 0; 
 
-        // 뺄셈 수행
-        sub_borrow(x_word, y_word, borrow_out, &borrow_out, &res);
-        (*z)->a[i] = res; // 결과 저장
-        //printf("a[%d] : %u\n", i,(*z)->a[i]);
-    }
-    int l = n - 1;
-    while (l >= 0 && (*z)->a[l] == 0) {
-        l--;
-    }
-    l+=1;
+        sub_single_word(x_word, y_word, borrow_out, &borrow_out, &res);
+        (*z)->a[i] = res; 
 
-    (*z)->wordlen = l;
+    }
 
+    bi_refine(*x);
+    bi_refine(*y);
     bi_refine(*z);
 
 }
 
-
-void sub(bigint** x, bigint** y, bigint** z) {
-    // Retrieve A and B from the pointers
-    bigint* A = *x;
-    bigint* B = *y;
-
-    // Check if A is zero
-    if (is_zero(A)) {
-        // If A is zero, return -B (negate B)
-        bi_new(z, B->wordlen);  // Create a new bigint for result
-        (*z)->sign = (B->sign == NON_NEGATIVE) ? NEGATIVE : NON_NEGATIVE; // Negate the sign of B
-        for (int i = 0; i < B->wordlen; i++) {
-            (*z)->a[i] = B->a[i]; // Copy the words from B
-        }
-        return;
-    }
-
-    // Check if B is zero
-    if (is_zero(B)) {
-        // If B is zero, return A
-        bi_assign(z, A);
-        return;
-    }
-
-    // Check if A and B are equal
-    if (A->wordlen == B->wordlen && memcmp(A->a, B->a, A->wordlen * sizeof(word)) == 0) {
-        // If A == B, return 0
-        bi_new(z, 1);  // Create a new bigint for zero
-        (*z)->a[0] = ZERO; // Set result to zero
-        return;
-    }
-
-    // If 0 < B =< A
-    if ((B->sign == NON_NEGATIVE && !is_zero(B)) && (A->sign == NON_NEGATIVE && !is_zero(A))) { // B > 0 && A > 0
-        // Use compare to check if B <= A
-        int comparison_result = compareABS(B, A);
-        if (comparison_result == -1 || comparison_result == 0) {  // B < A or B == A
-            sub_core(&A, &B, z);  // Subtract B from A and store the result in result
-            (*z)->sign=NON_NEGATIVE;
-            return;
-        }
-    }
-    // If 0 < A < B
-    else if ((B->sign == NON_NEGATIVE && !is_zero(B)) && (A->sign == NON_NEGATIVE && !is_zero(A))) { // B > 0 && A > 0
-
-        int comparison_result = compareABS(B, A);
-        if (comparison_result == 1) {  // A < B
-            sub_core(&B, &A, z);  // Subtract B from A and store the result in result
-            (*z)->sign=NEGATIVE;
-            return;
-        }
-    }
-    // If B <= A < 0
-    if ((B->sign == NEGATIVE && !is_zero(B)) && (A->sign == NEGATIVE && !is_zero(A))) { // B > 0 && A > 0
-        
-        int comparison_result = compareABS(B, A);
-        if (comparison_result == 1 || comparison_result == 0) {  // |A| < |B| or |B| == |A|
-            sub_core(&B, &A, z);  // Subtract B from A and store the result in result
-            (*z)->sign=NON_NEGATIVE;
-            return;
-        }
-    }
-    //If A < B < 0
-    else if ((B->sign == NEGATIVE && !is_zero(B)) && (A->sign == NEGATIVE && !is_zero(A))) { // B > 0 && A > 0
-        
-        int comparison_result = compareABS(B, A);
-        if (comparison_result == -1) {  // |B| < |A|
-            sub_core(&A, &B, z);  // Subtract B from A and store the result in result
-            (*z)->sign=NEGATIVE;
-            return;
-        }
-    }
-    
-    //If A > 0 and B < 0
-    if ((B->sign == NEGATIVE && !is_zero(B)) && (A->sign == NON_NEGATIVE && !is_zero(A))) { // B > 0 && A > 0
-        add_core(&A,&B,z); //add_core가 맞을지 add가 맞을지
-        (*z)->sign=NON_NEGATIVE;
-        return;
-    }
-    
-    // If A < 0 and B > 0
-    else{
-        add_core(&A,&B,z); //add_core가 맞을지 add가 맞을지
-        (*z)->sign=NEGATIVE;
-        return;
-    }
-
-}
-
 /*
-void add(bigint** x, bigint** y, bigint** z) {
+void mul_single_word(IN word A, IN word B, OUT word* result)
+{
+    const int half_bit = WORD_BITLEN / 2;
+    int mask           = ONE << half_bit;
 
-    bigint* A = *x;
-    bigint* B = *y;
+    word A0 = A & mask;
+    word A1 = A >> half_bit;
+    
+    word B0 = B & mask;
+    word B1 = B >> half_bit;
 
-    // Check for zero cases
-    if (is_zero(A) == ZERO) {
-        bi_assign(z,B); // x가 0이면 y 반환
-        return;
-    }
-    if (is_zero(B) == ZERO) {
-        bi_assign(z,A); // y가 0이면 x 반환
-        return;
-    }
+    word T0 = A0 * B1;
+    word T1 = A1 * B0;
 
-    // A > 0 and B < 0
-    if ((A->sign = NON_NEGATIVE) && (B->sign=NEGATIVE)) {
-        B->sign = NON_NEGATIVE; // y를 양수로 변환
-        sub(A, B, z); // x가 양수이고 y가 음수일 때 x - |y|
-        (*z)->sign=NON_NEGATIVE;
-        return;
-    }
-    else if ((A->sign =NEGATIVE) && (B->sign = NON_NEGATIVE)) {
-        A->sign = NON_NEGATIVE;
-        sub_core(B, A, z); // x가 음수이고 y가 양수일 때 y - |x|
-        (*z)->sign=NEGATIVE;
-        return;
-    }
+    T0 = T0 + T1;
+    T1 = T0 < T1;
 
-    if(A->sign=B->sign){
-        if(A->wordlen >= B->wordlen){
-            add_core(A,B,z);
-        }
-        else{
-            add_core(B,A,z);
+    word C0 = B & mask;
+    word C1 = B >> half_bit;
+    
 
-        }
-        (*z)->sign = (*x)->sign; // 두 수가 같은 부호이므로 x의 부호를 사용        
-    }
 }
-
-//z의 부호 처리!!
-
 */
 
+
+void sub(bigint** x, bigint** y, bigint** z) {
+    bigint* A = *x;
+    bigint* B = *y;
+
+    // A가 0인지 확인 (모든 요소가 0인지 검사)
+    int is_A_zero = 1; // A가 0인지 여부
+    for (int i = 0; i < A->wordlen; i++) {
+        if (A->a[i] != 0) {
+            is_A_zero = 0; // A가 0이 아니면 0으로 설정
+            break;
+        }
+    }
+
+    // B가 0인지 확인 (모든 요소가 0인지 검사)
+    int is_B_zero = 1; // B가 0인지 여부
+    for (int i = 0; i < B->wordlen; i++) {
+        if (B->a[i] != 0) {
+            is_B_zero = 0; // B가 0이 아니면 0으로 설정
+            break;
+        }
+    }
+
+    // A가 0인 경우 결과는 -B
+    if (is_A_zero) {
+        bi_new(z, B->wordlen);
+        (*z)->sign = (B->sign == NON_NEGATIVE) ? NEGATIVE : NON_NEGATIVE;
+        memcpy((*z)->a, B->a, B->wordlen * sizeof(word));
+        bi_refine(*z);
+        return;
+    }
+
+    // B가 0인 경우 결과는 A
+    if (is_B_zero) {
+        bi_assign(z, A);
+        bi_refine(*z);
+        return;
+    }
+
+    // A와 B가 같은 경우 결과는 0
+    if (A->wordlen == B->wordlen) {
+        int equal = 1; // 두 bigint가 같은지 여부
+        for (int i = 0; i < A->wordlen; i++) {
+            if (A->a[i] != B->a[i]) {
+                equal = 0; // 다르면 equal을 0으로 설정
+                break;
+            }
+        }
+
+        if (equal) {
+            bi_new(z, 1);
+            (*z)->a[0] = ZERO;
+            (*z)->sign = NON_NEGATIVE;
+            bi_refine(*z);
+            return;
+        }
+    }
+
+    // 둘 다 양수인 경우
+    if (A->sign == NON_NEGATIVE && B->sign == NON_NEGATIVE) {
+        if (compareABS(A, B) > 0) {
+            sub_core(&A, &B, z);
+            (*z)->sign = NON_NEGATIVE;
+        } else {
+            sub_core(&B, &A, z);
+            (*z)->sign = NEGATIVE;
+        }
+        bi_refine(*z);
+        return;
+    }
+
+    // 둘 다 음수인 경우
+    if (A->sign == NEGATIVE && B->sign == NEGATIVE) {
+        if (compareABS(A, B) > 0) {
+            sub_core(&A, &B, z);
+            (*z)->sign = NEGATIVE;
+        } else {
+            sub_core(&B, &A, z);
+            (*z)->sign = NON_NEGATIVE;
+        }
+        bi_refine(*z);
+        return;
+    }
+
+    // A가 양수이고 B가 음수인 경우 A + |B|
+    if (A->sign == NON_NEGATIVE && B->sign == NEGATIVE) {
+        add_core(&A, &B, z);
+        (*z)->sign = NON_NEGATIVE;
+        bi_refine(*z);
+        return;
+    }
+
+    // A가 음수이고 B가 양수인 경우 -( |A| + B )
+    add_core(&A, &B, z);
+    (*z)->sign = NEGATIVE;
+    bi_refine(*z);
+}
+
+
+/*
+void add(bigint **x, bigint **y, bigint **z) {
+    bigint *A = *x;
+    bigint *B = *y;
+
+    // Check for zero cases without using is_zero
+    // A가 0인지 확인
+    if (A->wordlen == 1 && A->a[0] == 0) {
+        A->sign=NON_NEGATIVE;
+        bi_assign(z, B); // A가 0이면 B 반환
+        return;
+    }
+
+    // B가 0인지 확인
+    if (B->wordlen == 1 && B->a[0] == 0) {
+        B->sign=NON_NEGATIVE;
+        bi_assign(z, A); // B가 0이면 A 반환
+        return;
+    }
+
+    // A가 양수이고 B가 음수인 경우
+    if (A->sign == NON_NEGATIVE && B->sign == NEGATIVE) {
+        // B의 부호를 변환하여 A + |B| 계산
+        B->sign = NON_NEGATIVE; // B를 양수로 변환
+        sub_core(&A, &B, z);           // A - |B| 계산
+        return;
+    }
+
+    // A가 음수이고 B가 양수인 경우 => 반반
+    if (A->sign == NEGATIVE && B->sign == NON_NEGATIVE) {
+
+        // A의 부호를 변환하여 |A| + B 계산
+        A->sign = NON_NEGATIVE; // A를 양수로 변환
+        sub_core(&B, &A, z);           // |B| - |A| 계산
+        (*z)->sign = NON_NEGATIVE;
+
+        
+        //if(compareABS(A,B)>0){
+        //    (*z)->sign = NON_NEGATIVE;
+        //}
+        //else{
+        //    (*z)->sign = NEGATIVE; // -1 + 2 = -1
+        //}
+        return;
+    }
+
+    // A와 B의 부호가 같은 경우 => 성공
+    if (A->sign == B->sign) {
+        add_core(&A, &B, z);
+        (*z)->sign = A->sign;
+    }
+
+}
+*/

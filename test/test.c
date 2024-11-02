@@ -144,11 +144,11 @@ void test_sub_core()
         bi_gen_rand(&x, sign, wordlen1);
         bi_gen_rand(&y, sign, wordlen2);
         
-        if (compare(x, y) == 0) {
+        /*if (compare(x, y) == 0) {
             bigint *temp = x;
             x = y;
             y = temp;
-        }
+        }*/
 
         sub_core(&x, &y, &z);
         print_bi_hex_py(x);                         
@@ -177,3 +177,69 @@ void measure_time()
         fclose(log_file);
     }
 }
+
+void test_sub() 
+{  
+    for(int i = 0 ; i < TEST_CASE; i++)
+    {
+        bigint *x = NULL;
+        bigint *y = NULL;
+        bigint *z = NULL;
+
+        int wordlen1 = rand() % 96 + 1; 
+        int wordlen2 = rand() % 96 + 1;
+    
+        /*// sign을 랜덤으로 선택 (0이면 NON_NEGATIVE, 1이면 NEGATIVE)
+        int sign_x = (rand() % 2 == 0) ? NON_NEGATIVE : NEGATIVE;
+        int sign_y = (rand() % 2 == 0) ? NON_NEGATIVE : NEGATIVE;
+
+        bi_gen_rand(&x, sign_x, wordlen1);
+        bi_gen_rand(&y, sign_y, wordlen2);*/
+
+        bi_gen_rand(&x, NEGATIVE, wordlen1);
+        bi_gen_rand(&y, NEGATIVE, wordlen2);
+
+        sub(&x, &y, &z);
+        print_bi_hex_py(x);                         
+        printf(" - "); print_bi_hex_py(y);                    
+        printf(" == "); print_bi_hex_py(z);                            
+        printf("\n"); 
+        
+        bi_delete(&x);
+        bi_delete(&y);
+        bi_delete(&z);
+    }
+}
+
+/*
+void test_addition() 
+{  
+    for(int i = 0 ; i < TEST_CASE; i++)
+    {
+        bigint *x = NULL;
+        bigint *y = NULL;
+        bigint *z = NULL;
+
+        int wordlen1 = rand() % 96 + 1; 
+        int wordlen2 = rand() % 96 + 1;
+
+        
+        // sign을 랜덤으로 선택 (0이면 NON_NEGATIVE, 1이면 NEGATIVE)
+        //int sign_x = (rand() % 2 == 0) ? NON_NEGATIVE : NEGATIVE;
+        //int sign_y = (rand() % 2 == 0) ? NON_NEGATIVE : NEGATIVE;
+        
+
+        bi_gen_rand(&x, NEGATIVE, wordlen1);
+        bi_gen_rand(&y, NON_NEGATIVE, wordlen2);
+
+        add(&x, &y, &z);
+        print_bi_hex_py(x);                         
+        printf(" + "); print_bi_hex_py(y);                    
+        printf(" == "); print_bi_hex_py(z);                            
+        printf("\n"); 
+        
+        bi_delete(&x);
+        bi_delete(&y);
+        bi_delete(&z);
+    }
+}*/
