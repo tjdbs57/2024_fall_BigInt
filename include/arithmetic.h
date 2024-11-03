@@ -71,24 +71,48 @@ void sub_single_word(IN word A, IN word B, IN word borrow_in, OUT word* borrow_o
  */
 void sub_core(IN bigint** x, IN bigint** y, OUT bigint** z);
 
-
+/**
+ * @brief Subtracts one large integer B from another large integer A.
+ *
+ * This function takes two large integers A and B, and stores the result of A - B in z.
+ * It handles special cases where either A or B might be zero or when they are equal.
+ *
+ * @param[in] x Pointer to a large integer associated with A. (IN)
+ * @param[in] y Pointer to a large integer associated with B. (IN)
+ * @param[out] z Pointer to store the resulting difference as a large integer. (OUT)
+ *
+ * @details
+ * - The function first checks if A or B is zero. If A is zero, the result is -B.
+ * - If B is zero, the result is A.
+ * - If A and B are equal in absolute value, the result is zero if they have the same sign; otherwise, 
+ *   it calculates the result as the addition of A and B.
+ * - If both A and B are positive, it computes the result based on their absolute values.
+ * - If both A and B are negative, it computes the result similarly based on their absolute values.
+ * - If A and B have opposite signs, it calls the addition function to calculate the result.
+ */
 void sub(bigint** x, bigint** y, bigint** z);
 
 /**
- * @brief Adds two bigint numbers and stores the result.
+ * @brief Adds two large integers A and B.
  *
- * This function adds two bigint numbers, A and B, and stores the result in `z`.
- * The behavior depends on the signs of A and B, handling various cases such as:
- * - If A is zero, it assigns B to z.
- * - If B is zero, it assigns A to z.
- * - If A is positive and B is negative, it performs A - B and stores the result in z.
- * - If A is negative and B is positive, it performs B - A and stores the result in z.
- * - If A and B have the same sign, it performs addition and assigns the result's sign.
+ * This function takes two large integers A and B, and stores their sum in z.
+ * It appropriately handles cases where A or B might be zero.
+ * The result may vary depending on the signs of A and B.
  *
- * @param[in] x Pointer to a pointer to the first bigint operand.
- * @param[in] y Pointer to a pointer to the second bigint operand.
- * @param[out] z Pointer to a pointer where the result bigint will be stored.
+ * @param[in] x Pointer to a large integer associated with A. (IN)
+ * @param[in] y Pointer to a large integer associated with B. (IN)
+ * @param[out] z Pointer to store the resulting sum as a large integer. (OUT)
+ *
+ * @details
+ * - If A is zero, B is assigned to z.
+ * - If B is zero, A is assigned to z.
+ * - If A is non-negative and B is negative, B is converted to its absolute value, 
+ *   and A minus B is calculated, setting the sign of the result to that of A.
+ * - If A is negative and B is non-negative, A is converted to its absolute value, 
+ *   and B minus A is calculated, setting the sign of the result to that of A.
+ * - If A and B have the same sign, the core addition function is called based on their lengths.
+ *   The sign of the result z will match the sign of A.
  */
-//void add(IN bigint **x, IN bigint **y, OUT bigint **z);
+void add(IN bigint **x, IN bigint **y, OUT bigint **z);
 
 #endif

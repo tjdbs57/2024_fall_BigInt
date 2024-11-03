@@ -1,5 +1,5 @@
 #include "test.h"
-//#include "error.h"
+
 void test_set_by_array() {
     bigint* x = NULL;
     bigint* y = NULL;
@@ -144,11 +144,11 @@ void test_sub_core()
         bi_gen_rand(&x, sign, wordlen1);
         bi_gen_rand(&y, sign, wordlen2);
         
-        /*if (compare(x, y) == 0) {
+        if (compare(x, y) == 0) {
             bigint *temp = x;
             x = y;
             y = temp;
-        }*/
+        }
 
         sub_core(&x, &y, &z);
         print_bi_hex_py(x);                         
@@ -186,10 +186,10 @@ void test_sub()
         bigint *y = NULL;
         bigint *z = NULL;
 
-        //int wordlen1 = rand() % 96 + 1; 
-        //int wordlen2 = rand() % 96 + 1;
-        int wordlen1 = 32; 
-        int wordlen2 = 32;
+        int wordlen1 = rand() % 96 + 1; 
+        int wordlen2 = rand() % 96 + 1;
+        //int wordlen1 = 32; 
+        //int wordlen2 = 32;
     
         // sign을 랜덤으로 선택 (0이면 NON_NEGATIVE, 1이면 NEGATIVE)
         int sign_x = (rand() % 2 == 0) ? NON_NEGATIVE : NEGATIVE;
@@ -210,8 +210,7 @@ void test_sub()
     }
 }
 
-
-/*void test_addition() 
+void test_addition() //test_add는 add_core에 대한 함수이고, test_addition은 음수에 대한 처리까지 포함한 add에 대한 테스트임
 {  
     for(int i = 0 ; i < TEST_CASE; i++)
     {
@@ -219,22 +218,17 @@ void test_sub()
         bigint *y = NULL;
         bigint *z = NULL;
 
-        //int wordlen1 = rand() % 96 + 1; 
-        //int wordlen2 = rand() % 96 + 1;
-        int wordlen1 = 32; 
-        int wordlen2 = 32;
+        int wordlen1 = rand() % 96 + 1; 
+        int wordlen2 = rand() % 96 + 1;
+        //int wordlen1 = 32; 
+        //int wordlen2 = 32;
     
-
         // sign을 랜덤으로 선택 (0이면 NON_NEGATIVE, 1이면 NEGATIVE)
-        //int sign_x = (rand() % 2 == 0) ? NON_NEGATIVE : NEGATIVE;
-        //int sign_y = (rand() % 2 == 0) ? NON_NEGATIVE : NEGATIVE;
-
-        bi_gen_rand(&x, NON_NEGATIVE, wordlen1);
-        bi_gen_rand(&y, NEGATIVE, wordlen2);;
-        //bi_new(&y, wordlen2);
-        //bi_assign(&y,x);
-        //y->sign=NEGATIVE;
-
+        int sign_x = (rand() % 2 == 0) ? NON_NEGATIVE : NEGATIVE;
+        int sign_y = (rand() % 2 == 0) ? NON_NEGATIVE : NEGATIVE;
+        
+        bi_gen_rand(&x, sign_x, wordlen1);
+        bi_gen_rand(&y, sign_y, wordlen2);
 
         add(&x, &y, &z);
         print_bi_hex_py(x);                         
@@ -246,4 +240,4 @@ void test_sub()
         bi_delete(&y);
         bi_delete(&z);
     }
-}*/
+}

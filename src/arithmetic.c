@@ -92,8 +92,8 @@ void sub_core(IN bigint** x, IN bigint** y, OUT bigint** z)
     bi_refine(*x);
     bi_refine(*y);
     bi_refine(*z);
-
 }
+
 
 /*
 void mul_single_word(IN word A, IN word B, OUT word* result)
@@ -119,7 +119,6 @@ void mul_single_word(IN word A, IN word B, OUT word* result)
 
 }
 */
-
 
 void sub(IN bigint** x, IN bigint** y, OUT bigint** z) {
     bigint* A = *x;
@@ -223,7 +222,7 @@ void sub(IN bigint** x, IN bigint** y, OUT bigint** z) {
 
 
 
-/*void add(IN bigint **x, IN bigint **y, OUT bigint **z) {
+void add(IN bigint **x, IN bigint **y, OUT bigint **z) {
 
     bigint *A = *x;
     bigint *B = *y;
@@ -242,22 +241,24 @@ void sub(IN bigint** x, IN bigint** y, OUT bigint** z) {
 
     // Case: A가 양수이고 B가 음수인 경우
     if (A->sign == NON_NEGATIVE && B->sign == NEGATIVE) {
-        B->sign=NON_NEGATIVE;
+        B->sign=NON_NEGATIVE; //절댓값으로 변환
         sub(&A, &B, z);
-
+        B->sign=NEGATIVE; //부호 되돌리기
         return;
     }
 
     // A가 음수이고 B가 양수인 경우
     if (A->sign == NEGATIVE && B->sign == NON_NEGATIVE) {
         
-        A->sign=NON_NEGATIVE;
+        A->sign=NON_NEGATIVE; //절댓값으로 변환
         sub(&B, &A, z);
+        A->sign=NEGATIVE; //부호 되돌리기
         return;
     }
 
     // A와 B의 부호가 같은 경우
     if (A->sign == B->sign) {
+    
         if(A->wordlen >= B->wordlen){
             add_core(&A,&B,z);
         }
@@ -267,4 +268,4 @@ void sub(IN bigint** x, IN bigint** y, OUT bigint** z) {
         (*z)->sign = A->sign;
     }
 
-}*/
+}

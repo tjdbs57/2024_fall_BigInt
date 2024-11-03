@@ -5,7 +5,6 @@
 
 #include "bigint.h"
 
-#include "arithmetic.h" //지우기!!!!!
 int main()
 {
     srand(time(NULL));
@@ -14,38 +13,8 @@ int main()
     //test_sub_single_word();
     //test_add();
     //test_sub_core();
-    //test_sub(); 
+    test_sub(); 
     //test_addition();
-
-    /*bigint *num1 = NULL, *num2 = NULL, *result = NULL;
-
-    // num1 초기화 및 값 설정
-    bi_new(&num1, 2);
-    num1->a[0] = 0xfffffffe;
-    num1->a[1] = 0xfffffffe;  // num1 = 1
-    num1->sign = NON_NEGATIVE;
-    bi_show_hex(num1); // 수정: &num1 -> num1
-    printf("\n");
-
-    // num2 초기화 및 값 설정
-    bi_new(&num2, 1);
-    num2->a[0] = 0xffffffff;  // num2 = 1
-    num2->sign = NEGATIVE;
-    bi_show_hex(num2); // 수정: &num2 -> num2
-    printf("\n");
-
-    // 두 수의 합 계산
-    add(&num1, &num2, &result);
-
-    // 결과 출력
-    printf("result: ");
-    bi_show_hex(result);
-    printf("\n");
-
-    // 메모리 해제
-    bi_delete(&num1);
-    bi_delete(&num2);
-    bi_delete(&result);*/
 
     measure_time();
     return 0;

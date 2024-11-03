@@ -59,4 +59,3 @@ check:
 	(cd test && python cal.py)
 
 .PHONY: all clean rebuild run
-
