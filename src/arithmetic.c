@@ -73,6 +73,21 @@ void sub_borrow(IN word A, IN word B, IN word borrow_in, OUT word* borrow_out, O
     }
 }
 
+void sub_borrow(IN word A, IN word B, IN word borrow_in, OUT word* borrow_out, OUT word* result) {
+    *borrow_out = ZERO;
+    word sub = A - B;
+    
+    if (A < borrow_in){
+        *borrow_out = ONE;
+    }
+    if ( sub < B ){
+        *borrow_out += 1;
+    }
+    
+    result = sub;    
+
+}
+
 void sub_core(bigint** x, bigint** y, bigint** z) 
 {
     

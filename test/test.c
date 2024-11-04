@@ -1,5 +1,5 @@
 #include "test.h"
-#include "error.h"
+
 void test_set_by_array() {
     bigint* x = NULL;
     bigint* y = NULL;
