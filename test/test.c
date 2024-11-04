@@ -37,8 +37,8 @@ void test_bi_string() {
     bigint* x = NULL; 
     bigint* y = NULL; 
     bigint* z = NULL;
-    char* test_str1 = "123456789"; 
-    char* test_str2 = "987654321"; 
+    char* test_str1 = "987654321"; 
+    char* test_str2 = "123456789"; 
 
     int base = 16; 
     int sign = NON_NEGATIVE; 
@@ -108,8 +108,8 @@ void test_add()
         bigint *y = NULL;
         bigint *z = NULL;
 
-        int wordlen1 = rand() % 128 + 1; 
-        int wordlen2 = rand() % 128 + 1;  
+        int wordlen1 = rand() % 313 + 1; 
+        int wordlen2 = rand() % 313 + 1;  
         int sign = NON_NEGATIVE;
 
         bi_gen_rand(&x, sign, wordlen1);
@@ -127,7 +127,7 @@ void test_add()
     }
 }
 
-void test_sub() 
+void test_sub_core() 
 {  
     for(int i = 0 ; i < TEST_CASE; i++)
     {
@@ -142,12 +142,18 @@ void test_sub()
         bi_gen_rand(&x, sign, wordlen1);
         bi_gen_rand(&y, sign, wordlen2);
         
+        if (compare(x, y) == 0) {
+            bigint *temp = x;
+            x = y;
+            y = temp;
+        }
+
         sub_core(&x, &y, &z);
         print_bi_hex_py(x);                         
         printf(" - "); print_bi_hex_py(y);                    
         printf(" == "); print_bi_hex_py(z);                            
-        printf("\n");  
-
+        printf("\n"); 
+        
         bi_delete(&x);
         bi_delete(&y);
         bi_delete(&z);
@@ -155,11 +161,17 @@ void test_sub()
 
 }
 
+
 void measure_time()
 {
     clock_t start = clock();
-    test_sub();
+    test_add();
     clock_t end = clock();
     double seconds = (double)(end - start) / CLOCKS_PER_SEC;
-    printf("It has been %f seconds from point begin to end", seconds);
+
+    FILE *log_file = fopen("log.txt", "a");
+    if (log_file != NULL) {
+        fprintf(log_file, "Creating test vector time: %f seconds\n", seconds);
+        fclose(log_file);
+    }
 }

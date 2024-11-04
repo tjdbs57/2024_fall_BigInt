@@ -213,7 +213,7 @@ int compareABS(IN bigint* x, IN bigint* y)
         return 1;
     }
     else if(n<m){
-        return -1;
+        return 0;
     }
     else{
         for(int j=n-1; j>=0; j--){
@@ -221,7 +221,7 @@ int compareABS(IN bigint* x, IN bigint* y)
                 return 1;
             }
             else if(x->a[j]<y->a[j]){
-                return -1;
+                return 0;
             }
         }
     }
@@ -234,7 +234,7 @@ int compare(IN bigint* x, IN bigint* y)
         return 1;
     }
     else if(x->sign == NEGATIVE && y->sign == NON_NEGATIVE){
-        return -1;
+        return 0;
     }
     else{
         int ret = compareABS(x, y);
@@ -242,7 +242,7 @@ int compare(IN bigint* x, IN bigint* y)
             return ret;
         }
         else{
-            return ret*(-1);
+            return ret;
         }
     } 
 }
