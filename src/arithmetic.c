@@ -95,17 +95,16 @@ void sub_core(IN bigint** x, IN bigint** y, OUT bigint** z)
 }
 
 
-/*
-void mul_single_word(IN word A, IN word B, OUT word* result)
+void mul_single_word(IN word A, IN word B, OUT bigint** result)
 {
-    const int half_bit = WORD_BITLEN / 2;
-    int mask           = ONE << half_bit;
+    const int half_word = WORD_BITLEN / 2;
+    const word mask     = (ONE << half_word) - 1;
 
     word A0 = A & mask;
-    word A1 = A >> half_bit;
+    word A1 = A >> half_word;
     
     word B0 = B & mask;
-    word B1 = B >> half_bit;
+    word B1 = B >> half_word;
 
     word T0 = A0 * B1;
     word T1 = A1 * B0;
@@ -113,9 +112,46 @@ void mul_single_word(IN word A, IN word B, OUT word* result)
     T0 = T0 + T1;
     T1 = T0 < T1;
 
-    word C0 = B & mask;
-    word C1 = B >> half_bit;
+    word C0 = A0 * B0;
+    word C1 = A1 * B1;
+
+    word T = C0;
+    C0 += (T0 << half_word);
+    C1 += (T1 << half_word) + (T0 >> half_word) + (C0 < T);
     
+    (*result)->a[0] = C0;
+    (*result)->a[1] = C1;
 
 }
-*/
+
+
+void mul_core_tx(IN bigint** x, IN bigint** y, OUT bigint** z)
+{
+    int n = (*x)->wordlen;
+    int m = (*y)->wordlen; 
+
+    int mul_wordlen = m + n;
+
+    bi_new(z, mul_wordlen); 
+
+    bigint* tmp = NULL;
+    bigint* wordmul = NULL;
+    bi_new(&tmp, mul_wordlen);
+    
+    for (int j = 0; j < n; j++)
+    {
+        for(int i = 0; i < m; i++)
+        {
+            bi_new(&wordmul, mul_wordlen);
+            mul_single_word((*x)->a[i], (*y)->a[j], &wordmul);
+            left_shift_word(wordmul, i+j);
+            add_core(z, &wordmul, &tmp);
+            bi_assign(z, tmp);
+        }
+    }
+
+    bi_delete(&wordmul);
+    bi_delete(&tmp);
+    if((*x)->sign != (*y)->sign)
+        (*z)->sign = NON_NEGATIVE;
+}

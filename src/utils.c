@@ -320,7 +320,7 @@ void right_shift(INOUT bigint* x, IN int shift)
     bi_refine(x);
 }
 
-void left_shift(INOUT bigint* x, IN int shift) 
+void left_shift_bits(INOUT bigint* x, IN int shift) 
 {
     int word_shift = shift / (8*sizeof(word)); 
     int bit_shift = shift % (8*sizeof(word));   
@@ -396,4 +396,27 @@ void reduction(IN bigint* x, IN int r, OUT bigint* result)
     }
 }
 
- 
+ void left_shift_word(INOUT bigint* x, IN int shift_words) 
+{
+   
+    int old_wordlen = x->wordlen;
+    int new_wordlen = old_wordlen + shift_words;
+
+    bigint* new=NULL;
+    bi_new(&new, new_wordlen);
+    new->sign=x->sign;
+
+    for(int i=0; i<old_wordlen; i++){
+            new->a[i + shift_words] = x->a[i];
+        }
+
+
+    for(int i=0; i<shift_words ; i++){
+        new->a[i]=ZERO;
+    }
+
+    bi_assign(&x,new);
+    x->wordlen = new_wordlen;
+
+    bi_delete(&new);
+}

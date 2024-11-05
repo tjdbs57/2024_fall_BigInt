@@ -1,5 +1,5 @@
 #include "test.h"
-#include "error.h"
+
 void test_set_by_array() {
     bigint* x = NULL;
     bigint* y = NULL;
@@ -60,16 +60,22 @@ void test_bi_string() {
     printf("\nSecond bigint: ");
     bi_show_hex(y);
 
-    sub_core(&x, &y, &z);
-    // print_bi_hex_py(x);                         
+    bi_new(&z, x->wordlen + y->wordlen);
+
+    bi_show_hex(x);
+    mul_core_tx(&x, &y, &z);
+
+    //sub_core(&x, &y, &z);
+//    print_bi_hex_py(x);                         
     // printf(" - "); print_bi_hex_py(y);                    
     // printf(" == "); print_bi_hex_py(z);                            
     // printf("\n"); 
-    printf("Result : ");
+    printf("\nResult : ");
     bi_show_hex(z);
 
     bi_delete(&x);
     bi_delete(&y);
+    bi_delete(&z);
 }
 
 void print_bi_hex_py(IN const bigint* x) 
@@ -163,17 +169,29 @@ void test_sub_core()
 
 }
 
+void test_mul() 
+{  
+    for(int i = 0 ; i < TEST_CASE; i++)
+    {
+        bigint *x = NULL;
+        bigint *y = NULL;
+        bigint *z = NULL;
 
-void measure_time()
-{
-    clock_t start = clock();
-    test_add();
-    clock_t end = clock();
-    double seconds = (double)(end - start) / CLOCKS_PER_SEC;
+        int wordlen1 = rand() % 10 + 1; 
+        int wordlen2 = rand() % 10 + 1;  
+        int sign = rand() % 2;
 
-    FILE *log_file = fopen("log.txt", "a");
-    if (log_file != NULL) {
-        fprintf(log_file, "Creating test vector time: %f seconds\n", seconds);
-        fclose(log_file);
+        bi_gen_rand(&x, sign, wordlen1);
+        bi_gen_rand(&y, sign, wordlen2);
+        
+        mul_core_tx(&x, &y, &z);
+        print_bi_hex_py(x);                         
+        printf(" * "); print_bi_hex_py(y);                    
+        printf(" == "); print_bi_hex_py(z);                            
+        printf("\n");  
+
+        bi_delete(&x);
+        bi_delete(&y);
+        bi_delete(&z);
     }
 }

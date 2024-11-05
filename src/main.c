@@ -3,6 +3,7 @@
 #include "utils.h"
 #include "test.h"
 #include "bigint.h"
+#include "log.h"
 
 
 int main()
@@ -13,6 +14,9 @@ int main()
     //test_sub_single_word();
     //test_add();
     //test_sub_core();
-    measure_time();
+    //measure_time();
+    //test_mul_single_word();
+    //test_left_shift_word();
+    test_mul();
     return 0;
 }

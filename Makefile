@@ -2,15 +2,17 @@ CC = gcc
 CFLAGS = -std=c99 -Wall -Wextra -g -Iinclude -MMD
 
 # Directories
-SRCDIR = src
-TESTDIR = test
-INCDIR = include
-OBJDIR = obj
-BINDIR = bin
+SRCDIR 		= src
+TESTDIR 	= test
+MEASUREDIR 	= measure
+INCDIR 		= include
+OBJDIR 		= obj
+BINDIR 		= bin
 
-SRCS = $(wildcard $(SRCDIR)/*.c) $(wildcard $(TESTDIR)/*.c)
+SRCS = $(wildcard $(SRCDIR)/*.c) $(wildcard $(TESTDIR)/*.c) $(wildcard $(MEASUREDIR)/*.c)
 OBJS = $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRCS))
 OBJS := $(patsubst $(TESTDIR)/%.c,$(OBJDIR)/%.o,$(OBJS))
+OBJS := $(patsubst $(MEASUREDIR)/%.c,$(OBJDIR)/%.o,$(OBJS))
 DEPS = $(OBJS:.o=.d)
 
 ifeq ($(OS),Windows_NT)
@@ -40,6 +42,9 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 $(OBJDIR)/%.o: $(TESTDIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(OBJDIR)/%.o: $(MEASUREDIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+	
 -include $(DEPS)
 
 clean:
@@ -58,4 +63,4 @@ verify: $(TARGET)
 check: 
 	(cd test && python cal.py)
 
-.PHONY: all clean rebuild run
+.PHONY: all clean rebuild run verify check dir

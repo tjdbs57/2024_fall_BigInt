@@ -71,4 +71,23 @@ void sub_single_word(IN word A, IN word B, IN word borrow_in, OUT word* borrow_o
  */
 void sub_core(IN bigint** x, IN bigint** y, OUT bigint** z);
 
+/**
+ * @brief Multiplies two single words and stores the result in a bigint structure.
+ *
+ * This function performs multiplication on two input words, `A` and `B`,
+ * and stores the result as a two-word bigint in the `result` parameter.
+ * It breaks down the multiplication into half-word operations to manage
+ * potential overflow in high and low parts separately, allowing for more precise
+ * handling of large word multiplications.
+ *
+ * @param[in] A The first input word.
+ * @param[in] B The second input word.
+ * @param[out] result Pointer to a bigint structure where the result will be stored.
+ *                     The bigint structure is expected to have space for two words
+ *                     (`a[0]` for the lower part and `a[1]` for the upper part).
+ */
+void mul_single_word(IN word A, IN word B, OUT bigint** result);
+
+void mul_core_tx(IN bigint** x, IN bigint** y, OUT bigint** z);
+
 #endif
