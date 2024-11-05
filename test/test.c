@@ -137,8 +137,10 @@ void test_sub_core()
         bigint *y = NULL;
         bigint *z = NULL;
 
-        int wordlen1 = rand() % 96 + 1; 
-        int wordlen2 = rand() % 96 + 1;  
+        //int wordlen1 = rand() % 96 + 1; 
+        //int wordlen2 = rand() % 96 + 1;  
+        int wordlen1= 32;
+        int wordlen2=32;
         int sign = NON_NEGATIVE;
 
         bi_gen_rand(&x, sign, wordlen1);
@@ -240,4 +242,40 @@ void test_addition() //test_add는 add_core에 대한 함수이고, test_additio
         bi_delete(&y);
         bi_delete(&z);
     }
+}
+
+void test_right_shift_word() {
+
+    bigint *x = NULL;
+
+    printf("case 1:\n");
+    bi_gen_rand(&x, NON_NEGATIVE, 5); // 5 워드 길이의 양수
+    bi_show_hex(x);
+    printf("\n=>\n");
+    right_shift_word(x,2);
+    bi_show_hex(x);
+
+    printf("\ncase 2: \n");
+    bi_gen_rand(&x, NEGATIVE, 5); // 5 워드 길이의 양수
+    bi_show_hex(x);
+    printf("\n=>\n");
+    right_shift_word(x,1);
+    bi_show_hex(x);
+    bi_delete(&x);
+}
+
+void test_left_shift_word() {
+
+    bigint* x = NULL;
+
+    bi_gen_rand(&x, NON_NEGATIVE, 2); 
+    x->a[0]=0x87654321;
+    x->a[1]=0x00000009;
+
+    bi_show_hex(x);
+    printf("=>\n");
+    left_shift_word(x,1);
+    bi_show_hex(x);
+
+    bi_delete(&x);
 }

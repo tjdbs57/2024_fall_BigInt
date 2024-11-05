@@ -221,7 +221,7 @@ int get_jth_bit(IN bigint* x, IN word j);
  *       message if memory allocation fails. It also removes any leading zero words 
  *       after the shift operation.
  */
-void right_shift(INOUT bigint* x, IN int shift);
+void right_shift_bit(INOUT bigint* x, IN int shift);
 
 
 /**
@@ -238,7 +238,7 @@ void right_shift(INOUT bigint* x, IN int shift);
  *       message if memory allocation fails. It also removes any leading zero words 
  *       after the shift operation.
  */
-void left_shift(INOUT bigint* x, IN int shift);
+void left_shift_bit(INOUT bigint* x, IN int shift);
 
 /**
  * @brief Perform a reduction operation on a bigint.
@@ -256,4 +256,44 @@ void left_shift(INOUT bigint* x, IN int shift);
  *       The caller is responsible for freeing the memory used by result.
  */
 void reduction(IN bigint* x, IN int r, OUT bigint* result); 
+
+/**
+ * @brief Shifts the given bigint to the right by a specified number of words.
+ *
+ * This function performs a rightward word shift on a bigint by allocating
+ * a new bigint with an extended word length to accommodate the shift. 
+ * It copies the original bigint data into the new bigint and fills 
+ * the shifted spaces with zero.
+ * 
+ * @param[in,out] x Pointer to the bigint structure to be shifted.
+ *                   This bigint will be modified in place to include 
+ *                   the shifted values.
+ * @param[in] shift_words The number of words to shift `x` by.
+ * 
+ * @pre `x` and `x->a` should not be NULL.
+ * @post The `x` bigint is shifted by `shift_words` and its `wordlen` is adjusted.
+ * 
+ * @note The function will terminate with an error if memory allocation fails.
+ */
+void right_shift_word(INOUT bigint* x, IN int shift_words);
+
+/**
+ * @brief Shifts the given bigint to the left by a specified number of words.
+ *
+ * This function performs a leftward word shift on a bigint by allocating
+ * a new bigint with an extended word length to accommodate the shift.
+ * The original bigint data is copied into the shifted positions, 
+ * and the newly added lower words are set to zero.
+ * 
+ * @param[in,out] x Pointer to the bigint structure to be shifted.
+ *                  This bigint will be modified in place to include 
+ *                  the shifted values.
+ * @param[in] shift_words The number of words to shift `x` by.
+ * 
+ * @pre `x` and `x->a` should not be NULL.
+ * @post The `x` bigint is shifted by `shift_words` to the left, and its `wordlen` is adjusted.
+ * 
+ * @note The function will terminate with an error if memory allocation fails.
+ */
+void left_shift_word(INOUT bigint* x, IN int shift_words);
 #endif

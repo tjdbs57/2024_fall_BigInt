@@ -294,7 +294,7 @@ int get_jth_bit(IN bigint* x, IN word j)
     return (x->a[word_index] & mask) ? 1 : 0;
 }
 
-void right_shift(INOUT bigint* x, IN int shift) 
+void right_shift_bit(INOUT bigint* x, IN int shift) 
 {
     int word_shift = shift / (8*sizeof(word));  
     int bit_shift = shift % (8*sizeof(word));  
@@ -325,7 +325,7 @@ void right_shift(INOUT bigint* x, IN int shift)
     bi_refine(x);
 }
 
-void left_shift(INOUT bigint* x, IN int shift) 
+void left_shift_bit(INOUT bigint* x, IN int shift) 
 {
     int word_shift = shift / (8*sizeof(word)); 
     int bit_shift = shift % (8*sizeof(word));   
@@ -399,4 +399,66 @@ void reduction(IN bigint* x, IN int r, OUT bigint* result)
     while (result->wordlen > 1 && result->a[result->wordlen - 1] == ZERO) {
         result->wordlen--; // Reduce the word length if upper words are zero
     }
+}
+
+
+
+void right_shift_word(INOUT bigint* x, IN int shift_words) 
+{   
+    if (x == NULL || x->a == NULL) 
+    {
+        MEM_ALLOCATION_FAIL;
+        exit(1);
+    }
+    
+    int old_wordlen=x->wordlen;
+    int new_wordlen = old_wordlen + shift_words*(WORD_BITLEN/4);
+    
+    bigint* new=NULL;
+    bi_new(&new, new_wordlen);
+    new->sign=x->sign;
+    
+    for(int i=0; i<old_wordlen; i++){
+        new->a[i]=x->a[i];
+    }
+    for(int i=old_wordlen; i<new_wordlen; i++){
+        new->a[i]=ZERO;
+    }
+
+    free(x->a);
+    x->a = (word*)calloc(new_wordlen, sizeof(word));
+
+    bi_assign(&x,new);
+    bi_delete(&new);
+
+}
+
+
+void left_shift_word(INOUT bigint* x, IN int shift_words) 
+{
+    if (x == NULL || x->a == NULL) 
+    {
+        MEM_ALLOCATION_FAIL;
+        exit(1);
+    }
+    
+    int old_wordlen = x->wordlen;
+    int new_wordlen = old_wordlen + shift_words;
+
+    bigint* new=NULL;
+    bi_new(&new, new_wordlen);
+    new->sign=x->sign;
+
+    for(int i=0; i<old_wordlen; i++){
+        new->a[i + shift_words] = x->a[i];
+    }
+
+    for(int i=0; i<shift_words; i++){
+        new->a[i]=0x00000000;
+    }
+
+    bi_assign(&x,new);
+    x->wordlen = new_wordlen;
+
+    bi_delete(&new);
 }
