@@ -72,46 +72,45 @@ void sub_single_word(IN word A, IN word B, IN word borrow_in, OUT word* borrow_o
 void sub_core(IN bigint** x, IN bigint** y, OUT bigint** z);
 
 /**
- * @brief Subtracts one large integer B from another large integer A.
- *
- * This function takes two large integers A and B, and stores the result of A - B in z.
- * It handles special cases where either A or B might be zero or when they are equal.
- *
- * @param[in] x Pointer to a large integer associated with A. (IN)
- * @param[in] y Pointer to a large integer associated with B. (IN)
- * @param[out] z Pointer to store the resulting difference as a large integer. (OUT)
- *
- * @details
- * - The function first checks if A or B is zero. If A is zero, the result is -B.
- * - If B is zero, the result is A.
- * - If A and B are equal in absolute value, the result is zero if they have the same sign; otherwise, 
- *   it calculates the result as the addition of A and B.
- * - If both A and B are positive, it computes the result based on their absolute values.
- * - If both A and B are negative, it computes the result similarly based on their absolute values.
- * - If A and B have opposite signs, it calls the addition function to calculate the result.
+ * @brief Subtracts big integer y from big integer x and stores the result in z.
+ * 
+ * This function handles various cases depending on the signs and values of x and y, 
+ * including when either operand is zero, when their absolute values are equal, 
+ * and when their signs differ.
+ * 
+ * @param[in] x Pointer to a pointer of the first bigint structure (minuend).
+ * @param[in] y Pointer to a pointer of the second bigint structure (subtrahend).
+ * @param[out] z Pointer to a pointer of the result bigint structure.
+ * 
+ * - If x is zero, the function sets z to -y.
+ * - If y is zero, the function sets z to x.
+ * - If the absolute values of x and y are equal:
+ *   - If x and y have the same sign, z is set to zero.
+ *   - If x and y have opposite signs, their absolute values are added, and z has the sign of x.
+ * - If x and y are both positive, the function subtracts the smaller magnitude from the larger one and assigns the appropriate sign to z.
+ * - If x and y are both negative, it subtracts the smaller magnitude from the larger and assigns a negative sign if x has a larger magnitude, or a positive sign if y is larger.
+ * - If x and y have opposite signs, their absolute values are added and z has the sign of x.
  */
 void sub(bigint** x, bigint** y, bigint** z);
 
+
+
 /**
- * @brief Adds two large integers A and B.
- *
- * This function takes two large integers A and B, and stores their sum in z.
- * It appropriately handles cases where A or B might be zero.
- * The result may vary depending on the signs of A and B.
- *
- * @param[in] x Pointer to a large integer associated with A. (IN)
- * @param[in] y Pointer to a large integer associated with B. (IN)
- * @param[out] z Pointer to store the resulting sum as a large integer. (OUT)
- *
- * @details
- * - If A is zero, B is assigned to z.
- * - If B is zero, A is assigned to z.
- * - If A is non-negative and B is negative, B is converted to its absolute value, 
- *   and A minus B is calculated, setting the sign of the result to that of A.
- * - If A is negative and B is non-negative, A is converted to its absolute value, 
- *   and B minus A is calculated, setting the sign of the result to that of A.
- * - If A and B have the same sign, the core addition function is called based on their lengths.
- *   The sign of the result z will match the sign of A.
+ * @brief Adds two big integers x and y, and stores the result in z.
+ * 
+ * The function handles cases where one or both of the operands are zero, 
+ * as well as when the signs of x and y are different. If the signs of x and y 
+ * are different, it performs subtraction instead. If both have the same sign, 
+ * it performs addition.
+ * 
+ * @param[in] x Pointer to a pointer of the first bigint structure.
+ * @param[in] y Pointer to a pointer of the second bigint structure.
+ * @param[out] z Pointer to a pointer of the result bigint structure.
+ * 
+ * - If x is zero, the function assigns y to z.
+ * - If y is zero, the function assigns x to z.
+ * - If x and y have opposite signs, the function subtracts the smaller magnitude from the larger one.
+ * - If x and y have the same sign, the function adds them and assigns the resulting sign to z.
  */
 void add(IN bigint **x, IN bigint **y, OUT bigint **z);
 

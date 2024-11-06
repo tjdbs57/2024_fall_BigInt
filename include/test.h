@@ -1,7 +1,7 @@
 #ifndef TEST_H
 
 #include "arithmetic.h"
-#define TEST_CASE 0
+#define TEST_CASE 10000
 
 void test_set_by_array();
 void test_bi_string();

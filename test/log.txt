@@ -164,3 +164,15 @@ verifying took  0.015734 seconds
 verifying took  0.016238 seconds
 verifying took  0.017864 seconds
 verifying took  0.000000 seconds
+verifying took  0.003390 seconds
+verifying took  0.002167 seconds
+verifying took  0.002352 seconds
+verifying took  0.002999 seconds
+verifying took  0.002000 seconds
+verifying took  0.206253 seconds
+verifying took  2.507297 seconds
+verifying took  2.603694 seconds
+verifying took  2.718492 seconds
+verifying took  2.279660 seconds
+verifying took  2.256102 seconds
+verifying took  2.579091 seconds

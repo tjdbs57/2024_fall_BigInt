@@ -462,3 +462,25 @@ void left_shift_word(INOUT bigint* x, IN int shift_words)
 
     bi_delete(&new);
 }
+
+
+int is_zero(IN bigint* x){
+
+    word result = 0;
+
+    for (int i = 0; i < x->wordlen; i++) {
+         
+
+        for (int j = 0; j < WORD_BITLEN; j++) {
+            result |= (x->a[i] & 1); 
+            x->a[i] >>= 1;
+
+            if (result == 1) {
+                return result; //1인 비트가 있는 경우
+            }
+
+        }    
+    }
+
+    return result;
+}

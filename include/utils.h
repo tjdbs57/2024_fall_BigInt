@@ -296,4 +296,20 @@ void right_shift_word(INOUT bigint* x, IN int shift_words);
  * @note The function will terminate with an error if memory allocation fails.
  */
 void left_shift_word(INOUT bigint* x, IN int shift_words);
+
+/**
+ * @brief Check if the given big integer is zero.
+ * 
+ * This function checks whether a given big integer (represented by the `bigint` structure)
+ * is zero by iterating through its words and checking each bit. If any bit is non-zero,
+ * the function returns 0, indicating that the number is not zero. If all bits are zero,
+ * the function returns 1, indicating that the number is zero.
+ * 
+ * @param x A pointer to a `bigint` structure representing the big integer to check.
+ *          The `bigint` structure contains an array of words (`x->a[]`) and the length of the number in words (`x->wordlen`).
+ * 
+ * @return 1 if the big integer is zero, otherwise 0 if it is non-zero.
+ */
+int is_zero(IN bigint* x);
+
 #endif
