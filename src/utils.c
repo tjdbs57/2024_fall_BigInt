@@ -225,24 +225,33 @@ int compareABS(IN bigint* x, IN bigint* y)
     return 0;
 }
 
-int compare(IN bigint* x, IN bigint* y)
+int compareABS(IN bigint* x, IN bigint* y)
 {
-    if(x->sign == NON_NEGATIVE && y->sign == NEGATIVE){
+    //x>y => return 1
+    //x<y => return 0
+    //x=y => return -1
+    int n = x->wordlen;
+    int m = y->wordlen;
+
+    if (n>m){
         return 1;
     }
-    else if(x->sign == NEGATIVE && y->sign == NON_NEGATIVE){
+    else if(n<m){
         return 0;
     }
     else{
-        int ret = compareABS(x, y);
-        if(x->sign == NON_NEGATIVE){
-            return ret;
+        for(int j=n-1; j>=0; j--){
+            if(x->a[j] > y->a[j]){
+                return 1;
+            }
+            else if(x->a[j]<y->a[j]){
+                return 0;
+            }
         }
-        else{
-            return ret;
-        }
-    } 
+    }
+    return -1; //같을 땐 -1 반환
 }
+
 
 int get_bit_length(IN bigint* x) 
 {
@@ -425,6 +434,26 @@ void left_shift_word(INOUT bigint** x, IN int shift_words)
 
     // Update the word length
     (*x)->wordlen = new_wordlen;
+}
+
+int is_zero(IN bigint* x) {
+
+    word result = 0;
+
+    for (int i = 0; i < x->wordlen; i++) {
+        word temp = x->a[i]; // x->a[i]를 직접 수정하지 않도록 임시 변수 사용
+
+        for (int j = 0; j < WORD_BITLEN; j++) {
+
+            result |= (temp & 1); // temp의 가장 낮은 비트를 확인
+            temp >>= 1;           // temp를 시프트하여 다음 비트를 확인
+
+            if (result == 1) {
+                return result; // 1인 비트가 있는 경우
+            }
+        }
+    }
+    return result;
 }
 
 void swap_bigint(IN bigint** x, IN bigint** y)
