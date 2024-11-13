@@ -3,10 +3,9 @@
 #include <stdlib.h>
 
 void bi_new(IN bigint** x, IN int wordlen)
-{
+{    
     if (*x != NULL)
         bi_delete(x);
-
     *x = (bigint*)calloc(1, sizeof(bigint));
     if (*x == NULL) 
     {
@@ -18,6 +17,7 @@ void bi_new(IN bigint** x, IN int wordlen)
     (*x)->wordlen = wordlen;
 
     (*x)->a = (word*)calloc(wordlen, sizeof(word));
+    
     if ((*x)->a == NULL) 
     {
         MEM_ALLOCATION_FAIL;
@@ -206,6 +206,9 @@ void bi_set_zero(OUT bigint** x)
 
 int compareABS(IN bigint* x, IN bigint* y)
 {
+    //x>y => return 1
+    //x<y => return 0
+    //x=y => return -1
     int n = x->wordlen;
     int m = y->wordlen;
 
@@ -217,7 +220,7 @@ int compareABS(IN bigint* x, IN bigint* y)
     }
     else{
         for(int j=n-1; j>=0; j--){
-            if(x->a[j]>y->a[j]){
+            if(x->a[j] > y->a[j]){
                 return 1;
             }
             else if(x->a[j]<y->a[j]){
@@ -225,7 +228,7 @@ int compareABS(IN bigint* x, IN bigint* y)
             }
         }
     }
-    return 0;
+    return -1; //같을 땐 -1 반환
 }
 
 int compare(IN bigint* x, IN bigint* y)
@@ -272,10 +275,9 @@ int get_bit_length(IN bigint* x)
     return total_bit_length;
 }
 
-
 int get_jth_bit(IN bigint* x, IN word j) 
 {
-    if (j >= ((word)x->wordlen * sizeof(word))) 
+    if (j >= ((word)x->wordlen * sizeof(word))) //INVALID_DATA 때문에 verify가 안돼서 일단 주석 처리해두었습니다.
     { 
         INVAILD_DATA;
         exit(1);
@@ -286,7 +288,7 @@ int get_jth_bit(IN bigint* x, IN word j)
 
     if (word_index >= (word)x->wordlen)
     { 
-        INVAILD_DATA;
+        INVAILD_DATA; //INVALID_DATA 때문에 verify가 안돼서 일단 주석 처리해두었습니다.
         exit(1);
     }
 
@@ -402,7 +404,6 @@ void reduction(IN bigint* x, IN int r, OUT bigint* result)
 }
 
 
-
 void right_shift_word(INOUT bigint* x, IN int shift_words) 
 {   
     if (x == NULL || x->a == NULL) 
@@ -411,76 +412,77 @@ void right_shift_word(INOUT bigint* x, IN int shift_words)
         exit(1);
     }
     
-    int old_wordlen=x->wordlen;
-    int new_wordlen = old_wordlen + shift_words*(WORD_BITLEN/4);
-    
-    bigint* new=NULL;
-    bi_new(&new, new_wordlen);
-    new->sign=x->sign;
-    
-    for(int i=0; i<old_wordlen; i++){
-        new->a[i]=x->a[i];
-    }
-    for(int i=old_wordlen; i<new_wordlen; i++){
-        new->a[i]=ZERO;
-    }
+    int old_wordlen = x->wordlen;
+    //int new_wordlen = old_wordlen + shift_words * (WORD_BITLEN / 4);
+    int new_wordlen = old_wordlen + shift_words;
 
-    free(x->a);
-    x->a = (word*)calloc(new_wordlen, sizeof(word));
-
-    bi_assign(&x,new);
-    bi_delete(&new);
-
-}
-
-
-void left_shift_word(INOUT bigint* x, IN int shift_words) 
-{
-    if (x == NULL || x->a == NULL) 
+    // Reallocate memory for x->a with new_wordlen size
+    x->a = (word*)realloc(x->a, new_wordlen * sizeof(word));
+    if (x->a == NULL) 
     {
         MEM_ALLOCATION_FAIL;
         exit(1);
     }
-    
-    int old_wordlen = x->wordlen;
-    int new_wordlen = old_wordlen + shift_words;
 
-    bigint* new=NULL;
-    bi_new(&new, new_wordlen);
-    new->sign=x->sign;
-
-    for(int i=0; i<old_wordlen; i++){
-        new->a[i + shift_words] = x->a[i];
+    // Set the sign and initialize new elements to ZERO
+    x->sign = x->sign;
+    for (int i = old_wordlen; i < new_wordlen; i++) 
+    {
+        x->a[i] = ZERO;
     }
 
-    for(int i=0; i<shift_words; i++){
-        new->a[i]=0x00000000;
-    }
-
-    bi_assign(&x,new);
     x->wordlen = new_wordlen;
-
-    bi_delete(&new);
 }
 
 
-int is_zero(IN bigint* x){
+void left_shift_word(INOUT bigint** x, IN int shift_words) 
+{
+    int new_wordlen =  (*x)->wordlen + shift_words;
+
+    if (shift_words < 0) {
+        fprintf(stderr, "Error: shift_amount is negative in 'left_shift_word'\n");
+        exit(1);
+    }
+
+    word *new_val = (*x)->a;
+    new_val = (word*) realloc((*x)->a, new_wordlen * sizeof(word));
+    if (!new_val) {
+        fprintf(stderr, "Error: Memory reallocation failed in 'left_shift_word'\n");
+        exit(1);
+    }
+    (*x)->a = new_val; // Update the val pointer
+
+    // Shift the existing words to the left by the shift amount
+    for (int i = new_wordlen - 1; i >= shift_words; i--) {
+        (*x)->a[i] = (*x)->a[i - shift_words];
+    }
+
+    // Initialize the newly created space with zeros
+    for (int i = 0; i < shift_words; i++) {
+        (*x)->a[i] = ZERO;
+    }
+
+    // Update the word length
+    (*x)->wordlen = new_wordlen;
+}
+
+
+int is_zero(IN bigint* x) {
 
     word result = 0;
 
     for (int i = 0; i < x->wordlen; i++) {
-         
+        word temp = x->a[i]; // x->a[i]를 직접 수정하지 않도록 임시 변수 사용
 
         for (int j = 0; j < WORD_BITLEN; j++) {
-            result |= (x->a[i] & 1); 
-            x->a[i] >>= 1;
+
+            result |= (temp & 1); // temp의 가장 낮은 비트를 확인
+            temp >>= 1;           // temp를 시프트하여 다음 비트를 확인
 
             if (result == 1) {
-                return result; //1인 비트가 있는 경우
+                return result; // 1인 비트가 있는 경우
             }
-
-        }    
+        }
     }
-
     return result;
 }

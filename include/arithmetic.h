@@ -114,4 +114,30 @@ void sub(bigint** x, bigint** y, bigint** z);
  */
 void add(IN bigint **x, IN bigint **y, OUT bigint **z);
 
+/**
+ * @brief Performs long division on big integers.
+ * 
+ * This function calculates the quotient (`q`) and remainder (`r`) when dividing bigint `*x` by bigint `*y`.
+ * It handles special cases for zero and negative values and manages sign adjustments for the result.
+ * 
+ * @param[in,out] x Pointer to the dividend bigint. This value is read-only in the function.
+ * @param[in] y Pointer to the divisor bigint. This value is read-only in the function.
+ * @param[out] q Pointer to the quotient bigint, which will store the result of the division.
+ * @param[out] r Pointer to the remainder bigint, which will store the remainder after division.
+ * 
+ * @details 
+ * - If the divisor `*y` is zero, the function triggers an error since division by zero is undefined.
+ * - If `*x` is zero, both quotient `*q` and remainder `*r` are set to zero.
+ * - If the absolute value of `*x` is smaller than `*y`, `*q` is set to zero and `*r` to `*x`.
+ * - If the absolute value of `*x` equals `*y`, `*q` is set to one and `*r` to zero, with sign adjustments if necessary.
+ * 
+ * - The main division loop shifts bits from `*x` into `*r`, checks if `*r >= *y`, and updates `*q` and `*r` accordingly.
+ * - For negative dividends, the remainder `*r` is adjusted to ensure the remainder sign follows division rules.
+ * 
+ * @note 
+ * - The function uses helper functions like `bi_set_zero`, `bi_assign`, `add`, `sub_core`, and `left_shift_bit` to perform operations on bigint structures.
+ * - The sign of the quotient `*q` and remainder `*r` is adjusted based on the signs of `*x` and `*y`.
+ * - The function assumes bigint pointers `x`, `y`, `q`, and `r` are properly initialized before calling.
+ */
+void bi_long_div(IN bigint** x, IN bigint** y, OUT bigint** q, OUT bigint** r);
 #endif

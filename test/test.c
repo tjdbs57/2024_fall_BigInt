@@ -274,8 +274,53 @@ void test_left_shift_word() {
 
     bi_show_hex(x);
     printf("=>\n");
-    left_shift_word(x,1);
+    left_shift_word(&x,1);
     bi_show_hex(x);
 
     bi_delete(&x);
 }
+
+void test_bi_long_div()
+{         
+    for(int i = 0 ; i < TEST_CASE; i++)
+    {    
+        bigint *x = NULL;
+        bigint *y = NULL;
+        bigint *q = NULL;
+        bigint *r = NULL;
+        
+        int wordlen1 = rand() % 128 + 1; 
+        int wordlen2 = rand() % 128 + 1;
+        
+        int sign_x = (rand() % 2 == 0) ? NON_NEGATIVE : NEGATIVE;
+        
+        bi_gen_rand(&x, sign_x, wordlen1);
+        bi_gen_rand(&y, NON_NEGATIVE, wordlen2);
+        
+        //bi_set_zero(&x);
+        //bi_assign(&y,x);
+        //y->sign=NON_NEGATIVE;
+
+        bi_long_div(&x,&y,&q,&r);
+        print_bi_hex_py(x);                         
+        printf(" // "); 
+        print_bi_hex_py(y);                    
+        printf(" == "); 
+        print_bi_hex_py(q);                            
+        printf("\n"); 
+
+        /*bi_long_div(&x,&y,&q,&r);
+        print_bi_hex_py(x);                         
+        printf(" %% "); 
+        print_bi_hex_py(y);                    
+        printf(" == "); 
+        print_bi_hex_py(r);                            
+        printf("\n"); */
+       
+        bi_delete(&x);
+        bi_delete(&y);
+        bi_delete(&q);
+        bi_delete(&r);
+    }
+}
+

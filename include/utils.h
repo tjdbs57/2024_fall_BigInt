@@ -156,13 +156,20 @@ void bi_set_one(OUT bigint** x);
 void bi_set_zero(OUT bigint** x);
 
 /**
- * @brief Compare the absolute values of two bigint numbers.
+ * @brief Compares the absolute values of two bigint numbers.
  * 
- * This function compares the magnitudes of two bigint numbers without considering their signs.
+ * This function compares the absolute values of two `bigint` numbers `x` and `y`.
+ * The sign of `x` and `y` is ignored, and only the magnitudes are compared.
  * 
- * @param[in] x Pointer to the first bigint number (input).
- * @param[in] y Pointer to the second bigint number (input).
- * @return 1 if |x| > |y|, -1 if |x| < |y|, or 0 if |x| == |y|.
+ * @param[in] x Pointer to the first bigint number.
+ * @param[in] y Pointer to the second bigint number.
+ * 
+ * @return int 
+ * - Returns `1` if |x| > |y|
+ * - Returns `0` if |x| < |y|
+ * - Returns `-1` if |x| == |y|
+ * 
+ * @note Assumes that `x` and `y` are valid bigint pointers with non-null `a` arrays.
  */
 int compareABS(IN bigint* x, IN bigint* y);
 
@@ -258,57 +265,75 @@ void left_shift_bit(INOUT bigint* x, IN int shift);
 void reduction(IN bigint* x, IN int r, OUT bigint* result); 
 
 /**
- * @brief Shifts the given bigint to the right by a specified number of words.
- *
- * This function performs a rightward word shift on a bigint by allocating
- * a new bigint with an extended word length to accommodate the shift. 
- * It copies the original bigint data into the new bigint and fills 
- * the shifted spaces with zero.
+ * @brief Right-shifts a bigint by a specified number of words.
+ * 
+ * This function shifts the bigint `x` to the right by the specified number of words (`shift_words`). 
+ * It reallocates memory for the bigint array `x->a` to accommodate the shift and initializes any 
+ * newly allocated words to zero.
  * 
  * @param[in,out] x Pointer to the bigint structure to be shifted.
- *                   This bigint will be modified in place to include 
- *                   the shifted values.
- * @param[in] shift_words The number of words to shift `x` by.
+ * @param[in] shift_words The number of words to shift `x` to the right.
  * 
- * @pre `x` and `x->a` should not be NULL.
- * @post The `x` bigint is shifted by `shift_words` and its `wordlen` is adjusted.
+ * @note 
+ * - If memory reallocation fails, the function outputs `MEM_ALLOCATION_FAIL` and calls `exit(1)`.
+ * - The function assumes that `x` and `x->a` are valid pointers with allocated memory.
  * 
- * @note The function will terminate with an error if memory allocation fails.
+ * @details 
+ * - The function increases the length of `x->a` by `shift_words`.
+ * - After reallocation, newly added words in `x->a` are set to `ZERO`.
+ * - The sign of `x` remains unchanged.
+ * 
+ * @warning 
+ * - `x->a` is reallocated, and its size is modified to include the shifted words.
+ * - On memory allocation failure, `exit(1)` is called.
  */
 void right_shift_word(INOUT bigint* x, IN int shift_words);
 
 /**
- * @brief Shifts the given bigint to the left by a specified number of words.
- *
- * This function performs a leftward word shift on a bigint by allocating
- * a new bigint with an extended word length to accommodate the shift.
- * The original bigint data is copied into the shifted positions, 
- * and the newly added lower words are set to zero.
+ * @brief Left-shifts a bigint by a specified number of words.
  * 
- * @param[in,out] x Pointer to the bigint structure to be shifted.
- *                  This bigint will be modified in place to include 
- *                  the shifted values.
- * @param[in] shift_words The number of words to shift `x` by.
+ * This function shifts the bigint `x` to the left by the specified number of words (`shift_words`). 
+ * It reallocates memory for the bigint array `(*x)->a` to accommodate the shift and initializes 
+ * any newly allocated lower-order words to zero.
  * 
- * @pre `x` and `x->a` should not be NULL.
- * @post The `x` bigint is shifted by `shift_words` to the left, and its `wordlen` is adjusted.
+ * @param[in,out] x Double pointer to the bigint structure to be shifted.
+ * @param[in] shift_words The number of words to shift `x` to the left.
  * 
- * @note The function will terminate with an error if memory allocation fails.
+ * @note 
+ * - If `shift_words` is negative, the function outputs an error message and calls `exit(1)`.
+ * - The function reallocates memory for `(*x)->a` to ensure there is enough space for the shift.
+ * 
+ * @details 
+ * - The function increases the length of `(*x)->a` by `shift_words`.
+ * - Existing words in `(*x)->a` are shifted to the left by `shift_words`.
+ * - Newly added words are set to `ZERO`.
+ * - The word length of `(*x)` is updated to the new length.
+ * 
+ * @warning 
+ * - On memory allocation failure, `exit(1)` is called.
+ * - The function assumes `x` points to a valid `bigint` structure.
  */
-void left_shift_word(INOUT bigint* x, IN int shift_words);
+void left_shift_word(INOUT bigint** x, IN int shift_words);
 
 /**
- * @brief Check if the given big integer is zero.
+ * @brief Checks if a bigint is zero.
  * 
- * This function checks whether a given big integer (represented by the `bigint` structure)
- * is zero by iterating through its words and checking each bit. If any bit is non-zero,
- * the function returns 0, indicating that the number is not zero. If all bits are zero,
- * the function returns 1, indicating that the number is zero.
+ * This function checks if all bits in the bigint `x` are zero. 
+ * It iterates through each word and each bit in `x->a` to verify that no bit is set to 1.
  * 
- * @param x A pointer to a `bigint` structure representing the big integer to check.
- *          The `bigint` structure contains an array of words (`x->a[]`) and the length of the number in words (`x->wordlen`).
+ * @param[in] x Pointer to the bigint structure to be checked.
  * 
- * @return 1 if the big integer is zero, otherwise 0 if it is non-zero.
+ * @return int Returns 1 if any bit in `x` is set to 1, indicating `x` is not zero. 
+ *             Returns 0 if all bits in `x` are zero.
+ * 
+ * @details 
+ * - The function uses bitwise operations to examine each bit of `x->a`.
+ * - If any bit in `x->a` is set to 1, the function returns immediately with a result of 1.
+ * - If all bits are zero, the function returns 0, indicating that `x` represents zero.
+ * 
+ * @note 
+ * - The function assumes `x` is a valid pointer to a bigint structure.
+ * - The use of an intermediate variable `temp` helps avoid modifying `x->a[i]` directly.
  */
 int is_zero(IN bigint* x);
 
