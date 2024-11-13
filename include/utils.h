@@ -255,5 +255,7 @@ void left_shift(INOUT bigint* x, IN int shift);
  *       The caller is responsible for freeing the memory used by result.
  */
 void reduction(IN bigint* x, IN int r, OUT bigint* result);
-void left_shift_word(INOUT bigint* x, IN int shift_words) ;
+void left_shift_word(INOUT bigint** x, IN int shift_words);
+
+void swap_bigint(IN bigint** x, IN bigint** y);
 #endif

@@ -124,27 +124,30 @@ void mul_single_word(IN word A, IN word B, OUT bigint** result)
 
 }
 
-
 void mul_core_tx(IN bigint** x, IN bigint** y, OUT bigint** z)
 {
     int n = (*x)->wordlen;
     int m = (*y)->wordlen; 
 
-    int mul_wordlen = m + n;
-
-    bi_new(z, mul_wordlen); 
+    if (n < m)
+    {
+        swap_bigint(x, y);
+        n = (*x)->wordlen;
+        m = (*y)->wordlen;
+    }   
+    bi_new(z, n+m); 
 
     bigint* tmp = NULL;
     bigint* wordmul = NULL;
-    bi_new(&tmp, mul_wordlen);
+    bi_new(&tmp, n+m);
     
-    for (int j = 0; j < n; j++)
+    for (int i = 0; i < n; i++)
     {
-        for(int i = 0; i < m; i++)
+        for(int j = 0; j < m; j++)
         {
-            bi_new(&wordmul, mul_wordlen);
+            bi_new(&wordmul, 2);
             mul_single_word((*x)->a[i], (*y)->a[j], &wordmul);
-            left_shift_word(wordmul, i+j);
+            left_shift_word(&wordmul, (i+j));
             add_core(z, &wordmul, &tmp);
             bi_assign(z, tmp);
         }
@@ -153,5 +156,5 @@ void mul_core_tx(IN bigint** x, IN bigint** y, OUT bigint** z)
     bi_delete(&wordmul);
     bi_delete(&tmp);
     if((*x)->sign != (*y)->sign)
-        (*z)->sign = NON_NEGATIVE;
+        (*z)->sign = NEGATIVE;
 }

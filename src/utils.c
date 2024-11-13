@@ -320,7 +320,7 @@ void right_shift(INOUT bigint* x, IN int shift)
     bi_refine(x);
 }
 
-void left_shift_bits(INOUT bigint* x, IN int shift) 
+void left_shift(INOUT bigint* x, IN int shift) 
 {
     int word_shift = shift / (8*sizeof(word)); 
     int bit_shift = shift % (8*sizeof(word));   
@@ -396,27 +396,41 @@ void reduction(IN bigint* x, IN int r, OUT bigint* result)
     }
 }
 
- void left_shift_word(INOUT bigint* x, IN int shift_words) 
+void left_shift_word(INOUT bigint** x, IN int shift_words) 
 {
-   
-    int old_wordlen = x->wordlen;
-    int new_wordlen = old_wordlen + shift_words;
+    int new_wordlen =  (*x)->wordlen + shift_words;
 
-    bigint* new=NULL;
-    bi_new(&new, new_wordlen);
-    new->sign=x->sign;
-
-    for(int i=0; i<old_wordlen; i++){
-            new->a[i + shift_words] = x->a[i];
-        }
-
-
-    for(int i=0; i<shift_words ; i++){
-        new->a[i]=ZERO;
+    if (shift_words < 0) {
+        fprintf(stderr, "Error: shift_amount is negative in 'left_shift_word'\n");
+        return;
     }
 
-    bi_assign(&x,new);
-    x->wordlen = new_wordlen;
+    word *new_val = (*x)->a;
+    new_val = (word*) realloc((*x)->a, new_wordlen * sizeof(word));
+    if (!new_val) {
+        fprintf(stderr, "Error: Memory reallocation failed in 'left_shift_word'\n");
+        exit(1);
+    }
+    (*x)->a = new_val; // Update the val pointer
 
-    bi_delete(&new);
+    // Shift the existing words to the left by the shift amount
+    for (int i = new_wordlen - 1; i >= shift_words; i--) {
+        (*x)->a[i] = (*x)->a[i - shift_words];
+    }
+
+    // Initialize the newly created space with zeros
+    for (int i = 0; i < shift_words; i++) {
+        (*x)->a[i] = ZERO;
+    }
+
+    // Update the word length
+    (*x)->wordlen = new_wordlen;
+}
+
+void swap_bigint(IN bigint** x, IN bigint** y)
+{
+    bigint* tmp;
+    tmp = *x;
+    *x = *y;
+    *y = tmp;
 }
