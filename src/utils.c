@@ -411,7 +411,7 @@ void left_shift_word(INOUT bigint** x, IN int shift_words)
 
     if (shift_words < 0) {
         fprintf(stderr, "Error: shift_amount is negative in 'left_shift_word'\n");
-        return;
+        exit(1);
     }
 
     word *new_val = (*x)->a;
