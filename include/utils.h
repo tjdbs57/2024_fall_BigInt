@@ -91,10 +91,11 @@ int bi_set_by_array(OUT bigint** x, IN int sign, IN word* a, IN int wordlen);
 int bi_set_by_string(OUT bigint** x, IN int sign, IN char* str, IN int base); 
 
 /**
- * @brief Refines the bigint structure by removing leading zeros.
+ * @brief Refines a bigint by removing leading zeros and adjusting its length.
  *
- * This function updates the word length of the bigint and reallocates memory
- * if necessary. It also sets the sign to NON_NEGATIVE if the bigint becomes zero.
+ * This function modifies the given bigint by removing any leading zeros,
+ * updating its word length accordingly, and ensuring that the sign is set
+ * correctly if the bigint becomes zero.
  *
  * @param[in,out] x Pointer to the bigint to be refined (input/output).
  */
@@ -220,7 +221,7 @@ int get_jth_bit(IN bigint* x, IN word j);
  *       message if memory allocation fails. It also removes any leading zero words 
  *       after the shift operation.
  */
-void right_shift(INOUT bigint* x, IN int shift);
+void right_shift_bit(INOUT bigint* x, IN int shift);
 
 
 /**
@@ -237,7 +238,7 @@ void right_shift(INOUT bigint* x, IN int shift);
  *       message if memory allocation fails. It also removes any leading zero words 
  *       after the shift operation.
  */
-void left_shift(INOUT bigint* x, IN int shift);
+void left_shift_bit(INOUT bigint* x, IN int shift);
 
 /**
  * @brief Perform a reduction operation on a bigint.
@@ -254,7 +255,23 @@ void left_shift(INOUT bigint* x, IN int shift);
  * @note Memory for the result bigint is allocated inside this function. 
  *       The caller is responsible for freeing the memory used by result.
  */
-void reduction(IN bigint* x, IN int r, OUT bigint* result);
+void reduction(IN bigint* x, IN int r, OUT bigint* result); 
+
+
+/**
+ * @brief Check if the given big integer is zero.
+ * 
+ * This function checks whether a given big integer (represented by the `bigint` structure)
+ * is zero by iterating through its words and checking each bit. If any bit is non-zero,
+ * the function returns 0, indicating that the number is not zero. If all bits are zero,
+ * the function returns 1, indicating that the number is zero.
+ * 
+ * @param x A pointer to a `bigint` structure representing the big integer to check.
+ *          The `bigint` structure contains an array of words (`x->a[]`) and the length of the number in words (`x->wordlen`).
+ * 
+ * @return 1 if the big integer is zero, otherwise 0 if it is non-zero.
+ */
+int is_zero(IN bigint* x);
 void left_shift_word(INOUT bigint** x, IN int shift_words);
 
 void swap_bigint(IN bigint** x, IN bigint** y);

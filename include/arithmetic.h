@@ -72,6 +72,49 @@ void sub_single_word(IN word A, IN word B, IN word borrow_in, OUT word* borrow_o
 void sub_core(IN bigint** x, IN bigint** y, OUT bigint** z);
 
 /**
+ * @brief Subtracts big integer y from big integer x and stores the result in z.
+ * 
+ * This function handles various cases depending on the signs and values of x and y, 
+ * including when either operand is zero, when their absolute values are equal, 
+ * and when their signs differ.
+ * 
+ * @param[in] x Pointer to a pointer of the first bigint structure (minuend).
+ * @param[in] y Pointer to a pointer of the second bigint structure (subtrahend).
+ * @param[out] z Pointer to a pointer of the result bigint structure.
+ * 
+ * - If x is zero, the function sets z to -y.
+ * - If y is zero, the function sets z to x.
+ * - If the absolute values of x and y are equal:
+ *   - If x and y have the same sign, z is set to zero.
+ *   - If x and y have opposite signs, their absolute values are added, and z has the sign of x.
+ * - If x and y are both positive, the function subtracts the smaller magnitude from the larger one and assigns the appropriate sign to z.
+ * - If x and y are both negative, it subtracts the smaller magnitude from the larger and assigns a negative sign if x has a larger magnitude, or a positive sign if y is larger.
+ * - If x and y have opposite signs, their absolute values are added and z has the sign of x.
+ */
+void sub(IN bigint** x, IN bigint** y, OUT bigint** z);
+
+
+
+/**
+ * @brief Adds two big integers x and y, and stores the result in z.
+ * 
+ * The function handles cases where one or both of the operands are zero, 
+ * as well as when the signs of x and y are different. If the signs of x and y 
+ * are different, it performs subtraction instead. If both have the same sign, 
+ * it performs addition.
+ * 
+ * @param[in] x Pointer to a pointer of the first bigint structure.
+ * @param[in] y Pointer to a pointer of the second bigint structure.
+ * @param[out] z Pointer to a pointer of the result bigint structure.
+ * 
+ * - If x is zero, the function assigns y to z.
+ * - If y is zero, the function assigns x to z.
+ * - If x and y have opposite signs, the function subtracts the smaller magnitude from the larger one.
+ * - If x and y have the same sign, the function adds them and assigns the resulting sign to z.
+ */
+void add(IN bigint **x, IN bigint **y, OUT bigint **z);
+
+/**
  * @brief Multiplies two single words and stores the result in a bigint structure.
  *
  * This function performs multiplication on two input words, `A` and `B`,

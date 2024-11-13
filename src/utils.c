@@ -1,4 +1,6 @@
 #include "utils.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 void bi_new(IN bigint** x, IN int wordlen)
 {
@@ -126,6 +128,7 @@ int bi_set_by_string(OUT bigint** x, IN int sign, IN char* str, IN int base) {
 
 void bi_refine(INOUT bigint* x)
 {
+    // NULL 체크
     if(x == NULL)
         return;
     
@@ -298,7 +301,7 @@ int get_jth_bit(IN bigint* x, IN word j)
     return (x->a[word_index] & mask) ? 1 : 0;
 }
 
-void right_shift(INOUT bigint* x, IN int shift) 
+void right_shift_bit(INOUT bigint* x, IN int shift) 
 {
     int word_shift = shift / (8*sizeof(word));  
     int bit_shift = shift % (8*sizeof(word));  
@@ -329,7 +332,7 @@ void right_shift(INOUT bigint* x, IN int shift)
     bi_refine(x);
 }
 
-void left_shift(INOUT bigint* x, IN int shift) 
+void left_shift_bit(INOUT bigint* x, IN int shift) 
 {
     int word_shift = shift / (8*sizeof(word)); 
     int bit_shift = shift % (8*sizeof(word));   

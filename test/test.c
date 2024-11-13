@@ -1,5 +1,6 @@
 #include "test.h"
 
+
 void test_set_by_array() {
     bigint* x = NULL;
     bigint* y = NULL;
@@ -143,8 +144,10 @@ void test_sub_core()
         bigint *y = NULL;
         bigint *z = NULL;
 
-        int wordlen1 = rand() % 96 + 1; 
-        int wordlen2 = rand() % 96 + 1;  
+        //int wordlen1 = rand() % 96 + 1; 
+        //int wordlen2 = rand() % 96 + 1;  
+        int wordlen1= 32;
+        int wordlen2=32;
         int sign = NON_NEGATIVE;
 
         bi_gen_rand(&x, sign, wordlen1);

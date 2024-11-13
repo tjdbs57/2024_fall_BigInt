@@ -124,6 +124,133 @@ void mul_single_word(IN word A, IN word B, OUT bigint** result)
 
 }
 
+void sub(IN bigint** x, IN bigint** y, OUT bigint** z) {
+    
+    // A가 0인 경우 결과는 -B
+    if (is_zero(*x) == 0) {  // Dereference x and y
+        bi_new(z, (*y)->wordlen);
+        (*z)->sign = ((*y)->sign == NON_NEGATIVE) ? NEGATIVE : NON_NEGATIVE;
+        for (int i = 0; i < (*y)->wordlen; i++) {
+            (*z)->a[i] = (*y)->a[i]; 
+        }
+
+        bi_refine(*z);
+        return;
+    }
+
+    // B가 0인 경우 결과는 A
+    if (is_zero(*y) == 0) {  // Dereference x and y
+        bi_assign(z, *x);
+        bi_refine(*z);
+        return;
+    }
+
+    // A와 B의 절댓값이 같은 경우
+    if ((*x)->wordlen == (*y)->wordlen) {
+        int equal = 1; // 두 bigint가 같은지 여부
+        for (int i = 0; i < (*x)->wordlen; i++) {
+            if ((*x)->a[i] != (*y)->a[i]) {
+                equal = 0; // 다르면 equal을 0으로 설정
+                break;
+            }
+        }
+
+        if (equal) {
+            //A와 B의 절댓값과 부호 모두 같은 경우
+            if((*x)->sign == (*y)->sign){
+                bi_set_zero(z);
+                bi_refine(*z);
+            }
+            //A와 B의 절댓값이 같고 부호가 반대인 경우
+            else{
+                add_core(y, x, z);  // No need to dereference, pass as is
+                (*z)->sign = (*x)->sign;
+            }
+            return;
+        }
+    }
+
+    // 둘 다 양수인 경우
+    if ((*x)->sign == NON_NEGATIVE && (*y)->sign == NON_NEGATIVE) {
+        if (compareABS(*x, *y) > 0) {  // Dereference x and y
+            sub_core(x, y, z);
+            (*z)->sign = NON_NEGATIVE;
+        } else {
+            sub_core(y, x, z);
+            (*z)->sign = NEGATIVE;
+        }
+        bi_refine(*z);
+        return;
+    }
+
+    // 둘 다 음수인 경우
+    if ((*x)->sign == NEGATIVE && (*y)->sign == NEGATIVE) {
+        if (compareABS(*x, *y) > 0) {  // Dereference x and y
+            sub_core(x, y, z);
+            (*z)->sign = NEGATIVE;
+        } else {
+            sub_core(y, x, z);
+            (*z)->sign = NON_NEGATIVE;
+        }
+        bi_refine(*z);
+        return;
+    }
+
+    // A와 B의 부호가 반대인 경우
+    if ((*x)->sign != (*y)->sign) {
+        add_core(x, y, z);
+        (*z)->sign = (*x)->sign;
+        bi_refine(*z);
+        return;
+    }
+}
+
+
+void add(IN bigint **x, IN bigint **y, OUT bigint **z) {
+
+    // A가 0인지 확인
+    if(is_zero(*x)==0){
+        bi_assign(z, *y); // A가 0이면 B 반환
+        return;
+    }
+
+    if(is_zero(*y)==0){
+        bi_assign(z, *x); // B가 0이면 A 반환
+        return;
+    }
+
+    // Case: A가 양수이고 B가 음수인 경우
+    if ((*x)->sign == NON_NEGATIVE && (*y)->sign == NEGATIVE) {
+        (*y)->sign=NON_NEGATIVE; //절댓값으로 변환
+        sub(x, y, z);
+        (*y)->sign=NEGATIVE; //부호 되돌리기
+        return;
+    }
+
+    // A가 음수이고 B가 양수인 경우
+    if ((*x)->sign == NEGATIVE && (*y)->sign == NON_NEGATIVE) {
+        
+        (*x)->sign=NON_NEGATIVE; //절댓값으로 변환
+        sub(y, x, z);
+        (*x)->sign=NEGATIVE; //부호 되돌리기
+        return;
+    }
+
+    // A와 B의 부호가 같은 경우
+    if ((*x)->sign == (*y)->sign) {
+    
+        if((*x)->wordlen >= (*y)->wordlen){
+            add_core(x,y,z);
+        }
+        else{
+            add_core(y,x,z);
+        }
+        (*z)->sign = (*x)->sign;
+    }
+
+}
+
+
 void mul_core_tx(IN bigint** x, IN bigint** y, OUT bigint** z)
 {
     int n = (*x)->wordlen;
