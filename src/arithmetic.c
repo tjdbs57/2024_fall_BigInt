@@ -48,23 +48,6 @@ void add_core(IN bigint** x, IN bigint** y, OUT bigint** z)
     } else (*z)->wordlen = max_len;
     
     bi_refine(*z);
-
-}
-
-void sub_single_word(IN word A, IN word B, IN word borrow_in, OUT word* borrow_out, OUT word* result) 
-{
-    word sub = A - borrow_in;
-    *borrow_out = ZERO;
-    
-    if (A < borrow_in) {
-        *borrow_out = ONE;
-    }
-
-    if (sub < B) {
-        *borrow_out += ONE;
-    }
-    
-    *result = sub - B;  
 }
 
 void sub_single_word(IN word A, IN word B, IN word borrow_in, OUT word* borrow_out, OUT word* result) 
@@ -110,18 +93,142 @@ void sub_core(IN bigint** x, IN bigint** y, OUT bigint** z)
     bi_refine(*z);
 }
 
+void sub(IN bigint** x, IN bigint** y, OUT bigint** z) {
+    
+    // A가 0인 경우 결과는 -B
+    if (is_zero(*x) == 0) {  // Dereference x and y
+        bi_new(z, (*y)->wordlen);
+        (*z)->sign = ((*y)->sign == NON_NEGATIVE) ? NEGATIVE : NON_NEGATIVE;
+        for (int i = 0; i < (*y)->wordlen; i++) {
+            (*z)->a[i] = (*y)->a[i]; 
+        }
 
-/*
-void mul_single_word(IN word A, IN word B, OUT word* result)
+        bi_refine(*z);
+        return;
+    }
+
+    // B가 0인 경우 결과는 A
+    if (is_zero(*y) == 0) {  // Dereference x and y
+        bi_assign(z, *x);
+        bi_refine(*z);
+        return;
+    }
+
+    // A와 B의 절댓값이 같은 경우
+    if ((*x)->wordlen == (*y)->wordlen) {
+        int equal = 1; // 두 bigint가 같은지 여부
+        for (int i = 0; i < (*x)->wordlen; i++) {
+            if ((*x)->a[i] != (*y)->a[i]) {
+                equal = 0; // 다르면 equal을 0으로 설정
+                break;
+            }
+        }
+
+        if (equal) {
+            //A와 B의 절댓값과 부호 모두 같은 경우
+            if((*x)->sign == (*y)->sign){
+                bi_set_zero(z);
+                bi_refine(*z);
+            }
+            //A와 B의 절댓값이 같고 부호가 반대인 경우
+            else{
+                add_core(y, x, z);  // No need to dereference, pass as is
+                (*z)->sign = (*x)->sign;
+            }
+            return;
+        }
+    }
+
+    // 둘 다 양수인 경우
+    if ((*x)->sign == NON_NEGATIVE && (*y)->sign == NON_NEGATIVE) {
+        if (compareABS(*x, *y) > 0) {  // Dereference x and y
+            sub_core(x, y, z);
+            (*z)->sign = NON_NEGATIVE;
+        } else {
+            sub_core(y, x, z);
+            (*z)->sign = NEGATIVE;
+        }
+        bi_refine(*z);
+        return;
+    }
+
+    // 둘 다 음수인 경우
+    if ((*x)->sign == NEGATIVE && (*y)->sign == NEGATIVE) {
+        if (compareABS(*x, *y) > 0) {  // Dereference x and y
+            sub_core(x, y, z);
+            (*z)->sign = NEGATIVE;
+        } else {
+            sub_core(y, x, z);
+            (*z)->sign = NON_NEGATIVE;
+        }
+        bi_refine(*z);
+        return;
+    }
+
+    // A와 B의 부호가 반대인 경우
+    if ((*x)->sign != (*y)->sign) {
+        add_core(x, y, z);
+        (*z)->sign = (*x)->sign;
+        bi_refine(*z);
+        return;
+    }
+}
+
+
+void add(IN bigint **x, IN bigint **y, OUT bigint **z) {
+
+    // A가 0인지 확인
+    if(is_zero(*x)==0){
+        bi_assign(z, *y); // A가 0이면 B 반환
+        return;
+    }
+
+    if(is_zero(*y)==0){
+        bi_assign(z, *x); // B가 0이면 A 반환
+        return;
+    }
+
+    // Case: A가 양수이고 B가 음수인 경우
+    if ((*x)->sign == NON_NEGATIVE && (*y)->sign == NEGATIVE) {
+        (*y)->sign=NON_NEGATIVE; //절댓값으로 변환
+        sub(x, y, z);
+        (*y)->sign=NEGATIVE; //부호 되돌리기
+        return;
+    }
+
+    // A가 음수이고 B가 양수인 경우
+    if ((*x)->sign == NEGATIVE && (*y)->sign == NON_NEGATIVE) {
+        
+        (*x)->sign=NON_NEGATIVE; //절댓값으로 변환
+        sub(y, x, z);
+        (*x)->sign=NEGATIVE; //부호 되돌리기
+        return;
+    }
+
+    // A와 B의 부호가 같은 경우
+    if ((*x)->sign == (*y)->sign) {
+    
+        if((*x)->wordlen >= (*y)->wordlen){
+            add_core(x,y,z);
+        }
+        else{
+            add_core(y,x,z);
+        }
+        (*z)->sign = (*x)->sign;
+    }
+
+}
+
+void mul_single_word(IN word A, IN word B, OUT bigint** result)
 {
-    const int half_bit = WORD_BITLEN / 2;
-    int mask           = ONE << half_bit;
+    const int half_word = WORD_BITLEN / 2;
+    const word mask     = (ONE << half_word) - 1;
 
     word A0 = A & mask;
-    word A1 = A >> half_bit;
+    word A1 = A >> half_word;
     
     word B0 = B & mask;
-    word B1 = B >> half_bit;
+    word B1 = B >> half_word;
 
     word T0 = A0 * B1;
     word T1 = A1 * B0;
@@ -129,9 +236,109 @@ void mul_single_word(IN word A, IN word B, OUT word* result)
     T0 = T0 + T1;
     T1 = T0 < T1;
 
-    word C0 = B & mask;
-    word C1 = B >> half_bit;
+    word C0 = A0 * B0;
+    word C1 = A1 * B1;
+
+    word T = C0;
+    C0 += (T0 << half_word);
+    C1 += (T1 << half_word) + (T0 >> half_word) + (C0 < T);
     
+    (*result)->a[0] = C0;
+    (*result)->a[1] = C1;
 
 }
-*/
+
+
+void squaring_single_word(IN word A, OUT bigint** result)
+{
+    word w = WORD_BITLEN/2;
+    word A1 = A >> w;
+    word A0 = A & ((ONE << w) - 1);
+
+    // C[0], C[1]
+    bigint *C = NULL;
+    bi_new(&C, 2);
+
+    // T[0], T[1]
+    bigint *T = NULL;
+    bi_new(&T, 2);
+
+    // cross multiplication
+    C->a[0] = A0 * A0;
+    C->a[1] = A1 * A1;
+
+    T->a[0] = A0 * A1;
+    left_shift_bit(T, w+1);
+
+    bigint *tmp = NULL;
+    bi_new(&tmp, 2);
+    add(&C, &T, &tmp);
+
+    bi_assign(result, tmp);
+    
+    bi_delete(&C);
+    bi_delete(&T);
+    bi_delete(&tmp);
+}
+
+
+void SQUC(IN bigint** x, OUT bigint** result)
+{
+    int t = (*x)->wordlen;
+
+    bigint *C1 = NULL;
+    bi_new(&C1, 1);
+    bigint *C2 = NULL;
+    bi_new(&C2, 1);
+
+    bigint *T1 = NULL;
+    bi_new(&T1, 2);
+    bigint *T2 = NULL;
+    bi_new(&T2, 2);
+    bigint *tmp1 = NULL;
+    bi_new(&tmp1, 2);
+    bigint *tmp2 = NULL;
+    bi_new(&tmp2, 2);
+
+    for(int j=0; j<= t-1; j++)
+    {   
+        squaring_single_word((*x)->a[j], &T1);
+        left_shift_word(&T1, 2*j);
+
+        add(&C1, &T1, &tmp1);
+        bi_assign(&C1, tmp1);
+
+        for(int i=j+1; i<=t-1; i++)
+        {
+            mul_single_word((*x)->a[j], (*x)->a[i], &T2);
+            left_shift_word(&T2, i+j);
+           
+            add(&C2, &T2, &tmp2);
+            bi_assign(&C2, tmp2);
+
+            bi_new(&T2, 2);
+        }
+    }
+    left_shift_bit(C2, 1);
+    add_core(&C1, &C2, result);
+
+    bi_delete(&C1);
+    bi_delete(&C2);
+    bi_delete(&T1);
+    bi_delete(&T2);
+    bi_delete(&tmp1);
+    bi_delete(&tmp2);
+
+}
+
+
+void Squaring(IN bigint** x, OUT bigint** result) 
+{
+    if(is_zero(*x)==0){
+        bi_assign(result, *x);
+        (*result)->sign = NON_NEGATIVE;
+    }
+    else{
+        SQUC(x, result);
+    }
+}

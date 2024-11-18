@@ -9,5 +9,7 @@ void test_add();
 void print_bi_hex_py(IN const bigint* x);
 void test_sub_core(); 
 void measure_time();
+void test_large_number_square();
+void test_squc();
 
 #endif

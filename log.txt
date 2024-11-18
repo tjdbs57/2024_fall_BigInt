@@ -1,1 +1,16 @@
 Creating test vector time: 0.126000 seconds
+Creating test vector time: 1.414000 seconds
+Creating test vector time: 0.005000 seconds
+Creating test vector time: 1.510000 seconds
+Creating test vector time: 0.014000 seconds
+Creating test vector time: 0.014000 seconds
+Creating test vector time: 2.269000 seconds
+Creating test vector time: 0.014000 seconds
+Creating test vector time: 0.024000 seconds
+Creating test vector time: 2.304000 seconds
+Creating test vector time: 0.020000 seconds
+Creating test vector time: 0.014000 seconds
+Creating test vector time: 1.955000 seconds
+Creating test vector time: 2.200000 seconds
+Creating test vector time: 2.005000 seconds
+Creating test vector time: 1.958000 seconds

@@ -13,6 +13,11 @@ int main()
     //test_sub_single_word();
     //test_add();
     //test_sub_core();
-    measure_time();
+    //measure_time();
+    //test_large_number_square();
+    test_squc(); 
+
+
+\
     return 0;
 }

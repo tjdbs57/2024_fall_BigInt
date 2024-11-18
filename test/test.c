@@ -33,6 +33,7 @@ void test_set_by_array() {
 
 }
 
+/*
 void test_bi_string() {
     bigint* x = NULL; 
     bigint* y = NULL; 
@@ -69,6 +70,7 @@ void test_bi_string() {
     bi_delete(&x);
     bi_delete(&y);
 }
+*/
 
 void print_bi_hex_py(IN const bigint* x) 
 {
@@ -99,6 +101,7 @@ void print_bi_hex_py(IN const bigint* x)
 #endif
     }
 }
+
 
 void test_add() 
 {  
@@ -165,7 +168,7 @@ void test_sub_core()
 void measure_time()
 {
     clock_t start = clock();
-    test_add();
+    //test_add();
     clock_t end = clock();
     double seconds = (double)(end - start) / CLOCKS_PER_SEC;
 
@@ -175,3 +178,56 @@ void measure_time()
         fclose(log_file);
     }
 }
+
+void test_bi_string() {
+    bigint* x = NULL; 
+    //bigint* y = NULL; 
+    bigint* z = NULL;
+    //char* test_str1 = "1234567890123456"; 
+    char* test_str1 = "464025960900fbeb060d79c742e2dd668db4d034"; 
+    int base = 16; 
+    int sign = NON_NEGATIVE; 
+
+
+    if (bi_set_by_string(&x, sign, test_str1, base) != 0) {
+        printf("Failed to set bigint from string '%s'.\n", test_str1);
+        return;
+    }
+    printf("First bigint : ");
+    bi_show_hex(x);
+
+    Squaring(&x, &z);
+
+    printf("\nResult : ");
+    bi_show_hex(z);
+
+    bi_delete(&x);
+    bi_delete(&z);
+}
+
+
+void test_squc() 
+{  
+    for(int i = 0 ; i < TEST_CASE; i++)
+    {
+        bigint *x = NULL;
+        bigint *z = NULL;
+
+        int wordlen1 = rand() % 10 + 1; 
+        //int sign = rand() % 2 ;  // NEGATIVE를 1로 변경 후 실행해야함
+        int sign = NON_NEGATIVE;
+
+        bi_gen_rand(&x, sign, wordlen1);
+        
+        print_bi_hex_py(x);                         
+        printf(" * "); print_bi_hex_py(x);                    
+        printf(" == "); 
+        Squaring(&x, &z);
+        print_bi_hex_py(z);                            
+        printf("\n");  
+
+        bi_delete(&x);
+        bi_delete(&z);
+    }
+}
+
