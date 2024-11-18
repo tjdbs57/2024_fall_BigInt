@@ -1,4 +1,4 @@
-#ifndef BIGINT_H
+#ifndef UTILS_H
 #include "bigint.h"
 
 #define MEM_ALLOCATION_FAIL                                                    \
@@ -272,7 +272,119 @@ void reduction(IN bigint* x, IN int r, OUT bigint* result);
  * @return 1 if the big integer is zero, otherwise 0 if it is non-zero.
  */
 int is_zero(IN bigint* x);
+
+/**
+ * @brief Performs a left shift operation on a `bigint` by a specified number of words.
+ * @details This function shifts the words in a `bigint` object `x` to the left by `shift_words` positions, 
+ *          effectively appending zeros to the lower-order positions. The function reallocates memory 
+ *          to accommodate the new size and ensures the integrity of the `bigint` structure.
+ * @param[in, out] x A double pointer to the `bigint` to be shifted. 
+ *                   The structure will be updated to reflect the shift.
+ * @param[in] shift_words The number of word positions to shift. Must be a non-negative integer.
+ * @pre `x` must point to a valid, initialized `bigint` object.
+ *      `shift_words` must be non-negative.
+ * @post The `bigint` pointed to by `x` is updated:
+ *       - Its words are shifted to the left by `shift_words` positions.
+ *       - Newly created lower-order positions are initialized to zero.
+ *       - The `wordlen` of the `bigint` is increased by `shift_words`.
+ * @note 
+ * - If `shift_words` is negative, an error message is printed to `stderr`, and the function returns without performing any operation.
+ * - Memory for the `bigint` is reallocated using `realloc`. If allocation fails, the program exits with an error.
+ * - The function assumes that the `bigint` structure has attributes `a` (an array of words) and `wordlen` (length of the array).
+ * @warning This function modifies the memory of `x` directly and may reallocate it. 
+ *          Ensure no other references are holding the original pointer before calling this function.
+ */
 void left_shift_word(INOUT bigint** x, IN int shift_words);
 
-void swap_bigint(IN bigint** x, IN bigint** y);
-#endif
+/**
+ * @brief Swaps the values of two `bigint` pointers.
+ * @details Exchanges the pointers of two `bigint` objects `x` and `y`. 
+ *          This effectively swaps the two `bigint` structures without copying their contents.
+ * @param[in, out] x A double pointer to the first `bigint` object.
+ * @param[in, out] y A double pointer to the second `bigint` object.
+ * @pre `x` and `y` must be valid, initialized double pointers to `bigint` objects.
+ * @post The values of `*x` and `*y` are swapped. The `bigint` objects they point to are unchanged, 
+ *       but the pointers themselves are exchanged.
+ * @note This function operates only on the pointers and does not modify the actual contents of the `bigint` objects.
+ */
+void swap_bigint(INOUT bigint** x, INOUT bigint** y);
+
+/**
+ * @brief Refines the word length of a `bigint` by removing a specified number of words.
+ * @details This function adjusts the word length of a `bigint` object `x` by reducing it by `num_words`. 
+ *          It reallocates memory if necessary and ensures the integrity of the `bigint` structure.
+ *          If the result represents zero (single word with value `0`), the sign is reset to `NON_NEGATIVE`.
+ * @param[in] x A pointer to the `bigint` object to be refined.
+ * @param[in] num_words The number of words to remove from the end of the `bigint`.
+ * @pre `x` must be a valid pointer to an initialized `bigint` object.
+ *      `num_words` should not exceed the current word length of `x`.
+ * @post The `bigint`'s word length is reduced by `num_words`, and its memory is resized accordingly.
+ *       If the resulting `bigint` represents zero, its sign is reset to `NON_NEGATIVE`.
+ * @note
+ * - If `x` is `NULL`, the function prints an error message (`INVALID_DATA`) and returns without performing any operation.
+ * - The function assumes that the `bigint` structure has attributes `a` (an array of words), `wordlen` (length of the array), 
+ *   and `sign` (the sign of the integer).
+ * - Memory reallocation is handled using `realloc`. Ensure proper error handling for memory operations if extended.
+ * @warning 
+ * - If `num_words` is greater than or equal to `x->wordlen`, the behavior may be undefined.
+ * - Always ensure that the `bigint` object `x` is valid before calling this function.
+ */
+void bi_refine_word(IN bigint* x, IN int num_words) ;
+
+/**
+ * @brief Ensures that the word length of a `bigint` is even.
+ * @details This function checks if the word length of the given `bigint` object `x` is odd. 
+ *          If it is, the function increases the word length by one, reallocates memory to 
+ *          accommodate the new size, and initializes the newly added word to zero.
+ * @param[in, out] x A pointer to the `bigint` object to be adjusted. 
+ *                   The structure is modified to ensure an even word length.
+ * @pre `x` must be a valid pointer to an initialized `bigint` object.
+ * @post If the original word length of `x` is odd:
+ *       - The word length is increased by one.
+ *       - Memory is reallocated to match the new size.
+ *       - The new higher-order word is initialized to zero.
+ * @note
+ * - If the word length of `x` is already even, no changes are made.
+ * - The function assumes that the `bigint` structure has attributes `a` (an array of words) and `wordlen` (length of the array).
+ * - Memory reallocation is handled using `realloc`. Ensure error handling for memory failures.
+ * @warning 
+ * - If memory allocation fails during `realloc`, the program prints an error message (`MEM_ALLOCATION_FAIL`) and exits.
+ * - This function modifies the memory directly, so ensure there are no conflicting references to the same `bigint`.
+ */
+void makeEven(INOUT bigint* x) ;
+
+/**
+ * @brief Matches the word lengths of two `bigint` objects by resizing them to the larger of their current lengths.
+ * @details This function adjusts the word lengths of two `bigint` objects `x` and `y` so that both have the same word length. 
+ *          If either `x` or `y` has a smaller word length than the maximum of the two, it reallocates memory and initializes 
+ *          the newly added words to zero.
+ * @param[in, out] x A pointer to the first `bigint` object. 
+ *                   Its word length and memory may be modified to match the other `bigint`.
+ * @param[in, out] y A pointer to the second `bigint` object. 
+ *                   Its word length and memory may be modified to match the other `bigint`.
+ * @pre Both `x` and `y` must point to valid, initialized `bigint` objects.
+ * @post 
+ * - The word lengths of `x` and `y` are equal and match the larger of their original word lengths.
+ * - Memory is reallocated for either `x` or `y` (or both) if necessary.
+ * - Any newly added words are initialized to zero.
+ * @note
+ * - The function assumes that the `bigint` structure has attributes `a` (an array of words) and `wordlen` (length of the array).
+ * - Memory reallocation is performed using `realloc`. Proper error handling is in place to terminate the program if allocation fails.
+ * @warning 
+ * - If memory allocation fails during `realloc`, the program prints an error message (`MEM_ALLOCATION_FAIL`) and exits.
+ * - Ensure no conflicting references to the same `bigint` objects are active when calling this function.
+ */
+void match_wordlen(INOUT bigint* x, INOUT bigint* y);
+
+/**
+ * @brief Resets all words in a `bigint` to zero.
+ * @details This function iterates through all words in the given `bigint` object `x` and sets each word to zero. 
+ *          It does not alter the word length of the `bigint`, only the values of the words.
+ * @param[in, out] x A pointer to the `bigint` object to be reset.
+ * @pre `x` must be a valid pointer to an initialized `bigint` object.
+ * @post All words in the `bigint` pointed to by `x` are set to zero, but the word length remains unchanged.
+ * @note This function assumes that the `bigint` structure has an attribute `a` (an array of words) and `wordlen` (the number of words).
+ */
+void bi_reset(INOUT bigint* x);
+
+#endif  //utils.h

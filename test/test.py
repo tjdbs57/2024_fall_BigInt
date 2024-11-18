@@ -15,7 +15,11 @@ def evaluate_expression(expression):
     try:
         left_value = eval(left_side)
         right_value = eval(right_side)
-        return left_value == right_value
+        result = left_value == right_value
+        if result == False:
+            print(f"{expression} : false")
+        else:
+            return result
     except Exception as e:
         print(f"Error evaluating expression '{expression}': {e}")
         return False

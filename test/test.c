@@ -38,8 +38,8 @@ void test_bi_string() {
     bigint* x = NULL; 
     bigint* y = NULL; 
     bigint* z = NULL;
-    char* test_str1 = "987654321"; 
-    char* test_str2 = "123456789"; 
+    char* test_str2 = "1111111111111"; 
+    char* test_str1 = "12121212121213456785321"; 
 
     int base = 16; 
     int sign = NON_NEGATIVE; 
@@ -61,12 +61,11 @@ void test_bi_string() {
     printf("\nSecond bigint: ");
     bi_show_hex(y);
 
-    bi_new(&z, x->wordlen + y->wordlen);
+    //bi_new(&z, x->wordlen + y->wordlen);
 
-    bi_show_hex(x);
-    mul_core_tx(&x, &y, &z);
+    mul_core_improved(&x, &y, &z);
 
-    //sub_core(&x, &y, &z);
+    //add_core(&x, &y, &z);
 //    print_bi_hex_py(x);                         
     // printf(" - "); print_bi_hex_py(y);                    
     // printf(" == "); print_bi_hex_py(z);                            
@@ -148,7 +147,7 @@ void test_sub_core()
         //int wordlen2 = rand() % 96 + 1;  
         int wordlen1= 32;
         int wordlen2=32;
-        int sign = NON_NEGATIVE;
+        int sign = rand() % 2;
 
         bi_gen_rand(&x, sign, wordlen1);
         bi_gen_rand(&y, sign, wordlen2);
@@ -180,14 +179,15 @@ void test_mul()
         bigint *y = NULL;
         bigint *z = NULL;
 
-        int wordlen1 = rand() % 10 + 1; 
-        int wordlen2 = rand() % 10 + 1;  
-        int sign = rand() % 2;
+        int wordlen1 = rand() % 96 + 1; 
+        int wordlen2 = rand() % 96 + 1;  
+        int sign = NON_NEGATIVE;
 
         bi_gen_rand(&x, sign, wordlen1);
         bi_gen_rand(&y, sign, wordlen2);
         
-        mul_core_tx(&x, &y, &z);
+
+        mul_core_improved(&x, &y, &z);
         print_bi_hex_py(x);                         
         printf(" * "); print_bi_hex_py(y);                    
         printf(" == "); print_bi_hex_py(z);                            

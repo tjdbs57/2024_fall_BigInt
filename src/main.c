@@ -19,5 +19,6 @@ int main()
     //test_mul_single_word();
     //test_left_shift_word();
     test_mul();
+    //test_squc();
     return 0;
 }

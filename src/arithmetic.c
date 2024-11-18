@@ -1,5 +1,30 @@
 #include "arithmetic.h"
 
+void or(bigint** x, bigint** y, bigint** z) 
+{
+    int min_len = MINIMUM((*x)->wordlen, (*y)->wordlen);
+    int max_len = MAXIMUM((*x)->wordlen, (*y)->wordlen);
+
+    // or
+    for (int i = 0; i < min_len; i++)
+        (*x)->a[i] = (*x)->a[i] | (*y)->a[i];
+    
+    // length
+    for (int i = min_len; i < max_len; i++) 
+    {
+        if((*x)->wordlen > (*y)->wordlen)
+            (*z)->a[i] = (*x)->a[i];
+        else
+            (*z)->a[i] = (*y)->a[i];
+    }
+
+    (*z)->wordlen = max_len; 
+
+    if ((*x)->sign != (*y)->sign)
+        (*z)->sign = NEGATIVE;
+
+}
+
 void add_single_word(IN word A, IN word B, IN word carry_in, OUT word* carry_out, OUT word* result)
 {
     word sum = A + B;  
@@ -51,6 +76,50 @@ void add_core(IN bigint** x, IN bigint** y, OUT bigint** z)
 
 }
 
+void add(IN bigint **x, IN bigint **y, OUT bigint **z) {
+
+    // A가 0인지 확인
+    if(is_zero(*x)==0){
+        bi_assign(z, *y); // A가 0이면 B 반환
+        return;
+    }
+
+    if(is_zero(*y)==0){
+        bi_assign(z, *x); // B가 0이면 A 반환
+        return;
+    }
+
+    // Case: A가 양수이고 B가 음수인 경우
+    if ((*x)->sign == NON_NEGATIVE && (*y)->sign == NEGATIVE) {
+        (*y)->sign=NON_NEGATIVE; //절댓값으로 변환
+        sub(x, y, z);
+        (*y)->sign=NEGATIVE; //부호 되돌리기
+        return;
+    }
+
+    // A가 음수이고 B가 양수인 경우
+    if ((*x)->sign == NEGATIVE && (*y)->sign == NON_NEGATIVE) {
+        
+        (*x)->sign=NON_NEGATIVE; //절댓값으로 변환
+        sub(y, x, z);
+        (*x)->sign=NEGATIVE; //부호 되돌리기
+        return;
+    }
+
+    // A와 B의 부호가 같은 경우
+    if ((*x)->sign == (*y)->sign) {
+    
+        if((*x)->wordlen >= (*y)->wordlen){
+            add_core(x,y,z);
+        }
+        else{
+            add_core(y,x,z);
+        }
+        (*z)->sign = (*x)->sign;
+    }
+
+}
+
 void sub_single_word(IN word A, IN word B, IN word borrow_in, OUT word* borrow_out, OUT word* result) 
 {
     word sub = A - borrow_in;
@@ -92,36 +161,6 @@ void sub_core(IN bigint** x, IN bigint** y, OUT bigint** z)
     bi_refine(*x);
     bi_refine(*y);
     bi_refine(*z);
-}
-
-
-void mul_single_word(IN word A, IN word B, OUT bigint** result)
-{
-    const int half_word = WORD_BITLEN / 2;
-    const word mask     = (ONE << half_word) - 1;
-
-    word A0 = A & mask;
-    word A1 = A >> half_word;
-    
-    word B0 = B & mask;
-    word B1 = B >> half_word;
-
-    word T0 = A0 * B1;
-    word T1 = A1 * B0;
-
-    T0 = T0 + T1;
-    T1 = T0 < T1;
-
-    word C0 = A0 * B0;
-    word C1 = A1 * B1;
-
-    word T = C0;
-    C0 += (T0 << half_word);
-    C1 += (T1 << half_word) + (T0 >> half_word) + (C0 < T);
-    
-    (*result)->a[0] = C0;
-    (*result)->a[1] = C1;
-
 }
 
 void sub(IN bigint** x, IN bigint** y, OUT bigint** z) {
@@ -205,51 +244,34 @@ void sub(IN bigint** x, IN bigint** y, OUT bigint** z) {
     }
 }
 
+void mul_single_word(IN word A, IN word B, OUT bigint** result)
+{
+    const int half_word = WORD_BITLEN / 2;
+    const word mask     = (ONE << half_word) - 1;
 
-void add(IN bigint **x, IN bigint **y, OUT bigint **z) {
-
-    // A가 0인지 확인
-    if(is_zero(*x)==0){
-        bi_assign(z, *y); // A가 0이면 B 반환
-        return;
-    }
-
-    if(is_zero(*y)==0){
-        bi_assign(z, *x); // B가 0이면 A 반환
-        return;
-    }
-
-    // Case: A가 양수이고 B가 음수인 경우
-    if ((*x)->sign == NON_NEGATIVE && (*y)->sign == NEGATIVE) {
-        (*y)->sign=NON_NEGATIVE; //절댓값으로 변환
-        sub(x, y, z);
-        (*y)->sign=NEGATIVE; //부호 되돌리기
-        return;
-    }
-
-    // A가 음수이고 B가 양수인 경우
-    if ((*x)->sign == NEGATIVE && (*y)->sign == NON_NEGATIVE) {
-        
-        (*x)->sign=NON_NEGATIVE; //절댓값으로 변환
-        sub(y, x, z);
-        (*x)->sign=NEGATIVE; //부호 되돌리기
-        return;
-    }
-
-    // A와 B의 부호가 같은 경우
-    if ((*x)->sign == (*y)->sign) {
+    word A0 = A & mask;
+    word A1 = A >> half_word;
     
-        if((*x)->wordlen >= (*y)->wordlen){
-            add_core(x,y,z);
-        }
-        else{
-            add_core(y,x,z);
-        }
-        (*z)->sign = (*x)->sign;
-    }
+    word B0 = B & mask;
+    word B1 = B >> half_word;
+
+    word T0 = A0 * B1;
+    word T1 = A1 * B0;
+
+    T0 = T0 + T1;
+    T1 = T0 < T1;
+
+    word C0 = A0 * B0;
+    word C1 = A1 * B1;
+
+    word T = C0;
+    C0 += (T0 << half_word);
+    C1 += (T1 << half_word) + (T0 >> half_word) + (C0 < T);
+    
+    (*result)->a[0] = C0;
+    (*result)->a[1] = C1;
 
 }
-
 
 void mul_core_tx(IN bigint** x, IN bigint** y, OUT bigint** z)
 {
@@ -284,4 +306,77 @@ void mul_core_tx(IN bigint** x, IN bigint** y, OUT bigint** z)
     bi_delete(&tmp);
     if((*x)->sign != (*y)->sign)
         (*z)->sign = NEGATIVE;
+}
+
+
+void mul_core_improved(IN bigint** x, IN bigint** y, OUT bigint** z)
+{
+    match_wordlen(*x, *y);
+    makeEven(*x);
+    makeEven(*y);
+
+    int n = (*x)->wordlen; //2n
+    int m = (*x)->wordlen; //2m
+
+    bi_new(z, n + m);
+
+    int p = n / 2;
+
+    bigint *T0 = NULL, *T1 = NULL, *T = NULL;
+    bigint *tmp0 = NULL, *tmp1 = NULL, *tmp = NULL;
+
+    bi_new(&T0, 2*p);
+    bi_new(&T1, 2*p+1);
+    bi_new(&T , n + m);
+
+    bi_new(&tmp0, 2*p);
+    bi_new(&tmp1, 2*p+1);
+    bi_new(&tmp , (*z)->wordlen);
+
+    for (int i = 0; i < 2 * p; i++)
+    {
+        bi_reset(T0); 
+        bi_reset(T1);
+
+        for(int k = 0; k < p ; k++) {
+            bi_reset(tmp0);
+            bi_reset(tmp1);
+
+            mul_single_word((*x)->a[2*k], (*y)->a[i], &tmp0);
+            mul_single_word((*x)->a[2*k+1], (*y)->a[i], &tmp1);
+
+            left_shift_word(&tmp0, 2*k);
+            bi_refine_word(tmp0, 2*k);
+            or(&tmp0, &T0, &T0);
+
+            bi_assign(&T0, tmp0);
+       
+            left_shift_word(&tmp1, 2*k);
+            bi_refine_word(tmp1, 2*k);
+            or(&tmp1, &T1, &T1);
+
+            bi_assign(&T1, tmp1);
+
+        }
+        left_shift_word(&T1, 1);
+        add_core(&T1, &T0, &T);
+
+        left_shift_word(&T, i);
+        bi_assign(&tmp, *z);
+        add_core(&tmp, &T, z);
+    }
+
+    // Clean up 
+    bi_delete(&T0);
+    bi_delete(&T1);
+    bi_delete(&T);    
+    bi_delete(&tmp0);
+    bi_delete(&tmp1);
+    bi_delete(&tmp);
+    bi_refine(*x);
+    bi_refine(*y);
+
+    if ((*x)->sign != (*y)->sign)
+        (*z)->sign = NEGATIVE;
+ 
 }

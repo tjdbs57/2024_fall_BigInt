@@ -2,6 +2,23 @@
 #include "utils.h"
 
 /**
+ * @brief Performs a bitwise OR operation on two binary integers.
+ * @details This function computes the bitwise OR of two `bigint` objects `x` and `y`, and stores the result in `z`.
+ *          It handles word-level operations and ensures that the result's word length and sign are properly set.
+ * @param[in] x A double pointer to a `bigint` representing the first operand.
+ * @param[in] y A double pointer to a `bigint` representing the second operand.
+ * @param[out] z A double pointer to a `bigint` where the result of the bitwise OR operation will be stored.
+ * @pre `x` and `y` must point to valid `bigint` objects with properly initialized word lengths and data arrays.
+ *      `z` must be properly allocated to store the resulting `bigint`.
+ * @post The bitwise OR result of `(*x)` and `(*y)` is stored in `(*z)`.
+ *       The word length of `(*z)` is set to the maximum of the word lengths of `(*x)` and `(*y)`.
+ *       If the signs of `(*x)` and `(*y)` differ, the sign of `(*z)` is set to `NEGATIVE`.
+ * @note This function assumes that the `bigint` structure has attributes `a` (an array of words), 
+ *       `wordlen` (length of the array), and `sign` (the sign of the integer).
+ */
+void or(IN bigint** x, IN bigint** y, OUT bigint** z);
+
+/**
  * @brief Adds two words with carry handling.
  *
  * This function performs addition on two words (A and B) and incorporates
@@ -42,6 +59,25 @@ void add_single_word(IN word A, IN word B, IN word carry_in, OUT word* carry_out
  *       The result bigint will be allocated and must be freed by the caller when no longer needed.
  */
 void add_core(IN bigint** x, IN bigint** y, OUT bigint** z);
+
+/**
+ * @brief Adds two big integers x and y, and stores the result in z.
+ * 
+ * The function handles cases where one or both of the operands are zero, 
+ * as well as when the signs of x and y are different. If the signs of x and y 
+ * are different, it performs subtraction instead. If both have the same sign, 
+ * it performs addition.
+ * 
+ * @param[in] x Pointer to a pointer of the first bigint structure.
+ * @param[in] y Pointer to a pointer of the second bigint structure.
+ * @param[out] z Pointer to a pointer of the result bigint structure.
+ * 
+ * - If x is zero, the function assigns y to z.
+ * - If y is zero, the function assigns x to z.
+ * - If x and y have opposite signs, the function subtracts the smaller magnitude from the larger one.
+ * - If x and y have the same sign, the function adds them and assigns the resulting sign to z.
+ */
+void add(IN bigint **x, IN bigint **y, OUT bigint **z);
 
 /**
  * @brief Performs subtraction of B from A and manages borrowing.
@@ -93,27 +129,6 @@ void sub_core(IN bigint** x, IN bigint** y, OUT bigint** z);
  */
 void sub(IN bigint** x, IN bigint** y, OUT bigint** z);
 
-
-
-/**
- * @brief Adds two big integers x and y, and stores the result in z.
- * 
- * The function handles cases where one or both of the operands are zero, 
- * as well as when the signs of x and y are different. If the signs of x and y 
- * are different, it performs subtraction instead. If both have the same sign, 
- * it performs addition.
- * 
- * @param[in] x Pointer to a pointer of the first bigint structure.
- * @param[in] y Pointer to a pointer of the second bigint structure.
- * @param[out] z Pointer to a pointer of the result bigint structure.
- * 
- * - If x is zero, the function assigns y to z.
- * - If y is zero, the function assigns x to z.
- * - If x and y have opposite signs, the function subtracts the smaller magnitude from the larger one.
- * - If x and y have the same sign, the function adds them and assigns the resulting sign to z.
- */
-void add(IN bigint **x, IN bigint **y, OUT bigint **z);
-
 /**
  * @brief Multiplies two single words and stores the result in a bigint structure.
  *
@@ -131,6 +146,32 @@ void add(IN bigint **x, IN bigint **y, OUT bigint **z);
  */
 void mul_single_word(IN word A, IN word B, OUT bigint** result);
 
+/**
+ * @brief Multiplies two big integers and stores the result in the output.
+ * 
+ * This function performs multiplication of two big integers, `x` and `y`, and stores the result in `z`.
+ * It adjusts for the sign of the result and handles multiplication at the word level with shifting and addition.
+ * 
+ * @param[in] x Pointer to a pointer of the first bigint operand.
+ * @param[in] y Pointer to a pointer of the second bigint operand.
+ * @param[out] z Pointer to a pointer of the resulting bigint product.
+ */
 void mul_core_tx(IN bigint** x, IN bigint** y, OUT bigint** z);
 
-#endif
+/**
+ * @brief Multiplies two binary integers using an improved Textbook Multiplication algorithm.
+ * @details Wrapper function that performs optimized multiplication of two BINTs pointed to by `x` and `y`, 
+ *          and stores the result in `z`. This function improves the standard Textbook Multiplication 
+ *          by aligning word lengths, splitting calculations into smaller chunks, and handling shifts efficiently.
+ * @param[in] x A double pointer to a BINT representing the first operand.
+ * @param[in] y A double pointer to a BINT representing the second operand.
+ * @param[out] z A double pointer to a BINT where the result will be stored.
+ * @pre Both `x` and `y` must point to valid, initialized BINT objects. 
+ *      `z` must be properly allocated to store the resulting BINT.
+ * @post The result of multiplication is stored in the location pointed to by `z`.
+ * @note This function uses multiple helper functions, such as `mul_single_word`, `add_core`, 
+ *       and `left_shift_word`, to manage BINT arithmetic and memory efficiently.
+ */
+void mul_core_improved(IN bigint** x, IN bigint** y, OUT bigint** z);
+
+#endif  //arithmetic.h

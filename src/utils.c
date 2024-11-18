@@ -63,9 +63,18 @@ void bi_show_hex(IN bigint* x)
     }
     
     for (int i = x->wordlen - 1; i >= 0; i--) {
-        printf("%x", x->a[i]);
+#if WORD_BITLEN == 8
+        // For 8-bit words, use %02x format specifier for printing
+        printf("%x", (x)->a[i]);
+#elif WORD_BITLEN == 64
+        // For 64-bit words, use %016llx format specifier for printing
+        printf("%llx", (x)->a[i]);
+#else
+        // For other word sizes (typically 32-bit), use %08x format specifier for printing
+        printf("%x", (x)->a[i]);
+#endif
     }
-
+    printf("\n");
 }
 
 int bi_set_by_array(OUT bigint** x, IN int sign, IN word* a, IN int wordlen) 
@@ -86,7 +95,8 @@ int bi_set_by_array(OUT bigint** x, IN int sign, IN word* a, IN int wordlen)
 }
 
 
-int bi_set_by_string(OUT bigint** x, IN int sign, IN char* str, IN int base) {
+int bi_set_by_string(OUT bigint** x, IN int sign, IN char* str, IN int base) 
+{
     if (str == NULL || base < 2 || base > 16) {
         SET_STRING_FAIL;
         exit(1);
@@ -130,8 +140,11 @@ void bi_refine(INOUT bigint* x)
 {
     // NULL 체크
     if(x == NULL)
+    {
+        INVAILD_DATA;
         return;
-    
+    }
+
     int new_wordlen = x->wordlen;
     
     while(new_wordlen > 1) // at least one word needed
@@ -149,8 +162,29 @@ void bi_refine(INOUT bigint* x)
     
     if((x->wordlen == 1) && (x->a[0] == ZERO))
         x->sign = NON_NEGATIVE;
- }
+}
 
+void bi_refine_word(IN bigint* x, IN int num_words) 
+{
+    if(x == NULL)
+    {
+        INVAILD_DATA;
+        return;
+    }
+
+    int new_wordlen = x->wordlen - num_words;
+    
+    // Update the word length and reallocate memory if necessary
+    if(x->wordlen != new_wordlen) 
+    {
+        x->wordlen = new_wordlen;
+        x->a = (word*)realloc(x->a, sizeof(word)*new_wordlen);
+    }
+
+    // Reset the sign to false if the BINT represents zero
+    if((x->wordlen == 1) && (x->a[0] == ZERO))
+        x->sign = NON_NEGATIVE;
+}
 
 void bi_assign(OUT bigint** dest, IN bigint* src)
 {
@@ -206,30 +240,6 @@ void bi_set_zero(OUT bigint** x)
 
 int compareABS(IN bigint* x, IN bigint* y)
 {
-    int n = x->wordlen;
-    int m = y->wordlen;
-
-    if (n>m){
-        return 1;
-    }
-    else if(n<m){
-        return 0;
-    }
-    else{
-        for(int j=n-1; j>=0; j--){
-            if(x->a[j]>y->a[j]){
-                return 1;
-            }
-            else if(x->a[j]<y->a[j]){
-                return 0;
-            }
-        }
-    }
-    return 0;
-}
-
-int compareABS(IN bigint* x, IN bigint* y)
-{
     //x>y => return 1
     //x<y => return 0
     //x=y => return -1
@@ -255,6 +265,26 @@ int compareABS(IN bigint* x, IN bigint* y)
     return -1; //같을 땐 -1 반환
 }
 
+int compare(IN bigint* x, IN bigint* y)
+{
+    if(x->sign == NON_NEGATIVE && y->sign == NEGATIVE){
+        return 1;
+    }
+    else if(x->sign == NEGATIVE && y->sign == NON_NEGATIVE){
+        return 0;
+    }
+    else{
+        int ret = compareABS(x, y);
+
+        if(x->sign == NON_NEGATIVE){
+
+            return ret;
+        }
+        else{
+            return ret;
+        }
+    } 
+}
 
 int get_bit_length(IN bigint* x) 
 {
@@ -410,20 +440,19 @@ void reduction(IN bigint* x, IN int r, OUT bigint* result)
 
 void left_shift_word(INOUT bigint** x, IN int shift_words) 
 {
-    int new_wordlen =  (*x)->wordlen + shift_words;
-
     if (shift_words < 0) {
         fprintf(stderr, "Error: shift_amount is negative in 'left_shift_word'\n");
-        exit(1);
+        return;
     }
 
-    word *new_val = (*x)->a;
-    new_val = (word*) realloc((*x)->a, new_wordlen * sizeof(word));
-    if (!new_val) {
-        fprintf(stderr, "Error: Memory reallocation failed in 'left_shift_word'\n");
+    int new_wordlen =  (*x)->wordlen + shift_words;
+    word *new_array = (*x)->a; 
+    new_array = (word *) realloc((*x)->a, new_wordlen * sizeof(word));
+    if (!new_array) {
+        MEM_ALLOCATION_FAIL;
         exit(1);
     }
-    (*x)->a = new_val; // Update the val pointer
+    (*x)->a = new_array;
 
     // Shift the existing words to the left by the shift amount
     for (int i = new_wordlen - 1; i >= shift_words; i--) {
@@ -459,10 +488,74 @@ int is_zero(IN bigint* x) {
     return result;
 }
 
-void swap_bigint(IN bigint** x, IN bigint** y)
+void swap_bigint(INOUT bigint** x, INOUT bigint** y)
 {
     bigint* tmp;
     tmp = *x;
     *x = *y;
     *y = tmp;
+}
+
+void makeEven(INOUT bigint* x) 
+{
+    // Check if wordlen is odd
+    if ((x)->wordlen % 2 == 1) {
+        (x)->wordlen++;
+
+        // Reallocate memory for val
+        (x)->a = realloc((x)->a, (x)->wordlen * sizeof(word));
+        if (!(x)->a) {
+            MEM_ALLOCATION_FAIL;
+            exit(1); 
+        }
+
+        // Fill the new WORD with 0
+        (x)->a[(x)->wordlen - 1] = ZERO;
+    }
+}
+
+void match_wordlen(INOUT bigint* x, INOUT bigint* y)
+{
+    int max_wordlen = MAXIMUM(x->wordlen, y->wordlen);
+
+    // Resize x if its wordlen is smaller than max_wordlen
+    if(x->wordlen < max_wordlen) {
+        word *tmp = x->a;
+        tmp = (word*)realloc(x->a, max_wordlen * sizeof(word));
+        if (!tmp) {
+            MEM_ALLOCATION_FAIL;
+            exit(1);
+        }
+        x->a = tmp;
+
+        // Initialize the newly allocated WORDs with 0
+        for(int i = x->wordlen; i < max_wordlen; i++)
+            x->a[i] = ZERO;
+
+        x->wordlen = max_wordlen;
+    }
+
+    // Resize y if its wordlen is smaller than max_wordlen
+    if(y->wordlen < max_wordlen) {
+       word *tmp = y->a;
+        tmp = (word*)realloc(y->a, max_wordlen * sizeof(word));
+        if (!tmp) {
+            MEM_ALLOCATION_FAIL;
+            exit(1);
+        }
+        y->a = tmp;
+    
+
+        // Initialize the newly allocated WORDs with 0
+        for(int i = y->wordlen; i < max_wordlen; i++)
+            y->a[i] = ZERO;
+
+        y->wordlen = max_wordlen;
+    }
+}
+
+void bi_reset(INOUT bigint* x)
+{
+    for (int i = 0; i < x->wordlen; i++)
+        x->a[i] = ZERO;
 }
