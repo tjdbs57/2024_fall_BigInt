@@ -15,8 +15,9 @@ int main()
     //test_sub_single_word();
     //test_add();
     //test_sub_core();
-    //measure_time();
-    //test_mul_single_word();
+    //test_sub(); 
+    //test_addition();
+    //test_right_shift_word();
     //test_left_shift_word();
     test_mul();
     //test_squc();

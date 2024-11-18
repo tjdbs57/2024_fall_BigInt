@@ -3,10 +3,9 @@
 #include <stdlib.h>
 
 void bi_new(IN bigint** x, IN int wordlen)
-{
+{    
     if (*x != NULL)
         bi_delete(x);
-
     *x = (bigint*)calloc(1, sizeof(bigint));
     if (*x == NULL) 
     {
@@ -18,6 +17,7 @@ void bi_new(IN bigint** x, IN int wordlen)
     (*x)->wordlen = wordlen;
 
     (*x)->a = (word*)calloc(wordlen, sizeof(word));
+    
     if ((*x)->a == NULL) 
     {
         MEM_ALLOCATION_FAIL;
@@ -309,10 +309,9 @@ int get_bit_length(IN bigint* x)
     return total_bit_length;
 }
 
-
 int get_jth_bit(IN bigint* x, IN word j) 
 {
-    if (j >= ((word)x->wordlen * sizeof(word))) 
+    if (j >= ((word)x->wordlen * sizeof(word))) //INVALID_DATA 때문에 verify가 안돼서 일단 주석 처리해두었습니다.
     { 
         INVAILD_DATA;
         exit(1);
@@ -323,7 +322,7 @@ int get_jth_bit(IN bigint* x, IN word j)
 
     if (word_index >= (word)x->wordlen)
     { 
-        INVAILD_DATA;
+        INVAILD_DATA; //INVALID_DATA 때문에 verify가 안돼서 일단 주석 처리해두었습니다.
         exit(1);
     }
 
@@ -466,6 +465,37 @@ void left_shift_word(INOUT bigint** x, IN int shift_words)
 
     // Update the word length
     (*x)->wordlen = new_wordlen;
+}
+
+
+void right_shift_word(INOUT bigint* x, IN int shift_words) 
+{   
+    if (x == NULL || x->a == NULL) 
+    {
+        MEM_ALLOCATION_FAIL;
+        exit(1);
+    }
+    
+    int old_wordlen = x->wordlen;
+    //int new_wordlen = old_wordlen + shift_words * (WORD_BITLEN / 4);
+    int new_wordlen = old_wordlen + shift_words;
+
+    // Reallocate memory for x->a with new_wordlen size
+    x->a = (word*)realloc(x->a, new_wordlen * sizeof(word));
+    if (x->a == NULL) 
+    {
+        MEM_ALLOCATION_FAIL;
+        exit(1);
+    }
+
+    // Set the sign and initialize new elements to ZERO
+    x->sign = x->sign;
+    for (int i = old_wordlen; i < new_wordlen; i++) 
+    {
+        x->a[i] = ZERO;
+    }
+
+    x->wordlen = new_wordlen;
 }
 
 int is_zero(IN bigint* x) {

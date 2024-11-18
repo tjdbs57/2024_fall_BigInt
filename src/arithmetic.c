@@ -143,11 +143,11 @@ void sub_core(IN bigint** x, IN bigint** y, OUT bigint** z)
     int m = (*y)->wordlen; 
 
     int max_len = MAXIMUM(n, m);
-    bi_new(z, max_len); 
+    bi_new(z, max_len); //안되는 중
 
     word borrow_out = ZERO; 
     word res        = ZERO; 
-
+    
     for (int i = 0; i < max_len; i++) {
 
         word x_word = (i < n) ? (*x)->a[i] : 0; 
@@ -164,13 +164,15 @@ void sub_core(IN bigint** x, IN bigint** y, OUT bigint** z)
 }
 
 void sub(IN bigint** x, IN bigint** y, OUT bigint** z) {
+    bigint* A=*x;
+    bigint* B=*y;
     
     // A가 0인 경우 결과는 -B
-    if (is_zero(*x) == 0) {  // Dereference x and y
-        bi_new(z, (*y)->wordlen);
-        (*z)->sign = ((*y)->sign == NON_NEGATIVE) ? NEGATIVE : NON_NEGATIVE;
-        for (int i = 0; i < (*y)->wordlen; i++) {
-            (*z)->a[i] = (*y)->a[i]; 
+    if (is_zero(A) == 0) {  // Dereference x and y
+        bi_new(z, B->wordlen);
+        (*z)->sign = (B->sign == NON_NEGATIVE) ? NEGATIVE : NON_NEGATIVE;
+        for (int i = 0; i < B->wordlen; i++) {
+            (*z)->a[i] = B->a[i]; 
         }
 
         bi_refine(*z);
@@ -178,17 +180,17 @@ void sub(IN bigint** x, IN bigint** y, OUT bigint** z) {
     }
 
     // B가 0인 경우 결과는 A
-    if (is_zero(*y) == 0) {  // Dereference x and y
-        bi_assign(z, *x);
+    if (is_zero(B) == 0) {  // Dereference x and y
+        bi_assign(z, A);
         bi_refine(*z);
         return;
     }
 
     // A와 B의 절댓값이 같은 경우
-    if ((*x)->wordlen == (*y)->wordlen) {
+    if (A->wordlen == B->wordlen) {
         int equal = 1; // 두 bigint가 같은지 여부
-        for (int i = 0; i < (*x)->wordlen; i++) {
-            if ((*x)->a[i] != (*y)->a[i]) {
+        for (int i = 0; i < A->wordlen; i++) {
+            if (A->a[i] != B->a[i]) {
                 equal = 0; // 다르면 equal을 0으로 설정
                 break;
             }
@@ -196,14 +198,14 @@ void sub(IN bigint** x, IN bigint** y, OUT bigint** z) {
 
         if (equal) {
             //A와 B의 절댓값과 부호 모두 같은 경우
-            if((*x)->sign == (*y)->sign){
+            if(A->sign == B->sign){
                 bi_set_zero(z);
                 bi_refine(*z);
             }
             //A와 B의 절댓값이 같고 부호가 반대인 경우
             else{
-                add_core(y, x, z);  // No need to dereference, pass as is
-                (*z)->sign = (*x)->sign;
+                add_core(&B, &A, z);  // No need to dereference, pass as is
+                (*z)->sign = A->sign;
             }
             return;
         }
@@ -379,4 +381,110 @@ void mul_core_improved(IN bigint** x, IN bigint** y, OUT bigint** z)
     if ((*x)->sign != (*y)->sign)
         (*z)->sign = NEGATIVE;
  
+}
+
+void bi_long_div(IN bigint** x, IN bigint** y, OUT bigint** q, OUT bigint** r)
+{
+    
+    bigint* tmp=NULL;
+    bi_new(&tmp,1);
+
+    if(is_zero(*y)==0){ // A / 0 = INVALID
+        INVAILD_DATA;
+        return;
+    }
+
+    if(is_zero(*x)==0){ // 0 / B = 0...0
+        
+        bi_set_zero(q);
+        bi_set_zero(r);
+        return;
+    }
+    
+    if(compareABS(*x,*y)==0){ //A < B -> Q=0, R=A 
+        bi_set_zero(q);
+        bi_assign(r,*x);
+
+        if((*x)->sign==NEGATIVE && (*y)->sign==NON_NEGATIVE){
+            bigint* one=NULL;
+            bi_set_one(&one);
+        
+            // Q <- -Q-1
+            add(q,&one,&tmp);
+            bi_assign(q,tmp);
+            (*q)->sign=NEGATIVE;
+
+            //R <- B-R
+            sub_core(y,r,&tmp);
+            bi_assign(r,tmp);
+        }
+
+        return;
+    }
+
+    if(compareABS(*x,*y)==-1){ // |A| == |B| =>Q=1, R=0
+        bi_set_one(q);
+        bi_set_zero(r);
+
+        if((*x)->sign==NEGATIVE && (*y)->sign==NON_NEGATIVE){
+            (*q)->sign=NEGATIVE;
+        }
+
+        return;
+    }
+
+    int q_len=(*x)->wordlen - (*y)->wordlen +1;
+    int r_len=(*y)->wordlen;
+    bi_new(q, q_len);
+    bi_new(r,r_len);
+    
+    for(int i=(*x)->wordlen*WORD_BITLEN-1; i>=0; i--){
+
+        //R<-2R+a_j
+        left_shift_bit(*r,1); // 2R
+
+        (*r)->a[0] ^= (((*x)->a[i / WORD_BITLEN] >> (i % WORD_BITLEN)) & 1); // +a_j
+
+        //if R >= B
+        int comp=compare(*r,*y);
+        if (comp==1 || comp==-1) {
+
+            //Q <- Q+2^j = Q^(1<<j)
+            int word_index = i / WORD_BITLEN;       
+            int bit_index = i % WORD_BITLEN;        
+
+            (*q)->a[word_index] ^= (1 << bit_index);
+
+            //r <- r-b
+            sub_core(r,y,&tmp);
+            bi_assign(r,tmp);
+        }
+    }
+
+    if((*x)->sign==NEGATIVE){
+
+        //R <- B-R
+        sub_core(y,r,&tmp);
+        bi_assign(r,tmp);
+
+        if(is_zero(*r)==0){
+            //q <- -q
+            (*q)->sign=NEGATIVE;
+            return;
+        }
+        else{
+            bigint* one=NULL;
+            bi_set_one(&one);
+        
+            // Q <- -Q-1
+            add(q,&one,&tmp);
+            bi_assign(q,tmp);
+            (*q)->sign=NEGATIVE;
+        }
+
+    }
+       
+    bi_refine(*q);
+    bi_refine(*r);
+
 }
