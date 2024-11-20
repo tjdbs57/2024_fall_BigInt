@@ -21,5 +21,7 @@ int main()
     //test_left_shift_word();
     test_mul();
     //test_squc();
+
+    //hihi
     return 0;
 }
