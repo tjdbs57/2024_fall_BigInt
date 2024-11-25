@@ -20,11 +20,14 @@ ifeq ($(OS),Windows_NT)
 	MKDIR = mkdir
 	RMDIR = rmdir /S /Q
 	RUN = $(BINDIR)\program.exe
+	LIBS = -lpsapi
 else
 	TARGET = $(BINDIR)/program
 	MKDIR = mkdir -p
 	RMDIR = rm -rf
 	RUN = ./$(TARGET)
+	LIBS =
+
 endif
 
 # Default target
@@ -34,7 +37,7 @@ dir:
 	@$(MKDIR) $(OBJDIR) $(BINDIR)
 
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $@
+	$(CC) $(CFLAGS) $(OBJS) -o $@ $(LIBS)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -63,4 +66,9 @@ verify: $(TARGET)
 check: 
 	(cd test && python cal.py)
 
-.PHONY: all clean rebuild run verify check dir
+measure:
+	(cd bin && ./program > cycle_single.txt)
+	(cd bin && mv cycle_single.txt ../test/)
+	(cd test && python time.py)
+
+.PHONY: all clean rebuild run verify check dir measure

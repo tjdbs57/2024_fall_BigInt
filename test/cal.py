@@ -18,6 +18,14 @@ class BigNumberCalculator:
         except ZeroDivisionError:
             return "Error: Division by zero is not allowed."
 
+    def modular(self, num1: str, num2: str) -> str:
+        try:
+            result = int(num1, 16) % int(num2, 16)
+            return hex(result)
+        except ZeroDivisionError:
+            return "Error: Division by zero is not allowed."
+
+
 # Calculator instance
 calculator = BigNumberCalculator()
 
@@ -29,7 +37,8 @@ print("1: Addition (+)")
 print("2: Subtraction (-)")
 print("3: Multiplication (*)")
 print("4: Division (/)")
-operation = input("Enter the number of the operation (1, 2, 3, or 4): ")
+print("5: Modular (%)")
+operation = input("Enter the number of the operation (1, 2, 3, 4, or 5): ")
 
 # Perform chosen operation
 if operation == "1":
@@ -40,6 +49,8 @@ elif operation == "3":
     result = calculator.multiply(num1, num2)
 elif operation == "4":
     result = calculator.divide(num1, num2)
+elif operation == "5":
+    result = calculator.modular(num1, num2)
 else:
     result = "Error: Invalid operation."
 

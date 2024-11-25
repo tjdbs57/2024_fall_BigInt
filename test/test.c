@@ -37,9 +37,11 @@ void test_set_by_array() {
 void test_bi_string() {
     bigint* x = NULL; 
     bigint* y = NULL; 
-    bigint* z = NULL;
-    char* test_str2 = "1111111111111"; 
-    char* test_str1 = "12121212121213456785321"; 
+    //bigint* z = NULL;
+    bigint* q = NULL;
+    bigint* r = NULL;
+    char* test_str2 = "12345678abcdef5469210732abcdef64";  //5word 
+    char* test_str1 = "1234567812345678123456781234567812345678";  //5word 
 
     int base = 16; 
     int sign = NON_NEGATIVE; 
@@ -53,6 +55,7 @@ void test_bi_string() {
     bi_show_hex(x);
     
 
+
     if (bi_set_by_string(&y, sign, test_str2, base) != 0) {
         printf("Failed to set bigint from string '%s'.\n", test_str2);
         bi_delete(&x);
@@ -61,21 +64,15 @@ void test_bi_string() {
     printf("\nSecond bigint: ");
     bi_show_hex(y);
 
-    //bi_new(&z, x->wordlen + y->wordlen);
+    div_long_core(&x, &y, &q, &r);
 
-    mul_core_improved(&x, &y, &z);
-
-    //add_core(&x, &y, &z);
-//    print_bi_hex_py(x);                         
-    // printf(" - "); print_bi_hex_py(y);                    
-    // printf(" == "); print_bi_hex_py(z);                            
-    // printf("\n"); 
     printf("\nResult : ");
-    bi_show_hex(z);
+    bi_show_hex(q);
+    bi_show_hex(r);
 
     bi_delete(&x);
     bi_delete(&y);
-    bi_delete(&z);
+  //  bi_delete(&z);
 }
 
 void print_bi_hex_py(IN const bigint* x) 
@@ -90,7 +87,7 @@ void print_bi_hex_py(IN const bigint* x)
         INVAILD_DATA;
         exit(1);
     }
-    if ((x)->sign == -1) { printf("-"); }  
+    if ((x)->sign == NEGATIVE) { printf("-"); }  
     printf("0x");                           
     
     for (int i = (x)->wordlen - 1; i >= 0; i--) 
@@ -116,16 +113,20 @@ void test_add()
         bigint *y = NULL;
         bigint *z = NULL;
 
-        int wordlen1 = rand() % 313 + 1; 
-        int wordlen2 = rand() % 313 + 1;  
-        int sign = NON_NEGATIVE;
+        int wordlen1 = rand() % 96 + 1; 
+        int wordlen2 = rand() % 96 + 1;  
+        int sign_x = (rand() % 2 == 0);
+        int sign_y = (rand() % 2 == 0);
+        //bi_gen_rand(&x, sign_x, wordlen1);
+        //bi_gen_rand(&y, sign_y, wordlen2);*/
+        //int sign  = NON_NEGATIVE;
 
-        bi_gen_rand(&x, sign, wordlen1);
-        bi_gen_rand(&y, sign, wordlen2);
+        bi_gen_rand(&x, sign_x, wordlen1);
+        bi_gen_rand(&y, sign_y, wordlen2);
         
-        add_core(&x, &y, &z);
+        sub(&x, &y, &z);
         print_bi_hex_py(x);                         
-        printf(" + "); print_bi_hex_py(y);                    
+        printf(" - "); print_bi_hex_py(y);                    
         printf(" == "); print_bi_hex_py(z);                            
         printf("\n");  
 
@@ -143,10 +144,10 @@ void test_sub_core()
         bigint *y = NULL;
         bigint *z = NULL;
 
-        //int wordlen1 = rand() % 96 + 1; 
-        //int wordlen2 = rand() % 96 + 1;  
-        int wordlen1= 32;
-        int wordlen2=32;
+        int wordlen1 = rand() % 96 + 1; 
+        int wordlen2 = rand() % 96 + 1;  
+        //int wordlen1= 32;
+        //int wordlen2=32;
         int sign = rand() % 2;
 
         bi_gen_rand(&x, sign, wordlen1);
@@ -177,25 +178,36 @@ void test_mul()
     {
         bigint *x = NULL;
         bigint *y = NULL;
-        bigint *z = NULL;
-
+        //bigint *z = NULL;
+        bigint *q = NULL;
+        bigint *r = NULL;
+        //int wordlen = 5;
         int wordlen1 = rand() % 96 + 1; 
         int wordlen2 = rand() % 96 + 1;  
-        int sign = NON_NEGATIVE;
+        //int sign = NON_NEGATIVE;
+        int sign = rand() % 2;
+        //int sign1 = rand() % 2;
+
 
         bi_gen_rand(&x, sign, wordlen1);
-        bi_gen_rand(&y, sign, wordlen2);
+        bi_gen_rand(&y, NON_NEGATIVE, wordlen2);
         
 
-        mul_core_improved(&x, &y, &z);
+        div_long_core(&x, &y, &q, &r);
         print_bi_hex_py(x);                         
-        printf(" * "); print_bi_hex_py(y);                    
-        printf(" == "); print_bi_hex_py(z);                            
+        printf(" // "); print_bi_hex_py(y);                    
+        printf(" == "); print_bi_hex_py(q);                            
         printf("\n");  
+
+        printf(" %% "); 
+        print_bi_hex_py(y);                    
+        printf(" == "); 
+        print_bi_hex_py(r);                            
+        printf("\n");
 
         bi_delete(&x);
         bi_delete(&y);
-        bi_delete(&z);
+        //bi_delete(&z);
     }
 }
 
@@ -206,6 +218,7 @@ void test_addition() //test_add는 add_core에 대한 함수이고, test_additio
         bigint *x = NULL;
         bigint *y = NULL;
         bigint *z = NULL;
+        
 
         int wordlen1 = rand() % 96 + 1; 
         int wordlen2 = rand() % 96 + 1;
@@ -225,31 +238,13 @@ void test_addition() //test_add는 add_core에 대한 함수이고, test_additio
         printf(" == "); print_bi_hex_py(z);                            
         printf("\n"); 
         
+        
         bi_delete(&x);
         bi_delete(&y);
         bi_delete(&z);
     }
 }
 
-void test_right_shift_word() {
-
-    bigint *x = NULL;
-
-    printf("case 1:\n");
-    bi_gen_rand(&x, NON_NEGATIVE, 5); // 5 워드 길이의 양수
-    bi_show_hex(x);
-    printf("\n=>\n");
-    right_shift_word(x,2);
-    bi_show_hex(x);
-
-    printf("\ncase 2: \n");
-    bi_gen_rand(&x, NEGATIVE, 5); // 5 워드 길이의 양수
-    bi_show_hex(x);
-    printf("\n=>\n");
-    right_shift_word(x,1);
-    bi_show_hex(x);
-    bi_delete(&x);
-}
 
 void test_left_shift_word() {
 
@@ -276,18 +271,19 @@ void test_bi_long_div()
         bigint *q = NULL;
         bigint *r = NULL;
         
-        int wordlen1 = rand() % 128 + 1; 
         int wordlen2 = rand() % 128 + 1;
-        
-        int sign_x = (rand() % 2 == 0) ? NON_NEGATIVE : NEGATIVE;
-        
-        bi_gen_rand(&x, sign_x, wordlen1);
         bi_gen_rand(&y, NON_NEGATIVE, wordlen2);
         
-        //bi_set_zero(&x);
-        //bi_assign(&y,x);
-        //y->sign=NON_NEGATIVE;
+        bigint* temp=NULL;
+        bigint* two=NULL;
+        bi_new(&two, 1);
+        two->a[0]=0x00000002;
 
+        mul_core_improved(&y, &two, &temp);
+        bi_assign(&x, temp); //x = 2y
+        x->sign=NON_NEGATIVE;
+   //x->sign = NEGATIVE;
+        
         bi_long_div(&x,&y,&q,&r);
         print_bi_hex_py(x);                         
         printf(" // "); 
@@ -296,13 +292,12 @@ void test_bi_long_div()
         print_bi_hex_py(q);                            
         printf("\n"); 
 
-        /*bi_long_div(&x,&y,&q,&r);
         print_bi_hex_py(x);                         
         printf(" %% "); 
         print_bi_hex_py(y);                    
         printf(" == "); 
         print_bi_hex_py(r);                            
-        printf("\n"); */
+        printf("\n"); 
        
         bi_delete(&x);
         bi_delete(&y);
@@ -311,3 +306,77 @@ void test_bi_long_div()
     }
 }
 
+
+#define TIME(start, end) ((double)((end) - (start))) / CLOCKS_PER_SEC * 1000.0
+
+double measure_time(void(*func)(IN bigint** , IN bigint**, OUT bigint**), IN bigint** x, IN bigint** y, OUT bigint** z) 
+{
+    srand((u32)time(NULL));
+
+    clock_t start = clock();
+    func(x, y, z);
+    clock_t end = clock();
+    
+    return TIME(start, end);
+}
+
+void measure_cycles(void(*func)(IN bigint** , IN bigint**, OUT bigint**), IN bigint** x, IN bigint** y, OUT bigint** z) {
+    u32 ui;
+    u64 start, end;
+    const int num = 10000;
+    func(x, y, z);
+
+    start = _rdtscp(&ui);
+    for(int i = 0; i < num; i++)
+    {
+        func(x, y, z);
+    }
+    end = _rdtscp(&ui);
+    printf("%llu\n", (end - start) / num);
+}
+
+void measure()
+{
+    double total_time_tx = 0.0;
+    double total_time_improved = 0.0;
+    double total_time_karatsuba = 0.0;
+
+
+    for(int i = 0 ; i < TEST_CASE; i++)
+    {
+        bigint *x = NULL;
+        bigint *y = NULL;
+        bigint *z = NULL;
+
+        //int wordlen1 = rand() % 128 + 1; 
+        //int wordlen2 = rand() % 128 + 1;  
+        int sign = rand() % 2;
+        int wordlen = 128;
+        bi_gen_rand(&x, sign, wordlen);
+        bi_gen_rand(&y, sign, wordlen);
+        
+        total_time_tx += measure_time(mul_core_tx, &x, &y, &z);
+        total_time_improved += measure_time(mul_core_improved, &x, &y, &z);
+        total_time_karatsuba += measure_time(mul_core_karatsuba, &x, &y, &z);
+
+        bi_delete(&x);
+        bi_delete(&y);
+        bi_delete(&z);
+    }
+    printf("Average time for mul_core_tx: %.2f ms\n", total_time_tx / TEST_CASE);
+    printf("Average time for mul_core_improved: %.2f ms\n", total_time_improved / TEST_CASE);
+    printf("Average time for mul_core_karatsuba: %.2f ms\n", total_time_karatsuba / TEST_CASE);
+}
+
+
+int measure_mem(void(*func)(IN bigint** , IN bigint**, OUT bigint**), IN bigint** x, IN bigint** y, OUT bigint** z)
+{
+    PROCESS_MEMORY_COUNTERS pmc;
+    func(x, y, z);
+
+    if (GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc)))
+    {
+        printf("Working Set Size : %llu KB\n", pmc.WorkingSetSize / 1024);
+    }   
+    return 0;
+}
