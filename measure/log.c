@@ -23,7 +23,7 @@ void log_message(const char *message) {
 
     fclose(log_file);
 }
-
+/*
 void measure_time()
 {
     log_message("Test vector creation started.");
@@ -45,3 +45,4 @@ void measure_time()
     snprintf(time_message, sizeof(time_message), "Test vector creation completed in %f seconds.", seconds);
     log_message(time_message);
 }
+*/

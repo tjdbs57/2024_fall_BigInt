@@ -210,9 +210,7 @@ int get_bit_length(IN bigint* x);
  * @return Returns 1 if the bit is set, 0 if the bit is not set, or -1 if 
  *         the input is invalid (e.g., NULL pointer, out of bounds).
  */
-int get_jth_bit(IN bigint* x, IN word j);
-
-
+bool get_jth_bit(IN bigint* x, IN int j);
 /**
  * @brief Perform a right shift operation on a bigint.
  *
@@ -262,7 +260,7 @@ void left_shift_bit(INOUT bigint* x, IN int shift);
  * @note Memory for the result bigint is allocated inside this function. 
  *       The caller is responsible for freeing the memory used by result.
  */
-void reduction(IN bigint* x, IN int r, OUT bigint* result); 
+void reduction(IN bigint** x, IN int r);
 
 /**
  * @brief Right-shifts a bigint by a specified number of words.
@@ -287,8 +285,7 @@ void reduction(IN bigint* x, IN int r, OUT bigint* result);
  * - `x->a` is reallocated, and its size is modified to include the shifted words.
  * - On memory allocation failure, `exit(1)` is called.
  */
-void right_shift_word(INOUT bigint* x, IN int shift_words);
-
+void right_shift_word(INOUT bigint** x, IN int shift_words) ;
 /**
  * @brief Left-shifts a bigint by a specified number of words.
  * 
@@ -427,5 +424,5 @@ void match_wordlen(INOUT bigint* x, INOUT bigint* y);
  * @note This function assumes that the `bigint` structure has an attribute `a` (an array of words) and `wordlen` (the number of words).
  */
 void bi_reset(INOUT bigint* x);
-
+word get_word(IN bigint* x, IN int m_th);
 #endif  //utils.h

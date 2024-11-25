@@ -174,6 +174,7 @@ void mul_core_tx(IN bigint** x, IN bigint** y, OUT bigint** z);
  */
 void mul_core_improved(IN bigint** x, IN bigint** y, OUT bigint** z);
 
+void mul_core_karatsuba(IN bigint** x, IN bigint** y, OUT bigint** z);
 /**
  * @brief Performs long division on big integers.
  * 
@@ -201,5 +202,65 @@ void mul_core_improved(IN bigint** x, IN bigint** y, OUT bigint** z);
  */
 void bi_long_div(IN bigint** x, IN bigint** y, OUT bigint** q, OUT bigint** r);
 
+/**
+ * @brief Squares a single word and stores the result in a bigint structure.
+ *
+ * This function computes the square of a single word `A` and stores the result
+ * in a bigint structure pointed to by `result`.
+ * 
+ * @param[in] A The single word to be squared.
+ * @param[out] result A pointer to the bigint structure to store the squared result.
+ *
+ * The squaring is done using a method that divides `A` into two halves:
+ * `A1` (upper bits) and `A0` (lower bits). The square is calculated as:
+ * - \(C[0] = A0 * A0\) (lower bits)
+ * - \(C[1] = A1 * A1\) (upper bits)
+ * - The cross multiplication \(T = A0 * A1\), left-shifted by `w + 1` bits
+ * 
+ * These intermediate results are combined to get the full square result.
+ */
+void squ_single_word(IN word A, OUT bigint** result);
+
+/**
+ * @brief Squares a bigint and stores the result in another bigint.
+ *
+ * This function performs the squaring of a bigint `x` using the method of
+ * single-word squaring combined with cross products. The result is stored
+ * in the bigint structure pointed to by `result`.
+ * 
+ * @param[in] x A pointer to the bigint to be squared.
+ * @param[out] result A pointer to the bigint structure where the squared result will be stored.
+ *
+ * The squaring method splits the process into:
+ * - Squaring individual words in `x` and shifting accordingly.
+ * - Calculating the cross products between words and summing them with left shifts.
+ * 
+ * The function handles each word in `x` (up to `t` words) by:
+ * - Calculating the square of each word `j` and adding the result to `C1`.
+ * - Calculating the cross product for word pairs `(j, i)` where `i > j` and accumulating in `C2`.
+ * 
+ * After processing, `C2` is left-shifted by one bit to account for the doubling effect in cross terms.
+ */
+void squ_tx(IN bigint** x, OUT bigint** result);
+
+/**
+ * @brief Squares a bigint if it is non-zero and stores the result.
+ *
+ * This function squares the bigint `x` and stores the result in `result`. 
+ * If `x` is zero, it directly assigns zero to `result` and sets its sign to non-negative.
+ * Otherwise, it calls the `SQUC` function to compute the square of `x`.
+ * 
+ * @param[in] x A pointer to the bigint to be squared.
+ * @param[out] result A pointer to the bigint structure where the squared result will be stored.
+ *
+ * The function first checks if `x` is zero:
+ * - If `x` is zero, `result` is assigned the value of zero with a non-negative sign.
+ * - Otherwise, it uses `SQUC` to perform the squaring.
+ */
+void squaring(IN bigint** x, OUT bigint** result);
+
+void squ_karatsuba(IN bigint** x, OUT bigint** z);
+word quotient(word A, word B, word divisor);
+void div_long_core(IN bigint** x, IN bigint** y, IN bigint** Q, IN bigint** R);
 #endif  //arithmetic.h
 

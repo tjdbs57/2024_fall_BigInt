@@ -5,5 +5,5 @@
 #include "test.h"
 
 void log_message(const char *message);
-void measure_time();
+//void measure_time();
 #endif // LOG_H
