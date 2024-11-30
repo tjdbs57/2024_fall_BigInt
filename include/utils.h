@@ -425,4 +425,6 @@ void match_wordlen(INOUT bigint* x, INOUT bigint* y);
  */
 void bi_reset(INOUT bigint* x);
 word get_word(IN bigint* x, IN int m_th);
+void bi_extend(bigint** bi, int new_len);
+void bi_set_bit(bigint** bi, int k);
 #endif  //utils.h

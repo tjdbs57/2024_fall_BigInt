@@ -1,48 +1,44 @@
 #include "log.h"
 
-void log_message(const char *message) {
-    FILE *log_file = fopen("measure/log.txt", "a");
-    if (log_file == NULL) {
-        perror("Failed to open log file");
-        return;
-    }
+// void log_performance_results() {
 
-    // 현재 시간 가져오기
-    time_t now = time(NULL);
-    struct tm *local_time = localtime(&now);
+//     bigint *x = NULL;
+//     bigint *y = NULL;
+//     bigint *z = NULL;
 
-    // 시간과 메시지 출력
-    fprintf(log_file, "[%04d-%02d-%02d %02d:%02d:%02d] %s\n",
-            local_time->tm_year + 1900,
-            local_time->tm_mon + 1,
-            local_time->tm_mday,
-            local_time->tm_hour,
-            local_time->tm_min,
-            local_time->tm_sec,
-            message);
+//     int sign1 = rand() % 2;
+//     int sign2 = rand() % 2;
+//     int wordlen1 = rand() % 96 + 1;
+//     int wordlen2 = rand() % 96 + 1;
+//     bi_gen_rand(&x, sign1, wordlen1);
+//     bi_gen_rand(&y, sign2, wordlen2);
+//     FILE *file = fopen("performance_results.csv", "w");
+//     fprintf(file, "Algorithm,Execution Time (s),CPU Cycles,Memory Usage (KB)\n");
 
-    fclose(log_file);
-}
-/*
-void measure_time()
-{
-    log_message("Test vector creation started.");
+//     // 예시로 세 개의 곱셈 함수에 대해 성능을 측정
+//     fprintf(file, "mul_core_tx,%f,%llu,%zu\n", 
+//             measure_execution_time(mul_core_tx, &x, &y, &z),
+//             measure_cycles(mul_core_tx, &x, &y, &z),
+//             measure_memory_usage(mul_core_tx, &x, &y, &z));
 
-    // 시작 시간 기록
-    clock_t start = clock();
-    
-    // 테스트 벡터 생성 함수 호출
-    test_add();
-    
-    // 종료 시간 기록
-    clock_t end = clock();
-    
-    // 실행 시간 계산
-    double seconds = (double)(end - start) / CLOCKS_PER_SEC;
+//     fprintf(file, "mul_core_improved,%f,%llu,%zu\n", 
+//             measure_execution_time(mul_core_improved, &x, &y, &z),
+//             measure_cycles(mul_core_improved, &x, &y, &z),
+//             measure_memory_usage(mul_core_improved, &x, &y, &z)
+//             //measure_cache_misses(mul_core_improved)
+//             );
 
-    // 실행 시간 로그 기록
-    char time_message[100];
-    snprintf(time_message, sizeof(time_message), "Test vector creation completed in %f seconds.", seconds);
-    log_message(time_message);
-}
-*/
+//     fprintf(file, "mul_core_karatsuba,%f,%llu,%zu\n", 
+//             measure_execution_time(mul_core_karatsuba, &x, &y, &z),
+//             measure_cycles(mul_core_karatsuba, &x, &y, &z),
+//             measure_memory_usage(mul_core_karatsuba, &x, &y, &z)
+//             //measure_cache_misses(mul_core_karatsuba)
+//             );
+
+//     fclose(file);
+
+//     bi_delete(&x);
+//     bi_delete(&y);
+//     bi_delete(&z);
+
+// }

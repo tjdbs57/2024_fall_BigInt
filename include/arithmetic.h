@@ -260,7 +260,11 @@ void squ_tx(IN bigint** x, OUT bigint** result);
 void squaring(IN bigint** x, OUT bigint** result);
 
 void squ_karatsuba(IN bigint** x, OUT bigint** z);
-word quotient(word A, word B, word divisor);
+word quotient(word dividend1, word dividend0, word divisor) ;
 void div_long_core(IN bigint** x, IN bigint** y, IN bigint** Q, IN bigint** R);
+void L2R(IN bigint** x, IN bigint** y, IN bigint** z, OUT bigint** M);
+void barret_reduction(IN bigint** x, IN bigint** y, IN bigint** z, OUT bigint** result);
+void R2L(bigint** x, bigint** y, bigint** z, bigint** M) ;
+void exp_mod_montgomery(bigint** x, bigint** y, bigint** z, bigint** M) ;
 #endif  //arithmetic.h
 

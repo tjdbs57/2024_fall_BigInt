@@ -67,8 +67,8 @@ check:
 	(cd test && python cal.py)
 
 measure:
-	(cd bin && ./program > cycle_single.txt)
-	(cd bin && mv cycle_single.txt ../test/)
+	(cd bin && program > cycle_single.txt)
+	(cd bin && move cycle_single.txt ../test/)
 	(cd test && python time.py)
 
 .PHONY: all clean rebuild run verify check dir measure

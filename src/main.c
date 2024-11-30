@@ -24,19 +24,17 @@ int main() {
 */
 int main()
 {
-    srand(time(NULL));
+
+    //test_barret();
+    //test();
+    //test_div();
+    test_exp_mod();
     //test_set_by_array();
     //test_bi_string();
-    //test_sub_single_word();
-    //test_add();
-    //test_sub_core();
-    //test_sub(); 
-    //test_addition();
-    //test_right_shift_word();
-    //test_left_shift_word();
-    //test_mul();
+
     //test_squc();;
-    measure();
-    //test_bi_long_div();
+    //measure();
+    //measure_clock_cycles();
+
     return 0;
 }

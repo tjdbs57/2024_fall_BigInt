@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-with open('cycle_single.txt', 'r') as file:
+with open('cycle_single.txt', 'r', encoding= 'utf-8') as file:
     data = file.readlines()
 
 function1_speeds = [float(data[i].strip()) for i in range(0, len(data), 1)]
@@ -10,7 +10,7 @@ function1_speeds = [float(data[i].strip()) for i in range(0, len(data), 1)]
 average_function1 = np.mean(function1_speeds)
 
 # Rolling mean for smoothing
-window_size = 100
+window_size = 10
 function1_smooth = np.convolve(function1_speeds, np.ones(window_size)/window_size, mode='valid')
 
 # Find the lowest and highest points of the smoothed data
@@ -40,7 +40,7 @@ ax1.axhline(average_function1, color='dodgerblue', linestyle='dashdot', linewidt
 # Setting labels, titles, and legends
 ax1.set_ylabel('Total Cycles', fontsize=16, fontweight='bold', color='dodgerblue')
 ax1.set_xlabel('Run Number', fontsize=16, fontweight='bold')
-ax1.set_title('Measurement of Cycles: 64-bit Multiplication', fontsize=18, fontweight='bold')
+ax1.set_title('Measurement of Cycles: 32-bit Multiplication', fontsize=18, fontweight='bold')
 
 # Combine legends
 lines, labels = ax1.get_legend_handles_labels()

@@ -282,12 +282,7 @@ void mul_core_tx(IN bigint** x, IN bigint** y, OUT bigint** z)
     int n = (*x)->wordlen;
     int m = (*y)->wordlen; 
 
-    if (n < m)
-    {
-        swap_bigint(x, y);
-        n = (*x)->wordlen;
-        m = (*y)->wordlen;
-    }   
+    match_wordlen(*x, *y);
     bi_new(z, n+m); 
 
     bigint* tmp = NULL;
@@ -717,33 +712,28 @@ void bi_long_div(IN bigint** x, IN bigint** y, OUT bigint** q, OUT bigint** r)
 
 }
 
-word quotient(word A, word B, word divisor)
+word quotient(word dividend1, word dividend0, word divisor) 
 {
     word Q = 0;
-    word R = A;
+    word R = dividend1;
 
     int w1 = WORD_BITLEN;
-    for (int i = WORD_BITLEN-1; i>=0; i--)
-    {
+    for(int i = WORD_BITLEN-1; i>=0; i--) {
         if((divisor >> i) == 0)
             w1 -= 1;
-        else 
+        else
             break;
     }
 
-    for (int j = w1; j >=0; j--)
-    {
-        if(R >= (word)(ONE) << w1)
-        {
+    for(int j = w1; j>=0; j--) {
+        if(R >= (word)(ONE << w1)) {
             Q += (ONE << j);
-            R += (B >> j);
+            R += (dividend0 >> j);
             R += (R-divisor);
-        }
-        else{
-            R += (B >> j);
+        } else {
+            R += (dividend0 >> j);
             R += R;
-            if(R >= divisor)
-            {
+            if(R >= divisor) {
                 Q += (ONE << j);
                 R -= divisor;
             }
@@ -754,42 +744,42 @@ word quotient(word A, word B, word divisor)
 
 void div_long_core(IN bigint** x, IN bigint** y, IN bigint** Q, IN bigint** R)
 {
-    bi_new(Q, 1);
-    bi_new(R, (*x)->wordlen);
+
+    bi_new(Q, 1);  // Q 초기화
+
+    bi_new(R, (*x)->wordlen);  // R 초기화
 
     int n = (*x)->wordlen;
     int m = (*y)->wordlen;
 
-    printf("n = %d\n", n);
-    printf("m = %d\n", m);
     word W = ONE << (WORD_BITLEN - 1);
 
     word x_m  = get_word(*x, m);
     word x_m1 = get_word(*x, m-1);
     word y_m1 = get_word(*y, m-1);
-    
-     printf("Debug: x_m=%lx, x_m1=%lx, y_m1=%lx\n", x_m, x_m1, y_m1);
-    if (n == m)
-        (*Q)->a[0] = x_m1 / y_m1;
-    if (n == m+1)
-    {
-        if(x_m == y_m1)
-            (*Q)->a[0] = W-1;
-        else    
-            (*Q)->a[0] = quotient(x_m, x_m1, y_m1);
-    }
-    printf("Debug: Initial Q = ");
-    bi_show_hex(*Q);
 
-    // calculate R = X - Y * Q
+
+    // 몫 계산: n == m or n == m+1에 따라 몫 계산
+    if (n == m) {
+        (*Q)->a[0] = x_m1 / y_m1;
+    }
+
+    if (n == m+1) {
+        if (x_m == y_m1) {
+            (*Q)->a[0] = W - 1;  // 최댓값
+        } else {
+            (*Q)->a[0] = quotient(x_m, x_m1, y_m1);  // quotient 함수 사용
+        }
+    }
+
+    // 나머지 계산: R = X - Y * Q
     bigint* YQ = NULL;
     bi_new(&YQ, (*y)->wordlen);
-    mul_core_tx(y, Q, &YQ);
+    mul_core_tx(y, Q, &YQ);  // Y * Q 계산
 
-    sub(x, &YQ, R);
-    printf("Debug: Initial R = ");
-    bi_show_hex(*R);
+    sub(x, &YQ, R);  // X - YQ 계산
 
+    // R이 음수일 때 보정
     bigint* one = NULL;
     bigint* tmpQ = NULL;
     bigint* tmpR = NULL;
@@ -797,33 +787,198 @@ void div_long_core(IN bigint** x, IN bigint** y, IN bigint** Q, IN bigint** R)
     bi_new(&one, (*Q)->wordlen);
     one->a[0] = ONE;
 
-    // correct R if it is negative
-    while ((*R)->sign)
-    {
-        printf("Debug: R is negative, correcting...\n");
+    // R이 음수일 때 Q와 R 수정
+    while ((*R)->sign == NEGATIVE) {
         bi_assign(&tmpY, *y);
 
-        sub(Q, &one, &tmpQ);
+        sub(Q, &one, &tmpQ);  // Q에서 1 빼기
         bi_assign(Q, tmpQ);
 
-        add(R, &tmpY, &tmpR);
-
+        add(R, &tmpY, &tmpR);  // 나머지에 Y 더하기
         bi_assign(R, tmpR);
 
-        bi_refine(*Q);
-        bi_refine(*R);
+            // R이 이제 양수가 되었는지 확인
+        if ((*R)->sign != NEGATIVE) {
+            break;  // R이 더 이상 음수가 아니면 루프 종료
+        }
 
-        printf("Debug: Corrected Q = ");
-        bi_show_hex(*Q);
-        printf("Debug: Corrected R = ");
-        bi_show_hex(*R);
+        bi_refine(*Q);  // Q를 정리
+        bi_refine(*R);  // R을 정리
     }
 
-    // Clean up
+    // 메모리 해제
     bi_delete(&YQ);
     bi_delete(&one);
     bi_delete(&tmpQ);
     bi_delete(&tmpR);
-    bi_delete(&tmpY);    
+    bi_delete(&tmpY);
 
+}
+
+
+
+void L2R(IN bigint** x, IN bigint** y, IN bigint** z, OUT bigint** M)
+{
+    int bit_len = get_bit_length(*y);
+    bigint* t0 = NULL;
+    bigint* temp = NULL;
+    bigint* temp2 = NULL;
+    bigint* Q1 = NULL;
+    bi_new(&t0, 1);
+    t0->a[0] = ONE;
+
+    for (int i = bit_len-1; i >= 0; i--){
+        bi_new(&temp,1);
+        bi_new(&temp2,1);
+        bi_new(&Q1,1);
+        if (get_jth_bit(*y,i)){
+            squaring(&t0,&temp);
+            bi_long_div(&temp,M,&Q1,&temp2);
+            mul_core_improved(&temp2,x,&temp);
+            bi_long_div(&temp,M,&Q1,&t0);
+        }
+        else{
+            squaring(&t0,&temp);
+            bi_long_div(&temp, M, &Q1, &t0);
+        }
+    }
+    bi_refine(t0);
+    bi_assign(z,t0);
+
+    bi_delete(&Q1);
+    bi_delete(&t0);
+    bi_delete(&temp);
+    bi_delete(&temp2);
+    bi_refine(*M);
+}
+
+
+void R2L(bigint** x, bigint** y, bigint** z, bigint** M) 
+{
+    int bit_len = get_bit_length(*y);
+
+    bigint* t0 = NULL;
+    bigint* t1 = NULL;
+    bigint* temp = NULL;
+    bigint* Q = NULL;
+    bi_new(&t0, 1);
+    t0->a[0] = ONE;
+    bi_assign(&t1, *x);
+
+    for (int i = 0; i < bit_len; i++) {
+        bi_new(&temp, 1);
+        if (get_jth_bit(*y, i)) {
+            mul_core_improved(&t0, &t1, &temp);
+            bi_long_div(&temp, M, &Q, &t0);
+            squaring(&t1, &temp);
+            bi_long_div(&temp, M, &Q, &t1);
+        } else {
+            squaring(&t1, &temp);
+            bi_long_div(&temp, M, &Q, &t1);
+        }
+    }
+
+    bi_long_div(&t0, M, &Q, &temp);
+    bi_refine(temp);
+
+    bi_assign(z, temp);
+    bi_delete(&Q);
+    bi_delete(&t0);
+    bi_delete(&t1);
+    bi_delete(&temp);
+    bi_refine(*M);
+}
+
+void exp_mod_montgomery(bigint** x, bigint** y, bigint** z, bigint** M) 
+{
+    int bit_len = get_bit_length(*y);
+    bigint* t0 = NULL; bigint* t1 = NULL;
+    bigint* temp = NULL; bigint* temp2 = NULL;
+    bigint* Q1 = NULL; bigint* Q2 = NULL;
+   
+    bi_new(&t0,1);
+    t0->a[0] = ONE;
+    bi_assign(&t1,*x);
+    
+    for (int i= bit_len-1 ; i >= 0 ;i--){
+        bi_new(&temp,1);
+        bi_new(&temp2,1);
+        bi_new(&Q1,1);
+        bi_new(&Q2,1);
+
+        if (get_jth_bit(*y,i) == 0){
+            mul_core_improved(&t0,&t1,&temp);
+            bi_long_div(&temp,M,&Q1,&t1);
+            squaring(&t0,&temp2);
+            bi_long_div(&temp2,M,&Q2,&t0);
+        }
+        else{
+            mul_core_improved(&t0,&t1,&temp);
+            bi_long_div(&temp,M,&Q1,&t0);
+            squaring(&t1,&temp2);
+            bi_long_div(&temp2,M,&Q2,&t1);
+        }
+
+    }
+    bi_assign(z,t0);
+    bi_refine(*M);
+    bi_refine(*z);
+    bi_delete(&t0); bi_delete(&t1);
+    bi_delete(&temp); bi_delete(&temp2);
+    bi_delete(&Q1); bi_delete(&Q2);
+}
+
+void barret_reduction(IN bigint** x, IN bigint** y, IN bigint** z, OUT bigint** result)
+{
+    
+    if(compare(*x, *y)==0){ // A < N
+        bi_assign(result,*x);
+        return;
+    }
+
+    else if(compare(*x, *y)==-1){ // A = N
+        bi_set_zero(result);
+        return;
+    }
+
+    bigint* Q=NULL;
+    bigint* R=NULL;
+    bigint* tmp=NULL;
+    bigint* N=NULL;
+
+    bi_assign(&Q, *x);
+
+    int n= (*y)->wordlen;
+    
+    right_shift_word(&Q, (n-1)); // Q <- A >> w(n-1) 
+
+    mul_core_improved(&Q, z, &tmp); // Q <- Q x T
+    bi_assign(&Q, tmp);
+
+    right_shift_word(&Q, (n+1)); // Q >> w(n+1)
+
+
+    bi_assign(&N, *y);
+    mul_core_improved(&N, &Q, &R); // R <- N x Q
+
+    sub(x, &R, &tmp); // R <- A - R
+    bi_assign(&R, tmp);
+    bi_refine(R);
+
+
+    while(compare(R, N)!=0){
+
+        bi_assign(&N, *y);
+        sub(&R, &N, &tmp);
+        bi_assign(&R, tmp);
+        bi_refine(R);
+       
+    }
+
+    bi_assign(result, R);
+
+    bi_delete(&N);
+    bi_delete(&Q);
+    bi_delete(&R);
+    bi_delete(&tmp);
 }

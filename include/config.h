@@ -27,7 +27,7 @@
 #define NEGATIVE        1
 
 // at least (wordlen / 2)
-#define FLAG    64
+#define FLAG    48
 
 typedef uint8_t   u8;
 typedef uint32_t u32;
