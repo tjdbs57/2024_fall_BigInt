@@ -9,13 +9,14 @@
 #include <ctype.h>
 #include <math.h>
 #include <time.h>
+#include <stdbool.h>
 
 #define     IN
 #define     OUT
 #define     INOUT
 
 #define NON_NEGATIVE    0
-#define NEGATIVE       -1
+#define NEGATIVE       1
 
 typedef uint8_t   u8;
 typedef uint32_t u32;

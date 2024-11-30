@@ -32,8 +32,9 @@ void measure_time()
     clock_t start = clock();
     
     // 테스트 벡터 생성 함수 호출
-    test_add();
-    
+    //test_add();
+    test_barret_reduction();
+
     // 종료 시간 기록
     clock_t end = clock();
     

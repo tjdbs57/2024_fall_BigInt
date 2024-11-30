@@ -175,31 +175,91 @@ void mul_core_tx(IN bigint** x, IN bigint** y, OUT bigint** z);
 void mul_core_improved(IN bigint** x, IN bigint** y, OUT bigint** z);
 
 /**
- * @brief Performs long division on big integers.
+ * @brief Performs long division of two big integers.
  * 
- * This function calculates the quotient (`q`) and remainder (`r`) when dividing bigint `*x` by bigint `*y`.
- * It handles special cases for zero and negative values and manages sign adjustments for the result.
+ * This function divides `x` by `y` to compute the quotient `q` and remainder `r`. 
+ * It handles various edge cases such as division by zero, negative signs, and absolute comparisons.
  * 
- * @param[in,out] x Pointer to the dividend bigint. This value is read-only in the function.
- * @param[in] y Pointer to the divisor bigint. This value is read-only in the function.
- * @param[out] q Pointer to the quotient bigint, which will store the result of the division.
- * @param[out] r Pointer to the remainder bigint, which will store the remainder after division.
+ * @param[in] x Pointer to the bigint pointer representing the dividend (`A`).
+ * @param[in] y Pointer to the bigint pointer representing the divisor (`B`).
+ * @param[out] q Pointer to the bigint pointer where the quotient (`Q`) will be stored.
+ * @param[out] r Pointer to the bigint pointer where the remainder (`R`) will be stored.
  * 
- * @details 
- * - If the divisor `*y` is zero, the function triggers an error since division by zero is undefined.
- * - If `*x` is zero, both quotient `*q` and remainder `*r` are set to zero.
- * - If the absolute value of `*x` is smaller than `*y`, `*q` is set to zero and `*r` to `*x`.
- * - If the absolute value of `*x` equals `*y`, `*q` is set to one and `*r` to zero, with sign adjustments if necessary.
- * 
- * - The main division loop shifts bits from `*x` into `*r`, checks if `*r >= *y`, and updates `*q` and `*r` accordingly.
- * - For negative dividends, the remainder `*r` is adjusted to ensure the remainder sign follows division rules.
- * 
- * @note 
- * - The function uses helper functions like `bi_set_zero`, `bi_assign`, `add`, `sub_core`, and `left_shift_bit` to perform operations on bigint structures.
- * - The sign of the quotient `*q` and remainder `*r` is adjusted based on the signs of `*x` and `*y`.
- * - The function assumes bigint pointers `x`, `y`, `q`, and `r` are properly initialized before calling.
+ * @note This function assumes that the `bigint` structure supports negative signs and
+ *       absolute value comparisons. Proper memory allocation for the results is handled internally.
  */
 void bi_long_div(IN bigint** x, IN bigint** y, OUT bigint** q, OUT bigint** r);
+
+/**
+ * @brief Squares a single word and stores the result in a bigint structure.
+ *
+ * This function computes the square of a single word `A` and stores the result
+ * in a bigint structure pointed to by `result`.
+ * 
+ * @param[in] A The single word to be squared.
+ * @param[out] result A pointer to the bigint structure to store the squared result.
+ *
+ * The squaring is done using a method that divides `A` into two halves:
+ * `A1` (upper bits) and `A0` (lower bits). The square is calculated as:
+ * - \(C[0] = A0 * A0\) (lower bits)
+ * - \(C[1] = A1 * A1\) (upper bits)
+ * - The cross multiplication \(T = A0 * A1\), left-shifted by `w + 1` bits
+ * 
+ * These intermediate results are combined to get the full square result.
+ */
+void squaring_single_word(IN word A, OUT bigint** result);
+
+/**
+ * @brief Squares a bigint and stores the result in another bigint.
+ *
+ * This function performs the squaring of a bigint `x` using the method of
+ * single-word squaring combined with cross products. The result is stored
+ * in the bigint structure pointed to by `result`.
+ * 
+ * @param[in] x A pointer to the bigint to be squared.
+ * @param[out] result A pointer to the bigint structure where the squared result will be stored.
+ *
+ * The squaring method splits the process into:
+ * - Squaring individual words in `x` and shifting accordingly.
+ * - Calculating the cross products between words and summing them with left shifts.
+ * 
+ * The function handles each word in `x` (up to `t` words) by:
+ * - Calculating the square of each word `j` and adding the result to `C1`.
+ * - Calculating the cross product for word pairs `(j, i)` where `i > j` and accumulating in `C2`.
+ * 
+ * After processing, `C2` is left-shifted by one bit to account for the doubling effect in cross terms.
+ */
+void SQUC(IN bigint** x, OUT bigint** result);
+
+/**
+ * @brief Squares a bigint if it is non-zero and stores the result.
+ *
+ * This function squares the bigint `x` and stores the result in `result`. 
+ * If `x` is zero, it directly assigns zero to `result` and sets its sign to non-negative.
+ * Otherwise, it calls the `SQUC` function to compute the square of `x`.
+ * 
+ * @param[in] x A pointer to the bigint to be squared.
+ * @param[out] result A pointer to the bigint structure where the squared result will be stored.
+ *
+ * The function first checks if `x` is zero:
+ * - If `x` is zero, `result` is assigned the value of zero with a non-negative sign.
+ * - Otherwise, it uses `SQUC` to perform the squaring.
+ */
+void Squaring(IN bigint** x, OUT bigint** result);
+
+/**
+ * @brief Performs Barrett reduction on the given bigint values.
+ * 
+ * This function reduces the value `x` modulo `y` using the Barrett reduction method.
+ * It computes the result as `x mod y` and stores it in `result`.
+ * 
+ * @param[in] x Pointer to the bigint pointer representing the dividend (`A`).
+ * @param[in] y Pointer to the bigint pointer representing the modulus (`N`).
+ * @param[in] z Pointer to the bigint pointer representing the precomputed value (`T = floor(2^(2w(n-1))/N)`).
+ * @param[out] result Pointer to the bigint pointer where the result (`A mod N`) will be stored.
+ */
+void barret_reduction(IN bigint** x, IN bigint** y, IN bigint** z, OUT bigint** result);
+
 
 #endif  //arithmetic.h
 

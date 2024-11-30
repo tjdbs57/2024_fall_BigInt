@@ -63,6 +63,8 @@
     "bigint.h": "c",
     "utils.h": "c",
     "test.h": "c",
-    "arithmetic.h": "c"
+    "arithmetic.h": "c",
+    "log.h": "c",
+    "stdlib.h": "c"
   }
 }

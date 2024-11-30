@@ -164,18 +164,23 @@ void sub_core(IN bigint** x, IN bigint** y, OUT bigint** z)
 }
 
 void sub(IN bigint** x, IN bigint** y, OUT bigint** z) {
-    bigint* A=*x;
-    bigint* B=*y;
     
+    
+    bigint* A=NULL;
+    bi_assign(&A, *x);
+    bigint* B=NULL;
+    bi_assign(&B, *y);
+
     // A가 0인 경우 결과는 -B
     if (is_zero(A) == 0) {  // Dereference x and y
-        bi_new(z, B->wordlen);
-        (*z)->sign = (B->sign == NON_NEGATIVE) ? NEGATIVE : NON_NEGATIVE;
-        for (int i = 0; i < B->wordlen; i++) {
-            (*z)->a[i] = B->a[i]; 
-        }
 
-        bi_refine(*z);
+        bi_assign(z, B);
+        if(B->sign ==1){
+            (*z)->sign=0;
+        }
+        else{
+            (*z)->sign=1;
+        }
         return;
     }
 
@@ -309,7 +314,6 @@ void mul_core_tx(IN bigint** x, IN bigint** y, OUT bigint** z)
     if((*x)->sign != (*y)->sign)
         (*z)->sign = NEGATIVE;
 }
-
 
 void mul_core_improved(IN bigint** x, IN bigint** y, OUT bigint** z)
 {
@@ -446,15 +450,15 @@ void bi_long_div(IN bigint** x, IN bigint** y, OUT bigint** q, OUT bigint** r)
         (*r)->a[0] ^= (((*x)->a[i / WORD_BITLEN] >> (i % WORD_BITLEN)) & 1); // +a_j
 
         //if R >= B
-        int comp=compare(*r,*y);
-        if (comp==1 || comp==-1) {
-
+        int comp=compareABS(*r,*y);
+        if (comp==1 || comp==-1) { //r >= B
+            
             //Q <- Q+2^j = Q^(1<<j)
             int word_index = i / WORD_BITLEN;       
             int bit_index = i % WORD_BITLEN;        
 
-            (*q)->a[word_index] ^= (1 << bit_index);
-
+            (*q)->a[word_index] ^= (1ULL << bit_index);
+     
             //r <- r-b
             sub_core(r,y,&tmp);
             bi_assign(r,tmp);
@@ -463,16 +467,18 @@ void bi_long_div(IN bigint** x, IN bigint** y, OUT bigint** q, OUT bigint** r)
 
     if((*x)->sign==NEGATIVE){
 
-        //R <- B-R
-        sub_core(y,r,&tmp);
-        bi_assign(r,tmp);
-
         if(is_zero(*r)==0){
+
             //q <- -q
             (*q)->sign=NEGATIVE;
             return;
         }
         else{
+            
+            //R <- B-R
+            sub_core(y,r,&tmp);
+            bi_assign(r,tmp);
+            
             bigint* one=NULL;
             bi_set_one(&one);
         
@@ -487,4 +493,141 @@ void bi_long_div(IN bigint** x, IN bigint** y, OUT bigint** q, OUT bigint** r)
     bi_refine(*q);
     bi_refine(*r);
 
+}
+
+void squaring_single_word(IN word A, OUT bigint** result)
+{
+    word w = WORD_BITLEN/2;
+    word A1 = A >> w;
+    word A0 = A & ((ONE << w) - 1);
+
+    // C[0], C[1]
+    bigint *C = NULL;
+    bi_new(&C, 2);
+
+    // T[0], T[1]
+    bigint *T = NULL;
+    bi_new(&T, 2);
+
+    // cross multiplication
+    C->a[0] = A0 * A0;
+    C->a[1] = A1 * A1;
+
+    T->a[0] = A0 * A1;
+    left_shift_bit(T, w+1);
+
+    bigint *tmp = NULL;
+    bi_new(&tmp, 2);
+    add(&C, &T, &tmp);
+
+    bi_assign(result, tmp);
+    
+    bi_delete(&C);
+    bi_delete(&T);
+    bi_delete(&tmp);
+}
+
+void SQUC(IN bigint** x, OUT bigint** result)
+{
+    int t = (*x)->wordlen;
+
+    bigint *C1 = NULL;
+    bi_new(&C1, 1);
+    bigint *C2 = NULL;
+    bi_new(&C2, 1);
+
+    bigint *T1 = NULL;
+    bi_new(&T1, 2);
+    bigint *T2 = NULL;
+    bi_new(&T2, 2);
+    bigint *tmp1 = NULL;
+    bi_new(&tmp1, 2);
+    bigint *tmp2 = NULL;
+    bi_new(&tmp2, 2);
+
+    for(int j=0; j<= t-1; j++)
+    {   
+        squaring_single_word((*x)->a[j], &T1);
+        left_shift_word(&T1, 2*j);
+
+        add(&C1, &T1, &tmp1);
+        bi_assign(&C1, tmp1);
+
+        for(int i=j+1; i<=t-1; i++)
+        {
+            mul_single_word((*x)->a[j], (*x)->a[i], &T2);
+            left_shift_word(&T2, i+j);
+           
+            add(&C2, &T2, &tmp2);
+            bi_assign(&C2, tmp2);
+
+            bi_new(&T2, 2);
+        }
+    }
+    left_shift_bit(C2, 1);
+    add_core(&C1, &C2, result);
+
+    bi_delete(&C1);
+    bi_delete(&C2);
+    bi_delete(&T1);
+    bi_delete(&T2);
+    bi_delete(&tmp1);
+    bi_delete(&tmp2);
+
+}
+
+void Squaring(IN bigint** x, OUT bigint** result) 
+{
+    if(is_zero(*x)==0){
+        bi_assign(result, *x);
+        (*result)->sign = NON_NEGATIVE;
+    }
+    else{
+        SQUC(x, result);
+    }
+}
+
+void barret_reduction(IN bigint** x, IN bigint** y, IN bigint** z, OUT bigint** result){
+    
+    if(compare(*x, *y)==0){ // A < N
+        bi_assign(result,*x);
+        return;
+    }
+    else if(compare(*x, *y)==-1){ // A = N
+        bi_set_zero(result);
+        return;
+    }
+
+    bigint* Q=NULL;
+    bigint* R=NULL;
+    bigint* tmp=NULL;
+    bigint* N=NULL;
+
+    bi_assign(&Q, *x);
+
+    int n= (*y)->wordlen;
+    right_shift_word(Q, (n-1)); // Q <- A >> w(n-1) 
+    mul_core_improved(&Q, z, &tmp); // Q <- Q x T
+    bi_assign(&Q, tmp);
+    right_shift_word(Q, (n+1)); // Q >> w(n+1)
+
+    bi_assign(&N, *y);
+    mul_core_improved(&N, &Q, &R); // R <- N x Q
+    sub(x, &R, &tmp); // R <- A - R
+    bi_assign(&R, tmp);
+    bi_refine(R);
+
+    while (compare(R, N) != 0) { 
+        sub(&R, &N, &tmp);
+        bi_assign(&R, tmp);  
+        bi_refine(R);
+    }
+
+    
+    bi_assign(result, R);
+
+    bi_delete(&N);
+    bi_delete(&Q);
+    bi_delete(&R);
+    bi_delete(&tmp);
 }

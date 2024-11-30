@@ -19,7 +19,7 @@ void bi_new(IN bigint** x, IN int wordlen)
     (*x)->a = (word*)calloc(wordlen, sizeof(word));
     
     if ((*x)->a == NULL) 
-    {
+    {   
         MEM_ALLOCATION_FAIL;
         exit(1);
     }
@@ -68,13 +68,13 @@ void bi_show_hex(IN bigint* x)
         printf("%x", (x)->a[i]);
 #elif WORD_BITLEN == 64
         // For 64-bit words, use %016llx format specifier for printing
-        printf("%llx", (x)->a[i]);
+        printf("%016llx", (x)->a[i]);
 #else
         // For other word sizes (typically 32-bit), use %08x format specifier for printing
         printf("%x", (x)->a[i]);
 #endif
     }
-    printf("\n");
+    //printf("\n");
 }
 
 int bi_set_by_array(OUT bigint** x, IN int sign, IN word* a, IN int wordlen) 
@@ -189,10 +189,8 @@ void bi_refine_word(IN bigint* x, IN int num_words)
 void bi_assign(OUT bigint** dest, IN bigint* src)
 {
     if(*dest != NULL)
-        bi_delete(dest);
-    
+        bi_delete(dest);  
     bi_new(dest, src->wordlen);
-
     (*dest)->sign = src->sign;
     (*dest)->wordlen = src->wordlen;
 
@@ -309,25 +307,13 @@ int get_bit_length(IN bigint* x)
     return total_bit_length;
 }
 
-int get_jth_bit(IN bigint* x, IN word j) 
+
+bool get_jth_bit(IN bigint* x, IN int j) 
 {
-    if (j >= ((word)x->wordlen * sizeof(word))) //INVALID_DATA 때문에 verify가 안돼서 일단 주석 처리해두었습니다.
-    { 
-        INVAILD_DATA;
-        exit(1);
+    if (j >= WORD_BITLEN) {
+        return ((x)->a[j / WORD_BITLEN] >> (j % WORD_BITLEN)) & ONE;  // 비트 시프트 후 AND 연산으로 1인지 0인지 확인
     }
-
-    word word_index = j / sizeof(word); 
-    word bit_index = j % sizeof(word);  
-
-    if (word_index >= (word)x->wordlen)
-    { 
-        INVAILD_DATA; //INVALID_DATA 때문에 verify가 안돼서 일단 주석 처리해두었습니다.
-        exit(1);
-    }
-
-    word mask = (1 << bit_index);
-    return (x->a[word_index] & mask) ? 1 : 0;
+    return ((x)->a[0] >> j) & ONE;  // 가장 첫 번째 워드에서 비트 확인
 }
 
 void right_shift_bit(INOUT bigint* x, IN int shift) 
@@ -469,34 +455,47 @@ void left_shift_word(INOUT bigint** x, IN int shift_words)
 
 
 void right_shift_word(INOUT bigint* x, IN int shift_words) 
-{   
+{
     if (x == NULL || x->a == NULL) 
     {
         MEM_ALLOCATION_FAIL;
         exit(1);
     }
-    
-    int old_wordlen = x->wordlen;
-    //int new_wordlen = old_wordlen + shift_words * (WORD_BITLEN / 4);
-    int new_wordlen = old_wordlen + shift_words;
 
-    // Reallocate memory for x->a with new_wordlen size
+    // shift_words만큼 오른쪽 워드를 없앰
+    if (shift_words <= 0) 
+    {
+        return; // shift_words가 0 이하라면 아무 작업도 하지 않음
+    }
+
+    if (shift_words >= x->wordlen) 
+    {
+        // 모든 워드를 없애야 하는 경우
+        free(x->a); 
+        x->a = NULL;
+        x->wordlen = 0;
+        x->sign = 0; // 정수를 0으로 초기화
+        return;
+    }
+
+    // shift_words만큼 워드를 오른쪽으로 이동
+    int new_wordlen = x->wordlen - shift_words;
+    for (int i = 0; i < new_wordlen; i++) 
+    {
+        x->a[i] = x->a[i + shift_words];
+    }
+
+    // 메모리 재할당으로 크기 조정
     x->a = (word*)realloc(x->a, new_wordlen * sizeof(word));
-    if (x->a == NULL) 
+    if (x->a == NULL && new_wordlen > 0) 
     {
         MEM_ALLOCATION_FAIL;
         exit(1);
     }
 
-    // Set the sign and initialize new elements to ZERO
-    x->sign = x->sign;
-    for (int i = old_wordlen; i < new_wordlen; i++) 
-    {
-        x->a[i] = ZERO;
-    }
-
     x->wordlen = new_wordlen;
 }
+
 
 int is_zero(IN bigint* x) {
 

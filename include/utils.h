@@ -189,7 +189,7 @@ int compare(IN bigint* x, IN bigint* y);
  * @brief Calculate the bit length of a given bigint.
  *
  * This function calculates the bit length of the absolute value of a bigint.
- * It accounts for the number of leading zeros in the last word and adds an 
+ * It accounts for the number of leading zeros in the `st word and adds an 
  * extra bit for the sign if the bigint is negative.
  *
  * @param[in] x A pointer to the bigint structure (input).
@@ -202,15 +202,17 @@ int get_bit_length(IN bigint* x);
 /**
  * @brief Get the value of the j-th bit from a bigint.
  *
- * This function retrieves the value of the specified bit (j) from the given 
+ * This function retrieves the value of the specified bit (j) from the given ¡`
  * bigint. The indexing is 0-based, where the least significant bit is at index 0.
  *
  * @param[in] x Pointer to the bigint structure from which the bit will be retrieved (input).
  * @param[in] j The index of the bit to retrieve (0-based) (input).
  * @return Returns 1 if the bit is set, 0 if the bit is not set, or -1 if 
  *         the input is invalid (e.g., NULL pointer, out of bounds).
- */
-int get_jth_bit(IN bigint* x, IN word j);
+ *
+int get_jth_bit(IN bigint* x, IN word j);*/
+
+bool get_jth_bit(IN bigint* x, IN int j);
 
 
 /**

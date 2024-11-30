@@ -1,6 +1,6 @@
 #include "test.h"
 
-
+/*
 void test_set_by_array() {
     bigint* x = NULL;
     bigint* y = NULL;
@@ -33,7 +33,7 @@ void test_set_by_array() {
     bi_delete(&z);
 
 }
-
+*/
 void test_bi_string() {
     bigint* x = NULL; 
     bigint* y = NULL; 
@@ -90,7 +90,7 @@ void print_bi_hex_py(IN const bigint* x)
         INVAILD_DATA;
         exit(1);
     }
-    if ((x)->sign == -1) { printf("-"); }  
+    if ((x)->sign == NEGATIVE) { printf("-"); }  
     printf("0x");                           
     
     for (int i = (x)->wordlen - 1; i >= 0; i--) 
@@ -250,7 +250,7 @@ void test_right_shift_word() {
     bi_show_hex(x);
     bi_delete(&x);
 }
-
+/*
 void test_left_shift_word() {
 
     bigint* x = NULL;
@@ -266,7 +266,7 @@ void test_left_shift_word() {
 
     bi_delete(&x);
 }
-
+*/
 void test_bi_long_div()
 {         
     for(int i = 0 ; i < TEST_CASE; i++)
@@ -280,13 +280,18 @@ void test_bi_long_div()
         int wordlen2 = rand() % 128 + 1;
         
         int sign_x = (rand() % 2 == 0) ? NON_NEGATIVE : NEGATIVE;
-        
+    
         bi_gen_rand(&x, sign_x, wordlen1);
         bi_gen_rand(&y, NON_NEGATIVE, wordlen2);
         
-        //bi_set_zero(&x);
-        //bi_assign(&y,x);
-        //y->sign=NON_NEGATIVE;
+        //r = 0 인 경우 테스트
+        /*bigint* temp=NULL;
+        bigint* mul=NULL;
+        bi_gen_rand(&mul, sign_x, 30);
+
+        mul_core_improved(&y, &mul, &temp);
+        bi_assign(&x, temp); //x = 2y*/
+        
 
         bi_long_div(&x,&y,&q,&r);
         print_bi_hex_py(x);                         
@@ -294,15 +299,14 @@ void test_bi_long_div()
         print_bi_hex_py(y);                    
         printf(" == "); 
         print_bi_hex_py(q);                            
-        printf("\n"); 
+        printf("\n");
 
-        /*bi_long_div(&x,&y,&q,&r);
         print_bi_hex_py(x);                         
         printf(" %% "); 
         print_bi_hex_py(y);                    
         printf(" == "); 
         print_bi_hex_py(r);                            
-        printf("\n"); */
+        printf("\n"); 
        
         bi_delete(&x);
         bi_delete(&y);
@@ -311,3 +315,123 @@ void test_bi_long_div()
     }
 }
 
+void test_barret_reduction(){
+
+    for(int i=0; i<TEST_CASE; i++){
+
+        int N_len = rand() % 128 + 1;
+        int A_len = rand() % (2*N_len) + 1; // 1부터 2n까지 랜덤 생성
+
+        // A 생성
+        bigint* A=NULL;
+        bi_gen_rand(&A,NON_NEGATIVE, A_len); //여기서 MEM_ALLOCATION
+
+        // W^(n-1) <= N < W^n인 N 생성
+        bigint* Wn_1 = NULL; // W^(n-1)
+        bi_new(&Wn_1, N_len);
+        Wn_1->a[N_len-1]=ONE;
+        
+        bigint* N = NULL;
+        bi_gen_rand(&N,NON_NEGATIVE, N_len);
+        
+        while(compare(Wn_1, N)==1){ // W^(n-1) > N 이면  N 다시 생성
+            bi_gen_rand(&N,NON_NEGATIVE, N_len); 
+        }
+
+        // T 사전 계산 ( T = floor(W^2n / N) )
+        bigint* T=NULL;
+        bigint* tmp=NULL;
+
+        // W = 2^(WORD_BITLEN)
+        bigint* W2n=NULL; 
+        bigint* Wn=NULL;
+        bi_new(&Wn, N_len+1);
+        Wn->a[N_len]=ONE;
+
+        Squaring(&Wn, &tmp); 
+        bi_assign(&W2n, tmp);
+
+        // T 계산
+        bi_long_div(&W2n, &N, &T, &tmp); // T = floor( W^2n / N )
+
+        bigint* R=NULL;
+        barret_reduction(&A, &N, &T, &R); 
+        
+        print_bi_hex_py(A);
+        printf(" %% ");
+        print_bi_hex_py(N);
+        printf(" == ");
+        print_bi_hex_py(R);
+        printf("\n");
+
+        bi_delete(&A); 
+        bi_delete(&N); 
+        bi_delete(&T); 
+        bi_delete(&W2n);
+        bi_delete(&Wn);
+        bi_delete(&R);
+        bi_delete(&tmp);
+    }
+}
+
+void test_sub() 
+{  
+    for(int i = 0 ; i < TEST_CASE; i++)
+    {
+        bigint *x = NULL;
+        bigint *y = NULL;
+        bigint *z = NULL;
+
+        //랜덤 생성
+        int wordlen1 = rand() % 128 + 1; 
+        int wordlen2 = rand() % 128 + 1;
+        int sign_x = (rand() % 2 == 0) ? NON_NEGATIVE : NEGATIVE;
+        int sign_y = (rand() % 2 == 0) ? NON_NEGATIVE : NEGATIVE;
+        bi_gen_rand(&x, sign_x, wordlen1);
+        bi_gen_rand(&y, sign_y, wordlen2);            
+
+        //A가 0
+        /*
+        bi_set_zero(&x);
+        bi_gen_rand(&y, sign_y, wordlen2);
+        */
+
+        //B가 0
+        /*
+        bi_set_zero(&y);
+        bi_gen_rand(&x, sign_x, wordlen1);
+        */
+
+        //A=B 
+        /*
+        bi_gen_rand(&x, NEGATIVE, wordlen1);
+        bi_assign(&y, x);
+        y->sign=NON_NEGATIVE;
+        */
+
+        //A= - |B| A<0 B>0
+        /*
+        bi_gen_rand(&x, NEGATIVE, wordlen1);
+        bi_assign(&y, x);
+        y->sign=NON_NEGATIVE;
+        */
+
+       //A= - |B| A>0 B<0
+        /*
+        bi_gen_rand(&x, NON_NEGATIVE, wordlen1);
+        bi_assign(&y, x);
+        y->sign=NEGATIVE;
+        */
+
+        sub(&x, &y, &z);
+
+        print_bi_hex_py(x);                         
+        printf(" - "); print_bi_hex_py(y);                    
+        printf(" == "); print_bi_hex_py(z);                            
+        printf("\n"); 
+        
+        bi_delete(&x);
+        bi_delete(&y);
+        bi_delete(&z);
+    }
+}
