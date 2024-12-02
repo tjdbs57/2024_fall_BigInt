@@ -1,7 +1,7 @@
 #ifndef TEST_H
 
 #include "arithmetic.h"
-#define TEST_CASE 1000
+#define TEST_CASE 10000
 void test();void test_div();void test_exp_mod();void test_barret();;
 
 void test_set_by_array();

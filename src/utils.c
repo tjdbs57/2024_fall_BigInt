@@ -68,7 +68,7 @@ void bi_show_hex(IN bigint* x)
         printf("%x", (x)->a[i]);
 #elif WORD_BITLEN == 64
         // For 64-bit words, use %016llx format specifier for printing
-        printf("%llx", (x)->a[i]);
+        printf("%lld", (x)->a[i]);
 #else
         // For other word sizes (typically 32-bit), use %08x format specifier for printing
         printf("%x", (x)->a[i]);

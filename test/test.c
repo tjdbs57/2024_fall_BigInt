@@ -22,7 +22,7 @@ void print_bi_hex_py(IN const bigint* x)
         printf("%02x", (x)->a[i]);
 #elif WORD_BITLEN == 64
         // For 64-bit words, use %016llx format specifier for printing
-        printf("%016lx", (x)->a[i]);
+        printf("%016llx", (x)->a[i]);
 #else
         // For other word sizes (typically 32-bit), use %08x format specifier for printing
         printf("%08x", (x)->a[i]);
@@ -30,7 +30,7 @@ void print_bi_hex_py(IN const bigint* x)
     }
 }
 
-
+/*
 void test_set_by_array() {
     bigint* x = NULL;
     bigint* y = NULL;
@@ -111,15 +111,16 @@ void test_bi_string() {
 
 }
 
-#define MAX_BIT_LEN    1024
+*/
+#define MAX_BIT_LEN    256
 
 void test()
 {
-    //test_basic_operation(add, "+");
+    test_basic_operation(add, "+");
     //test_basic_operation(sub, "-");
     //test_basic_operation(mul_core_tx, "*");
     //test_basic_operation(mul_core_improved, "*");
-    test_basic_operation(mul_core_karatsuba, "*");
+    //test_basic_operation(mul_core_karatsuba, "*");
 }
 
 void test_basic_operation(void(*operation)(IN bigint** , IN bigint**, OUT bigint**), const char* operator)
@@ -301,8 +302,8 @@ double measure_execution_time(void(*func)(IN bigint** , IN bigint**, OUT bigint*
 void measure_cycles(void(*func)(IN bigint** , IN bigint**, OUT bigint**), IN bigint** x, IN bigint** y, OUT bigint** z) {
     u32 ui;
     u64 start, end;
-    const int num = 1000;
-    func(x, y, z);
+    const int num = 100000;
+    //func(x, y, z);
 
     start = _rdtscp(&ui);
     for(int i = 0; i < num; i++)
@@ -310,7 +311,7 @@ void measure_cycles(void(*func)(IN bigint** , IN bigint**, OUT bigint**), IN big
         func(x, y, z);
     }
     end = _rdtscp(&ui);
-    printf("%lu\n", (unsigned long)(end - start) / num);
+    printf("%ld\n", (unsigned long)(end - start) / num);
 }
 
 void measure_clock_cycles()
@@ -322,14 +323,16 @@ void measure_clock_cycles()
         bigint *y = NULL;
         bigint *z = NULL;
 
-        int sign = rand() % 2;
-        int wordlen = 256/sizeof(word);
-        bi_gen_rand(&x, sign, wordlen);
-        bi_gen_rand(&y, sign, wordlen);
+        int sign1 = rand() % 2;
+        int sign2 = rand() % 2;
+        int wordlen = (MAX_BIT_LEN / WORD_BITLEN);
+        bi_gen_rand(&x, sign1, wordlen);
+        bi_gen_rand(&y, sign2, wordlen);
         
         //measure_cycles(mul_core_tx, &x, &y, &z);
         //measure_cycles(mul_core_improved, &x, &y, &z);
-        measure_cycles(mul_core_karatsuba, &x, &y, &z);
+        //measure_cycles(mul_core_karatsuba, &x, &y, &z);
+        measure_cycles(sub, &x, &y, &z);
 
         bi_delete(&x);
         bi_delete(&y);
