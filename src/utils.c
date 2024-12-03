@@ -68,7 +68,7 @@ void bi_show_hex(IN bigint* x)
         printf("%x", (x)->a[i]);
 #elif WORD_BITLEN == 64
         // For 64-bit words, use %016llx format specifier for printing
-        printf("%lld", (x)->a[i]);
+        printf("%llx", (x)->a[i]);
 #else
         // For other word sizes (typically 32-bit), use %08x format specifier for printing
         printf("%x", (x)->a[i]);
@@ -301,7 +301,7 @@ int get_bit_length(IN bigint* x) {
 bool get_jth_bit(IN bigint* x, IN int j) 
 {
     if (j >= WORD_BITLEN) {
-        return ((x)->a[j / WORD_BITLEN] >> (j % WORD_BITLEN)) & ONE;  // 비트 시프트 후 AND 연산으로 1인지 0인지 확인
+        return (((x)->a[j / WORD_BITLEN] >> (j % WORD_BITLEN)) & ONE);  // 비트 시프트 후 AND 연산으로 1인지 0인지 확인
     }
     return ((x)->a[0] >> j) & ONE;  // 가장 첫 번째 워드에서 비트 확인
 }
@@ -364,41 +364,55 @@ void left_shift_bit(INOUT bigint* x, IN int shift)
 
     bi_refine(x);
 }
+void reduction(bigint** x, int r) {
+    // If the desired bit length is greater than the current bit length, no reduction is needed
+    if (r > get_bit_length(*x) ) return; // Trivial Case
 
-void reduction(IN bigint** x, IN int r) {
-    // 현재 비트 길이가 r 이하라면 아무 작업도 하지 않음
-    if (r > get_bit_length(*x)) return;
-
-    // 필요한 워드 길이 계산
-    int target_wordlen = (r + WORD_BITLEN - 1) / WORD_BITLEN;
-
-    // 상위 비트 마스킹 (필요한 워드의 마지막 워드 처리)
-    (*x)->a[target_wordlen - 1] &= (word)(0xFFFFFFFFFFFFFFFF >> (WORD_BITLEN - (r % WORD_BITLEN)));
-
-    // 메모리 재할당: WORD_BITLEN 값에 따라 크기 조정
+    // Check if the power of 2 is a multiple of WORD_BITLEN and less than current bit length
+    if (r % WORD_BITLEN == 0 && r < get_bit_length(*x)) {
 #if WORD_BITLEN == 8
-    word* new_mem = realloc((*x)->a, target_wordlen);
-#elif WORD_BITLEN == 32
-    word* new_mem = realloc((*x)->a, target_wordlen * 4);  // 4 bytes per word
+        // For 8-bit words, allocate memory for pwOf2/8 words
+        word* tmp = (*x)->a;
+        tmp = (word*)realloc(tmp, (r / WORD_BITLEN));
+        (*x)->a = tmp;
 #elif WORD_BITLEN == 64
-    word* new_mem = realloc((*x)->a, target_wordlen * 8);  // 8 bytes per word
+        // For 64-bit words, allocate memory for 8 times (pwOf2/64) words
+        word* tmp = (*x)->a;
+        tmp = (word*)realloc(tmp, 8 * (r / WORD_BITLEN));
+        (*x)->a = tmp;
 #else
-    #error "Unsupported WORD_BITLEN value!"
+        // For other word sizes (typically 32-bit), allocate memory for 4 times (pwOf2/WORD_BITLEN) words
+        word* tmp = (*x)->a;
+        tmp = (word*)realloc(tmp, 4 * (r / WORD_BITLEN));
+        (*x)->a = tmp;
+#endif
+        // Update the word length of the BINT structure
+        (*x)->wordlen = r / WORD_BITLEN;
+        return;
+    }
+
+    // Adjust the most significant word to fit the reduction
+    (*x)->a[r / WORD_BITLEN] = (*x)->a[r / WORD_BITLEN] && (0xFF >> (r % WORD_BITLEN));
+
+#if WORD_BITLEN == 8
+    word* tmp = (*x)->a;
+    tmp = (word*)realloc(tmp, (r / WORD_BITLEN));
+    (*x)->a = tmp;
+#elif WORD_BITLEN == 64
+    word* tmp = (*x)->a;
+    tmp = (word*)realloc(tmp, 8 * (r / WORD_BITLEN));
+    (*x)->a = tmp;
+#else
+    word* tmp = (*x)->a;
+    tmp = (word*)realloc(tmp, 4 * (r / WORD_BITLEN));
+    (*x)->a = tmp;
 #endif
 
-    // 재할당 실패 처리
-    if (!new_mem) {
-        fprintf(stderr, "Memory allocation failed in reduction()\n");
-        exit(EXIT_FAILURE);
-    }
-    (*x)->a = new_mem;
-
-    // 워드 길이 업데이트
-    (*x)->wordlen = target_wordlen;
-
-    // 필요 없는 워드 제거 (안전)
-    bi_refine(*x);
+    // Update the word length to reflect the new size
+    (*x)->wordlen = (r / WORD_BITLEN) + 1;
+    return;
 }
+
 
 void left_shift_word(INOUT bigint** x, IN int shift_words) 
 {

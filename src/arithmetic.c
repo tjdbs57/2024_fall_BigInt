@@ -456,7 +456,7 @@ void mul_core_karatsuba(IN bigint** x, IN bigint** y, OUT bigint** z)
     bi_delete(&C);
     bi_delete(&tmpST0);
     bi_delete(&tmpST1);
-    //bi_refine(*x); //bi_refine(*y);
+    bi_refine(*x); bi_refine(*y);
 }
 
 void squ_single_word(IN word A, OUT bigint** result)

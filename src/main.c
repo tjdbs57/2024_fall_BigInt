@@ -8,9 +8,8 @@
 
 int main()
 {
-
     //test_barret();
-    //test();
+    test();
     //test_div();
     //test_exp_mod();
     //test_set_by_array();
@@ -18,7 +17,7 @@ int main()
 
     //test_squc();;
     //measure();
-    measure_clock_cycles();
+    //measure_clock_cycles();
 
     return 0;
 }

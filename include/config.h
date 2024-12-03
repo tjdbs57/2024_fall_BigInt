@@ -16,8 +16,6 @@
 #include <x86intrin.h>
 #endif
 
-#include <windows.h>
-#include <psapi.h>
 
 #define     IN
 #define     OUT
@@ -26,8 +24,8 @@
 #define NON_NEGATIVE    0
 #define NEGATIVE        1
 
-// at least (wordlen / 2)
-#define FLAG    48
+
+#define FLAG    78
 
 typedef uint8_t   u8;
 typedef uint32_t u32;

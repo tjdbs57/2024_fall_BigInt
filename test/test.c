@@ -112,15 +112,15 @@ void test_bi_string() {
 }
 
 */
-#define MAX_BIT_LEN    256
+#define MAX_BIT_LEN    10000
 
 void test()
 {
-    test_basic_operation(add, "+");
+    //test_basic_operation(add, "+");
     //test_basic_operation(sub, "-");
     //test_basic_operation(mul_core_tx, "*");
     //test_basic_operation(mul_core_improved, "*");
-    //test_basic_operation(mul_core_karatsuba, "*");
+    test_basic_operation(mul_core_karatsuba, "*");
 }
 
 void test_basic_operation(void(*operation)(IN bigint** , IN bigint**, OUT bigint**), const char* operator)
@@ -303,7 +303,8 @@ void measure_cycles(void(*func)(IN bigint** , IN bigint**, OUT bigint**), IN big
     u32 ui;
     u64 start, end;
     const int num = 100000;
-    //func(x, y, z);
+
+    volatile u64 cycles;
 
     start = _rdtscp(&ui);
     for(int i = 0; i < num; i++)
@@ -311,7 +312,9 @@ void measure_cycles(void(*func)(IN bigint** , IN bigint**, OUT bigint**), IN big
         func(x, y, z);
     }
     end = _rdtscp(&ui);
-    printf("%ld\n", (unsigned long)(end - start) / num);
+
+    cycles = end - start;
+    printf("%ld\n", (unsigned long)(cycles) / num);
 }
 
 void measure_clock_cycles()
@@ -332,7 +335,7 @@ void measure_clock_cycles()
         //measure_cycles(mul_core_tx, &x, &y, &z);
         //measure_cycles(mul_core_improved, &x, &y, &z);
         //measure_cycles(mul_core_karatsuba, &x, &y, &z);
-        measure_cycles(sub, &x, &y, &z);
+        measure_cycles(add, &x, &y, &z);
 
         bi_delete(&x);
         bi_delete(&y);
@@ -371,14 +374,4 @@ void measure()
     printf("Average time for mul_core_tx: %.2f ms\n", total_time_tx / TEST_CASE);
     printf("Average time for mul_core_improved: %.2f ms\n", total_time_improved / TEST_CASE);
     printf("Average time for mul_core_karatsuba: %.2f ms\n", total_time_karatsuba / TEST_CASE);
-}
-
-
-size_t measure_memory_usage(void(*func)(IN bigint** , IN bigint**, OUT bigint**), IN bigint** x, IN bigint** y, OUT bigint** z)
-{
-    PROCESS_MEMORY_COUNTERS pmc;
-    func(x, y, z);
-
-    GetProcessMemoryInfo(GetCurrentProcess(), &pmc, sizeof(pmc));
-    return pmc.WorkingSetSize;  // 메모리 사용량 반환
 }

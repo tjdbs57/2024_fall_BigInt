@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -std=c99 -Wall -Wextra -g -Iinclude -MMD
+CFLAGS = -O3 -std=c99 -Wall -Wextra -g -Iinclude -MMD
 
 # Directories
 SRCDIR 		= src
@@ -20,13 +20,11 @@ ifeq ($(OS),Windows_NT)
 	MKDIR = mkdir
 	RMDIR = rmdir /S /Q
 	RUN = $(BINDIR)\program.exe
-	LIBS = -lpsapi
 else
 	TARGET = $(BINDIR)/program
 	MKDIR = mkdir -p
 	RMDIR = rm -rf
 	RUN = ./$(TARGET)
-	LIBS =
 
 endif
 
