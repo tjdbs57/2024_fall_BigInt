@@ -34,7 +34,6 @@ void print_bi_hex_py(IN const bigint* x)
 
 void test()
 {
-    srand((u32)time(NULL));
     for(int i = 0 ; i < TEST_CASE; i++)
     {
         bigint *x = NULL;
@@ -63,7 +62,6 @@ void test()
 
 void test_squ(void(*operation)(IN bigint** , OUT bigint**), const char* operate)
 {
-    srand((u32)time(NULL));
 
     for(int i = 0 ; i < TEST_CASE; i++)
     {
@@ -94,7 +92,6 @@ void test_squ(void(*operation)(IN bigint** , OUT bigint**), const char* operate)
 
 void test_basic_operation(void(*operation)(IN bigint** , IN bigint**, OUT bigint**), const char* operator, const char* operate)
 {
-    srand((u32)time(NULL));
 
     for(int i = 0 ; i < TEST_CASE; i++)
     {
@@ -124,8 +121,6 @@ void test_basic_operation(void(*operation)(IN bigint** , IN bigint**, OUT bigint
 }
 void test_div(const char* operate)
 {
-    srand((u32)time(NULL));
-
     for(int i = 0 ; i < TEST_CASE; i++)
     {
         bigint *x = NULL;
@@ -165,7 +160,6 @@ void test_div(const char* operate)
 
 void test_exp_mod(void(*operation)(IN bigint** , IN bigint**, OUT bigint**, IN bigint**),const char* operate)
 {
-    srand((u32)time(NULL));
 
     for(int i = 0 ; i < TEST_CASE; i++)
     {
@@ -210,7 +204,6 @@ void test_exp_mod(void(*operation)(IN bigint** , IN bigint**, OUT bigint**, IN b
 }
 void test_barret(const char* operate)
 {
-    srand((u32)time(NULL));
 
     for(int i=0; i<TEST_CASE; i++){
 
