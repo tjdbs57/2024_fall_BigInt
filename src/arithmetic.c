@@ -604,6 +604,7 @@ void squ_karatsuba(IN bigint** x, OUT bigint** z)
     bi_delete(&R);
 }
 
+
 void bi_long_div(IN bigint** x, IN bigint** y, OUT bigint** q, OUT bigint** r)
 {
     
@@ -667,15 +668,15 @@ void bi_long_div(IN bigint** x, IN bigint** y, OUT bigint** q, OUT bigint** r)
         (*r)->a[0] ^= (((*x)->a[i / WORD_BITLEN] >> (i % WORD_BITLEN)) & 1); // +a_j
 
         //if R >= B
-        int comp=compare(*r,*y);
+        int comp=compareABS(*r,*y);
         if (comp==1 || comp==-1) { //r >= B
-
+            
             //Q <- Q+2^j = Q^(1<<j)
             int word_index = i / WORD_BITLEN;       
             int bit_index = i % WORD_BITLEN;        
 
-            (*q)->a[word_index] ^= (1 << bit_index);
-
+            (*q)->a[word_index] ^= (ONE << bit_index);
+     
             //r <- r-b
             sub_core(r,y,&tmp);
             bi_assign(r,tmp);

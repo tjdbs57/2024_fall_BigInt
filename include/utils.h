@@ -243,7 +243,7 @@ void right_shift_bit(INOUT bigint* x, IN int shift);
  *       message if memory allocation fails. It also removes any leading zero words 
  *       after the shift operation.
  */
-void left_shift_bit(INOUT bigint* x, IN int shift);
+void left_shift_bit(bigint* pptrBint, int shift_amount);
 
 /**
  * @brief Perform a reduction operation on a bigint.

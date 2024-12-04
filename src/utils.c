@@ -337,32 +337,45 @@ void right_shift_bit(INOUT bigint* x, IN int shift)
     bi_refine(x);
 }
 
-void left_shift_bit(INOUT bigint* x, IN int shift) 
-{
-    int word_shift = shift / (8*sizeof(word)); 
-    int bit_shift = shift % (8*sizeof(word));   
-    int old_wordlen = x->wordlen;
-    int new_wordlen = old_wordlen + word_shift + 1;
-
-    word* new_array = (word*)calloc(new_wordlen, sizeof(word));
-    if (new_array == NULL) 
-    { 
-        MEM_ALLOCATION_FAIL;
-        exit(1);
+void left_shift_bit(bigint* pptrBint, int shift_amount) {
+    if (!(pptrBint) || !pptrBint) {
+        fprintf(stderr, "Parameter is NULL in 'left_shift_bit'\n");
+        return; // Invalid parameters or no shift needed.
+    }
+    if (shift_amount <= 0) {
+        return; // No shift is needed for non-positive shift amounts
     }
 
-    for (int i = 0; i < old_wordlen; i++) {
-        new_array[i + word_shift] |= (x->a[i] << bit_shift);
-        if (i + word_shift + 1 < new_wordlen && bit_shift > 0) {
-            new_array[i + word_shift + 1] |= (x->a[i] >> ((8*sizeof(word)) - bit_shift)); 
+    // Shift loop
+    while (shift_amount > 0) {
+        word carry = 0;  // Carry bit for the shift
+        for (int i = 0; i < (pptrBint)->wordlen; ++i) {
+            // Extract the bit that will be shifted out
+            word next_carry = ((pptrBint)->a[i] >> (WORD_BITLEN - 1)) & ONE;
+            // Perform the shift left operation
+            (pptrBint)->a[i] = ((pptrBint)->a[i] << 1) | carry;
+            carry = next_carry; // Update carry for the next iteration
         }
+        if (carry) {
+            // We need to increase the size of val to accommodate the new bit.
+            word* new_val = (pptrBint)->a;
+            new_val = realloc((pptrBint)->a, ((pptrBint)->wordlen + 1) * sizeof(word));
+            if (new_val) {
+                (pptrBint)->a = new_val;
+                (pptrBint)->a[(pptrBint)->wordlen] = carry; // Add the carried bit in the new WORD
+                (pptrBint)->wordlen++; // Increment word length
+                // (*pptrBint)->val = new_val;
+                // (*pptrBint)->val[(*pptrBint)->wordlen] = 0; // Initialize the new WORD to zero before setting the carry bit.
+                // (*pptrBint)->val[(*pptrBint)->wordlen] |= carry; // Add the carried bit in the new WORD.
+                // (*pptrBint)->wordlen++;
+            } else {
+                fprintf(stderr, "Memory allocation failure during left shift operation.\n");
+                return; // Stop the function upon allocation failure.
+            }
+        }
+        shift_amount--;
     }
 
-    free(x->a);
-    x->a = new_array;
-    x->wordlen = new_wordlen;
-
-    bi_refine(x);
 }
 void reduction(bigint** x, int r) {
     // If the desired bit length is greater than the current bit length, no reduction is needed

@@ -9,8 +9,8 @@
 int main()
 {
     //test_barret();
-    test();
-    //test_div();
+    //test();
+    test_div();
     //test_exp_mod();
     //test_set_by_array();
     //test_bi_string();

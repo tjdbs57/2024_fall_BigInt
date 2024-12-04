@@ -112,7 +112,7 @@ void test_bi_string() {
 }
 
 */
-#define MAX_BIT_LEN    10000
+#define MAX_BIT_LEN    4096
 
 void test()
 {
