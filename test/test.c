@@ -22,7 +22,8 @@ void print_bi_hex_py(IN const bigint* x)
         printf("%02x", (x)->a[i]);
 #elif WORD_BITLEN == 64
         // For 64-bit words, use %016llx format specifier for printing
-        printf("%016lx", (x)->a[i]);
+        printf("%016I64x", (x)->a[i]);
+
 #else
         // For other word sizes (typically 32-bit), use %08x format specifier for printing
         printf("%08x", (x)->a[i]);
