@@ -20,11 +20,13 @@ ifeq ($(OS),Windows_NT)
 	MKDIR = mkdir
 	RMDIR = rmdir /S /Q
 	RUN = $(BINDIR)\program.exe
+	PYTHON_CMD := python
 else
 	TARGET = $(BINDIR)/program
 	MKDIR = mkdir -p
 	RMDIR = rm -rf
 	RUN = ./$(TARGET)
+	PYTHON_CMD := python3
 
 endif
 
@@ -56,13 +58,6 @@ rebuild: clean all
 run: $(TARGET)
 	$(RUN)
 
-UNAME_S := $(shell uname -s)
-
-ifeq ($(UNAME_S),Linux)
-    PYTHON_CMD := python3
-else
-    PYTHON_CMD := python
-endif
 
 # Verify with test script
 verify: $(TARGET)
@@ -75,6 +70,10 @@ check:
 measure:
 	(cd bin && program > cycle_single.txt)
 	(cd bin && move cycle_single.txt ../test/)
+	(cd test && $(PYTHON_CMD) single_time.py)
+compare:
+	(cd bin && program > cycle.txt)
+	(cd bin && move cycle.txt ../test/)
 	(cd test && $(PYTHON_CMD) time.py)
 
 .PHONY: all clean rebuild run verify check dir measure

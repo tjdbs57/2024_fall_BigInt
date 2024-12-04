@@ -264,6 +264,59 @@ void test_barret(const char* operate)
 
 #define TIME(start, end) ((double)((end) - (start))) / CLOCKS_PER_SEC 
 
+// void measure_cycles(void(*func)(IN bigint** , IN bigint**, OUT bigint**), IN bigint** x, IN bigint** y, OUT bigint** z) {
+//     u32 ui;
+//     u64 start, end;
+//     const int num = 1000;
+
+//     volatile u64 cycles_with_func, cycles_without_func;
+//     u64 max_cycles = 0;
+//     u64 max_x = 0, max_y = 0;  // 최대 클락 사이클이 발생한 입력 값 추적
+
+//     // 반복문을 통해 모든 입력값에 대해 측정
+//     for (int i = 0; i < num; i++) {
+//         // Measure time with function execution
+//         start = _rdtscp(&ui);
+//         func(x, y, z);
+//         end = _rdtscp(&ui);
+//         cycles_with_func = end - start;
+
+//         // Measure time without function execution (loop overhead)
+//         start = _rdtscp(&ui);
+//         for (int j = 0; j < num; j++) {
+//             // Empty loop
+//         }
+//         end = _rdtscp(&ui);
+//         cycles_without_func = end - start;
+
+//         // Subtract loop overhead from total cycles
+//         volatile u64 pure_cycles = cycles_with_func - cycles_without_func;
+
+//         // 가장 높은 클락 사이클을 기록
+//         if (pure_cycles > max_cycles) {
+//             max_cycles = pure_cycles;
+//             max_x = *x;  // 해당 x 값을 저장
+//             max_y = *y;  // 해당 y 값을 저장
+//         }
+//     }
+
+//     // 가장 높은 클락 사이클을 기록한 입력 값과 그 클락 사이클 값 출력
+//     printf("Max Cycles: %ld, Input X: %ld, Input Y: %ld\n", max_cycles, max_x, max_y);
+    
+//     // 입력을 다시 측정하여 동일한 값이 나오는지 확인
+//     printf("Measuring the input again...\n");
+
+//     // 동일한 입력 값으로 다시 클락 사이클을 측정
+//     u64 start_again, end_again;
+//     start_again = _rdtscp(&ui);
+//     func(&max_x, &max_y, z);  // 기록된 입력 값으로 실행
+//     end_again = _rdtscp(&ui);
+//     cycles_with_func = end_again - start_again;
+
+//     // 다시 측정한 클락 사이클 출력
+//     printf("Measured Cycles with Input X: %ld, Y: %ld -> %ld\n", max_x, max_y, cycles_with_func);
+// }
+
 double measure_execution_time(void(*func)(IN bigint** , IN bigint**, OUT bigint**), IN bigint** x, IN bigint** y, OUT bigint** z) 
 {
     srand((u32)time(NULL));
@@ -278,19 +331,30 @@ double measure_execution_time(void(*func)(IN bigint** , IN bigint**, OUT bigint*
 void measure_cycles(void(*func)(IN bigint** , IN bigint**, OUT bigint**), IN bigint** x, IN bigint** y, OUT bigint** z) {
     u32 ui;
     u64 start, end;
-    const int num = 100000;
+    const int num = 100;
 
-    volatile u64 cycles;
+    volatile u64 cycles_with_func, cycles_without_func;
 
+    // Measure time with function execution
     start = _rdtscp(&ui);
-    for(int i = 0; i < num; i++)
-    {
+    for (int i = 0; i < num; i++) {
         func(x, y, z);
     }
     end = _rdtscp(&ui);
+    cycles_with_func = end - start;
 
-    cycles = end - start;
-    printf("%ld\n", (unsigned long)(cycles) / num);
+    // Measure time without function execution (loop overhead)
+    start = _rdtscp(&ui);
+    for (int i = 0; i < num; i++) {
+        // Empty loop
+    }
+    end = _rdtscp(&ui);
+    cycles_without_func = end - start;
+
+    // Subtract loop overhead from total cycles
+    volatile u64 pure_cycles = cycles_with_func - cycles_without_func;
+
+    printf("%ld\n", (unsigned long)(pure_cycles) / num);
 }
 
 void measure_clock_cycles()
@@ -308,10 +372,11 @@ void measure_clock_cycles()
         bi_gen_rand(&x, sign1, wordlen);
         bi_gen_rand(&y, sign2, wordlen);
         
-        //measure_cycles(mul_core_tx, &x, &y, &z);
-        //measure_cycles(mul_core_improved, &x, &y, &z);
-        //measure_cycles(mul_core_karatsuba, &x, &y, &z);
-        measure_cycles(add, &x, &y, &z);
+        measure_cycles(mul_core_tx, &x, &y, &z);
+        measure_cycles(mul_core_improved, &x, &y, &z);
+        measure_cycles(mul_core_karatsuba, &x, &y, &z);
+        //measure_cycles(add, &x, &y, &z);
+        //measure_cycles(sub, &x, &y, &z);
 
         bi_delete(&x);
         bi_delete(&y);
