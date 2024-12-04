@@ -4,10 +4,10 @@
 #include "test.h"
 
 #include "bigint.h"
-#include "log.h"
 
 int main()
 {
+
     test();
     //test_basic_operation(add, "+", "add");
     //test_basic_operation(sub, "-", "sub");

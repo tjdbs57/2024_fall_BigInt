@@ -25,7 +25,7 @@
 #define NEGATIVE        1
 
 
-#define FLAG    78
+#define FLAG    20
 
 typedef uint8_t   u8;
 typedef uint32_t u32;

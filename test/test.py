@@ -1,6 +1,3 @@
-import os
-import time
-import logging
 import matplotlib.pyplot as plt
 
 def evaluate_expression(expression):
@@ -64,24 +61,8 @@ def plot_success_rate(success_rate, success_count, total_count):
 
     plt.show()
 
-current_dir = os.path.dirname(__file__)
-measure_dir = os.path.join(current_dir, '..', 'measure')
-
-if not os.path.exists(measure_dir):
-    os.makedirs(measure_dir)
-                          
-log_file_path = os.path.join(measure_dir, 'log.txt')
- 
-logging.basicConfig(filename=log_file_path, level=logging.INFO, format="%(asctime)s - %(message)s")
-
 file_path = 'test.txt' 
  
-# start time
-start_time = time.time() 
 success_rate, success_count, total_count = read_success_rate_from_file(file_path)
-end_time = time.time()
 
-execution_time = end_time - start_time
-logging.info(f"Verifying : {execution_time: f} sec")
-if total_count > 0:
-    plot_success_rate(success_rate, success_count, total_count)
+plot_success_rate(success_rate, success_count, total_count)
