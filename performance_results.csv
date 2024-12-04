@@ -1,4 +1,0 @@
-Algorithm,Execution Time (s),CPU Cycles,Memory Usage (KB)
-mul_core_tx,0.002000,4560416,3264512
-mul_core_improved,0.007000,13142346,3387392
-mul_core_karatsuba,0.005000,13074239,3387392

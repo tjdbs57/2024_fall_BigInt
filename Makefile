@@ -56,17 +56,25 @@ rebuild: clean all
 run: $(TARGET)
 	$(RUN)
 
+UNAME_S := $(shell uname -s)
+
+ifeq ($(UNAME_S),Linux)
+    PYTHON_CMD := python3
+else
+    PYTHON_CMD := python
+endif
+
 # Verify with test script
 verify: $(TARGET)
 	$(RUN) > ./test/test.txt
-	(cd test && python test.py)
+	(cd test && $(PYTHON_CMD) test.py)
 
-check: 
-	(cd test && python cal.py)
+check:
+	(cd test && $(PYTHON_CMD) cal.py)
 
 measure:
 	(cd bin && program > cycle_single.txt)
 	(cd bin && move cycle_single.txt ../test/)
-	(cd test && python time.py)
+	(cd test && $(PYTHON_CMD) time.py)
 
 .PHONY: all clean rebuild run verify check dir measure

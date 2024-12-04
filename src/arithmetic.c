@@ -713,7 +713,7 @@ void bi_long_div(IN bigint** x, IN bigint** y, OUT bigint** q, OUT bigint** r)
 
 }
 
-word quotient(word dividend1, word dividend0, word divisor) 
+word quotient(IN word dividend1, IN word dividend0, IN word divisor) 
 {
     word Q = 0;
     word R = dividend1;
@@ -743,12 +743,12 @@ word quotient(word dividend1, word dividend0, word divisor)
     return Q;
 }
 
-void div_long_core(IN bigint** x, IN bigint** y, IN bigint** Q, IN bigint** R)
+void general_div_core(IN bigint** x, IN bigint** y, IN bigint** Q, IN bigint** R)
 {
 
-    bi_new(Q, 1);  // Q 초기화
+    bi_new(Q, 1);  
 
-    bi_new(R, (*x)->wordlen);  // R 초기화
+    bi_new(R, (*x)->wordlen); 
 
     int n = (*x)->wordlen;
     int m = (*y)->wordlen;
@@ -760,27 +760,25 @@ void div_long_core(IN bigint** x, IN bigint** y, IN bigint** Q, IN bigint** R)
     word y_m1 = get_word(*y, m-1);
 
 
-    // 몫 계산: n == m or n == m+1에 따라 몫 계산
     if (n == m) {
         (*Q)->a[0] = x_m1 / y_m1;
     }
 
     if (n == m+1) {
         if (x_m == y_m1) {
-            (*Q)->a[0] = W - 1;  // 최댓값
+            (*Q)->a[0] = W - 1;  
         } else {
-            (*Q)->a[0] = quotient(x_m, x_m1, y_m1);  // quotient 함수 사용
+            (*Q)->a[0] = quotient(x_m, x_m1, y_m1); 
         }
     }
 
-    // 나머지 계산: R = X - Y * Q
+
     bigint* YQ = NULL;
     bi_new(&YQ, (*y)->wordlen);
-    mul_core_tx(y, Q, &YQ);  // Y * Q 계산
+    mul_core_tx(y, Q, &YQ);  
+    sub(x, &YQ, R);  
 
-    sub(x, &YQ, R);  // X - YQ 계산
-
-    // R이 음수일 때 보정
+ 
     bigint* one = NULL;
     bigint* tmpQ = NULL;
     bigint* tmpR = NULL;
@@ -788,26 +786,25 @@ void div_long_core(IN bigint** x, IN bigint** y, IN bigint** Q, IN bigint** R)
     bi_new(&one, (*Q)->wordlen);
     one->a[0] = ONE;
 
-    // R이 음수일 때 Q와 R 수정
     while ((*R)->sign == NEGATIVE) {
         bi_assign(&tmpY, *y);
 
-        sub(Q, &one, &tmpQ);  // Q에서 1 빼기
+        sub(Q, &one, &tmpQ); 
         bi_assign(Q, tmpQ);
 
-        add(R, &tmpY, &tmpR);  // 나머지에 Y 더하기
+        add(R, &tmpY, &tmpR);  
         bi_assign(R, tmpR);
 
-            // R이 이제 양수가 되었는지 확인
+          
         if ((*R)->sign != NEGATIVE) {
-            break;  // R이 더 이상 음수가 아니면 루프 종료
+            break;  
         }
 
-        bi_refine(*Q);  // Q를 정리
-        bi_refine(*R);  // R을 정리
+        bi_refine(*Q);  
+        bi_refine(*R);  
     }
 
-    // 메모리 해제
+
     bi_delete(&YQ);
     bi_delete(&one);
     bi_delete(&tmpQ);
@@ -854,7 +851,7 @@ void L2R(IN bigint** x, IN bigint** y, IN bigint** z, OUT bigint** M)
 }
 
 
-void R2L(bigint** x, bigint** y, bigint** z, bigint** M) 
+void R2L(IN bigint** x, IN bigint** y, OUT bigint** z, IN bigint** M) 
 {
     int bit_len = get_bit_length(*y);
 
@@ -890,7 +887,7 @@ void R2L(bigint** x, bigint** y, bigint** z, bigint** M)
     bi_refine(*M);
 }
 
-void exp_mod_montgomery(bigint** x, bigint** y, bigint** z, bigint** M) 
+void exp_mod_montgomery(IN bigint** x, IN bigint** y, OUT bigint** z, IN bigint** M)
 {
     int bit_len = get_bit_length(*y);
     bigint* t0 = NULL; bigint* t1 = NULL;
