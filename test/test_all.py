@@ -1,7 +1,7 @@
-import subprocess
 import matplotlib.pyplot as plt
 import os
 
+# 테스트 출력 파일을 읽고 결과를 처리하는 함수
 def process_test_output(output):
     lines = output.splitlines()
     results = {
@@ -48,18 +48,13 @@ def process_test_output(output):
     return results
 
 
-def run_c_program():
+def read_test_output_from_file(file_path):
     try:
-        result = subprocess.run(['./bin/program'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-
-        if result.returncode != 0:
-            print(f"Error running C program: {result.stderr}")
-            return {}
-
-        return process_test_output(result.stdout)
-
+        with open(file_path, 'r', encoding= 'utf-8') as f:
+            output = f.read()
+        return process_test_output(output)
     except Exception as e:
-        print(f"Exception while running C program: {e}")
+        print(f"Exception while reading test file: {e}")
         return {}
 
 
@@ -112,8 +107,10 @@ def plot_success_rate(results, output_path, test_cases, bit_length):
     plt.close()
 
 
-# C 프로그램 실행 후 결과 처리
-results = run_c_program()
+# 파일에서 결과 읽기
+test_file_path = 'test/test_all.txt'  # 테스트 파일 경로
+results = read_test_output_from_file(test_file_path)
+
 if results:
     output_file = "graph/success_rate_plot.png"  # 저장될 그래프 파일 경로
     test_cases = 1000  # 테스트 케이스 개수

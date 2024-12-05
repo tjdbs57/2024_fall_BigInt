@@ -1,3 +1,18 @@
+/**
+ * @file utils.h
+ * @brief This file provides utility functions for managing and manipulating big integers 
+ *        (bigint type), including memory allocation, bitwise operations, shifting, 
+ *        and random number generation.
+ * 
+ * It includes functions for:
+ * - Memory management for big integers (`bi_new`, `bi_delete`, etc.)
+ * - Arithmetic and bitwise operations (e.g., shifting, setting bits, comparing values)
+ * - Conversion between different formats (e.g., array, string)
+ * - Random number generation for big integers
+ * 
+ * These utility functions are essential for the core functionality of the BigInt library.
+ */
+
 #ifndef UTILS_H
 #include "bigint.h"
 
@@ -211,6 +226,7 @@ int get_bit_length(IN bigint* x);
  *         the input is invalid (e.g., NULL pointer, out of bounds).
  */
 bool get_jth_bit(IN bigint* x, IN int j);
+
 /**
  * @brief Perform a right shift operation on a bigint.
  *
@@ -424,7 +440,20 @@ void match_wordlen(INOUT bigint* x, INOUT bigint* y);
  * @note This function assumes that the `bigint` structure has an attribute `a` (an array of words) and `wordlen` (the number of words).
  */
 void bi_reset(INOUT bigint* x);
+
+/**
+ * @brief Returns the value of the m-th word from a `bigint`.
+ * @details This function retrieves the word at the specified index `m_th` from the
+ *          `bigint`'s internal array of words. If the index is out of bounds, the function
+ *          returns zero.
+ * @param[in] x A pointer to the `bigint` object from which the word will be retrieved.
+ * @param[in] m_th The index of the word to retrieve.
+ * @return The value of the m-th word, or 0 if the index is out of bounds.
+ * @pre `x` must be a valid pointer to an initialized `bigint` object.
+ * @post The function returns the value of the specified word in the `bigint`.
+ * @note This function assumes that the `bigint` structure has an attribute `a` (an array of words) 
+ *       and `wordlen` (the number of words).
+ */
 word get_word(IN bigint* x, IN int m_th);
-void bi_extend(bigint** bi, int new_len);
-void bi_set_bit(bigint** bi, int k);
+
 #endif  //utils.h

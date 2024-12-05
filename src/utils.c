@@ -377,7 +377,8 @@ void left_shift_bit(bigint* pptrBint, int shift_amount) {
     }
 
 }
-void reduction(bigint** x, int r) {
+void reduction(IN bigint** x, IN int r)
+ {
     // If the desired bit length is greater than the current bit length, no reduction is needed
     if (r > get_bit_length(*x) ) return; // Trivial Case
 
@@ -593,35 +594,4 @@ word get_word(IN bigint* x, IN int m_th)
 
     // Return the m_th word from the val array
     return x->a[m_th];
-}
-
-void bi_extend(bigint** bi, int new_len) {
-    if (new_len <= (*bi)->wordlen) return;
-
-    // 새 크기의 워드 배열 할당
-    word* new_array = (word*)calloc(new_len, sizeof(word));
-    // 기존 데이터를 복사
-    memcpy(new_array, (*bi)->a, (*bi)->wordlen * sizeof(word));
-    // 기존 배열 해제
-    free((*bi)->a);
-    // 새 배열과 길이 설정
-    (*bi)->a = new_array;
-    (*bi)->wordlen = new_len;
-}
-
-void bi_set_bit(bigint** bi, int k) {
-    // k번째 비트를 설정하기 위해 워드와 비트 위치를 계산
-    int word_idx = k / WORD_BITLEN;       // 워드 배열 내에서의 인덱스
-    int bit_idx = k % WORD_BITLEN;        // 워드 내에서의 비트 위치
-
-    // 현재 워드 길이가 부족하면 확장
-    if (word_idx >= (*bi)->wordlen) {
-        bi_extend(bi, word_idx + 1);      // bi_extend는 BigInt의 길이를 확장
-    }
-
-    // k번째 비트를 설정
-    (*bi)->a[word_idx] |= (1ULL << bit_idx);
-
-    // 필요하면 wordlen 갱신
-    bi_refine(*bi);
 }

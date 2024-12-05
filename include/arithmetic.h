@@ -1,3 +1,21 @@
+/**
+ * @file arithmetic.h
+ * @brief This file contains the function declarations for various arithmetic operations
+ *        on big integers, such as addition, subtraction, multiplication, squaring,
+ *        division, and modular exponentiation.
+ * 
+ * The operations are implemented for big integers and include both basic and optimized
+ * algorithms (e.g., Karatsuba multiplication, Barrett reduction, etc.). These functions
+ * handle various core arithmetic tasks required for large integer computations.
+ * 
+ * Operations include:
+ * - Addition and subtraction of big integers
+ * - Multiplication (with multiple algorithms such as Karatsuba)
+ * - Squaring of big integers
+ * - Division (both core and modular)
+ * - Modular exponentiation and reduction (e.g., Montgomery and Barrett)
+ */
+
 #ifndef ARITHMETIC_H
 #include "utils.h"
 
@@ -17,8 +35,6 @@
  *       `wordlen` (length of the array), and `sign` (the sign of the integer).
  */
 void or(IN bigint** x, IN bigint** y, OUT bigint** z);
-
-
 
 
 
@@ -95,9 +111,9 @@ void add(IN bigint **x, IN bigint **y, OUT bigint **z);
 
 
 
-/****************************************/
-/*          Sub operations               */
-/****************************************/
+/**************************************************/
+/*          Substraction operations               */
+/**************************************************/
 
 /**
  * @brief Performs subtraction of B from A and manages borrowing.
