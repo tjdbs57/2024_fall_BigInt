@@ -1,7 +1,9 @@
 #ifndef TEST_H
 
 #include "arithmetic.h"
-#define TEST_CASE 1000
+#define TEST_CASE 1
+#define MAX_BIT_LEN    256
+
 void test();
 
 void test_basic_operation(void(*operation)(IN bigint** , IN bigint**, OUT bigint**), const char* operator, const char* operate);

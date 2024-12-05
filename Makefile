@@ -72,6 +72,8 @@ verify: $(TARGET)
 check:
 	(cd test && $(PYTHON_CMD) cal.py)
 
+valgrind:
+	(valgrind --leak-check=yes ./bin/program)
 measure:
 	(cd bin && program > cycle_single.txt)
 	(cd bin && move cycle_single.txt ../test/)

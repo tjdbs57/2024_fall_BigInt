@@ -178,6 +178,8 @@ void sub(IN bigint** x, IN bigint** y, OUT bigint** z) {
         }
 
         bi_refine(*z);
+        bi_delete(&A);
+        bi_delete(&B);
         return;
     }
 
@@ -185,6 +187,9 @@ void sub(IN bigint** x, IN bigint** y, OUT bigint** z) {
     if (is_zero(B) == 0) {  // Dereference x and y
         bi_assign(z, A);
         bi_refine(*z);
+
+        bi_delete(&A);
+        bi_delete(&B);        
         return;
     }
 
@@ -208,10 +213,17 @@ void sub(IN bigint** x, IN bigint** y, OUT bigint** z) {
             else{
                 add_core(&B, &A, z);  // No need to dereference, pass as is
                 (*z)->sign = A->sign;
+
+
             }
+            bi_delete(&A);
+            bi_delete(&B);
             return;
         }
     }
+
+    bi_delete(&A);
+    bi_delete(&B);
 
     // 둘 다 양수인 경우
     if ((*x)->sign == NON_NEGATIVE && (*y)->sign == NON_NEGATIVE) {
@@ -246,6 +258,9 @@ void sub(IN bigint** x, IN bigint** y, OUT bigint** z) {
         bi_refine(*z);
         return;
     }
+
+    bi_delete(&A);
+        bi_delete(&B);
 }
 
 void mul_single_word(IN word A, IN word B, OUT bigint** result)
@@ -610,9 +625,10 @@ void bi_long_div(IN bigint** x, IN bigint** y, OUT bigint** q, OUT bigint** r)
     
     bigint* tmp=NULL;
     bi_new(&tmp,1);
-
     if(is_zero(*y)==0){ // A / 0 = INVALID
         INVAILD_DATA;
+        bi_delete(&tmp);
+
         return;
     }
 
@@ -620,6 +636,8 @@ void bi_long_div(IN bigint** x, IN bigint** y, OUT bigint** q, OUT bigint** r)
         
         bi_set_zero(q);
         bi_set_zero(r);
+        bi_delete(&tmp);
+
         return;
     }
     
@@ -640,6 +658,7 @@ void bi_long_div(IN bigint** x, IN bigint** y, OUT bigint** q, OUT bigint** r)
             sub_core(y,r,&tmp);
             bi_assign(r,tmp);
         }
+        bi_delete(&tmp);
 
         return;
     }
@@ -651,6 +670,7 @@ void bi_long_div(IN bigint** x, IN bigint** y, OUT bigint** q, OUT bigint** r)
         if((*x)->sign==NEGATIVE && (*y)->sign==NON_NEGATIVE){
             (*q)->sign=NEGATIVE;
         }
+        bi_delete(&tmp);
 
         return;
     }
@@ -689,6 +709,8 @@ void bi_long_div(IN bigint** x, IN bigint** y, OUT bigint** q, OUT bigint** r)
 
             //q <- -q
             (*q)->sign=NEGATIVE;
+            bi_delete(&tmp);
+
             return;
         }
         else{
@@ -710,6 +732,7 @@ void bi_long_div(IN bigint** x, IN bigint** y, OUT bigint** q, OUT bigint** r)
        
     bi_refine(*q);
     bi_refine(*r);
+    bi_delete(&tmp);
 
 }
 

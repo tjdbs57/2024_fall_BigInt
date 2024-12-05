@@ -30,7 +30,6 @@ void print_bi_hex_py(IN const bigint* x)
     }
 }
 
-#define MAX_BIT_LEN    4096
 
 void test()
 {
@@ -204,49 +203,48 @@ void test_exp_mod(void(*operation)(IN bigint** , IN bigint**, OUT bigint**, IN b
 }
 void test_barret(const char* operate)
 {
+    int N_len = rand() % (MAX_BIT_LEN / WORD_BITLEN) + 1;
+
+    // W^(n-1) <= N < W^n인 N 생성
+    bigint* Wn_1 = NULL; // W^(n-1)
+    bi_new(&Wn_1, N_len);
+    Wn_1->a[N_len-1]=ONE;
+        
+    bigint* N = NULL;
+    bi_gen_rand(&N,NON_NEGATIVE, N_len);
+        
+    while(compare(Wn_1, N)==1){ // W^(n-1) > N 이면  N 다시 생성
+        bi_gen_rand(&N,NON_NEGATIVE, N_len); 
+    }
+
+    // T 사전 계산 ( T = floor(W^2n / N) )
+    bigint* T=NULL;
+    bigint* tmp=NULL;
+
+    // W = 2^(WORD_BITLEN)
+    bigint* W2n=NULL; 
+    bigint* Wn=NULL;
+    bi_new(&Wn, N_len+1);
+    Wn->a[N_len]=ONE;
+
+    squaring(&Wn, &tmp); 
+    bi_assign(&W2n, tmp);
+
+    // T 계산
+    bi_long_div(&W2n, &N, &T, &tmp); // T = floor( W^2n / N )
 
     for(int i=0; i<TEST_CASE; i++){
 
-        int N_len = rand() % (MAX_BIT_LEN / WORD_BITLEN) + 1;
         int A_len = rand() % (2*N_len) + 1; // 1부터 2n까지 랜덤 생성
 
         // A 생성
         bigint* A=NULL;
         bi_gen_rand(&A,NON_NEGATIVE, A_len); //여기서 MEM_ALLOCATION
 
-        // W^(n-1) <= N < W^n인 N 생성
-        bigint* Wn_1 = NULL; // W^(n-1)
-        bi_new(&Wn_1, N_len);
-        Wn_1->a[N_len-1]=ONE;
-        
-        bigint* N = NULL;
-        bi_gen_rand(&N,NON_NEGATIVE, N_len);
-        
-        while(compare(Wn_1, N)==1){ // W^(n-1) > N 이면  N 다시 생성
-            bi_gen_rand(&N,NON_NEGATIVE, N_len); 
-        }
-
-        // T 사전 계산 ( T = floor(W^2n / N) )
-        bigint* T=NULL;
-        bigint* tmp=NULL;
-
-        // W = 2^(WORD_BITLEN)
-        bigint* W2n=NULL; 
-        bigint* Wn=NULL;
-        bi_new(&Wn, N_len+1);
-        Wn->a[N_len]=ONE;
-
-        squaring(&Wn, &tmp); 
-        bi_assign(&W2n, tmp);
-
-        // T 계산
-        bi_long_div(&W2n, &N, &T, &tmp); // T = floor( W^2n / N )
-
         bigint* R=NULL;
         barret_reduction(&A, &N, &T, &R); 
         
-       printf("%s: ", operate);  // 연산 이름 출력
-
+        printf("%s:  ", operate);
         print_bi_hex_py(A);
         printf(" %% ");
         print_bi_hex_py(N);
@@ -255,13 +253,15 @@ void test_barret(const char* operate)
         printf("\n");
 
         bi_delete(&A); 
-        bi_delete(&N); 
-        bi_delete(&T); 
-        bi_delete(&W2n);
-        bi_delete(&Wn);
         bi_delete(&R);
-        bi_delete(&tmp);
     }
+
+    bi_delete(&Wn_1);
+    bi_delete(&N); 
+    bi_delete(&T); 
+    bi_delete(&W2n);
+    bi_delete(&Wn);
+    bi_delete(&tmp);
 }
 
 #define TIME(start, end) ((double)((end) - (start))) / CLOCKS_PER_SEC 

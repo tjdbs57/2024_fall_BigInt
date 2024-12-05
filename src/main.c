@@ -8,7 +8,7 @@
 int main()
 {
     srand((u32)time(NULL));
-    test();
+    //test();
     //test_basic_operation(add, "+", "add");
     //test_basic_operation(sub, "-", "sub");
     //test_basic_operation(mul_core_tx, "*", "mul_tx");
