@@ -1,0 +1,295 @@
+\hypertarget{test_8c}{}\doxysection{test/test.c File Reference}
+\label{test_8c}\index{test/test.c@{test/test.c}}
+{\ttfamily \#include \char`\"{}test.\+h\char`\"{}}\newline
+Include dependency graph for test.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{test_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{test_8c_aeada37e4a4f87fd7e3524e4805ebd5a7}{T\+I\+ME}}(start,  end)~((double)((end) -\/ (start))) / C\+L\+O\+C\+K\+S\+\_\+\+P\+E\+R\+\_\+\+S\+EC
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{test_8c_aeeac9fa9820f0adf13369ea064624bd1}{print\+\_\+bi\+\_\+hex\+\_\+py}} (\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{structbigint}{bigint}} $\ast$x)
+\item 
+void \mbox{\hyperlink{test_8c_ae1a3968e7947464bee7714f6d43b7002}{test}} ()
+\item 
+void \mbox{\hyperlink{test_8c_a20359ee58d2afd8e7bb537768b91c2ac}{test\+\_\+squ}} (void($\ast$operation)(\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$, \mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$), const char $\ast$operate)
+\item 
+void \mbox{\hyperlink{test_8c_a9d93a29974cedfb203aa43a6b201d3f3}{test\+\_\+basic\+\_\+operation}} (void($\ast$operation)(\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$, \mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$), const char $\ast$operator, const char $\ast$operate)
+\item 
+void \mbox{\hyperlink{test_8c_a902e27e16b84669baf0d345646575646}{test\+\_\+div}} (const char $\ast$operate)
+\item 
+void \mbox{\hyperlink{test_8c_a6a42e4cc5dc66146294e6e85c7c71ffc}{test\+\_\+exp\+\_\+mod}} (void($\ast$operation)(\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$, \mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$), const char $\ast$operate)
+\item 
+void \mbox{\hyperlink{test_8c_a2036d4748dee050f0733d406043bfab1}{test\+\_\+barret}} (const char $\ast$operate)
+\item 
+double \mbox{\hyperlink{test_8c_a46bd01b433098c98351be876a845f3b0}{measure\+\_\+execution\+\_\+time}} (void($\ast$func)(\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$, \mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$), \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$x, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$y, \mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$z)
+\item 
+void \mbox{\hyperlink{test_8c_a7a48047b578158185a709e47e4a92e72}{measure\+\_\+cycles}} (void($\ast$func)(\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$, \mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$), \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$x, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$y, \mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$z)
+\item 
+void \mbox{\hyperlink{test_8c_ab738e5f79117949b42e3f38192147edd}{measure\+\_\+clock\+\_\+cycles}} ()
+\item 
+void \mbox{\hyperlink{test_8c_a9819f5969402ace9a8362a92e666a859}{measure}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{test_8c_aeada37e4a4f87fd7e3524e4805ebd5a7}\label{test_8c_aeada37e4a4f87fd7e3524e4805ebd5a7}} 
+\index{test.c@{test.c}!TIME@{TIME}}
+\index{TIME@{TIME}!test.c@{test.c}}
+\doxysubsubsection{\texorpdfstring{TIME}{TIME}}
+{\footnotesize\ttfamily \#define T\+I\+ME(\begin{DoxyParamCaption}\item[{}]{start,  }\item[{}]{end }\end{DoxyParamCaption})~((double)((end) -\/ (start))) / C\+L\+O\+C\+K\+S\+\_\+\+P\+E\+R\+\_\+\+S\+EC}
+
+
+
+Definition at line 267 of file test.\+c.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{test_8c_a9819f5969402ace9a8362a92e666a859}\label{test_8c_a9819f5969402ace9a8362a92e666a859}} 
+\index{test.c@{test.c}!measure@{measure}}
+\index{measure@{measure}!test.c@{test.c}}
+\doxysubsubsection{\texorpdfstring{measure()}{measure()}}
+{\footnotesize\ttfamily void measure (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 324 of file test.\+c.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{test_8c_a9819f5969402ace9a8362a92e666a859_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{test_8c_ab738e5f79117949b42e3f38192147edd}\label{test_8c_ab738e5f79117949b42e3f38192147edd}} 
+\index{test.c@{test.c}!measure\_clock\_cycles@{measure\_clock\_cycles}}
+\index{measure\_clock\_cycles@{measure\_clock\_cycles}!test.c@{test.c}}
+\doxysubsubsection{\texorpdfstring{measure\_clock\_cycles()}{measure\_clock\_cycles()}}
+{\footnotesize\ttfamily void measure\+\_\+clock\+\_\+cycles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 298 of file test.\+c.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{test_8c_ab738e5f79117949b42e3f38192147edd_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{test_8c_a7a48047b578158185a709e47e4a92e72}\label{test_8c_a7a48047b578158185a709e47e4a92e72}} 
+\index{test.c@{test.c}!measure\_cycles@{measure\_cycles}}
+\index{measure\_cycles@{measure\_cycles}!test.c@{test.c}}
+\doxysubsubsection{\texorpdfstring{measure\_cycles()}{measure\_cycles()}}
+{\footnotesize\ttfamily void measure\+\_\+cycles (\begin{DoxyParamCaption}\item[{void($\ast$)(\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$, \mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$)}]{func,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$}]{x,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$}]{y,  }\item[{\mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$}]{z }\end{DoxyParamCaption})}
+
+
+
+Definition at line 280 of file test.\+c.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=337pt]{test_8c_a7a48047b578158185a709e47e4a92e72_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{test_8c_a46bd01b433098c98351be876a845f3b0}\label{test_8c_a46bd01b433098c98351be876a845f3b0}} 
+\index{test.c@{test.c}!measure\_execution\_time@{measure\_execution\_time}}
+\index{measure\_execution\_time@{measure\_execution\_time}!test.c@{test.c}}
+\doxysubsubsection{\texorpdfstring{measure\_execution\_time()}{measure\_execution\_time()}}
+{\footnotesize\ttfamily double measure\+\_\+execution\+\_\+time (\begin{DoxyParamCaption}\item[{void($\ast$)(\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$, \mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$)}]{func,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$}]{x,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$}]{y,  }\item[{\mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$}]{z }\end{DoxyParamCaption})}
+
+
+
+Definition at line 269 of file test.\+c.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=315pt]{test_8c_a46bd01b433098c98351be876a845f3b0_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{test_8c_aeeac9fa9820f0adf13369ea064624bd1}\label{test_8c_aeeac9fa9820f0adf13369ea064624bd1}} 
+\index{test.c@{test.c}!print\_bi\_hex\_py@{print\_bi\_hex\_py}}
+\index{print\_bi\_hex\_py@{print\_bi\_hex\_py}!test.c@{test.c}}
+\doxysubsubsection{\texorpdfstring{print\_bi\_hex\_py()}{print\_bi\_hex\_py()}}
+{\footnotesize\ttfamily void print\+\_\+bi\+\_\+hex\+\_\+py (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{structbigint}{bigint}} $\ast$}]{x }\end{DoxyParamCaption})}
+
+
+
+Definition at line 3 of file test.\+c.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{test_8c_aeeac9fa9820f0adf13369ea064624bd1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{test_8c_ae1a3968e7947464bee7714f6d43b7002}\label{test_8c_ae1a3968e7947464bee7714f6d43b7002}} 
+\index{test.c@{test.c}!test@{test}}
+\index{test@{test}!test.c@{test.c}}
+\doxysubsubsection{\texorpdfstring{test()}{test()}}
+{\footnotesize\ttfamily void test (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 34 of file test.\+c.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{test_8c_ae1a3968e7947464bee7714f6d43b7002_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{test_8c_a2036d4748dee050f0733d406043bfab1}\label{test_8c_a2036d4748dee050f0733d406043bfab1}} 
+\index{test.c@{test.c}!test\_barret@{test\_barret}}
+\index{test\_barret@{test\_barret}!test.c@{test.c}}
+\doxysubsubsection{\texorpdfstring{test\_barret()}{test\_barret()}}
+{\footnotesize\ttfamily void test\+\_\+barret (\begin{DoxyParamCaption}\item[{const char $\ast$}]{operate }\end{DoxyParamCaption})}
+
+
+
+Definition at line 204 of file test.\+c.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{test_8c_a2036d4748dee050f0733d406043bfab1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=227pt]{test_8c_a2036d4748dee050f0733d406043bfab1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{test_8c_a9d93a29974cedfb203aa43a6b201d3f3}\label{test_8c_a9d93a29974cedfb203aa43a6b201d3f3}} 
+\index{test.c@{test.c}!test\_basic\_operation@{test\_basic\_operation}}
+\index{test\_basic\_operation@{test\_basic\_operation}!test.c@{test.c}}
+\doxysubsubsection{\texorpdfstring{test\_basic\_operation()}{test\_basic\_operation()}}
+{\footnotesize\ttfamily void test\+\_\+basic\+\_\+operation (\begin{DoxyParamCaption}\item[{void($\ast$)(\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$, \mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$)}]{operation,  }\item[{const char $\ast$}]{operator,  }\item[{const char $\ast$}]{operate }\end{DoxyParamCaption})}
+
+
+
+Definition at line 92 of file test.\+c.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{test_8c_a9d93a29974cedfb203aa43a6b201d3f3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=275pt]{test_8c_a9d93a29974cedfb203aa43a6b201d3f3_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{test_8c_a902e27e16b84669baf0d345646575646}\label{test_8c_a902e27e16b84669baf0d345646575646}} 
+\index{test.c@{test.c}!test\_div@{test\_div}}
+\index{test\_div@{test\_div}!test.c@{test.c}}
+\doxysubsubsection{\texorpdfstring{test\_div()}{test\_div()}}
+{\footnotesize\ttfamily void test\+\_\+div (\begin{DoxyParamCaption}\item[{const char $\ast$}]{operate }\end{DoxyParamCaption})}
+
+
+
+Definition at line 121 of file test.\+c.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{test_8c_a902e27e16b84669baf0d345646575646_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=213pt]{test_8c_a902e27e16b84669baf0d345646575646_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{test_8c_a6a42e4cc5dc66146294e6e85c7c71ffc}\label{test_8c_a6a42e4cc5dc66146294e6e85c7c71ffc}} 
+\index{test.c@{test.c}!test\_exp\_mod@{test\_exp\_mod}}
+\index{test\_exp\_mod@{test\_exp\_mod}!test.c@{test.c}}
+\doxysubsubsection{\texorpdfstring{test\_exp\_mod()}{test\_exp\_mod()}}
+{\footnotesize\ttfamily void test\+\_\+exp\+\_\+mod (\begin{DoxyParamCaption}\item[{void($\ast$)(\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$, \mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$)}]{operation,  }\item[{const char $\ast$}]{operate }\end{DoxyParamCaption})}
+
+
+
+Definition at line 160 of file test.\+c.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{test_8c_a6a42e4cc5dc66146294e6e85c7c71ffc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=243pt]{test_8c_a6a42e4cc5dc66146294e6e85c7c71ffc_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{test_8c_a20359ee58d2afd8e7bb537768b91c2ac}\label{test_8c_a20359ee58d2afd8e7bb537768b91c2ac}} 
+\index{test.c@{test.c}!test\_squ@{test\_squ}}
+\index{test\_squ@{test\_squ}!test.c@{test.c}}
+\doxysubsubsection{\texorpdfstring{test\_squ()}{test\_squ()}}
+{\footnotesize\ttfamily void test\+\_\+squ (\begin{DoxyParamCaption}\item[{void($\ast$)(\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$, \mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$)}]{operation,  }\item[{const char $\ast$}]{operate }\end{DoxyParamCaption})}
+
+
+
+Definition at line 62 of file test.\+c.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{test_8c_a20359ee58d2afd8e7bb537768b91c2ac_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=215pt]{test_8c_a20359ee58d2afd8e7bb537768b91c2ac_icgraph}
+\end{center}
+\end{figure}

@@ -1,0 +1,201 @@
+\hypertarget{config_8h}{}\doxysection{include/config.h File Reference}
+\label{config_8h}\index{include/config.h@{include/config.h}}
+
+
+This file contains configuration settings, type definitions, and necessary includes for the project.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+Include dependency graph for config.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{config_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{config_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}
+\item 
+\#define \mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}}
+\item 
+\#define \mbox{\hyperlink{config_8h_a62766f3ea8784d1db62df989f8f33d2d}{I\+N\+O\+UT}}
+\item 
+\#define \mbox{\hyperlink{config_8h_a0fbb909b8d4ba1d6cfc47b3a14ade051}{N\+O\+N\+\_\+\+N\+E\+G\+A\+T\+I\+VE}}~0
+\item 
+\#define \mbox{\hyperlink{config_8h_ae8da539b402ed6856028a0a60240bbff}{N\+E\+G\+A\+T\+I\+VE}}~1
+\item 
+\#define \mbox{\hyperlink{config_8h_af8bfae90c5d6853fcfb487e05b9f50c8}{F\+L\+AG}}~20
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef uint8\+\_\+t \mbox{\hyperlink{config_8h_a92c50087ca0e64fa93fc59402c55f8ca}{u8}}
+\item 
+typedef uint32\+\_\+t \mbox{\hyperlink{config_8h_afaa62991928fb9fb18ff0db62a040aba}{u32}}
+\item 
+typedef uint64\+\_\+t \mbox{\hyperlink{config_8h_a3f7e2bcbb0b4c338f3c4f6c937cd4234}{u64}}
+\item 
+typedef int8\+\_\+t \mbox{\hyperlink{config_8h_ae3702327b5f47e83b431e22b33da7b58}{i8}}
+\item 
+typedef int32\+\_\+t \mbox{\hyperlink{config_8h_a48d6cd8e4135fb2ff7e7f2dac84089ec}{i32}}
+\item 
+typedef int64\+\_\+t \mbox{\hyperlink{config_8h_a85cb35fbe5bf2961d7ad5f26814a91a2}{i64}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains configuration settings, type definitions, and necessary includes for the project. 
+
+It includes standard library headers for functionality like input/output, memory management, and mathematical operations. Conditional compilation is used to include specific headers based on the target architecture (e.\+g., x86 or x86\+\_\+64). It also defines custom type aliases and symbolic constants for use across the project.
+
+Key components\+:
+\begin{DoxyItemize}
+\item Includes common standard libraries like {\ttfamily stdio.\+h}, {\ttfamily stdint.\+h}, and {\ttfamily stdlib.\+h}.
+\item Conditional inclusion of architecture-\/specific headers for optimizations (e.\+g., x86intrin.\+h).
+\item Type definitions for {\ttfamily u8}, {\ttfamily u32}, {\ttfamily u64}, {\ttfamily i8}, {\ttfamily i32}, and {\ttfamily i64} to represent various data types.
+\item Macros defining input ({\ttfamily IN}), output ({\ttfamily O\+UT}), and input/output ({\ttfamily I\+N\+O\+UT}) argument conventions.
+\item Constants to represent non-\/negative and negative values, along with a {\ttfamily F\+L\+AG} definition. 
+\end{DoxyItemize}
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{config_8h_af8bfae90c5d6853fcfb487e05b9f50c8}\label{config_8h_af8bfae90c5d6853fcfb487e05b9f50c8}} 
+\index{config.h@{config.h}!FLAG@{FLAG}}
+\index{FLAG@{FLAG}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{FLAG}{FLAG}}
+{\footnotesize\ttfamily \#define F\+L\+AG~20}
+
+
+
+Definition at line 47 of file config.\+h.
+
+\mbox{\Hypertarget{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}\label{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}} 
+\index{config.h@{config.h}!IN@{IN}}
+\index{IN@{IN}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{IN}{IN}}
+{\footnotesize\ttfamily \#define IN}
+
+
+
+Definition at line 39 of file config.\+h.
+
+\mbox{\Hypertarget{config_8h_a62766f3ea8784d1db62df989f8f33d2d}\label{config_8h_a62766f3ea8784d1db62df989f8f33d2d}} 
+\index{config.h@{config.h}!INOUT@{INOUT}}
+\index{INOUT@{INOUT}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{INOUT}{INOUT}}
+{\footnotesize\ttfamily \#define I\+N\+O\+UT}
+
+
+
+Definition at line 41 of file config.\+h.
+
+\mbox{\Hypertarget{config_8h_ae8da539b402ed6856028a0a60240bbff}\label{config_8h_ae8da539b402ed6856028a0a60240bbff}} 
+\index{config.h@{config.h}!NEGATIVE@{NEGATIVE}}
+\index{NEGATIVE@{NEGATIVE}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{NEGATIVE}{NEGATIVE}}
+{\footnotesize\ttfamily \#define N\+E\+G\+A\+T\+I\+VE~1}
+
+
+
+Definition at line 44 of file config.\+h.
+
+\mbox{\Hypertarget{config_8h_a0fbb909b8d4ba1d6cfc47b3a14ade051}\label{config_8h_a0fbb909b8d4ba1d6cfc47b3a14ade051}} 
+\index{config.h@{config.h}!NON\_NEGATIVE@{NON\_NEGATIVE}}
+\index{NON\_NEGATIVE@{NON\_NEGATIVE}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{NON\_NEGATIVE}{NON\_NEGATIVE}}
+{\footnotesize\ttfamily \#define N\+O\+N\+\_\+\+N\+E\+G\+A\+T\+I\+VE~0}
+
+
+
+Definition at line 43 of file config.\+h.
+
+\mbox{\Hypertarget{config_8h_aec78e7a9e90a406a56f859ee456e8eae}\label{config_8h_aec78e7a9e90a406a56f859ee456e8eae}} 
+\index{config.h@{config.h}!OUT@{OUT}}
+\index{OUT@{OUT}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{OUT}{OUT}}
+{\footnotesize\ttfamily \#define O\+UT}
+
+
+
+Definition at line 40 of file config.\+h.
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{config_8h_a48d6cd8e4135fb2ff7e7f2dac84089ec}\label{config_8h_a48d6cd8e4135fb2ff7e7f2dac84089ec}} 
+\index{config.h@{config.h}!i32@{i32}}
+\index{i32@{i32}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{i32}{i32}}
+{\footnotesize\ttfamily typedef int32\+\_\+t \mbox{\hyperlink{config_8h_a48d6cd8e4135fb2ff7e7f2dac84089ec}{i32}}}
+
+
+
+Definition at line 54 of file config.\+h.
+
+\mbox{\Hypertarget{config_8h_a85cb35fbe5bf2961d7ad5f26814a91a2}\label{config_8h_a85cb35fbe5bf2961d7ad5f26814a91a2}} 
+\index{config.h@{config.h}!i64@{i64}}
+\index{i64@{i64}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{i64}{i64}}
+{\footnotesize\ttfamily typedef int64\+\_\+t \mbox{\hyperlink{config_8h_a85cb35fbe5bf2961d7ad5f26814a91a2}{i64}}}
+
+
+
+Definition at line 55 of file config.\+h.
+
+\mbox{\Hypertarget{config_8h_ae3702327b5f47e83b431e22b33da7b58}\label{config_8h_ae3702327b5f47e83b431e22b33da7b58}} 
+\index{config.h@{config.h}!i8@{i8}}
+\index{i8@{i8}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{i8}{i8}}
+{\footnotesize\ttfamily typedef int8\+\_\+t \mbox{\hyperlink{config_8h_ae3702327b5f47e83b431e22b33da7b58}{i8}}}
+
+
+
+Definition at line 53 of file config.\+h.
+
+\mbox{\Hypertarget{config_8h_afaa62991928fb9fb18ff0db62a040aba}\label{config_8h_afaa62991928fb9fb18ff0db62a040aba}} 
+\index{config.h@{config.h}!u32@{u32}}
+\index{u32@{u32}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{u32}{u32}}
+{\footnotesize\ttfamily typedef uint32\+\_\+t \mbox{\hyperlink{config_8h_afaa62991928fb9fb18ff0db62a040aba}{u32}}}
+
+
+
+Definition at line 50 of file config.\+h.
+
+\mbox{\Hypertarget{config_8h_a3f7e2bcbb0b4c338f3c4f6c937cd4234}\label{config_8h_a3f7e2bcbb0b4c338f3c4f6c937cd4234}} 
+\index{config.h@{config.h}!u64@{u64}}
+\index{u64@{u64}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{u64}{u64}}
+{\footnotesize\ttfamily typedef uint64\+\_\+t \mbox{\hyperlink{config_8h_a3f7e2bcbb0b4c338f3c4f6c937cd4234}{u64}}}
+
+
+
+Definition at line 51 of file config.\+h.
+
+\mbox{\Hypertarget{config_8h_a92c50087ca0e64fa93fc59402c55f8ca}\label{config_8h_a92c50087ca0e64fa93fc59402c55f8ca}} 
+\index{config.h@{config.h}!u8@{u8}}
+\index{u8@{u8}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{u8}{u8}}
+{\footnotesize\ttfamily typedef uint8\+\_\+t \mbox{\hyperlink{config_8h_a92c50087ca0e64fa93fc59402c55f8ca}{u8}}}
+
+
+
+Definition at line 49 of file config.\+h.
+

@@ -1,0 +1,78 @@
+\hypertarget{time_8py}{}\doxysection{test/time.py File Reference}
+\label{time_8py}\index{test/time.py@{test/time.py}}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacetime}{time}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacetime_a32ede7bb9cfb1e339e2a7a11232ffe33}{time.\+encoding}}
+\item 
+\mbox{\hyperlink{namespacetime_aa015a980309d0c318e8b5c6e766f6891}{time.\+data}} = file.\+readlines()
+\item 
+list \mbox{\hyperlink{namespacetime_a0048097fb24d0308e617f83638f2e7bd}{time.\+function1\+\_\+speeds}} = \mbox{[}float(data\mbox{[}i\mbox{]}.strip()) for i in range(0, len(data), 1)\mbox{]}
+\item 
+\mbox{\hyperlink{namespacetime_ae82307c6de586460d624578b708283b6}{time.\+average\+\_\+function1}} = np.\+mean(function1\+\_\+speeds)
+\item 
+int \mbox{\hyperlink{namespacetime_a63446bbaf9e9b609d698ea242e185de3}{time.\+window\+\_\+size}} = 5000
+\item 
+\mbox{\hyperlink{namespacetime_ad755c94a36336c1eceac88b3aef234dd}{time.\+function1\+\_\+smooth}} = np.\+convolve(function1\+\_\+speeds, np.\+ones(window\+\_\+size)/window\+\_\+size, mode=\textquotesingle{}valid\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespacetime_af086d9079f998eb35ac78738f27915f3}{time.\+lowest\+\_\+point\+\_\+smooth}} = min(function1\+\_\+smooth)
+\item 
+\mbox{\hyperlink{namespacetime_a1f464399dca19a001c6df11eb249ef65}{time.\+highest\+\_\+point\+\_\+smooth}} = max(function1\+\_\+smooth)
+\item 
+\mbox{\hyperlink{namespacetime_a1ea66f8cbf5781d37866a7504e007922}{time.\+lowest\+\_\+index\+\_\+smooth}} = np.\+argmin(function1\+\_\+smooth)
+\item 
+\mbox{\hyperlink{namespacetime_a00f7001509b9d9f4842310535fe0613d}{time.\+highest\+\_\+index\+\_\+smooth}} = np.\+argmax(function1\+\_\+smooth)
+\item 
+\mbox{\hyperlink{namespacetime_a5a5fa3f4b6a4701f3ab98dca726b7c67}{time.\+fig}}
+\item 
+\mbox{\hyperlink{namespacetime_ab4d3ea33922e7897a2cfc19c317c6e28}{time.\+ax1}}
+\item 
+\mbox{\hyperlink{namespacetime_a615b834806d52ff799a92194d2d0b320}{time.\+figsize}}
+\item 
+\mbox{\hyperlink{namespacetime_a7e9d1688067a94ae2758be73664ac579}{time.\+dpi}}
+\item 
+\mbox{\hyperlink{namespacetime_a7c82e2b9b8d14d82dc175adcb872a9c4}{time.\+color}}
+\item 
+\mbox{\hyperlink{namespacetime_a8b7392d20687ad176c180f9db43fac58}{time.\+label}}
+\item 
+\mbox{\hyperlink{namespacetime_ad0b0d8954de16f204145e04780434e7a}{time.\+alpha}}
+\item 
+\mbox{\hyperlink{namespacetime_a39529859412d52b6e81e015a3e4f9102}{time.\+linewidth}}
+\item 
+\mbox{\hyperlink{namespacetime_a0aed376869fbb1cd21f79db5159eeabf}{time.\+linestyle}}
+\item 
+\mbox{\hyperlink{namespacetime_ace8bbba0e2fdf6ad607afde2fb450a92}{time.\+marker}}
+\item 
+\mbox{\hyperlink{namespacetime_a1464cf8d170be61e215962b6bf9524d5}{time.\+markevery}}
+\item 
+\mbox{\hyperlink{namespacetime_a9eb048c6bd09ed2d41b322f03e051bf4}{time.\+markersize}}
+\item 
+\mbox{\hyperlink{namespacetime_a99c9d8b18eb9c3843664617275974756}{time.\+va}}
+\item 
+\mbox{\hyperlink{namespacetime_ac3210f0ada8258688db4b9ba311d93c4}{time.\+ha}}
+\item 
+\mbox{\hyperlink{namespacetime_a241d2e2eda8dc75120e5cf7a741e4c80}{time.\+fontsize}}
+\item 
+\mbox{\hyperlink{namespacetime_a4394441d4a59199837cbfd1f71563260}{time.\+fontweight}}
+\item 
+\mbox{\hyperlink{namespacetime_a7d4b3b6840f6f8195cdc0a34589bce0d}{time.\+lines}}
+\item 
+\mbox{\hyperlink{namespacetime_a95086d853ad727dec3882500a43bb599}{time.\+labels}}
+\item 
+\mbox{\hyperlink{namespacetime_a46af8838d691f6dd3b4a1f7de827cc39}{time.\+loc}}
+\item 
+\mbox{\hyperlink{namespacetime_ae84b8da278d7ce67ffd2ca92bf88c81e}{time.\+frameon}}
+\item 
+\mbox{\hyperlink{namespacetime_a2125ae8453a65240551b42987cf399b9}{time.\+True}}
+\item 
+\mbox{\hyperlink{namespacetime_a7af1f3320de5cbaa8d9b2a47a7f330f0}{time.\+framealpha}}
+\item 
+\mbox{\hyperlink{namespacetime_a0af6fcc36e486f1950194eea3d72b030}{time.\+shadow}}
+\item 
+\mbox{\hyperlink{namespacetime_a33f1b64b7e7c9a99c6c45c4279a30e49}{time.\+fancybox}}
+\end{DoxyCompactItemize}

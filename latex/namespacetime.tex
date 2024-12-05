@@ -1,0 +1,416 @@
+\hypertarget{namespacetime}{}\doxysection{time Namespace Reference}
+\label{namespacetime}\index{time@{time}}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacetime_a32ede7bb9cfb1e339e2a7a11232ffe33}{encoding}}
+\item 
+\mbox{\hyperlink{namespacetime_aa015a980309d0c318e8b5c6e766f6891}{data}} = file.\+readlines()
+\item 
+list \mbox{\hyperlink{namespacetime_a0048097fb24d0308e617f83638f2e7bd}{function1\+\_\+speeds}} = \mbox{[}float(\mbox{\hyperlink{namespacetime_aa015a980309d0c318e8b5c6e766f6891}{data}}\mbox{[}i\mbox{]}.strip()) for i in range(0, len(\mbox{\hyperlink{namespacetime_aa015a980309d0c318e8b5c6e766f6891}{data}}), 1)\mbox{]}
+\item 
+\mbox{\hyperlink{namespacetime_ae82307c6de586460d624578b708283b6}{average\+\_\+function1}} = np.\+mean(\mbox{\hyperlink{namespacetime_a0048097fb24d0308e617f83638f2e7bd}{function1\+\_\+speeds}})
+\item 
+int \mbox{\hyperlink{namespacetime_a63446bbaf9e9b609d698ea242e185de3}{window\+\_\+size}} = 5000
+\item 
+\mbox{\hyperlink{namespacetime_ad755c94a36336c1eceac88b3aef234dd}{function1\+\_\+smooth}} = np.\+convolve(\mbox{\hyperlink{namespacetime_a0048097fb24d0308e617f83638f2e7bd}{function1\+\_\+speeds}}, np.\+ones(\mbox{\hyperlink{namespacetime_a63446bbaf9e9b609d698ea242e185de3}{window\+\_\+size}})/\mbox{\hyperlink{namespacetime_a63446bbaf9e9b609d698ea242e185de3}{window\+\_\+size}}, mode=\textquotesingle{}valid\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespacetime_af086d9079f998eb35ac78738f27915f3}{lowest\+\_\+point\+\_\+smooth}} = min(\mbox{\hyperlink{namespacetime_ad755c94a36336c1eceac88b3aef234dd}{function1\+\_\+smooth}})
+\item 
+\mbox{\hyperlink{namespacetime_a1f464399dca19a001c6df11eb249ef65}{highest\+\_\+point\+\_\+smooth}} = max(\mbox{\hyperlink{namespacetime_ad755c94a36336c1eceac88b3aef234dd}{function1\+\_\+smooth}})
+\item 
+\mbox{\hyperlink{namespacetime_a1ea66f8cbf5781d37866a7504e007922}{lowest\+\_\+index\+\_\+smooth}} = np.\+argmin(\mbox{\hyperlink{namespacetime_ad755c94a36336c1eceac88b3aef234dd}{function1\+\_\+smooth}})
+\item 
+\mbox{\hyperlink{namespacetime_a00f7001509b9d9f4842310535fe0613d}{highest\+\_\+index\+\_\+smooth}} = np.\+argmax(\mbox{\hyperlink{namespacetime_ad755c94a36336c1eceac88b3aef234dd}{function1\+\_\+smooth}})
+\item 
+\mbox{\hyperlink{namespacetime_a5a5fa3f4b6a4701f3ab98dca726b7c67}{fig}}
+\item 
+\mbox{\hyperlink{namespacetime_ab4d3ea33922e7897a2cfc19c317c6e28}{ax1}}
+\item 
+\mbox{\hyperlink{namespacetime_a615b834806d52ff799a92194d2d0b320}{figsize}}
+\item 
+\mbox{\hyperlink{namespacetime_a7e9d1688067a94ae2758be73664ac579}{dpi}}
+\item 
+\mbox{\hyperlink{namespacetime_a7c82e2b9b8d14d82dc175adcb872a9c4}{color}}
+\item 
+\mbox{\hyperlink{namespacetime_a8b7392d20687ad176c180f9db43fac58}{label}}
+\item 
+\mbox{\hyperlink{namespacetime_ad0b0d8954de16f204145e04780434e7a}{alpha}}
+\item 
+\mbox{\hyperlink{namespacetime_a39529859412d52b6e81e015a3e4f9102}{linewidth}}
+\item 
+\mbox{\hyperlink{namespacetime_a0aed376869fbb1cd21f79db5159eeabf}{linestyle}}
+\item 
+\mbox{\hyperlink{namespacetime_ace8bbba0e2fdf6ad607afde2fb450a92}{marker}}
+\item 
+\mbox{\hyperlink{namespacetime_a1464cf8d170be61e215962b6bf9524d5}{markevery}}
+\item 
+\mbox{\hyperlink{namespacetime_a9eb048c6bd09ed2d41b322f03e051bf4}{markersize}}
+\item 
+\mbox{\hyperlink{namespacetime_a99c9d8b18eb9c3843664617275974756}{va}}
+\item 
+\mbox{\hyperlink{namespacetime_ac3210f0ada8258688db4b9ba311d93c4}{ha}}
+\item 
+\mbox{\hyperlink{namespacetime_a241d2e2eda8dc75120e5cf7a741e4c80}{fontsize}}
+\item 
+\mbox{\hyperlink{namespacetime_a4394441d4a59199837cbfd1f71563260}{fontweight}}
+\item 
+\mbox{\hyperlink{namespacetime_a7d4b3b6840f6f8195cdc0a34589bce0d}{lines}}
+\item 
+\mbox{\hyperlink{namespacetime_a95086d853ad727dec3882500a43bb599}{labels}}
+\item 
+\mbox{\hyperlink{namespacetime_a46af8838d691f6dd3b4a1f7de827cc39}{loc}}
+\item 
+\mbox{\hyperlink{namespacetime_ae84b8da278d7ce67ffd2ca92bf88c81e}{frameon}}
+\item 
+\mbox{\hyperlink{namespacetime_a2125ae8453a65240551b42987cf399b9}{True}}
+\item 
+\mbox{\hyperlink{namespacetime_a7af1f3320de5cbaa8d9b2a47a7f330f0}{framealpha}}
+\item 
+\mbox{\hyperlink{namespacetime_a0af6fcc36e486f1950194eea3d72b030}{shadow}}
+\item 
+\mbox{\hyperlink{namespacetime_a33f1b64b7e7c9a99c6c45c4279a30e49}{fancybox}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespacetime_ad0b0d8954de16f204145e04780434e7a}\label{namespacetime_ad0b0d8954de16f204145e04780434e7a}} 
+\index{time@{time}!alpha@{alpha}}
+\index{alpha@{alpha}!time@{time}}
+\doxysubsubsection{\texorpdfstring{alpha}{alpha}}
+{\footnotesize\ttfamily time.\+alpha}
+
+
+
+Definition at line 26 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_ae82307c6de586460d624578b708283b6}\label{namespacetime_ae82307c6de586460d624578b708283b6}} 
+\index{time@{time}!average\_function1@{average\_function1}}
+\index{average\_function1@{average\_function1}!time@{time}}
+\doxysubsubsection{\texorpdfstring{average\_function1}{average\_function1}}
+{\footnotesize\ttfamily time.\+average\+\_\+function1 = np.\+mean(\mbox{\hyperlink{namespacetime_a0048097fb24d0308e617f83638f2e7bd}{function1\+\_\+speeds}})}
+
+
+
+Definition at line 10 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_ab4d3ea33922e7897a2cfc19c317c6e28}\label{namespacetime_ab4d3ea33922e7897a2cfc19c317c6e28}} 
+\index{time@{time}!ax1@{ax1}}
+\index{ax1@{ax1}!time@{time}}
+\doxysubsubsection{\texorpdfstring{ax1}{ax1}}
+{\footnotesize\ttfamily time.\+ax1}
+
+
+
+Definition at line 23 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a7c82e2b9b8d14d82dc175adcb872a9c4}\label{namespacetime_a7c82e2b9b8d14d82dc175adcb872a9c4}} 
+\index{time@{time}!color@{color}}
+\index{color@{color}!time@{time}}
+\doxysubsubsection{\texorpdfstring{color}{color}}
+{\footnotesize\ttfamily time.\+color}
+
+
+
+Definition at line 26 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_aa015a980309d0c318e8b5c6e766f6891}\label{namespacetime_aa015a980309d0c318e8b5c6e766f6891}} 
+\index{time@{time}!data@{data}}
+\index{data@{data}!time@{time}}
+\doxysubsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily time.\+data = file.\+readlines()}
+
+
+
+Definition at line 5 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a7e9d1688067a94ae2758be73664ac579}\label{namespacetime_a7e9d1688067a94ae2758be73664ac579}} 
+\index{time@{time}!dpi@{dpi}}
+\index{dpi@{dpi}!time@{time}}
+\doxysubsubsection{\texorpdfstring{dpi}{dpi}}
+{\footnotesize\ttfamily time.\+dpi}
+
+
+
+Definition at line 23 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a32ede7bb9cfb1e339e2a7a11232ffe33}\label{namespacetime_a32ede7bb9cfb1e339e2a7a11232ffe33}} 
+\index{time@{time}!encoding@{encoding}}
+\index{encoding@{encoding}!time@{time}}
+\doxysubsubsection{\texorpdfstring{encoding}{encoding}}
+{\footnotesize\ttfamily time.\+encoding}
+
+
+
+Definition at line 4 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a33f1b64b7e7c9a99c6c45c4279a30e49}\label{namespacetime_a33f1b64b7e7c9a99c6c45c4279a30e49}} 
+\index{time@{time}!fancybox@{fancybox}}
+\index{fancybox@{fancybox}!time@{time}}
+\doxysubsubsection{\texorpdfstring{fancybox}{fancybox}}
+{\footnotesize\ttfamily time.\+fancybox}
+
+
+
+Definition at line 47 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a5a5fa3f4b6a4701f3ab98dca726b7c67}\label{namespacetime_a5a5fa3f4b6a4701f3ab98dca726b7c67}} 
+\index{time@{time}!fig@{fig}}
+\index{fig@{fig}!time@{time}}
+\doxysubsubsection{\texorpdfstring{fig}{fig}}
+{\footnotesize\ttfamily time.\+fig}
+
+
+
+Definition at line 23 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a615b834806d52ff799a92194d2d0b320}\label{namespacetime_a615b834806d52ff799a92194d2d0b320}} 
+\index{time@{time}!figsize@{figsize}}
+\index{figsize@{figsize}!time@{time}}
+\doxysubsubsection{\texorpdfstring{figsize}{figsize}}
+{\footnotesize\ttfamily time.\+figsize}
+
+
+
+Definition at line 23 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a241d2e2eda8dc75120e5cf7a741e4c80}\label{namespacetime_a241d2e2eda8dc75120e5cf7a741e4c80}} 
+\index{time@{time}!fontsize@{fontsize}}
+\index{fontsize@{fontsize}!time@{time}}
+\doxysubsubsection{\texorpdfstring{fontsize}{fontsize}}
+{\footnotesize\ttfamily time.\+fontsize}
+
+
+
+Definition at line 41 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a4394441d4a59199837cbfd1f71563260}\label{namespacetime_a4394441d4a59199837cbfd1f71563260}} 
+\index{time@{time}!fontweight@{fontweight}}
+\index{fontweight@{fontweight}!time@{time}}
+\doxysubsubsection{\texorpdfstring{fontweight}{fontweight}}
+{\footnotesize\ttfamily time.\+fontweight}
+
+
+
+Definition at line 41 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a7af1f3320de5cbaa8d9b2a47a7f330f0}\label{namespacetime_a7af1f3320de5cbaa8d9b2a47a7f330f0}} 
+\index{time@{time}!framealpha@{framealpha}}
+\index{framealpha@{framealpha}!time@{time}}
+\doxysubsubsection{\texorpdfstring{framealpha}{framealpha}}
+{\footnotesize\ttfamily time.\+framealpha}
+
+
+
+Definition at line 47 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_ae84b8da278d7ce67ffd2ca92bf88c81e}\label{namespacetime_ae84b8da278d7ce67ffd2ca92bf88c81e}} 
+\index{time@{time}!frameon@{frameon}}
+\index{frameon@{frameon}!time@{time}}
+\doxysubsubsection{\texorpdfstring{frameon}{frameon}}
+{\footnotesize\ttfamily time.\+frameon}
+
+
+
+Definition at line 47 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_ad755c94a36336c1eceac88b3aef234dd}\label{namespacetime_ad755c94a36336c1eceac88b3aef234dd}} 
+\index{time@{time}!function1\_smooth@{function1\_smooth}}
+\index{function1\_smooth@{function1\_smooth}!time@{time}}
+\doxysubsubsection{\texorpdfstring{function1\_smooth}{function1\_smooth}}
+{\footnotesize\ttfamily time.\+function1\+\_\+smooth = np.\+convolve(\mbox{\hyperlink{namespacetime_a0048097fb24d0308e617f83638f2e7bd}{function1\+\_\+speeds}}, np.\+ones(\mbox{\hyperlink{namespacetime_a63446bbaf9e9b609d698ea242e185de3}{window\+\_\+size}})/\mbox{\hyperlink{namespacetime_a63446bbaf9e9b609d698ea242e185de3}{window\+\_\+size}}, mode=\textquotesingle{}valid\textquotesingle{})}
+
+
+
+Definition at line 14 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a0048097fb24d0308e617f83638f2e7bd}\label{namespacetime_a0048097fb24d0308e617f83638f2e7bd}} 
+\index{time@{time}!function1\_speeds@{function1\_speeds}}
+\index{function1\_speeds@{function1\_speeds}!time@{time}}
+\doxysubsubsection{\texorpdfstring{function1\_speeds}{function1\_speeds}}
+{\footnotesize\ttfamily list time.\+function1\+\_\+speeds = \mbox{[}float(\mbox{\hyperlink{namespacetime_aa015a980309d0c318e8b5c6e766f6891}{data}}\mbox{[}i\mbox{]}.strip()) for i in range(0, len(\mbox{\hyperlink{namespacetime_aa015a980309d0c318e8b5c6e766f6891}{data}}), 1)\mbox{]}}
+
+
+
+Definition at line 7 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_ac3210f0ada8258688db4b9ba311d93c4}\label{namespacetime_ac3210f0ada8258688db4b9ba311d93c4}} 
+\index{time@{time}!ha@{ha}}
+\index{ha@{ha}!time@{time}}
+\doxysubsubsection{\texorpdfstring{ha}{ha}}
+{\footnotesize\ttfamily time.\+ha}
+
+
+
+Definition at line 31 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a00f7001509b9d9f4842310535fe0613d}\label{namespacetime_a00f7001509b9d9f4842310535fe0613d}} 
+\index{time@{time}!highest\_index\_smooth@{highest\_index\_smooth}}
+\index{highest\_index\_smooth@{highest\_index\_smooth}!time@{time}}
+\doxysubsubsection{\texorpdfstring{highest\_index\_smooth}{highest\_index\_smooth}}
+{\footnotesize\ttfamily time.\+highest\+\_\+index\+\_\+smooth = np.\+argmax(\mbox{\hyperlink{namespacetime_ad755c94a36336c1eceac88b3aef234dd}{function1\+\_\+smooth}})}
+
+
+
+Definition at line 20 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a1f464399dca19a001c6df11eb249ef65}\label{namespacetime_a1f464399dca19a001c6df11eb249ef65}} 
+\index{time@{time}!highest\_point\_smooth@{highest\_point\_smooth}}
+\index{highest\_point\_smooth@{highest\_point\_smooth}!time@{time}}
+\doxysubsubsection{\texorpdfstring{highest\_point\_smooth}{highest\_point\_smooth}}
+{\footnotesize\ttfamily time.\+highest\+\_\+point\+\_\+smooth = max(\mbox{\hyperlink{namespacetime_ad755c94a36336c1eceac88b3aef234dd}{function1\+\_\+smooth}})}
+
+
+
+Definition at line 18 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a8b7392d20687ad176c180f9db43fac58}\label{namespacetime_a8b7392d20687ad176c180f9db43fac58}} 
+\index{time@{time}!label@{label}}
+\index{label@{label}!time@{time}}
+\doxysubsubsection{\texorpdfstring{label}{label}}
+{\footnotesize\ttfamily time.\+label}
+
+
+
+Definition at line 26 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a95086d853ad727dec3882500a43bb599}\label{namespacetime_a95086d853ad727dec3882500a43bb599}} 
+\index{time@{time}!labels@{labels}}
+\index{labels@{labels}!time@{time}}
+\doxysubsubsection{\texorpdfstring{labels}{labels}}
+{\footnotesize\ttfamily time.\+labels}
+
+
+
+Definition at line 46 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a7d4b3b6840f6f8195cdc0a34589bce0d}\label{namespacetime_a7d4b3b6840f6f8195cdc0a34589bce0d}} 
+\index{time@{time}!lines@{lines}}
+\index{lines@{lines}!time@{time}}
+\doxysubsubsection{\texorpdfstring{lines}{lines}}
+{\footnotesize\ttfamily time.\+lines}
+
+
+
+Definition at line 46 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a0aed376869fbb1cd21f79db5159eeabf}\label{namespacetime_a0aed376869fbb1cd21f79db5159eeabf}} 
+\index{time@{time}!linestyle@{linestyle}}
+\index{linestyle@{linestyle}!time@{time}}
+\doxysubsubsection{\texorpdfstring{linestyle}{linestyle}}
+{\footnotesize\ttfamily time.\+linestyle}
+
+
+
+Definition at line 26 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a39529859412d52b6e81e015a3e4f9102}\label{namespacetime_a39529859412d52b6e81e015a3e4f9102}} 
+\index{time@{time}!linewidth@{linewidth}}
+\index{linewidth@{linewidth}!time@{time}}
+\doxysubsubsection{\texorpdfstring{linewidth}{linewidth}}
+{\footnotesize\ttfamily time.\+linewidth}
+
+
+
+Definition at line 26 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a46af8838d691f6dd3b4a1f7de827cc39}\label{namespacetime_a46af8838d691f6dd3b4a1f7de827cc39}} 
+\index{time@{time}!loc@{loc}}
+\index{loc@{loc}!time@{time}}
+\doxysubsubsection{\texorpdfstring{loc}{loc}}
+{\footnotesize\ttfamily time.\+loc}
+
+
+
+Definition at line 47 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a1ea66f8cbf5781d37866a7504e007922}\label{namespacetime_a1ea66f8cbf5781d37866a7504e007922}} 
+\index{time@{time}!lowest\_index\_smooth@{lowest\_index\_smooth}}
+\index{lowest\_index\_smooth@{lowest\_index\_smooth}!time@{time}}
+\doxysubsubsection{\texorpdfstring{lowest\_index\_smooth}{lowest\_index\_smooth}}
+{\footnotesize\ttfamily time.\+lowest\+\_\+index\+\_\+smooth = np.\+argmin(\mbox{\hyperlink{namespacetime_ad755c94a36336c1eceac88b3aef234dd}{function1\+\_\+smooth}})}
+
+
+
+Definition at line 19 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_af086d9079f998eb35ac78738f27915f3}\label{namespacetime_af086d9079f998eb35ac78738f27915f3}} 
+\index{time@{time}!lowest\_point\_smooth@{lowest\_point\_smooth}}
+\index{lowest\_point\_smooth@{lowest\_point\_smooth}!time@{time}}
+\doxysubsubsection{\texorpdfstring{lowest\_point\_smooth}{lowest\_point\_smooth}}
+{\footnotesize\ttfamily time.\+lowest\+\_\+point\+\_\+smooth = min(\mbox{\hyperlink{namespacetime_ad755c94a36336c1eceac88b3aef234dd}{function1\+\_\+smooth}})}
+
+
+
+Definition at line 17 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_ace8bbba0e2fdf6ad607afde2fb450a92}\label{namespacetime_ace8bbba0e2fdf6ad607afde2fb450a92}} 
+\index{time@{time}!marker@{marker}}
+\index{marker@{marker}!time@{time}}
+\doxysubsubsection{\texorpdfstring{marker}{marker}}
+{\footnotesize\ttfamily time.\+marker}
+
+
+
+Definition at line 26 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a9eb048c6bd09ed2d41b322f03e051bf4}\label{namespacetime_a9eb048c6bd09ed2d41b322f03e051bf4}} 
+\index{time@{time}!markersize@{markersize}}
+\index{markersize@{markersize}!time@{time}}
+\doxysubsubsection{\texorpdfstring{markersize}{markersize}}
+{\footnotesize\ttfamily time.\+markersize}
+
+
+
+Definition at line 30 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a1464cf8d170be61e215962b6bf9524d5}\label{namespacetime_a1464cf8d170be61e215962b6bf9524d5}} 
+\index{time@{time}!markevery@{markevery}}
+\index{markevery@{markevery}!time@{time}}
+\doxysubsubsection{\texorpdfstring{markevery}{markevery}}
+{\footnotesize\ttfamily time.\+markevery}
+
+
+
+Definition at line 26 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a0af6fcc36e486f1950194eea3d72b030}\label{namespacetime_a0af6fcc36e486f1950194eea3d72b030}} 
+\index{time@{time}!shadow@{shadow}}
+\index{shadow@{shadow}!time@{time}}
+\doxysubsubsection{\texorpdfstring{shadow}{shadow}}
+{\footnotesize\ttfamily time.\+shadow}
+
+
+
+Definition at line 47 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a2125ae8453a65240551b42987cf399b9}\label{namespacetime_a2125ae8453a65240551b42987cf399b9}} 
+\index{time@{time}!True@{True}}
+\index{True@{True}!time@{time}}
+\doxysubsubsection{\texorpdfstring{True}{True}}
+{\footnotesize\ttfamily time.\+True}
+
+
+
+Definition at line 47 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a99c9d8b18eb9c3843664617275974756}\label{namespacetime_a99c9d8b18eb9c3843664617275974756}} 
+\index{time@{time}!va@{va}}
+\index{va@{va}!time@{time}}
+\doxysubsubsection{\texorpdfstring{va}{va}}
+{\footnotesize\ttfamily time.\+va}
+
+
+
+Definition at line 31 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a63446bbaf9e9b609d698ea242e185de3}\label{namespacetime_a63446bbaf9e9b609d698ea242e185de3}} 
+\index{time@{time}!window\_size@{window\_size}}
+\index{window\_size@{window\_size}!time@{time}}
+\doxysubsubsection{\texorpdfstring{window\_size}{window\_size}}
+{\footnotesize\ttfamily int time.\+window\+\_\+size = 5000}
+
+
+
+Definition at line 13 of file time.\+py.
+
