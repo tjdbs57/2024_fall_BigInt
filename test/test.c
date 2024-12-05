@@ -31,7 +31,7 @@ void print_bi_hex_py(IN const bigint* x)
     }
 }
 
-#define MAX_BIT_LEN    4096
+#define MAX_BIT_LEN    256
 
 void test()
 {
@@ -118,6 +118,40 @@ void test_basic_operation(void(*operation)(IN bigint** , IN bigint**, OUT bigint
         bi_delete(&z);
     }
 }
+
+// void test_div()
+// {
+//     for(int i = 0 ; i < TEST_CASE; i++)
+//     {
+//         bigint *x = NULL;
+//         bigint *y = NULL;
+//         bigint *q = NULL;
+//         bigint *r = NULL;
+//
+//         //int wordlen1 = rand() % (MAX_BIT_LEN / WORD_BITLEN) + 1; 
+//         //int wordlen2 = rand() % (MAX_BIT_LEN / WORD_BITLEN) + 1;  
+//         int sign = NON_NEGATIVE;
+//
+//         bi_gen_rand(&x, sign, 1);
+//         bi_gen_rand(&y, sign, 2);
+//
+//         //bi_long_div(&x, &y, &q, &r);
+//         general_div_core(&x, &y, &q, &r);
+//
+//         print_bi_hex_py(q);              
+//         printf(" * ");  print_bi_hex_py(y);                    
+//         printf(" + ");  print_bi_hex_py(r);
+//         printf(" == "); print_bi_hex_py(x);                     
+//         printf("\n");  
+//
+//
+//         bi_delete(&x);
+//         bi_delete(&y);
+//         bi_delete(&q);
+//         bi_delete(&r);
+//     }
+// }
+
 void test_div(const char* operate)
 {
     for(int i = 0 ; i < TEST_CASE; i++)
@@ -132,10 +166,6 @@ void test_div(const char* operate)
         int wordlen2 = rand() % (MAX_BIT_LEN / WORD_BITLEN) + 1;  
         int sign = NON_NEGATIVE;
 
-        //char* str1 = "123456789abcdef12453fd";
-        //char* str2 = "12345";
-        //bi_set_by_string(&x, sign, str1, 16);
-        //bi_set_by_string(&y, sign, str2, 16);
         bi_gen_rand(&x, sign, wordlen1);
         bi_gen_rand(&y, sign, wordlen2);
 
@@ -169,10 +199,11 @@ void test_exp_mod(void(*operation)(IN bigint** , IN bigint**, OUT bigint**, IN b
 
         int wordlen1 = rand() % (MAX_BIT_LEN / WORD_BITLEN) + 1; 
         int wordlen2 = rand() % (MAX_BIT_LEN / WORD_BITLEN) + 1;  
+        int wordlen3 = rand() % (MAX_BIT_LEN / WORD_BITLEN) + 1;  
         int sign = NON_NEGATIVE;
 
         bi_gen_rand(&x, sign, wordlen1);
-        bi_gen_rand(&y, sign, 1);
+        bi_gen_rand(&y, sign, wordlen3);
         bi_gen_rand(&mod, sign, wordlen2);
 
 
@@ -202,49 +233,48 @@ void test_exp_mod(void(*operation)(IN bigint** , IN bigint**, OUT bigint**, IN b
 }
 void test_barret(const char* operate)
 {
+    int N_len = rand() % (MAX_BIT_LEN / WORD_BITLEN) + 1;
+
+    // W^(n-1) <= N < W^n인 N 생성
+    bigint* Wn_1 = NULL; // W^(n-1)
+    bi_new(&Wn_1, N_len);
+    Wn_1->a[N_len-1]=ONE;
+        
+    bigint* N = NULL;
+    bi_gen_rand(&N,NON_NEGATIVE, N_len);
+        
+    while(compare(Wn_1, N)==1){ // W^(n-1) > N 이면  N 다시 생성
+        bi_gen_rand(&N,NON_NEGATIVE, N_len); 
+    }
+
+    // T 사전 계산 ( T = floor(W^2n / N) )
+    bigint* T=NULL;
+    bigint* tmp=NULL;
+
+    // W = 2^(WORD_BITLEN)
+    bigint* W2n=NULL; 
+    bigint* Wn=NULL;
+    bi_new(&Wn, N_len+1);
+    Wn->a[N_len]=ONE;
+
+    squaring(&Wn, &tmp); 
+    bi_assign(&W2n, tmp);
+
+    // T 계산
+    bi_long_div(&W2n, &N, &T, &tmp); // T = floor( W^2n / N )
 
     for(int i=0; i<TEST_CASE; i++){
 
-        int N_len = rand() % (MAX_BIT_LEN / WORD_BITLEN) + 1;
         int A_len = rand() % (2*N_len) + 1; // 1부터 2n까지 랜덤 생성
 
         // A 생성
         bigint* A=NULL;
         bi_gen_rand(&A,NON_NEGATIVE, A_len); //여기서 MEM_ALLOCATION
 
-        // W^(n-1) <= N < W^n인 N 생성
-        bigint* Wn_1 = NULL; // W^(n-1)
-        bi_new(&Wn_1, N_len);
-        Wn_1->a[N_len-1]=ONE;
-        
-        bigint* N = NULL;
-        bi_gen_rand(&N,NON_NEGATIVE, N_len);
-        
-        while(compare(Wn_1, N)==1){ // W^(n-1) > N 이면  N 다시 생성
-            bi_gen_rand(&N,NON_NEGATIVE, N_len); 
-        }
-
-        // T 사전 계산 ( T = floor(W^2n / N) )
-        bigint* T=NULL;
-        bigint* tmp=NULL;
-
-        // W = 2^(WORD_BITLEN)
-        bigint* W2n=NULL; 
-        bigint* Wn=NULL;
-        bi_new(&Wn, N_len+1);
-        Wn->a[N_len]=ONE;
-
-        squaring(&Wn, &tmp); 
-        bi_assign(&W2n, tmp);
-
-        // T 계산
-        bi_long_div(&W2n, &N, &T, &tmp); // T = floor( W^2n / N )
-
         bigint* R=NULL;
         barret_reduction(&A, &N, &T, &R); 
         
-       printf("%s: ", operate);  // 연산 이름 출력
-
+        printf("%s:  ", operate);
         print_bi_hex_py(A);
         printf(" %% ");
         print_bi_hex_py(N);
@@ -253,69 +283,18 @@ void test_barret(const char* operate)
         printf("\n");
 
         bi_delete(&A); 
-        bi_delete(&N); 
-        bi_delete(&T); 
-        bi_delete(&W2n);
-        bi_delete(&Wn);
         bi_delete(&R);
-        bi_delete(&tmp);
     }
+
+    bi_delete(&N); 
+    bi_delete(&T); 
+    bi_delete(&W2n);
+    bi_delete(&Wn);
+    bi_delete(&tmp);
 }
 
 #define TIME(start, end) ((double)((end) - (start))) / CLOCKS_PER_SEC 
 
-// void measure_cycles(void(*func)(IN bigint** , IN bigint**, OUT bigint**), IN bigint** x, IN bigint** y, OUT bigint** z) {
-//     u32 ui;
-//     u64 start, end;
-//     const int num = 1000;
-
-//     volatile u64 cycles_with_func, cycles_without_func;
-//     u64 max_cycles = 0;
-//     u64 max_x = 0, max_y = 0;  // 최대 클락 사이클이 발생한 입력 값 추적
-
-//     // 반복문을 통해 모든 입력값에 대해 측정
-//     for (int i = 0; i < num; i++) {
-//         // Measure time with function execution
-//         start = _rdtscp(&ui);
-//         func(x, y, z);
-//         end = _rdtscp(&ui);
-//         cycles_with_func = end - start;
-
-//         // Measure time without function execution (loop overhead)
-//         start = _rdtscp(&ui);
-//         for (int j = 0; j < num; j++) {
-//             // Empty loop
-//         }
-//         end = _rdtscp(&ui);
-//         cycles_without_func = end - start;
-
-//         // Subtract loop overhead from total cycles
-//         volatile u64 pure_cycles = cycles_with_func - cycles_without_func;
-
-//         // 가장 높은 클락 사이클을 기록
-//         if (pure_cycles > max_cycles) {
-//             max_cycles = pure_cycles;
-//             max_x = *x;  // 해당 x 값을 저장
-//             max_y = *y;  // 해당 y 값을 저장
-//         }
-//     }
-
-//     // 가장 높은 클락 사이클을 기록한 입력 값과 그 클락 사이클 값 출력
-//     printf("Max Cycles: %ld, Input X: %ld, Input Y: %ld\n", max_cycles, max_x, max_y);
-    
-//     // 입력을 다시 측정하여 동일한 값이 나오는지 확인
-//     printf("Measuring the input again...\n");
-
-//     // 동일한 입력 값으로 다시 클락 사이클을 측정
-//     u64 start_again, end_again;
-//     start_again = _rdtscp(&ui);
-//     func(&max_x, &max_y, z);  // 기록된 입력 값으로 실행
-//     end_again = _rdtscp(&ui);
-//     cycles_with_func = end_again - start_again;
-
-//     // 다시 측정한 클락 사이클 출력
-//     printf("Measured Cycles with Input X: %ld, Y: %ld -> %ld\n", max_x, max_y, cycles_with_func);
-// }
 
 double measure_execution_time(void(*func)(IN bigint** , IN bigint**, OUT bigint**), IN bigint** x, IN bigint** y, OUT bigint** z) 
 {
@@ -365,6 +344,7 @@ void measure_clock_cycles()
         bigint *x = NULL;
         bigint *y = NULL;
         bigint *z = NULL;
+       // bigint *m = NULL;
 
         int sign1 = rand() % 2;
         int sign2 = rand() % 2;
@@ -372,9 +352,9 @@ void measure_clock_cycles()
         bi_gen_rand(&x, sign1, wordlen);
         bi_gen_rand(&y, sign2, wordlen);
         
-        measure_cycles(mul_core_tx, &x, &y, &z);
-        measure_cycles(mul_core_improved, &x, &y, &z);
-        measure_cycles(mul_core_karatsuba, &x, &y, &z);
+        //measure_cycles(mul_core_tx, &x, &y, &z);
+        //measure_cycles(mul_core_improved, &x, &y, &z);
+        //measure_cycles(mul_core_karatsuba, &x, &y, &z);
         //measure_cycles(add, &x, &y, &z);
         //measure_cycles(sub, &x, &y, &z);
 

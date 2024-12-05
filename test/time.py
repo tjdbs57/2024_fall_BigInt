@@ -102,7 +102,7 @@ ax1.set_ylabel('Total Cycles', fontsize=16, fontweight='bold', color='dodgerblue
 ax1.set_xlabel('Run Number', fontsize=16, fontweight='bold')
 #ax1.set_title('Measurement of Cycles: Mul Core TX, Improved, and Karatsuba', fontsize=18, fontweight='bold')
 ax1.set_title(
-    'Measurement of Cycles (64-bit Multiplication): Mul Core TX, Improved, and Karatsuba',
+    'Measurement of Cycles (8-bit Multiplication): Mul Core TX, Improved, and Karatsuba',
     fontsize=18,
     fontweight='bold'
 )

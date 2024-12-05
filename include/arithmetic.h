@@ -382,8 +382,6 @@ void general_div_core(IN bigint** x, IN bigint** y, IN bigint** Q, IN bigint** R
 
 
 
-
-
 /*******************************************************/
 /*          Modulo exponentiation operations           */
 /*******************************************************/
@@ -461,7 +459,6 @@ void exp_mod_montgomery(IN bigint** x, IN bigint** y, OUT bigint** z, IN bigint*
  *       The reduction steps are performed using several intermediate variables to prevent overflow and optimize calculations.
  */
 void barret_reduction(IN bigint** x, IN bigint** y, IN bigint** z, OUT bigint** result);
-
 
 #endif  //arithmetic.h
 

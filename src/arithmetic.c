@@ -713,42 +713,31 @@ void bi_long_div(IN bigint** x, IN bigint** y, OUT bigint** q, OUT bigint** r)
 
 }
 
-word quotient(IN word dividend1, IN word dividend0, IN word divisor) 
-{
+word quotient(IN word dividend1, IN word dividend0, IN word divisor) {
     word Q = 0;
     word R = dividend1;
 
-    int w1 = WORD_BITLEN;
-    for(int i = WORD_BITLEN-1; i>=0; i--) {
-        if((divisor >> i) == 0)
-            w1 -= 1;
-        else
-            break;
-    }
+    for (int i = WORD_BITLEN - 1; i >= 0; i--)
+    {
+        R = (R << 1) | ((dividend0 >> i) & 1);
 
-    for(int j = w1; j>=0; j--) {
-        if(R >= (word)(ONE << w1)) {
-            Q += (ONE << j);
-            R += (dividend0 >> j);
-            R += (R-divisor);
-        } else {
-            R += (dividend0 >> j);
-            R += R;
-            if(R >= divisor) {
-                Q += (ONE << j);
-                R -= divisor;
-            }
+        if (R >= divisor)
+        {
+            Q |= (ONE << i);
+            R -= divisor;
         }
     }
+
     return Q;
 }
+
 
 void general_div_core(IN bigint** x, IN bigint** y, IN bigint** Q, IN bigint** R)
 {
 
     bi_new(Q, 1);  
 
-    bi_new(R, (*x)->wordlen); 
+    bi_new(R, (*y)->wordlen); 
 
     int n = (*x)->wordlen;
     int m = (*y)->wordlen;
@@ -775,7 +764,7 @@ void general_div_core(IN bigint** x, IN bigint** y, IN bigint** Q, IN bigint** R
 
     bigint* YQ = NULL;
     bi_new(&YQ, (*y)->wordlen);
-    mul_core_tx(y, Q, &YQ);  
+    mul_core_karatsuba(y, Q, &YQ);  
     sub(x, &YQ, R);  
 
  
@@ -795,11 +784,6 @@ void general_div_core(IN bigint** x, IN bigint** y, IN bigint** Q, IN bigint** R
         add(R, &tmpY, &tmpR);  
         bi_assign(R, tmpR);
 
-          
-        if ((*R)->sign != NEGATIVE) {
-            break;  
-        }
-
         bi_refine(*Q);  
         bi_refine(*R);  
     }
@@ -812,6 +796,7 @@ void general_div_core(IN bigint** x, IN bigint** y, IN bigint** Q, IN bigint** R
     bi_delete(&tmpY);
 
 }
+
 
 
 
@@ -832,7 +817,7 @@ void L2R(IN bigint** x, IN bigint** y, IN bigint** z, OUT bigint** M)
         if (get_jth_bit(*y,i)){
             squaring(&t0,&temp);
             bi_long_div(&temp,M,&Q1,&temp2);
-            mul_core_improved(&temp2,x,&temp);
+            mul_core_karatsuba(&temp2,x,&temp);
             bi_long_div(&temp,M,&Q1,&t0);
         }
         else{
