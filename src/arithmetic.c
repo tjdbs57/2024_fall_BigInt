@@ -1,6 +1,6 @@
 #include "arithmetic.h"
 
-void or(bigint** x, bigint** y, bigint** z) 
+void bigint_or(bigint** x, bigint** y, bigint** z) 
 {
     int min_len = MINIMUM((*x)->wordlen, (*y)->wordlen);
     int max_len = MAXIMUM((*x)->wordlen, (*y)->wordlen);
@@ -361,13 +361,13 @@ void mul_core_improved(IN bigint** x, IN bigint** y, OUT bigint** z)
 
             left_shift_word(&tmp0, 2*k);
             bi_refine_word(tmp0, 2*k);
-            or(&tmp0, &T0, &T0);
+            bigint_or(&tmp0, &T0, &T0);
 
             bi_assign(&T0, tmp0);
        
             left_shift_word(&tmp1, 2*k);
             bi_refine_word(tmp1, 2*k);
-            or(&tmp1, &T1, &T1);
+            bigint_or(&tmp1, &T1, &T1);
 
             bi_assign(&T1, tmp1);
 
@@ -855,7 +855,7 @@ void L2R(IN bigint** x, IN bigint** y, IN bigint** z, OUT bigint** M)
         if (get_jth_bit(*y,i)){
             squaring(&t0,&temp);
             bi_long_div(&temp,M,&Q1,&temp2);
-            mul_core_improved(&temp2,x,&temp);
+            mul_core_karatsuba(&temp2,x,&temp);
             bi_long_div(&temp,M,&Q1,&t0);
         }
         else{
@@ -889,7 +889,7 @@ void R2L(IN bigint** x, IN bigint** y, OUT bigint** z, IN bigint** M)
     for (int i = 0; i < bit_len; i++) {
         bi_new(&temp, 1);
         if (get_jth_bit(*y, i)) {
-            mul_core_improved(&t0, &t1, &temp);
+            mul_core_karatsuba(&t0, &t1, &temp);
             bi_long_div(&temp, M, &Q, &t0);
             squaring(&t1, &temp);
             bi_long_div(&temp, M, &Q, &t1);
@@ -928,13 +928,13 @@ void exp_mod_montgomery(IN bigint** x, IN bigint** y, OUT bigint** z, IN bigint*
         bi_new(&Q2,1);
 
         if (get_jth_bit(*y,i) == 0){
-            mul_core_improved(&t0,&t1,&temp);
+            mul_core_karatsuba(&t0,&t1,&temp);
             bi_long_div(&temp,M,&Q1,&t1);
             squaring(&t0,&temp2);
             bi_long_div(&temp2,M,&Q2,&t0);
         }
         else{
-            mul_core_improved(&t0,&t1,&temp);
+            mul_core_karatsuba(&t0,&t1,&temp);
             bi_long_div(&temp,M,&Q1,&t0);
             squaring(&t1,&temp2);
             bi_long_div(&temp2,M,&Q2,&t1);
@@ -973,14 +973,14 @@ void barret_reduction(IN bigint** x, IN bigint** y, IN bigint** z, OUT bigint** 
     
     right_shift_word(&Q, (n-1)); // Q <- A >> w(n-1) 
 
-    mul_core_improved(&Q, z, &tmp); // Q <- Q x T
+    mul_core_karatsuba(&Q, z, &tmp); // Q <- Q x T
     bi_assign(&Q, tmp);
 
     right_shift_word(&Q, (n+1)); // Q >> w(n+1)
 
 
     bi_assign(&N, *y);
-    mul_core_improved(&N, &Q, &R); // R <- N x Q
+    mul_core_karatsuba(&N, &Q, &R); // R <- N x Q
 
     sub(x, &R, &tmp); // R <- A - R
     bi_assign(&R, tmp);

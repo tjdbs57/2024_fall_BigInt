@@ -12,7 +12,7 @@ def \mbox{\hyperlink{namespacetest__all_aa816b5db146e7e17f2fa055f57370992}{plot\
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-string \mbox{\hyperlink{namespacetest__all_a7681f43a95ad5f0d13294d0afb7ee7af}{test\+\_\+file\+\_\+path}} = \textquotesingle{}\mbox{\hyperlink{test_8c_ae1a3968e7947464bee7714f6d43b7002}{test}}/test\+\_\+all.\+txt\textquotesingle{}
+string \mbox{\hyperlink{namespacetest__all_a7681f43a95ad5f0d13294d0afb7ee7af}{test\+\_\+file\+\_\+path}} = \textquotesingle{}test/test\+\_\+all.\+txt\textquotesingle{}
 \item 
 def \mbox{\hyperlink{namespacetest__all_a4cdae76a0c2e731d308ea14b49e8843a}{results}} = \mbox{\hyperlink{namespacetest__all_ad92d7b051001f7f8bb478b856ddb917b}{read\+\_\+test\+\_\+output\+\_\+from\+\_\+file}}(\mbox{\hyperlink{namespacetest__all_a7681f43a95ad5f0d13294d0afb7ee7af}{test\+\_\+file\+\_\+path}})
 \item 
@@ -31,9 +31,15 @@ int \mbox{\hyperlink{namespacetest__all_a7086517cdfb2caacf0b564dc078e0051}{bit\+
 \doxysubsubsection{\texorpdfstring{plot\_success\_rate()}{plot\_success\_rate()}}
 {\footnotesize\ttfamily def test\+\_\+all.\+plot\+\_\+success\+\_\+rate (\begin{DoxyParamCaption}\item[{}]{results,  }\item[{}]{output\+\_\+path,  }\item[{}]{test\+\_\+cases,  }\item[{}]{bit\+\_\+length }\end{DoxyParamCaption})}
 
+\begin{DoxyVerb}@brief Plots the success and failure counts for each operation and saves the graph to a file.
+@param results A dictionary containing success and failure counts for each operation.
+@param output_path The file path to save the resulting graph.
+@param test_cases The number of test cases used in the operations.
+@param bit_length The bit length of the test cases.
+\end{DoxyVerb}
+ 
 
-
-Definition at line 61 of file test\+\_\+all.\+py.
+Definition at line 71 of file test\+\_\+all.\+py.
 
 \mbox{\Hypertarget{namespacetest__all_a828dd0dac9e176e131ced4f4b27e78cd}\label{namespacetest__all_a828dd0dac9e176e131ced4f4b27e78cd}} 
 \index{test\_all@{test\_all}!process\_test\_output@{process\_test\_output}}
@@ -41,12 +47,15 @@ Definition at line 61 of file test\+\_\+all.\+py.
 \doxysubsubsection{\texorpdfstring{process\_test\_output()}{process\_test\_output()}}
 {\footnotesize\ttfamily def test\+\_\+all.\+process\+\_\+test\+\_\+output (\begin{DoxyParamCaption}\item[{}]{output }\end{DoxyParamCaption})}
 
-
+\begin{DoxyVerb}@brief Processes the output of a test file and calculates success and failure counts for each operation.
+@param output A string containing the content of the test file.
+@return A dictionary summarizing success and failure counts for each operation.
+\end{DoxyVerb}
+ 
 
 Definition at line 5 of file test\+\_\+all.\+py.
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -59,12 +68,15 @@ Here is the caller graph for this function\+:
 \doxysubsubsection{\texorpdfstring{read\_test\_output\_from\_file()}{read\_test\_output\_from\_file()}}
 {\footnotesize\ttfamily def test\+\_\+all.\+read\+\_\+test\+\_\+output\+\_\+from\+\_\+file (\begin{DoxyParamCaption}\item[{}]{file\+\_\+path }\end{DoxyParamCaption})}
 
+\begin{DoxyVerb}@brief Reads a test file and processes its output.
+@param file_path The path to the test file.
+@return A dictionary containing success and failure counts for each operation, or an empty dictionary on failure.
+\end{DoxyVerb}
+ 
 
+Definition at line 56 of file test\+\_\+all.\+py.
 
-Definition at line 51 of file test\+\_\+all.\+py.
-
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -82,7 +94,7 @@ Here is the call graph for this function\+:
 
 
 
-Definition at line 117 of file test\+\_\+all.\+py.
+Definition at line 134 of file test\+\_\+all.\+py.
 
 \mbox{\Hypertarget{namespacetest__all_ab00a63aa438c51f310781d814cde0ec4}\label{namespacetest__all_ab00a63aa438c51f310781d814cde0ec4}} 
 \index{test\_all@{test\_all}!output\_file@{output\_file}}
@@ -92,7 +104,7 @@ Definition at line 117 of file test\+\_\+all.\+py.
 
 
 
-Definition at line 115 of file test\+\_\+all.\+py.
+Definition at line 132 of file test\+\_\+all.\+py.
 
 \mbox{\Hypertarget{namespacetest__all_a4cdae76a0c2e731d308ea14b49e8843a}\label{namespacetest__all_a4cdae76a0c2e731d308ea14b49e8843a}} 
 \index{test\_all@{test\_all}!results@{results}}
@@ -102,7 +114,7 @@ Definition at line 115 of file test\+\_\+all.\+py.
 
 
 
-Definition at line 112 of file test\+\_\+all.\+py.
+Definition at line 129 of file test\+\_\+all.\+py.
 
 \mbox{\Hypertarget{namespacetest__all_ab555b7b98d961878951b9cd42d27b204}\label{namespacetest__all_ab555b7b98d961878951b9cd42d27b204}} 
 \index{test\_all@{test\_all}!test\_cases@{test\_cases}}
@@ -112,15 +124,15 @@ Definition at line 112 of file test\+\_\+all.\+py.
 
 
 
-Definition at line 116 of file test\+\_\+all.\+py.
+Definition at line 133 of file test\+\_\+all.\+py.
 
 \mbox{\Hypertarget{namespacetest__all_a7681f43a95ad5f0d13294d0afb7ee7af}\label{namespacetest__all_a7681f43a95ad5f0d13294d0afb7ee7af}} 
 \index{test\_all@{test\_all}!test\_file\_path@{test\_file\_path}}
 \index{test\_file\_path@{test\_file\_path}!test\_all@{test\_all}}
 \doxysubsubsection{\texorpdfstring{test\_file\_path}{test\_file\_path}}
-{\footnotesize\ttfamily string test\+\_\+all.\+test\+\_\+file\+\_\+path = \textquotesingle{}\mbox{\hyperlink{test_8c_ae1a3968e7947464bee7714f6d43b7002}{test}}/test\+\_\+all.\+txt\textquotesingle{}}
+{\footnotesize\ttfamily string test\+\_\+all.\+test\+\_\+file\+\_\+path = \textquotesingle{}test/test\+\_\+all.\+txt\textquotesingle{}}
 
 
 
-Definition at line 111 of file test\+\_\+all.\+py.
+Definition at line 128 of file test\+\_\+all.\+py.
 

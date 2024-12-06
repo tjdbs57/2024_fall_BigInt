@@ -4,11 +4,8 @@ var searchData=
   ['add_1',['add',['../arithmetic_8h.html#ade73826c2f3045af8b80cdabaf5098cd',1,'add(IN bigint **x, IN bigint **y, OUT bigint **z):&#160;arithmetic.c'],['../arithmetic_8c.html#ade73826c2f3045af8b80cdabaf5098cd',1,'add(IN bigint **x, IN bigint **y, OUT bigint **z):&#160;arithmetic.c']]],
   ['add_5fcore_2',['add_core',['../arithmetic_8h.html#af0f3d3a24fcc57fb03d3387ddf1fedd4',1,'add_core(IN bigint **x, IN bigint **y, OUT bigint **z):&#160;arithmetic.c'],['../arithmetic_8c.html#af0f3d3a24fcc57fb03d3387ddf1fedd4',1,'add_core(IN bigint **x, IN bigint **y, OUT bigint **z):&#160;arithmetic.c']]],
   ['add_5fsingle_5fword_3',['add_single_word',['../arithmetic_8h.html#abe01d1563dd086833a9dcd16877b588a',1,'add_single_word(IN word A, IN word B, IN word carry_in, OUT word *carry_out, OUT word *result):&#160;arithmetic.c'],['../arithmetic_8c.html#abe01d1563dd086833a9dcd16877b588a',1,'add_single_word(IN word A, IN word B, IN word carry_in, OUT word *carry_out, OUT word *result):&#160;arithmetic.c']]],
-  ['alpha_4',['alpha',['../namespacetime.html#ad0b0d8954de16f204145e04780434e7a',1,'time']]],
-  ['arithmetic_2ec_5',['arithmetic.c',['../arithmetic_8c.html',1,'']]],
-  ['arithmetic_2eh_6',['arithmetic.h',['../arithmetic_8h.html',1,'']]],
-  ['array_5finit_7',['array_init',['../utils_8h.html#a97cc4eb5eae289b31e5d69edabf69490',1,'array_init(IN word *array, IN int length):&#160;utils.c'],['../utils_8c.html#a97cc4eb5eae289b31e5d69edabf69490',1,'array_init(IN word *array, IN int length):&#160;utils.c']]],
-  ['array_5frand_8',['array_rand',['../utils_8h.html#a1fcdfec5fbe7acd8cee783a05dc84eb8',1,'array_rand(OUT word *dst, IN int wordlen):&#160;utils.c'],['../utils_8c.html#a1fcdfec5fbe7acd8cee783a05dc84eb8',1,'array_rand(OUT word *dst, IN int wordlen):&#160;utils.c']]],
-  ['average_5ffunction1_9',['average_function1',['../namespacetime.html#ae82307c6de586460d624578b708283b6',1,'time']]],
-  ['ax1_10',['ax1',['../namespacetime.html#ab4d3ea33922e7897a2cfc19c317c6e28',1,'time']]]
+  ['arithmetic_2ec_4',['arithmetic.c',['../arithmetic_8c.html',1,'']]],
+  ['arithmetic_2eh_5',['arithmetic.h',['../arithmetic_8h.html',1,'']]],
+  ['array_5finit_6',['array_init',['../utils_8h.html#a97cc4eb5eae289b31e5d69edabf69490',1,'array_init(IN word *array, IN int length):&#160;utils.c'],['../utils_8c.html#a97cc4eb5eae289b31e5d69edabf69490',1,'array_init(IN word *array, IN int length):&#160;utils.c']]],
+  ['array_5frand_7',['array_rand',['../utils_8h.html#a1fcdfec5fbe7acd8cee783a05dc84eb8',1,'array_rand(OUT word *dst, IN int wordlen):&#160;utils.c'],['../utils_8c.html#a1fcdfec5fbe7acd8cee783a05dc84eb8',1,'array_rand(OUT word *dst, IN int wordlen):&#160;utils.c']]]
 ];

@@ -3,25 +3,59 @@
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
+list \mbox{\hyperlink{namespacetime_ac8bb85d23a685e00732d96bf96c71b47}{mul\+\_\+core\+\_\+tx\+\_\+speeds}} = \mbox{[}$\,$\mbox{]}
+\item 
+list \mbox{\hyperlink{namespacetime_acaed053d63b099709f740405f4a48aa8}{mul\+\_\+core\+\_\+improved\+\_\+speeds}} = \mbox{[}$\,$\mbox{]}
+\item 
+list \mbox{\hyperlink{namespacetime_aa00822c41b9e7aa30ab08f8076ca0b6a}{mul\+\_\+core\+\_\+karatsuba\+\_\+speeds}} = \mbox{[}$\,$\mbox{]}
+\item 
 \mbox{\hyperlink{namespacetime_a32ede7bb9cfb1e339e2a7a11232ffe33}{encoding}}
 \item 
-\mbox{\hyperlink{namespacetime_aa015a980309d0c318e8b5c6e766f6891}{data}} = file.\+readlines()
+\mbox{\hyperlink{namespacetime_a3922219bebbfc2c1666af8240d4c6b10}{line}} = line.\+strip()
 \item 
-list \mbox{\hyperlink{namespacetime_a0048097fb24d0308e617f83638f2e7bd}{function1\+\_\+speeds}} = \mbox{[}float(\mbox{\hyperlink{namespacetime_aa015a980309d0c318e8b5c6e766f6891}{data}}\mbox{[}i\mbox{]}.strip()) for i in range(0, len(\mbox{\hyperlink{namespacetime_aa015a980309d0c318e8b5c6e766f6891}{data}}), 1)\mbox{]}
+\mbox{\hyperlink{namespacetime_a4f23d73150ff26ae093ebc568aa81cea}{average\+\_\+mul\+\_\+core\+\_\+tx}} = np.\+mean(\mbox{\hyperlink{namespacetime_ac8bb85d23a685e00732d96bf96c71b47}{mul\+\_\+core\+\_\+tx\+\_\+speeds}})
 \item 
-\mbox{\hyperlink{namespacetime_ae82307c6de586460d624578b708283b6}{average\+\_\+function1}} = np.\+mean(\mbox{\hyperlink{namespacetime_a0048097fb24d0308e617f83638f2e7bd}{function1\+\_\+speeds}})
+\mbox{\hyperlink{namespacetime_a7a7e6f63ae457a625e2dd53d08443726}{average\+\_\+mul\+\_\+core\+\_\+improved}} = np.\+mean(\mbox{\hyperlink{namespacetime_acaed053d63b099709f740405f4a48aa8}{mul\+\_\+core\+\_\+improved\+\_\+speeds}})
 \item 
-int \mbox{\hyperlink{namespacetime_a63446bbaf9e9b609d698ea242e185de3}{window\+\_\+size}} = 5000
+\mbox{\hyperlink{namespacetime_a757e01da8ff165cbd1a25a44086cc2a1}{average\+\_\+mul\+\_\+core\+\_\+karatsuba}} = np.\+mean(\mbox{\hyperlink{namespacetime_aa00822c41b9e7aa30ab08f8076ca0b6a}{mul\+\_\+core\+\_\+karatsuba\+\_\+speeds}})
 \item 
-\mbox{\hyperlink{namespacetime_ad755c94a36336c1eceac88b3aef234dd}{function1\+\_\+smooth}} = np.\+convolve(\mbox{\hyperlink{namespacetime_a0048097fb24d0308e617f83638f2e7bd}{function1\+\_\+speeds}}, np.\+ones(\mbox{\hyperlink{namespacetime_a63446bbaf9e9b609d698ea242e185de3}{window\+\_\+size}})/\mbox{\hyperlink{namespacetime_a63446bbaf9e9b609d698ea242e185de3}{window\+\_\+size}}, mode=\textquotesingle{}valid\textquotesingle{})
+int \mbox{\hyperlink{namespacetime_a2784a8ddcccbee241f40839e598f2664}{window\+\_\+size}} = 100
 \item 
-\mbox{\hyperlink{namespacetime_af086d9079f998eb35ac78738f27915f3}{lowest\+\_\+point\+\_\+smooth}} = min(\mbox{\hyperlink{namespacetime_ad755c94a36336c1eceac88b3aef234dd}{function1\+\_\+smooth}})
+\mbox{\hyperlink{namespacetime_a7553119dd1a5f6f2a4ab38e8c0274cd6}{mul\+\_\+core\+\_\+tx\+\_\+smooth}} = pd.\+Series(\mbox{\hyperlink{namespacetime_ac8bb85d23a685e00732d96bf96c71b47}{mul\+\_\+core\+\_\+tx\+\_\+speeds}}).rolling(window=\mbox{\hyperlink{namespacetime_a2784a8ddcccbee241f40839e598f2664}{window\+\_\+size}}).mean()
 \item 
-\mbox{\hyperlink{namespacetime_a1f464399dca19a001c6df11eb249ef65}{highest\+\_\+point\+\_\+smooth}} = max(\mbox{\hyperlink{namespacetime_ad755c94a36336c1eceac88b3aef234dd}{function1\+\_\+smooth}})
+\mbox{\hyperlink{namespacetime_abe186ab59943e9e272e8378d4a1bef05}{mul\+\_\+core\+\_\+improved\+\_\+smooth}} = pd.\+Series(\mbox{\hyperlink{namespacetime_acaed053d63b099709f740405f4a48aa8}{mul\+\_\+core\+\_\+improved\+\_\+speeds}}).rolling(window=\mbox{\hyperlink{namespacetime_a2784a8ddcccbee241f40839e598f2664}{window\+\_\+size}}).mean()
 \item 
-\mbox{\hyperlink{namespacetime_a1ea66f8cbf5781d37866a7504e007922}{lowest\+\_\+index\+\_\+smooth}} = np.\+argmin(\mbox{\hyperlink{namespacetime_ad755c94a36336c1eceac88b3aef234dd}{function1\+\_\+smooth}})
+\mbox{\hyperlink{namespacetime_a83ebd39f3bc7d17818f872a4341de0ca}{mul\+\_\+core\+\_\+karatsuba\+\_\+smooth}} = pd.\+Series(\mbox{\hyperlink{namespacetime_aa00822c41b9e7aa30ab08f8076ca0b6a}{mul\+\_\+core\+\_\+karatsuba\+\_\+speeds}}).rolling(window=\mbox{\hyperlink{namespacetime_a2784a8ddcccbee241f40839e598f2664}{window\+\_\+size}}).mean()
 \item 
-\mbox{\hyperlink{namespacetime_a00f7001509b9d9f4842310535fe0613d}{highest\+\_\+index\+\_\+smooth}} = np.\+argmax(\mbox{\hyperlink{namespacetime_ad755c94a36336c1eceac88b3aef234dd}{function1\+\_\+smooth}})
+\mbox{\hyperlink{namespacetime_a1ba4f808a4156484e065466f146ce06f}{mul\+\_\+core\+\_\+tx\+\_\+smooth\+\_\+no\+\_\+nan}} = mul\+\_\+core\+\_\+tx\+\_\+smooth.\+dropna()
+\item 
+\mbox{\hyperlink{namespacetime_aad132677bb7acdfc451855cc633a835f}{mul\+\_\+core\+\_\+improved\+\_\+smooth\+\_\+no\+\_\+nan}} = mul\+\_\+core\+\_\+improved\+\_\+smooth.\+dropna()
+\item 
+\mbox{\hyperlink{namespacetime_a835b5dd412c79f06ce945fa069b9f7f0}{mul\+\_\+core\+\_\+karatsuba\+\_\+smooth\+\_\+no\+\_\+nan}} = mul\+\_\+core\+\_\+karatsuba\+\_\+smooth.\+dropna()
+\item 
+\mbox{\hyperlink{namespacetime_ac93fef4caeb625c7d63ade1f9a7b5aa0}{lowest\+\_\+mul\+\_\+core\+\_\+tx}} = mul\+\_\+core\+\_\+tx\+\_\+smooth\+\_\+no\+\_\+nan.\+min()
+\item 
+\mbox{\hyperlink{namespacetime_ae1c7276e955d51e617f8526fc51a3d14}{highest\+\_\+mul\+\_\+core\+\_\+tx}} = mul\+\_\+core\+\_\+tx\+\_\+smooth\+\_\+no\+\_\+nan.\+max()
+\item 
+\mbox{\hyperlink{namespacetime_ac9c461d0d35e92f366fa47765b46744c}{lowest\+\_\+index\+\_\+mul\+\_\+core\+\_\+tx}} = mul\+\_\+core\+\_\+tx\+\_\+smooth\+\_\+no\+\_\+nan.\+idxmin()
+\item 
+\mbox{\hyperlink{namespacetime_ad7c965c72051086d207ff143595d9afb}{highest\+\_\+index\+\_\+mul\+\_\+core\+\_\+tx}} = mul\+\_\+core\+\_\+tx\+\_\+smooth\+\_\+no\+\_\+nan.\+idxmax()
+\item 
+\mbox{\hyperlink{namespacetime_a5057cc44c7e45a4f263145d79b3c980b}{lowest\+\_\+mul\+\_\+core\+\_\+improved}} = mul\+\_\+core\+\_\+improved\+\_\+smooth\+\_\+no\+\_\+nan.\+min()
+\item 
+\mbox{\hyperlink{namespacetime_a338ad5cc3105ce44d52452fa405ca794}{highest\+\_\+mul\+\_\+core\+\_\+improved}} = mul\+\_\+core\+\_\+improved\+\_\+smooth\+\_\+no\+\_\+nan.\+max()
+\item 
+\mbox{\hyperlink{namespacetime_a1cb405491f301740548b0343739c7802}{lowest\+\_\+index\+\_\+mul\+\_\+core\+\_\+improved}} = mul\+\_\+core\+\_\+improved\+\_\+smooth\+\_\+no\+\_\+nan.\+idxmin()
+\item 
+\mbox{\hyperlink{namespacetime_ac85d031714ddbf5ec735e2ee439daa24}{highest\+\_\+index\+\_\+mul\+\_\+core\+\_\+improved}} = mul\+\_\+core\+\_\+improved\+\_\+smooth\+\_\+no\+\_\+nan.\+idxmax()
+\item 
+\mbox{\hyperlink{namespacetime_a950d871b583e31ee178338d1ea5e7df8}{lowest\+\_\+mul\+\_\+core\+\_\+karatsuba}} = mul\+\_\+core\+\_\+karatsuba\+\_\+smooth\+\_\+no\+\_\+nan.\+min()
+\item 
+\mbox{\hyperlink{namespacetime_a0d6f591c50d24bce9df0c6e2401bf3a9}{highest\+\_\+mul\+\_\+core\+\_\+karatsuba}} = mul\+\_\+core\+\_\+karatsuba\+\_\+smooth\+\_\+no\+\_\+nan.\+max()
+\item 
+\mbox{\hyperlink{namespacetime_a970bddcd79ec38b9bcb44b2bc15665ab}{lowest\+\_\+index\+\_\+mul\+\_\+core\+\_\+karatsuba}} = mul\+\_\+core\+\_\+karatsuba\+\_\+smooth\+\_\+no\+\_\+nan.\+idxmin()
+\item 
+\mbox{\hyperlink{namespacetime_a2caa749885e27ef65baa1073f03376ed}{highest\+\_\+index\+\_\+mul\+\_\+core\+\_\+karatsuba}} = mul\+\_\+core\+\_\+karatsuba\+\_\+smooth\+\_\+no\+\_\+nan.\+idxmax()
 \item 
 \mbox{\hyperlink{namespacetime_a5a5fa3f4b6a4701f3ab98dca726b7c67}{fig}}
 \item 
@@ -41,10 +75,6 @@ int \mbox{\hyperlink{namespacetime_a63446bbaf9e9b609d698ea242e185de3}{window\+\_
 \item 
 \mbox{\hyperlink{namespacetime_a0aed376869fbb1cd21f79db5159eeabf}{linestyle}}
 \item 
-\mbox{\hyperlink{namespacetime_ace8bbba0e2fdf6ad607afde2fb450a92}{marker}}
-\item 
-\mbox{\hyperlink{namespacetime_a1464cf8d170be61e215962b6bf9524d5}{markevery}}
-\item 
 \mbox{\hyperlink{namespacetime_a9eb048c6bd09ed2d41b322f03e051bf4}{markersize}}
 \item 
 \mbox{\hyperlink{namespacetime_a99c9d8b18eb9c3843664617275974756}{va}}
@@ -61,15 +91,19 @@ int \mbox{\hyperlink{namespacetime_a63446bbaf9e9b609d698ea242e185de3}{window\+\_
 \item 
 \mbox{\hyperlink{namespacetime_a46af8838d691f6dd3b4a1f7de827cc39}{loc}}
 \item 
+\mbox{\hyperlink{namespacetime_afa790d50e7e8e9394ea37eb4ca57d74d}{bbox\+\_\+to\+\_\+anchor}}
+\item 
 \mbox{\hyperlink{namespacetime_ae84b8da278d7ce67ffd2ca92bf88c81e}{frameon}}
 \item 
 \mbox{\hyperlink{namespacetime_a2125ae8453a65240551b42987cf399b9}{True}}
 \item 
-\mbox{\hyperlink{namespacetime_a7af1f3320de5cbaa8d9b2a47a7f330f0}{framealpha}}
-\item 
 \mbox{\hyperlink{namespacetime_a0af6fcc36e486f1950194eea3d72b030}{shadow}}
 \item 
 \mbox{\hyperlink{namespacetime_a33f1b64b7e7c9a99c6c45c4279a30e49}{fancybox}}
+\item 
+\mbox{\hyperlink{namespacetime_a75ad4c4e098b194fdf84a1c20ad5960b}{ncol}}
+\item 
+\mbox{\hyperlink{namespacetime_a7b769def23d0f2608ce1aef4921fe236}{rect}}
 \end{DoxyCompactItemize}
 
 
@@ -82,17 +116,37 @@ int \mbox{\hyperlink{namespacetime_a63446bbaf9e9b609d698ea242e185de3}{window\+\_
 
 
 
-Definition at line 26 of file time.\+py.
+Definition at line 72 of file time.\+py.
 
-\mbox{\Hypertarget{namespacetime_ae82307c6de586460d624578b708283b6}\label{namespacetime_ae82307c6de586460d624578b708283b6}} 
-\index{time@{time}!average\_function1@{average\_function1}}
-\index{average\_function1@{average\_function1}!time@{time}}
-\doxysubsubsection{\texorpdfstring{average\_function1}{average\_function1}}
-{\footnotesize\ttfamily time.\+average\+\_\+function1 = np.\+mean(\mbox{\hyperlink{namespacetime_a0048097fb24d0308e617f83638f2e7bd}{function1\+\_\+speeds}})}
+\mbox{\Hypertarget{namespacetime_a7a7e6f63ae457a625e2dd53d08443726}\label{namespacetime_a7a7e6f63ae457a625e2dd53d08443726}} 
+\index{time@{time}!average\_mul\_core\_improved@{average\_mul\_core\_improved}}
+\index{average\_mul\_core\_improved@{average\_mul\_core\_improved}!time@{time}}
+\doxysubsubsection{\texorpdfstring{average\_mul\_core\_improved}{average\_mul\_core\_improved}}
+{\footnotesize\ttfamily time.\+average\+\_\+mul\+\_\+core\+\_\+improved = np.\+mean(\mbox{\hyperlink{namespacetime_acaed053d63b099709f740405f4a48aa8}{mul\+\_\+core\+\_\+improved\+\_\+speeds}})}
 
 
 
-Definition at line 10 of file time.\+py.
+Definition at line 30 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a757e01da8ff165cbd1a25a44086cc2a1}\label{namespacetime_a757e01da8ff165cbd1a25a44086cc2a1}} 
+\index{time@{time}!average\_mul\_core\_karatsuba@{average\_mul\_core\_karatsuba}}
+\index{average\_mul\_core\_karatsuba@{average\_mul\_core\_karatsuba}!time@{time}}
+\doxysubsubsection{\texorpdfstring{average\_mul\_core\_karatsuba}{average\_mul\_core\_karatsuba}}
+{\footnotesize\ttfamily time.\+average\+\_\+mul\+\_\+core\+\_\+karatsuba = np.\+mean(\mbox{\hyperlink{namespacetime_aa00822c41b9e7aa30ab08f8076ca0b6a}{mul\+\_\+core\+\_\+karatsuba\+\_\+speeds}})}
+
+
+
+Definition at line 31 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a4f23d73150ff26ae093ebc568aa81cea}\label{namespacetime_a4f23d73150ff26ae093ebc568aa81cea}} 
+\index{time@{time}!average\_mul\_core\_tx@{average\_mul\_core\_tx}}
+\index{average\_mul\_core\_tx@{average\_mul\_core\_tx}!time@{time}}
+\doxysubsubsection{\texorpdfstring{average\_mul\_core\_tx}{average\_mul\_core\_tx}}
+{\footnotesize\ttfamily time.\+average\+\_\+mul\+\_\+core\+\_\+tx = np.\+mean(\mbox{\hyperlink{namespacetime_ac8bb85d23a685e00732d96bf96c71b47}{mul\+\_\+core\+\_\+tx\+\_\+speeds}})}
+
+
+
+Definition at line 29 of file time.\+py.
 
 \mbox{\Hypertarget{namespacetime_ab4d3ea33922e7897a2cfc19c317c6e28}\label{namespacetime_ab4d3ea33922e7897a2cfc19c317c6e28}} 
 \index{time@{time}!ax1@{ax1}}
@@ -102,7 +156,17 @@ Definition at line 10 of file time.\+py.
 
 
 
-Definition at line 23 of file time.\+py.
+Definition at line 69 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_afa790d50e7e8e9394ea37eb4ca57d74d}\label{namespacetime_afa790d50e7e8e9394ea37eb4ca57d74d}} 
+\index{time@{time}!bbox\_to\_anchor@{bbox\_to\_anchor}}
+\index{bbox\_to\_anchor@{bbox\_to\_anchor}!time@{time}}
+\doxysubsubsection{\texorpdfstring{bbox\_to\_anchor}{bbox\_to\_anchor}}
+{\footnotesize\ttfamily time.\+bbox\+\_\+to\+\_\+anchor}
+
+
+
+Definition at line 111 of file time.\+py.
 
 \mbox{\Hypertarget{namespacetime_a7c82e2b9b8d14d82dc175adcb872a9c4}\label{namespacetime_a7c82e2b9b8d14d82dc175adcb872a9c4}} 
 \index{time@{time}!color@{color}}
@@ -112,17 +176,7 @@ Definition at line 23 of file time.\+py.
 
 
 
-Definition at line 26 of file time.\+py.
-
-\mbox{\Hypertarget{namespacetime_aa015a980309d0c318e8b5c6e766f6891}\label{namespacetime_aa015a980309d0c318e8b5c6e766f6891}} 
-\index{time@{time}!data@{data}}
-\index{data@{data}!time@{time}}
-\doxysubsubsection{\texorpdfstring{data}{data}}
-{\footnotesize\ttfamily time.\+data = file.\+readlines()}
-
-
-
-Definition at line 5 of file time.\+py.
+Definition at line 72 of file time.\+py.
 
 \mbox{\Hypertarget{namespacetime_a7e9d1688067a94ae2758be73664ac579}\label{namespacetime_a7e9d1688067a94ae2758be73664ac579}} 
 \index{time@{time}!dpi@{dpi}}
@@ -132,7 +186,7 @@ Definition at line 5 of file time.\+py.
 
 
 
-Definition at line 23 of file time.\+py.
+Definition at line 69 of file time.\+py.
 
 \mbox{\Hypertarget{namespacetime_a32ede7bb9cfb1e339e2a7a11232ffe33}\label{namespacetime_a32ede7bb9cfb1e339e2a7a11232ffe33}} 
 \index{time@{time}!encoding@{encoding}}
@@ -142,7 +196,7 @@ Definition at line 23 of file time.\+py.
 
 
 
-Definition at line 4 of file time.\+py.
+Definition at line 12 of file time.\+py.
 
 \mbox{\Hypertarget{namespacetime_a33f1b64b7e7c9a99c6c45c4279a30e49}\label{namespacetime_a33f1b64b7e7c9a99c6c45c4279a30e49}} 
 \index{time@{time}!fancybox@{fancybox}}
@@ -152,7 +206,7 @@ Definition at line 4 of file time.\+py.
 
 
 
-Definition at line 47 of file time.\+py.
+Definition at line 112 of file time.\+py.
 
 \mbox{\Hypertarget{namespacetime_a5a5fa3f4b6a4701f3ab98dca726b7c67}\label{namespacetime_a5a5fa3f4b6a4701f3ab98dca726b7c67}} 
 \index{time@{time}!fig@{fig}}
@@ -162,7 +216,7 @@ Definition at line 47 of file time.\+py.
 
 
 
-Definition at line 23 of file time.\+py.
+Definition at line 69 of file time.\+py.
 
 \mbox{\Hypertarget{namespacetime_a615b834806d52ff799a92194d2d0b320}\label{namespacetime_a615b834806d52ff799a92194d2d0b320}} 
 \index{time@{time}!figsize@{figsize}}
@@ -172,7 +226,7 @@ Definition at line 23 of file time.\+py.
 
 
 
-Definition at line 23 of file time.\+py.
+Definition at line 69 of file time.\+py.
 
 \mbox{\Hypertarget{namespacetime_a241d2e2eda8dc75120e5cf7a741e4c80}\label{namespacetime_a241d2e2eda8dc75120e5cf7a741e4c80}} 
 \index{time@{time}!fontsize@{fontsize}}
@@ -182,7 +236,7 @@ Definition at line 23 of file time.\+py.
 
 
 
-Definition at line 41 of file time.\+py.
+Definition at line 101 of file time.\+py.
 
 \mbox{\Hypertarget{namespacetime_a4394441d4a59199837cbfd1f71563260}\label{namespacetime_a4394441d4a59199837cbfd1f71563260}} 
 \index{time@{time}!fontweight@{fontweight}}
@@ -192,17 +246,7 @@ Definition at line 41 of file time.\+py.
 
 
 
-Definition at line 41 of file time.\+py.
-
-\mbox{\Hypertarget{namespacetime_a7af1f3320de5cbaa8d9b2a47a7f330f0}\label{namespacetime_a7af1f3320de5cbaa8d9b2a47a7f330f0}} 
-\index{time@{time}!framealpha@{framealpha}}
-\index{framealpha@{framealpha}!time@{time}}
-\doxysubsubsection{\texorpdfstring{framealpha}{framealpha}}
-{\footnotesize\ttfamily time.\+framealpha}
-
-
-
-Definition at line 47 of file time.\+py.
+Definition at line 101 of file time.\+py.
 
 \mbox{\Hypertarget{namespacetime_ae84b8da278d7ce67ffd2ca92bf88c81e}\label{namespacetime_ae84b8da278d7ce67ffd2ca92bf88c81e}} 
 \index{time@{time}!frameon@{frameon}}
@@ -212,27 +256,7 @@ Definition at line 47 of file time.\+py.
 
 
 
-Definition at line 47 of file time.\+py.
-
-\mbox{\Hypertarget{namespacetime_ad755c94a36336c1eceac88b3aef234dd}\label{namespacetime_ad755c94a36336c1eceac88b3aef234dd}} 
-\index{time@{time}!function1\_smooth@{function1\_smooth}}
-\index{function1\_smooth@{function1\_smooth}!time@{time}}
-\doxysubsubsection{\texorpdfstring{function1\_smooth}{function1\_smooth}}
-{\footnotesize\ttfamily time.\+function1\+\_\+smooth = np.\+convolve(\mbox{\hyperlink{namespacetime_a0048097fb24d0308e617f83638f2e7bd}{function1\+\_\+speeds}}, np.\+ones(\mbox{\hyperlink{namespacetime_a63446bbaf9e9b609d698ea242e185de3}{window\+\_\+size}})/\mbox{\hyperlink{namespacetime_a63446bbaf9e9b609d698ea242e185de3}{window\+\_\+size}}, mode=\textquotesingle{}valid\textquotesingle{})}
-
-
-
-Definition at line 14 of file time.\+py.
-
-\mbox{\Hypertarget{namespacetime_a0048097fb24d0308e617f83638f2e7bd}\label{namespacetime_a0048097fb24d0308e617f83638f2e7bd}} 
-\index{time@{time}!function1\_speeds@{function1\_speeds}}
-\index{function1\_speeds@{function1\_speeds}!time@{time}}
-\doxysubsubsection{\texorpdfstring{function1\_speeds}{function1\_speeds}}
-{\footnotesize\ttfamily list time.\+function1\+\_\+speeds = \mbox{[}float(\mbox{\hyperlink{namespacetime_aa015a980309d0c318e8b5c6e766f6891}{data}}\mbox{[}i\mbox{]}.strip()) for i in range(0, len(\mbox{\hyperlink{namespacetime_aa015a980309d0c318e8b5c6e766f6891}{data}}), 1)\mbox{]}}
-
-
-
-Definition at line 7 of file time.\+py.
+Definition at line 112 of file time.\+py.
 
 \mbox{\Hypertarget{namespacetime_ac3210f0ada8258688db4b9ba311d93c4}\label{namespacetime_ac3210f0ada8258688db4b9ba311d93c4}} 
 \index{time@{time}!ha@{ha}}
@@ -242,27 +266,67 @@ Definition at line 7 of file time.\+py.
 
 
 
-Definition at line 31 of file time.\+py.
+Definition at line 78 of file time.\+py.
 
-\mbox{\Hypertarget{namespacetime_a00f7001509b9d9f4842310535fe0613d}\label{namespacetime_a00f7001509b9d9f4842310535fe0613d}} 
-\index{time@{time}!highest\_index\_smooth@{highest\_index\_smooth}}
-\index{highest\_index\_smooth@{highest\_index\_smooth}!time@{time}}
-\doxysubsubsection{\texorpdfstring{highest\_index\_smooth}{highest\_index\_smooth}}
-{\footnotesize\ttfamily time.\+highest\+\_\+index\+\_\+smooth = np.\+argmax(\mbox{\hyperlink{namespacetime_ad755c94a36336c1eceac88b3aef234dd}{function1\+\_\+smooth}})}
-
-
-
-Definition at line 20 of file time.\+py.
-
-\mbox{\Hypertarget{namespacetime_a1f464399dca19a001c6df11eb249ef65}\label{namespacetime_a1f464399dca19a001c6df11eb249ef65}} 
-\index{time@{time}!highest\_point\_smooth@{highest\_point\_smooth}}
-\index{highest\_point\_smooth@{highest\_point\_smooth}!time@{time}}
-\doxysubsubsection{\texorpdfstring{highest\_point\_smooth}{highest\_point\_smooth}}
-{\footnotesize\ttfamily time.\+highest\+\_\+point\+\_\+smooth = max(\mbox{\hyperlink{namespacetime_ad755c94a36336c1eceac88b3aef234dd}{function1\+\_\+smooth}})}
+\mbox{\Hypertarget{namespacetime_ac85d031714ddbf5ec735e2ee439daa24}\label{namespacetime_ac85d031714ddbf5ec735e2ee439daa24}} 
+\index{time@{time}!highest\_index\_mul\_core\_improved@{highest\_index\_mul\_core\_improved}}
+\index{highest\_index\_mul\_core\_improved@{highest\_index\_mul\_core\_improved}!time@{time}}
+\doxysubsubsection{\texorpdfstring{highest\_index\_mul\_core\_improved}{highest\_index\_mul\_core\_improved}}
+{\footnotesize\ttfamily time.\+highest\+\_\+index\+\_\+mul\+\_\+core\+\_\+improved = mul\+\_\+core\+\_\+improved\+\_\+smooth\+\_\+no\+\_\+nan.\+idxmax()}
 
 
 
-Definition at line 18 of file time.\+py.
+Definition at line 60 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a2caa749885e27ef65baa1073f03376ed}\label{namespacetime_a2caa749885e27ef65baa1073f03376ed}} 
+\index{time@{time}!highest\_index\_mul\_core\_karatsuba@{highest\_index\_mul\_core\_karatsuba}}
+\index{highest\_index\_mul\_core\_karatsuba@{highest\_index\_mul\_core\_karatsuba}!time@{time}}
+\doxysubsubsection{\texorpdfstring{highest\_index\_mul\_core\_karatsuba}{highest\_index\_mul\_core\_karatsuba}}
+{\footnotesize\ttfamily time.\+highest\+\_\+index\+\_\+mul\+\_\+core\+\_\+karatsuba = mul\+\_\+core\+\_\+karatsuba\+\_\+smooth\+\_\+no\+\_\+nan.\+idxmax()}
+
+
+
+Definition at line 66 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_ad7c965c72051086d207ff143595d9afb}\label{namespacetime_ad7c965c72051086d207ff143595d9afb}} 
+\index{time@{time}!highest\_index\_mul\_core\_tx@{highest\_index\_mul\_core\_tx}}
+\index{highest\_index\_mul\_core\_tx@{highest\_index\_mul\_core\_tx}!time@{time}}
+\doxysubsubsection{\texorpdfstring{highest\_index\_mul\_core\_tx}{highest\_index\_mul\_core\_tx}}
+{\footnotesize\ttfamily time.\+highest\+\_\+index\+\_\+mul\+\_\+core\+\_\+tx = mul\+\_\+core\+\_\+tx\+\_\+smooth\+\_\+no\+\_\+nan.\+idxmax()}
+
+
+
+Definition at line 54 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a338ad5cc3105ce44d52452fa405ca794}\label{namespacetime_a338ad5cc3105ce44d52452fa405ca794}} 
+\index{time@{time}!highest\_mul\_core\_improved@{highest\_mul\_core\_improved}}
+\index{highest\_mul\_core\_improved@{highest\_mul\_core\_improved}!time@{time}}
+\doxysubsubsection{\texorpdfstring{highest\_mul\_core\_improved}{highest\_mul\_core\_improved}}
+{\footnotesize\ttfamily time.\+highest\+\_\+mul\+\_\+core\+\_\+improved = mul\+\_\+core\+\_\+improved\+\_\+smooth\+\_\+no\+\_\+nan.\+max()}
+
+
+
+Definition at line 58 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a0d6f591c50d24bce9df0c6e2401bf3a9}\label{namespacetime_a0d6f591c50d24bce9df0c6e2401bf3a9}} 
+\index{time@{time}!highest\_mul\_core\_karatsuba@{highest\_mul\_core\_karatsuba}}
+\index{highest\_mul\_core\_karatsuba@{highest\_mul\_core\_karatsuba}!time@{time}}
+\doxysubsubsection{\texorpdfstring{highest\_mul\_core\_karatsuba}{highest\_mul\_core\_karatsuba}}
+{\footnotesize\ttfamily time.\+highest\+\_\+mul\+\_\+core\+\_\+karatsuba = mul\+\_\+core\+\_\+karatsuba\+\_\+smooth\+\_\+no\+\_\+nan.\+max()}
+
+
+
+Definition at line 64 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_ae1c7276e955d51e617f8526fc51a3d14}\label{namespacetime_ae1c7276e955d51e617f8526fc51a3d14}} 
+\index{time@{time}!highest\_mul\_core\_tx@{highest\_mul\_core\_tx}}
+\index{highest\_mul\_core\_tx@{highest\_mul\_core\_tx}!time@{time}}
+\doxysubsubsection{\texorpdfstring{highest\_mul\_core\_tx}{highest\_mul\_core\_tx}}
+{\footnotesize\ttfamily time.\+highest\+\_\+mul\+\_\+core\+\_\+tx = mul\+\_\+core\+\_\+tx\+\_\+smooth\+\_\+no\+\_\+nan.\+max()}
+
+
+
+Definition at line 52 of file time.\+py.
 
 \mbox{\Hypertarget{namespacetime_a8b7392d20687ad176c180f9db43fac58}\label{namespacetime_a8b7392d20687ad176c180f9db43fac58}} 
 \index{time@{time}!label@{label}}
@@ -272,7 +336,7 @@ Definition at line 18 of file time.\+py.
 
 
 
-Definition at line 26 of file time.\+py.
+Definition at line 72 of file time.\+py.
 
 \mbox{\Hypertarget{namespacetime_a95086d853ad727dec3882500a43bb599}\label{namespacetime_a95086d853ad727dec3882500a43bb599}} 
 \index{time@{time}!labels@{labels}}
@@ -282,7 +346,17 @@ Definition at line 26 of file time.\+py.
 
 
 
-Definition at line 46 of file time.\+py.
+Definition at line 110 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a3922219bebbfc2c1666af8240d4c6b10}\label{namespacetime_a3922219bebbfc2c1666af8240d4c6b10}} 
+\index{time@{time}!line@{line}}
+\index{line@{line}!time@{time}}
+\doxysubsubsection{\texorpdfstring{line}{line}}
+{\footnotesize\ttfamily time.\+line = line.\+strip()}
+
+
+
+Definition at line 14 of file time.\+py.
 
 \mbox{\Hypertarget{namespacetime_a7d4b3b6840f6f8195cdc0a34589bce0d}\label{namespacetime_a7d4b3b6840f6f8195cdc0a34589bce0d}} 
 \index{time@{time}!lines@{lines}}
@@ -292,7 +366,7 @@ Definition at line 46 of file time.\+py.
 
 
 
-Definition at line 46 of file time.\+py.
+Definition at line 110 of file time.\+py.
 
 \mbox{\Hypertarget{namespacetime_a0aed376869fbb1cd21f79db5159eeabf}\label{namespacetime_a0aed376869fbb1cd21f79db5159eeabf}} 
 \index{time@{time}!linestyle@{linestyle}}
@@ -302,7 +376,7 @@ Definition at line 46 of file time.\+py.
 
 
 
-Definition at line 26 of file time.\+py.
+Definition at line 72 of file time.\+py.
 
 \mbox{\Hypertarget{namespacetime_a39529859412d52b6e81e015a3e4f9102}\label{namespacetime_a39529859412d52b6e81e015a3e4f9102}} 
 \index{time@{time}!linewidth@{linewidth}}
@@ -312,7 +386,7 @@ Definition at line 26 of file time.\+py.
 
 
 
-Definition at line 26 of file time.\+py.
+Definition at line 72 of file time.\+py.
 
 \mbox{\Hypertarget{namespacetime_a46af8838d691f6dd3b4a1f7de827cc39}\label{namespacetime_a46af8838d691f6dd3b4a1f7de827cc39}} 
 \index{time@{time}!loc@{loc}}
@@ -322,37 +396,67 @@ Definition at line 26 of file time.\+py.
 
 
 
-Definition at line 47 of file time.\+py.
+Definition at line 111 of file time.\+py.
 
-\mbox{\Hypertarget{namespacetime_a1ea66f8cbf5781d37866a7504e007922}\label{namespacetime_a1ea66f8cbf5781d37866a7504e007922}} 
-\index{time@{time}!lowest\_index\_smooth@{lowest\_index\_smooth}}
-\index{lowest\_index\_smooth@{lowest\_index\_smooth}!time@{time}}
-\doxysubsubsection{\texorpdfstring{lowest\_index\_smooth}{lowest\_index\_smooth}}
-{\footnotesize\ttfamily time.\+lowest\+\_\+index\+\_\+smooth = np.\+argmin(\mbox{\hyperlink{namespacetime_ad755c94a36336c1eceac88b3aef234dd}{function1\+\_\+smooth}})}
-
-
-
-Definition at line 19 of file time.\+py.
-
-\mbox{\Hypertarget{namespacetime_af086d9079f998eb35ac78738f27915f3}\label{namespacetime_af086d9079f998eb35ac78738f27915f3}} 
-\index{time@{time}!lowest\_point\_smooth@{lowest\_point\_smooth}}
-\index{lowest\_point\_smooth@{lowest\_point\_smooth}!time@{time}}
-\doxysubsubsection{\texorpdfstring{lowest\_point\_smooth}{lowest\_point\_smooth}}
-{\footnotesize\ttfamily time.\+lowest\+\_\+point\+\_\+smooth = min(\mbox{\hyperlink{namespacetime_ad755c94a36336c1eceac88b3aef234dd}{function1\+\_\+smooth}})}
+\mbox{\Hypertarget{namespacetime_a1cb405491f301740548b0343739c7802}\label{namespacetime_a1cb405491f301740548b0343739c7802}} 
+\index{time@{time}!lowest\_index\_mul\_core\_improved@{lowest\_index\_mul\_core\_improved}}
+\index{lowest\_index\_mul\_core\_improved@{lowest\_index\_mul\_core\_improved}!time@{time}}
+\doxysubsubsection{\texorpdfstring{lowest\_index\_mul\_core\_improved}{lowest\_index\_mul\_core\_improved}}
+{\footnotesize\ttfamily time.\+lowest\+\_\+index\+\_\+mul\+\_\+core\+\_\+improved = mul\+\_\+core\+\_\+improved\+\_\+smooth\+\_\+no\+\_\+nan.\+idxmin()}
 
 
 
-Definition at line 17 of file time.\+py.
+Definition at line 59 of file time.\+py.
 
-\mbox{\Hypertarget{namespacetime_ace8bbba0e2fdf6ad607afde2fb450a92}\label{namespacetime_ace8bbba0e2fdf6ad607afde2fb450a92}} 
-\index{time@{time}!marker@{marker}}
-\index{marker@{marker}!time@{time}}
-\doxysubsubsection{\texorpdfstring{marker}{marker}}
-{\footnotesize\ttfamily time.\+marker}
+\mbox{\Hypertarget{namespacetime_a970bddcd79ec38b9bcb44b2bc15665ab}\label{namespacetime_a970bddcd79ec38b9bcb44b2bc15665ab}} 
+\index{time@{time}!lowest\_index\_mul\_core\_karatsuba@{lowest\_index\_mul\_core\_karatsuba}}
+\index{lowest\_index\_mul\_core\_karatsuba@{lowest\_index\_mul\_core\_karatsuba}!time@{time}}
+\doxysubsubsection{\texorpdfstring{lowest\_index\_mul\_core\_karatsuba}{lowest\_index\_mul\_core\_karatsuba}}
+{\footnotesize\ttfamily time.\+lowest\+\_\+index\+\_\+mul\+\_\+core\+\_\+karatsuba = mul\+\_\+core\+\_\+karatsuba\+\_\+smooth\+\_\+no\+\_\+nan.\+idxmin()}
 
 
 
-Definition at line 26 of file time.\+py.
+Definition at line 65 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_ac9c461d0d35e92f366fa47765b46744c}\label{namespacetime_ac9c461d0d35e92f366fa47765b46744c}} 
+\index{time@{time}!lowest\_index\_mul\_core\_tx@{lowest\_index\_mul\_core\_tx}}
+\index{lowest\_index\_mul\_core\_tx@{lowest\_index\_mul\_core\_tx}!time@{time}}
+\doxysubsubsection{\texorpdfstring{lowest\_index\_mul\_core\_tx}{lowest\_index\_mul\_core\_tx}}
+{\footnotesize\ttfamily time.\+lowest\+\_\+index\+\_\+mul\+\_\+core\+\_\+tx = mul\+\_\+core\+\_\+tx\+\_\+smooth\+\_\+no\+\_\+nan.\+idxmin()}
+
+
+
+Definition at line 53 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a5057cc44c7e45a4f263145d79b3c980b}\label{namespacetime_a5057cc44c7e45a4f263145d79b3c980b}} 
+\index{time@{time}!lowest\_mul\_core\_improved@{lowest\_mul\_core\_improved}}
+\index{lowest\_mul\_core\_improved@{lowest\_mul\_core\_improved}!time@{time}}
+\doxysubsubsection{\texorpdfstring{lowest\_mul\_core\_improved}{lowest\_mul\_core\_improved}}
+{\footnotesize\ttfamily time.\+lowest\+\_\+mul\+\_\+core\+\_\+improved = mul\+\_\+core\+\_\+improved\+\_\+smooth\+\_\+no\+\_\+nan.\+min()}
+
+
+
+Definition at line 57 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a950d871b583e31ee178338d1ea5e7df8}\label{namespacetime_a950d871b583e31ee178338d1ea5e7df8}} 
+\index{time@{time}!lowest\_mul\_core\_karatsuba@{lowest\_mul\_core\_karatsuba}}
+\index{lowest\_mul\_core\_karatsuba@{lowest\_mul\_core\_karatsuba}!time@{time}}
+\doxysubsubsection{\texorpdfstring{lowest\_mul\_core\_karatsuba}{lowest\_mul\_core\_karatsuba}}
+{\footnotesize\ttfamily time.\+lowest\+\_\+mul\+\_\+core\+\_\+karatsuba = mul\+\_\+core\+\_\+karatsuba\+\_\+smooth\+\_\+no\+\_\+nan.\+min()}
+
+
+
+Definition at line 63 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_ac93fef4caeb625c7d63ade1f9a7b5aa0}\label{namespacetime_ac93fef4caeb625c7d63ade1f9a7b5aa0}} 
+\index{time@{time}!lowest\_mul\_core\_tx@{lowest\_mul\_core\_tx}}
+\index{lowest\_mul\_core\_tx@{lowest\_mul\_core\_tx}!time@{time}}
+\doxysubsubsection{\texorpdfstring{lowest\_mul\_core\_tx}{lowest\_mul\_core\_tx}}
+{\footnotesize\ttfamily time.\+lowest\+\_\+mul\+\_\+core\+\_\+tx = mul\+\_\+core\+\_\+tx\+\_\+smooth\+\_\+no\+\_\+nan.\+min()}
+
+
+
+Definition at line 51 of file time.\+py.
 
 \mbox{\Hypertarget{namespacetime_a9eb048c6bd09ed2d41b322f03e051bf4}\label{namespacetime_a9eb048c6bd09ed2d41b322f03e051bf4}} 
 \index{time@{time}!markersize@{markersize}}
@@ -362,17 +466,117 @@ Definition at line 26 of file time.\+py.
 
 
 
-Definition at line 30 of file time.\+py.
+Definition at line 77 of file time.\+py.
 
-\mbox{\Hypertarget{namespacetime_a1464cf8d170be61e215962b6bf9524d5}\label{namespacetime_a1464cf8d170be61e215962b6bf9524d5}} 
-\index{time@{time}!markevery@{markevery}}
-\index{markevery@{markevery}!time@{time}}
-\doxysubsubsection{\texorpdfstring{markevery}{markevery}}
-{\footnotesize\ttfamily time.\+markevery}
+\mbox{\Hypertarget{namespacetime_abe186ab59943e9e272e8378d4a1bef05}\label{namespacetime_abe186ab59943e9e272e8378d4a1bef05}} 
+\index{time@{time}!mul\_core\_improved\_smooth@{mul\_core\_improved\_smooth}}
+\index{mul\_core\_improved\_smooth@{mul\_core\_improved\_smooth}!time@{time}}
+\doxysubsubsection{\texorpdfstring{mul\_core\_improved\_smooth}{mul\_core\_improved\_smooth}}
+{\footnotesize\ttfamily time.\+mul\+\_\+core\+\_\+improved\+\_\+smooth = pd.\+Series(\mbox{\hyperlink{namespacetime_acaed053d63b099709f740405f4a48aa8}{mul\+\_\+core\+\_\+improved\+\_\+speeds}}).rolling(window=\mbox{\hyperlink{namespacetime_a2784a8ddcccbee241f40839e598f2664}{window\+\_\+size}}).mean()}
 
 
 
-Definition at line 26 of file time.\+py.
+Definition at line 41 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_aad132677bb7acdfc451855cc633a835f}\label{namespacetime_aad132677bb7acdfc451855cc633a835f}} 
+\index{time@{time}!mul\_core\_improved\_smooth\_no\_nan@{mul\_core\_improved\_smooth\_no\_nan}}
+\index{mul\_core\_improved\_smooth\_no\_nan@{mul\_core\_improved\_smooth\_no\_nan}!time@{time}}
+\doxysubsubsection{\texorpdfstring{mul\_core\_improved\_smooth\_no\_nan}{mul\_core\_improved\_smooth\_no\_nan}}
+{\footnotesize\ttfamily time.\+mul\+\_\+core\+\_\+improved\+\_\+smooth\+\_\+no\+\_\+nan = mul\+\_\+core\+\_\+improved\+\_\+smooth.\+dropna()}
+
+
+
+Definition at line 46 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_acaed053d63b099709f740405f4a48aa8}\label{namespacetime_acaed053d63b099709f740405f4a48aa8}} 
+\index{time@{time}!mul\_core\_improved\_speeds@{mul\_core\_improved\_speeds}}
+\index{mul\_core\_improved\_speeds@{mul\_core\_improved\_speeds}!time@{time}}
+\doxysubsubsection{\texorpdfstring{mul\_core\_improved\_speeds}{mul\_core\_improved\_speeds}}
+{\footnotesize\ttfamily list time.\+mul\+\_\+core\+\_\+improved\+\_\+speeds = \mbox{[}$\,$\mbox{]}}
+
+
+
+Definition at line 7 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a83ebd39f3bc7d17818f872a4341de0ca}\label{namespacetime_a83ebd39f3bc7d17818f872a4341de0ca}} 
+\index{time@{time}!mul\_core\_karatsuba\_smooth@{mul\_core\_karatsuba\_smooth}}
+\index{mul\_core\_karatsuba\_smooth@{mul\_core\_karatsuba\_smooth}!time@{time}}
+\doxysubsubsection{\texorpdfstring{mul\_core\_karatsuba\_smooth}{mul\_core\_karatsuba\_smooth}}
+{\footnotesize\ttfamily time.\+mul\+\_\+core\+\_\+karatsuba\+\_\+smooth = pd.\+Series(\mbox{\hyperlink{namespacetime_aa00822c41b9e7aa30ab08f8076ca0b6a}{mul\+\_\+core\+\_\+karatsuba\+\_\+speeds}}).rolling(window=\mbox{\hyperlink{namespacetime_a2784a8ddcccbee241f40839e598f2664}{window\+\_\+size}}).mean()}
+
+
+
+Definition at line 42 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a835b5dd412c79f06ce945fa069b9f7f0}\label{namespacetime_a835b5dd412c79f06ce945fa069b9f7f0}} 
+\index{time@{time}!mul\_core\_karatsuba\_smooth\_no\_nan@{mul\_core\_karatsuba\_smooth\_no\_nan}}
+\index{mul\_core\_karatsuba\_smooth\_no\_nan@{mul\_core\_karatsuba\_smooth\_no\_nan}!time@{time}}
+\doxysubsubsection{\texorpdfstring{mul\_core\_karatsuba\_smooth\_no\_nan}{mul\_core\_karatsuba\_smooth\_no\_nan}}
+{\footnotesize\ttfamily time.\+mul\+\_\+core\+\_\+karatsuba\+\_\+smooth\+\_\+no\+\_\+nan = mul\+\_\+core\+\_\+karatsuba\+\_\+smooth.\+dropna()}
+
+
+
+Definition at line 47 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_aa00822c41b9e7aa30ab08f8076ca0b6a}\label{namespacetime_aa00822c41b9e7aa30ab08f8076ca0b6a}} 
+\index{time@{time}!mul\_core\_karatsuba\_speeds@{mul\_core\_karatsuba\_speeds}}
+\index{mul\_core\_karatsuba\_speeds@{mul\_core\_karatsuba\_speeds}!time@{time}}
+\doxysubsubsection{\texorpdfstring{mul\_core\_karatsuba\_speeds}{mul\_core\_karatsuba\_speeds}}
+{\footnotesize\ttfamily list time.\+mul\+\_\+core\+\_\+karatsuba\+\_\+speeds = \mbox{[}$\,$\mbox{]}}
+
+
+
+Definition at line 8 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a7553119dd1a5f6f2a4ab38e8c0274cd6}\label{namespacetime_a7553119dd1a5f6f2a4ab38e8c0274cd6}} 
+\index{time@{time}!mul\_core\_tx\_smooth@{mul\_core\_tx\_smooth}}
+\index{mul\_core\_tx\_smooth@{mul\_core\_tx\_smooth}!time@{time}}
+\doxysubsubsection{\texorpdfstring{mul\_core\_tx\_smooth}{mul\_core\_tx\_smooth}}
+{\footnotesize\ttfamily time.\+mul\+\_\+core\+\_\+tx\+\_\+smooth = pd.\+Series(\mbox{\hyperlink{namespacetime_ac8bb85d23a685e00732d96bf96c71b47}{mul\+\_\+core\+\_\+tx\+\_\+speeds}}).rolling(window=\mbox{\hyperlink{namespacetime_a2784a8ddcccbee241f40839e598f2664}{window\+\_\+size}}).mean()}
+
+
+
+Definition at line 40 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a1ba4f808a4156484e065466f146ce06f}\label{namespacetime_a1ba4f808a4156484e065466f146ce06f}} 
+\index{time@{time}!mul\_core\_tx\_smooth\_no\_nan@{mul\_core\_tx\_smooth\_no\_nan}}
+\index{mul\_core\_tx\_smooth\_no\_nan@{mul\_core\_tx\_smooth\_no\_nan}!time@{time}}
+\doxysubsubsection{\texorpdfstring{mul\_core\_tx\_smooth\_no\_nan}{mul\_core\_tx\_smooth\_no\_nan}}
+{\footnotesize\ttfamily time.\+mul\+\_\+core\+\_\+tx\+\_\+smooth\+\_\+no\+\_\+nan = mul\+\_\+core\+\_\+tx\+\_\+smooth.\+dropna()}
+
+
+
+Definition at line 45 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_ac8bb85d23a685e00732d96bf96c71b47}\label{namespacetime_ac8bb85d23a685e00732d96bf96c71b47}} 
+\index{time@{time}!mul\_core\_tx\_speeds@{mul\_core\_tx\_speeds}}
+\index{mul\_core\_tx\_speeds@{mul\_core\_tx\_speeds}!time@{time}}
+\doxysubsubsection{\texorpdfstring{mul\_core\_tx\_speeds}{mul\_core\_tx\_speeds}}
+{\footnotesize\ttfamily list time.\+mul\+\_\+core\+\_\+tx\+\_\+speeds = \mbox{[}$\,$\mbox{]}}
+
+
+
+Definition at line 6 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a75ad4c4e098b194fdf84a1c20ad5960b}\label{namespacetime_a75ad4c4e098b194fdf84a1c20ad5960b}} 
+\index{time@{time}!ncol@{ncol}}
+\index{ncol@{ncol}!time@{time}}
+\doxysubsubsection{\texorpdfstring{ncol}{ncol}}
+{\footnotesize\ttfamily time.\+ncol}
+
+
+
+Definition at line 112 of file time.\+py.
+
+\mbox{\Hypertarget{namespacetime_a7b769def23d0f2608ce1aef4921fe236}\label{namespacetime_a7b769def23d0f2608ce1aef4921fe236}} 
+\index{time@{time}!rect@{rect}}
+\index{rect@{rect}!time@{time}}
+\doxysubsubsection{\texorpdfstring{rect}{rect}}
+{\footnotesize\ttfamily time.\+rect}
+
+
+
+Definition at line 116 of file time.\+py.
 
 \mbox{\Hypertarget{namespacetime_a0af6fcc36e486f1950194eea3d72b030}\label{namespacetime_a0af6fcc36e486f1950194eea3d72b030}} 
 \index{time@{time}!shadow@{shadow}}
@@ -382,7 +586,7 @@ Definition at line 26 of file time.\+py.
 
 
 
-Definition at line 47 of file time.\+py.
+Definition at line 112 of file time.\+py.
 
 \mbox{\Hypertarget{namespacetime_a2125ae8453a65240551b42987cf399b9}\label{namespacetime_a2125ae8453a65240551b42987cf399b9}} 
 \index{time@{time}!True@{True}}
@@ -392,7 +596,7 @@ Definition at line 47 of file time.\+py.
 
 
 
-Definition at line 47 of file time.\+py.
+Definition at line 112 of file time.\+py.
 
 \mbox{\Hypertarget{namespacetime_a99c9d8b18eb9c3843664617275974756}\label{namespacetime_a99c9d8b18eb9c3843664617275974756}} 
 \index{time@{time}!va@{va}}
@@ -402,15 +606,15 @@ Definition at line 47 of file time.\+py.
 
 
 
-Definition at line 31 of file time.\+py.
+Definition at line 78 of file time.\+py.
 
-\mbox{\Hypertarget{namespacetime_a63446bbaf9e9b609d698ea242e185de3}\label{namespacetime_a63446bbaf9e9b609d698ea242e185de3}} 
+\mbox{\Hypertarget{namespacetime_a2784a8ddcccbee241f40839e598f2664}\label{namespacetime_a2784a8ddcccbee241f40839e598f2664}} 
 \index{time@{time}!window\_size@{window\_size}}
 \index{window\_size@{window\_size}!time@{time}}
 \doxysubsubsection{\texorpdfstring{window\_size}{window\_size}}
-{\footnotesize\ttfamily int time.\+window\+\_\+size = 5000}
+{\footnotesize\ttfamily time.\+window\+\_\+size = 100}
 
 
 
-Definition at line 13 of file time.\+py.
+Definition at line 34 of file time.\+py.
 

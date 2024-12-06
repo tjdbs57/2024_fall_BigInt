@@ -1,14 +1,7 @@
 var searchData=
 [
-  ['fancybox_38',['fancybox',['../namespacetime.html#a33f1b64b7e7c9a99c6c45c4279a30e49',1,'time']]],
-  ['fig_39',['fig',['../namespacetime.html#a5a5fa3f4b6a4701f3ab98dca726b7c67',1,'time']]],
-  ['figsize_40',['figsize',['../namespacetime.html#a615b834806d52ff799a92194d2d0b320',1,'time']]],
-  ['file_5fpath_41',['file_path',['../namespacetest.html#a0bb600cce8a247ee3fb4eb1bfd67ae4f',1,'test']]],
-  ['flag_42',['FLAG',['../config_8h.html#af8bfae90c5d6853fcfb487e05b9f50c8',1,'config.h']]],
-  ['fontsize_43',['fontsize',['../namespacetime.html#a241d2e2eda8dc75120e5cf7a741e4c80',1,'time']]],
-  ['fontweight_44',['fontweight',['../namespacetime.html#a4394441d4a59199837cbfd1f71563260',1,'time']]],
-  ['framealpha_45',['framealpha',['../namespacetime.html#a7af1f3320de5cbaa8d9b2a47a7f330f0',1,'time']]],
-  ['frameon_46',['frameon',['../namespacetime.html#ae84b8da278d7ce67ffd2ca92bf88c81e',1,'time']]],
-  ['function1_5fsmooth_47',['function1_smooth',['../namespacetime.html#ad755c94a36336c1eceac88b3aef234dd',1,'time']]],
-  ['function1_5fspeeds_48',['function1_speeds',['../namespacetime.html#a0048097fb24d0308e617f83638f2e7bd',1,'time']]]
+  ['general_5fdiv_5fcore_31',['general_div_core',['../arithmetic_8h.html#ae8f41e34a2ba4610a43e43525d220038',1,'general_div_core(IN bigint **x, IN bigint **y, IN bigint **Q, IN bigint **R):&#160;arithmetic.c'],['../arithmetic_8c.html#ae8f41e34a2ba4610a43e43525d220038',1,'general_div_core(IN bigint **x, IN bigint **y, IN bigint **Q, IN bigint **R):&#160;arithmetic.c']]],
+  ['get_5fbit_5flength_32',['get_bit_length',['../utils_8h.html#abcba3e9422491d8d36594260d5469fe0',1,'get_bit_length(IN bigint *x):&#160;utils.c'],['../utils_8c.html#abcba3e9422491d8d36594260d5469fe0',1,'get_bit_length(IN bigint *x):&#160;utils.c']]],
+  ['get_5fjth_5fbit_33',['get_jth_bit',['../utils_8h.html#a17820be0f8f929f8010460b9aafa9684',1,'get_jth_bit(IN bigint *x, IN int j):&#160;utils.c'],['../utils_8c.html#a17820be0f8f929f8010460b9aafa9684',1,'get_jth_bit(IN bigint *x, IN int j):&#160;utils.c']]],
+  ['get_5fword_34',['get_word',['../utils_8h.html#a34e51dbf790f1aff199d7856d54f5b52',1,'get_word(IN bigint *x, IN int m_th):&#160;utils.c'],['../utils_8c.html#a34e51dbf790f1aff199d7856d54f5b52',1,'get_word(IN bigint *x, IN int m_th):&#160;utils.c']]]
 ];

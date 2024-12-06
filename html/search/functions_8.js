@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['or_212',['or',['../arithmetic_8h.html#aa25f28f8ad13ee28edc2fa933241ddf6',1,'or(IN bigint **x, IN bigint **y, OUT bigint **z):&#160;arithmetic.h'],['../arithmetic_8c.html#ab9a3195a9e2cee7462a9b7cb40cfaa10',1,'or(bigint **x, bigint **y, bigint **z):&#160;arithmetic.c']]]
+  ['print_5fbi_5fhex_5fpy_149',['print_bi_hex_py',['../test_8h.html#aeeac9fa9820f0adf13369ea064624bd1',1,'print_bi_hex_py(IN const bigint *x):&#160;test.c'],['../test_8c.html#aeeac9fa9820f0adf13369ea064624bd1',1,'print_bi_hex_py(IN const bigint *x):&#160;test.c']]]
 ];

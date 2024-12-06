@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['bigint_153',['bigint',['../structbigint.html',1,'']]]
+  ['bigint_98',['bigint',['../structbigint.html',1,'']]]
 ];

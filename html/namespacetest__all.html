@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: test_all Namespace Reference</title>
+<title>Big Integer Library: test_all Namespace Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -20,8 +20,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="crunch_code.jpg"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">Big Integer Library
+   &#160;<span id="projectnumber">0.0.1</span>
    </div>
   </td>
  </tr>
@@ -80,7 +82,7 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a7681f43a95ad5f0d13294d0afb7ee7af"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetest__all.html#a7681f43a95ad5f0d13294d0afb7ee7af">test_file_path</a> = '<a class="el" href="test_8c.html#ae1a3968e7947464bee7714f6d43b7002">test</a>/test_all.txt'</td></tr>
+<tr class="memitem:a7681f43a95ad5f0d13294d0afb7ee7af"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetest__all.html#a7681f43a95ad5f0d13294d0afb7ee7af">test_file_path</a> = 'test/test_all.txt'</td></tr>
 <tr class="separator:a7681f43a95ad5f0d13294d0afb7ee7af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4cdae76a0c2e731d308ea14b49e8843a"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetest__all.html#a4cdae76a0c2e731d308ea14b49e8843a">results</a> = <a class="el" href="namespacetest__all.html#ad92d7b051001f7f8bb478b856ddb917b">read_test_output_from_file</a>(<a class="el" href="namespacetest__all.html#a7681f43a95ad5f0d13294d0afb7ee7af">test_file_path</a>)</td></tr>
 <tr class="separator:a4cdae76a0c2e731d308ea14b49e8843a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -129,8 +131,13 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="test__all_8py_source.html#l00061">61</a> of file <a class="el" href="test__all_8py_source.html">test_all.py</a>.</p>
+<pre class="fragment">@brief Plots the success and failure counts for each operation and saves the graph to a file.
+@param results A dictionary containing success and failure counts for each operation.
+@param output_path The file path to save the resulting graph.
+@param test_cases The number of test cases used in the operations.
+@param bit_length The bit length of the test cases.
+</pre> 
+<p class="definition">Definition at line <a class="el" href="test__all_8py_source.html#l00071">71</a> of file <a class="el" href="test__all_8py_source.html">test_all.py</a>.</p>
 
 </div>
 </div>
@@ -149,7 +156,10 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<pre class="fragment">@brief Processes the output of a test file and calculates success and failure counts for each operation.
+@param output A string containing the content of the test file.
+@return A dictionary summarizing success and failure counts for each operation.
+</pre> 
 <p class="definition">Definition at line <a class="el" href="test__all_8py_source.html#l00005">5</a> of file <a class="el" href="test__all_8py_source.html">test_all.py</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -178,8 +188,11 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="test__all_8py_source.html#l00051">51</a> of file <a class="el" href="test__all_8py_source.html">test_all.py</a>.</p>
+<pre class="fragment">@brief Reads a test file and processes its output.
+@param file_path The path to the test file.
+@return A dictionary containing success and failure counts for each operation, or an empty dictionary on failure.
+</pre> 
+<p class="definition">Definition at line <a class="el" href="test__all_8py_source.html#l00056">56</a> of file <a class="el" href="test__all_8py_source.html">test_all.py</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -205,7 +218,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="test__all_8py_source.html#l00117">117</a> of file <a class="el" href="test__all_8py_source.html">test_all.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="test__all_8py_source.html#l00134">134</a> of file <a class="el" href="test__all_8py_source.html">test_all.py</a>.</p>
 
 </div>
 </div>
@@ -221,7 +234,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="test__all_8py_source.html#l00115">115</a> of file <a class="el" href="test__all_8py_source.html">test_all.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="test__all_8py_source.html#l00132">132</a> of file <a class="el" href="test__all_8py_source.html">test_all.py</a>.</p>
 
 </div>
 </div>
@@ -237,7 +250,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="test__all_8py_source.html#l00112">112</a> of file <a class="el" href="test__all_8py_source.html">test_all.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="test__all_8py_source.html#l00129">129</a> of file <a class="el" href="test__all_8py_source.html">test_all.py</a>.</p>
 
 </div>
 </div>
@@ -253,7 +266,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="test__all_8py_source.html#l00116">116</a> of file <a class="el" href="test__all_8py_source.html">test_all.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="test__all_8py_source.html#l00133">133</a> of file <a class="el" href="test__all_8py_source.html">test_all.py</a>.</p>
 
 </div>
 </div>
@@ -264,12 +277,12 @@ Here is the call graph for this function:</div>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">string test_all.test_file_path = '<a class="el" href="test_8c.html#ae1a3968e7947464bee7714f6d43b7002">test</a>/test_all.txt'</td>
+          <td class="memname">string test_all.test_file_path = 'test/test_all.txt'</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="test__all_8py_source.html#l00111">111</a> of file <a class="el" href="test__all_8py_source.html">test_all.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="test__all_8py_source.html#l00128">128</a> of file <a class="el" href="test__all_8py_source.html">test_all.py</a>.</p>
 
 </div>
 </div>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: test/test_all.py Source File</title>
+<title>Big Integer Library: test/test_all.py Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -20,8 +20,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="crunch_code.jpg"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">Big Integer Library
+   &#160;<span id="projectnumber">0.0.1</span>
    </div>
   </td>
  </tr>
@@ -74,123 +76,140 @@ $(function() {
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"># 테스트 출력 파일을 읽고 결과를 처리하는 함수</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="namespacetest__all.html#a828dd0dac9e176e131ced4f4b27e78cd">    5</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespacetest__all.html#a828dd0dac9e176e131ced4f4b27e78cd">process_test_output</a>(output):</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    lines = output.splitlines()</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    results = {</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        <span class="stringliteral">&#39;add&#39;</span>: {<span class="stringliteral">&#39;success&#39;</span>: 0, <span class="stringliteral">&#39;failure&#39;</span>: 0},</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <span class="stringliteral">&#39;sub&#39;</span>: {<span class="stringliteral">&#39;success&#39;</span>: 0, <span class="stringliteral">&#39;failure&#39;</span>: 0},</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <span class="stringliteral">&#39;mul_tx&#39;</span>: {<span class="stringliteral">&#39;success&#39;</span>: 0, <span class="stringliteral">&#39;failure&#39;</span>: 0},</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <span class="stringliteral">&#39;mul_improved&#39;</span>: {<span class="stringliteral">&#39;success&#39;</span>: 0, <span class="stringliteral">&#39;failure&#39;</span>: 0},</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <span class="stringliteral">&#39;mul_karatsuba&#39;</span>: {<span class="stringliteral">&#39;success&#39;</span>: 0, <span class="stringliteral">&#39;failure&#39;</span>: 0},</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <span class="stringliteral">&#39;div&#39;</span>: {<span class="stringliteral">&#39;success&#39;</span>: 0, <span class="stringliteral">&#39;failure&#39;</span>: 0},</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="stringliteral">&#39;L2R&#39;</span>: {<span class="stringliteral">&#39;success&#39;</span>: 0, <span class="stringliteral">&#39;failure&#39;</span>: 0},</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="stringliteral">&#39;R2L&#39;</span>: {<span class="stringliteral">&#39;success&#39;</span>: 0, <span class="stringliteral">&#39;failure&#39;</span>: 0},</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="stringliteral">&#39;exp_mod_montgomery&#39;</span>: {<span class="stringliteral">&#39;success&#39;</span>: 0, <span class="stringliteral">&#39;failure&#39;</span>: 0},</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="stringliteral">&#39;reduction&#39;</span>: {<span class="stringliteral">&#39;success&#39;</span>: 0, <span class="stringliteral">&#39;failure&#39;</span>: 0},</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="stringliteral">&#39;squ_tx&#39;</span>: {<span class="stringliteral">&#39;success&#39;</span>: 0, <span class="stringliteral">&#39;failure&#39;</span>: 0},</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="stringliteral">&#39;squ_karatsuba&#39;</span>: {<span class="stringliteral">&#39;success&#39;</span>: 0, <span class="stringliteral">&#39;failure&#39;</span>: 0},</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    }</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordflow">for</span> line <span class="keywordflow">in</span> lines:</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordflow">if</span> line.strip():  <span class="comment"># 공백 라인 무시</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            operator_and_expression = line.split(<span class="stringliteral">&quot;:&quot;</span>)</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <span class="keywordflow">if</span> len(operator_and_expression) == 2:</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                operator = operator_and_expression[0].strip()</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                expression = operator_and_expression[1].strip()</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                parts = expression.split(<span class="stringliteral">&quot;==&quot;</span>)</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                <span class="keywordflow">if</span> len(parts) == 2:</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                    left = parts[0].strip()</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                    right = parts[1].strip()</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                    left_value = eval(left)</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                    right_value = eval(right)</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                    <span class="comment"># 연산 종류 매핑</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                    <span class="keywordflow">if</span> operator <span class="keywordflow">in</span> results:</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                        operation = operator</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                    <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                        <span class="keywordflow">continue</span>  <span class="comment"># 알 수 없는 연산은 무시</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                    <span class="comment"># 결과 비교</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                    <span class="keywordflow">if</span> left_value == right_value:</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                        results[operation][<span class="stringliteral">&#39;success&#39;</span>] += 1</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                    <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                        results[operation][<span class="stringliteral">&#39;failure&#39;</span>] += 1</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordflow">return</span> results</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="namespacetest__all.html#ad92d7b051001f7f8bb478b856ddb917b">   51</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespacetest__all.html#ad92d7b051001f7f8bb478b856ddb917b">read_test_output_from_file</a>(file_path):</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordflow">try</span>:</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keyword">with</span> open(file_path, <span class="stringliteral">&#39;r&#39;</span>, encoding= <span class="stringliteral">&#39;utf-8&#39;</span>) <span class="keyword">as</span> f:</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            output = f.read()</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="namespacetest__all.html#a828dd0dac9e176e131ced4f4b27e78cd">process_test_output</a>(output)</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordflow">except</span> Exception <span class="keyword">as</span> e:</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        print(f<span class="stringliteral">&quot;Exception while reading test file: {e}&quot;</span>)</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keywordflow">return</span> {}</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="namespacetest__all.html#aa816b5db146e7e17f2fa055f57370992">   61</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespacetest__all.html#aa816b5db146e7e17f2fa055f57370992">plot_success_rate</a>(results, output_path, test_cases, bit_length):</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    categories = list(results.keys())</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    success_values = [results[operation][<span class="stringliteral">&#39;success&#39;</span>] <span class="keywordflow">for</span> operation <span class="keywordflow">in</span> categories]</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    failure_values = [results[operation][<span class="stringliteral">&#39;failure&#39;</span>] <span class="keywordflow">for</span> operation <span class="keywordflow">in</span> categories]</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    total_success = sum(success_values)</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    total_failure = sum(failure_values)</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    total_operations = total_success + total_failure</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="stringliteral">    @brief Processes the output of a test file and calculates success and failure counts for each operation.</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="stringliteral">    @param output A string containing the content of the test file.</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="stringliteral">    @return A dictionary summarizing success and failure counts for each operation.</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="stringliteral">    &quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    lines = output.splitlines()</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    results = {</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <span class="stringliteral">&#39;add&#39;</span>: {<span class="stringliteral">&#39;success&#39;</span>: 0, <span class="stringliteral">&#39;failure&#39;</span>: 0},</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="stringliteral">&#39;sub&#39;</span>: {<span class="stringliteral">&#39;success&#39;</span>: 0, <span class="stringliteral">&#39;failure&#39;</span>: 0},</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="stringliteral">&#39;mul_tx&#39;</span>: {<span class="stringliteral">&#39;success&#39;</span>: 0, <span class="stringliteral">&#39;failure&#39;</span>: 0},</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="stringliteral">&#39;mul_improved&#39;</span>: {<span class="stringliteral">&#39;success&#39;</span>: 0, <span class="stringliteral">&#39;failure&#39;</span>: 0},</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="stringliteral">&#39;mul_karatsuba&#39;</span>: {<span class="stringliteral">&#39;success&#39;</span>: 0, <span class="stringliteral">&#39;failure&#39;</span>: 0},</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="stringliteral">&#39;div&#39;</span>: {<span class="stringliteral">&#39;success&#39;</span>: 0, <span class="stringliteral">&#39;failure&#39;</span>: 0},</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="stringliteral">&#39;L2R&#39;</span>: {<span class="stringliteral">&#39;success&#39;</span>: 0, <span class="stringliteral">&#39;failure&#39;</span>: 0},</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="stringliteral">&#39;R2L&#39;</span>: {<span class="stringliteral">&#39;success&#39;</span>: 0, <span class="stringliteral">&#39;failure&#39;</span>: 0},</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="stringliteral">&#39;exp_mod_montgomery&#39;</span>: {<span class="stringliteral">&#39;success&#39;</span>: 0, <span class="stringliteral">&#39;failure&#39;</span>: 0},</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="stringliteral">&#39;reduction&#39;</span>: {<span class="stringliteral">&#39;success&#39;</span>: 0, <span class="stringliteral">&#39;failure&#39;</span>: 0},</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="stringliteral">&#39;squ_tx&#39;</span>: {<span class="stringliteral">&#39;success&#39;</span>: 0, <span class="stringliteral">&#39;failure&#39;</span>: 0},</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="stringliteral">&#39;squ_karatsuba&#39;</span>: {<span class="stringliteral">&#39;success&#39;</span>: 0, <span class="stringliteral">&#39;failure&#39;</span>: 0},</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    }</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordflow">for</span> line <span class="keywordflow">in</span> lines:</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordflow">if</span> line.strip():  <span class="comment"># 공백 라인 무시</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            operator_and_expression = line.split(<span class="stringliteral">&quot;:&quot;</span>)</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="keywordflow">if</span> len(operator_and_expression) == 2:</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                operator = operator_and_expression[0].strip()</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                expression = operator_and_expression[1].strip()</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                parts = expression.split(<span class="stringliteral">&quot;==&quot;</span>)</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                <span class="keywordflow">if</span> len(parts) == 2:</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                    left = parts[0].strip()</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                    right = parts[1].strip()</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                    left_value = eval(left)  <span class="comment"># 왼쪽 표현식 평가</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                    right_value = eval(right)  <span class="comment"># 오른쪽 표현식 평가</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                    <span class="comment"># 연산 종류 매핑</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                    <span class="keywordflow">if</span> operator <span class="keywordflow">in</span> results:</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                        operation = operator</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                    <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                        <span class="keywordflow">continue</span>  <span class="comment"># 알 수 없는 연산은 무시</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                    <span class="comment"># 결과 비교</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                    <span class="keywordflow">if</span> left_value == right_value:</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                        results[operation][<span class="stringliteral">&#39;success&#39;</span>] += 1</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                    <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                        results[operation][<span class="stringliteral">&#39;failure&#39;</span>] += 1</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">return</span> results</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="namespacetest__all.html#ad92d7b051001f7f8bb478b856ddb917b">   56</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespacetest__all.html#ad92d7b051001f7f8bb478b856ddb917b">read_test_output_from_file</a>(file_path):</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="stringliteral">    @brief Reads a test file and processes its output.</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="stringliteral">    @param file_path The path to the test file.</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="stringliteral">    @return A dictionary containing success and failure counts for each operation, or an empty dictionary on failure.</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="stringliteral">    &quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordflow">try</span>:</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keyword">with</span> open(file_path, <span class="stringliteral">&#39;r&#39;</span>, encoding=<span class="stringliteral">&#39;utf-8&#39;</span>) <span class="keyword">as</span> f:</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            output = f.read()</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="namespacetest__all.html#a828dd0dac9e176e131ced4f4b27e78cd">process_test_output</a>(output)</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordflow">except</span> Exception <span class="keyword">as</span> e:</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        print(f<span class="stringliteral">&quot;Exception while reading test file: {e}&quot;</span>)</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">return</span> {}</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    success_rate = (total_success / total_operations) * 100 <span class="keywordflow">if</span> total_operations &gt; 0 <span class="keywordflow">else</span> 0</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    print(f<span class="stringliteral">&quot;Success Rate: {success_rate:.2f}%&quot;</span>)</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="comment"># 그래프 생성</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    fig, ax = plt.subplots(figsize=(14, 8))  <span class="comment"># 그래프 크기 조정</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    bar_width = 0.35</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    index = range(len(categories))</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    bar1 = ax.bar(index, success_values, bar_width, label=<span class="stringliteral">&#39;Success&#39;</span>, color=<span class="stringliteral">&#39;green&#39;</span>)</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    bar2 = ax.bar([i + bar_width <span class="keywordflow">for</span> i <span class="keywordflow">in</span> index], failure_values, bar_width, label=<span class="stringliteral">&#39;Failure&#39;</span>, color=<span class="stringliteral">&#39;red&#39;</span>)</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="comment"># 제목 설정에 테스트 케이스와 비트 길이 추가</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    ax.set_title(</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        f<span class="stringliteral">&quot;Success and Failure Counts (Success Rate: {success_rate:.2f}%)\n&quot;</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        f<span class="stringliteral">&quot;Test cases: {test_cases}, Bit length: {bit_length}&quot;</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    )</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    ax.set_xlabel(<span class="stringliteral">&#39;Operations&#39;</span>)</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    ax.set_ylabel(<span class="stringliteral">&#39;Count&#39;</span>)</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    ax.set_xticks([i + bar_width / 2 <span class="keywordflow">for</span> i <span class="keywordflow">in</span> index])</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    ax.set_xticklabels(categories, rotation=45, ha=<span class="stringliteral">&#39;right&#39;</span>)  <span class="comment"># 회전으로 연산자 표시</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    ax.legend()</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="namespacetest__all.html#aa816b5db146e7e17f2fa055f57370992">   71</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespacetest__all.html#aa816b5db146e7e17f2fa055f57370992">plot_success_rate</a>(results, output_path, test_cases, bit_length):</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="stringliteral">    @brief Plots the success and failure counts for each operation and saves the graph to a file.</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="stringliteral">    @param results A dictionary containing success and failure counts for each operation.</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="stringliteral">    @param output_path The file path to save the resulting graph.</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="stringliteral">    @param test_cases The number of test cases used in the operations.</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="stringliteral">    @param bit_length The bit length of the test cases.</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="stringliteral">    &quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    categories = list(results.keys())  <span class="comment"># 연산 종류 목록</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    success_values = [results[operation][<span class="stringliteral">&#39;success&#39;</span>] <span class="keywordflow">for</span> operation <span class="keywordflow">in</span> categories]  <span class="comment"># 성공 값</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    failure_values = [results[operation][<span class="stringliteral">&#39;failure&#39;</span>] <span class="keywordflow">for</span> operation <span class="keywordflow">in</span> categories]  <span class="comment"># 실패 값</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    total_success = sum(success_values)</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    total_failure = sum(failure_values)</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    total_operations = total_success + total_failure</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    success_rate = (total_success / total_operations) * 100 <span class="keywordflow">if</span> total_operations &gt; 0 <span class="keywordflow">else</span> 0</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    print(f<span class="stringliteral">&quot;Success Rate: {success_rate:.2f}%&quot;</span>)</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="comment"># 그래프 생성</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    fig, ax = plt.subplots(figsize=(14, 8))  <span class="comment"># 그래프 크기 조정</span></div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    plt.ylim(0, max(max(success_values), max(failure_values)) + 1)</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    plt.grid(axis=<span class="stringliteral">&#39;y&#39;</span>, linestyle=<span class="stringliteral">&#39;--&#39;</span>, alpha=0.7)</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    bar_width = 0.35  <span class="comment"># 막대 너비 설정</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    index = range(len(categories))  <span class="comment"># 카테고리 인덱스</span></div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="comment"># 값 표시</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(len(categories)):</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        ax.text(i, success_values[i] + 0.2, str(success_values[i]), ha=<span class="stringliteral">&#39;center&#39;</span>, va=<span class="stringliteral">&#39;bottom&#39;</span>, color=<span class="stringliteral">&#39;black&#39;</span>)</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        ax.text(i + bar_width, failure_values[i] + 0.2, str(failure_values[i]), ha=<span class="stringliteral">&#39;center&#39;</span>, va=<span class="stringliteral">&#39;bottom&#39;</span>, color=<span class="stringliteral">&#39;black&#39;</span>)</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    plt.tight_layout()</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="comment"># 그래프를 파일로 저장</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    os.makedirs(os.path.dirname(output_path), exist_ok=<span class="keyword">True</span>)  <span class="comment"># 디렉토리 생성</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    plt.savefig(output_path)</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    print(f<span class="stringliteral">&quot;Graph saved to {output_path}&quot;</span>)</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    plt.close()</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    bar1 = ax.bar(index, success_values, bar_width, label=<span class="stringliteral">&#39;Success&#39;</span>, color=<span class="stringliteral">&#39;green&#39;</span>)  <span class="comment"># 성공 막대</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    bar2 = ax.bar([i + bar_width <span class="keywordflow">for</span> i <span class="keywordflow">in</span> index], failure_values, bar_width, label=<span class="stringliteral">&#39;Failure&#39;</span>, color=<span class="stringliteral">&#39;red&#39;</span>)  <span class="comment"># 실패 막대</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="comment"># 제목 설정에 테스트 케이스와 비트 길이 추가</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    ax.set_title(</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        f<span class="stringliteral">&quot;Success and Failure Counts (Success Rate: {success_rate:.2f}%)\n&quot;</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        f<span class="stringliteral">&quot;Test cases: {test_cases}, Bit length: {bit_length}&quot;</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    )</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    ax.set_xlabel(<span class="stringliteral">&#39;Operations&#39;</span>)  <span class="comment"># X축 레이블</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    ax.set_ylabel(<span class="stringliteral">&#39;Count&#39;</span>)  <span class="comment"># Y축 레이블</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    ax.set_xticks([i + bar_width / 2 <span class="keywordflow">for</span> i <span class="keywordflow">in</span> index])  <span class="comment"># X축 눈금 위치</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    ax.set_xticklabels(categories, rotation=45, ha=<span class="stringliteral">&#39;right&#39;</span>)  <span class="comment"># X축 눈금 이름</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    ax.legend()  <span class="comment"># 범례 추가</span></div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment"># 파일에서 결과 읽기</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="namespacetest__all.html#a7681f43a95ad5f0d13294d0afb7ee7af">  111</a></span>&#160;test_file_path = <span class="stringliteral">&#39;test/test_all.txt&#39;</span>  <span class="comment"># 테스트 파일 경로</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="namespacetest__all.html#a4cdae76a0c2e731d308ea14b49e8843a">  112</a></span>&#160;results = <a class="code" href="namespacetest__all.html#ad92d7b051001f7f8bb478b856ddb917b">read_test_output_from_file</a>(test_file_path)</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="keywordflow">if</span> results:</div>
-<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="namespacetest__all.html#ab00a63aa438c51f310781d814cde0ec4">  115</a></span>&#160;    output_file = <span class="stringliteral">&quot;graph/success_rate_plot.png&quot;</span>  <span class="comment"># 저장될 그래프 파일 경로</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="namespacetest__all.html#ab555b7b98d961878951b9cd42d27b204">  116</a></span>&#160;    test_cases = 1000  <span class="comment"># 테스트 케이스 개수</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="namespacetest__all.html#a7086517cdfb2caacf0b564dc078e0051">  117</a></span>&#160;    bit_length = 4096  <span class="comment"># 비트 길이</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <a class="code" href="namespacetest__all.html#aa816b5db146e7e17f2fa055f57370992">plot_success_rate</a>(results, output_file, test_cases, bit_length)</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    plt.ylim(0, max(max(success_values), max(failure_values)) + 1)  <span class="comment"># Y축 범위 설정</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    plt.grid(axis=<span class="stringliteral">&#39;y&#39;</span>, linestyle=<span class="stringliteral">&#39;--&#39;</span>, alpha=0.7)  <span class="comment"># 격자 표시</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="comment"># 막대 위에 값 표시</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(len(categories)):</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        ax.text(i, success_values[i] + 0.2, str(success_values[i]), ha=<span class="stringliteral">&#39;center&#39;</span>, va=<span class="stringliteral">&#39;bottom&#39;</span>, color=<span class="stringliteral">&#39;black&#39;</span>)</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        ax.text(i + bar_width, failure_values[i] + 0.2, str(failure_values[i]), ha=<span class="stringliteral">&#39;center&#39;</span>, va=<span class="stringliteral">&#39;bottom&#39;</span>, color=<span class="stringliteral">&#39;black&#39;</span>)</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    plt.tight_layout()</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="comment"># 그래프를 파일로 저장</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    os.makedirs(os.path.dirname(output_path), exist_ok=<span class="keyword">True</span>)  <span class="comment"># 디렉토리 생성</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    plt.savefig(output_path)</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    print(f<span class="stringliteral">&quot;Graph saved to {output_path}&quot;</span>)</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    plt.close()</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment"># 파일에서 결과 읽기</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="namespacetest__all.html#a7681f43a95ad5f0d13294d0afb7ee7af">  128</a></span>&#160;test_file_path = <span class="stringliteral">&#39;test/test_all.txt&#39;</span>  <span class="comment"># 테스트 파일 경로</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="namespacetest__all.html#a4cdae76a0c2e731d308ea14b49e8843a">  129</a></span>&#160;results = <a class="code" href="namespacetest__all.html#ad92d7b051001f7f8bb478b856ddb917b">read_test_output_from_file</a>(test_file_path)</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="keywordflow">if</span> results:</div>
+<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="namespacetest__all.html#ab00a63aa438c51f310781d814cde0ec4">  132</a></span>&#160;    output_file = <span class="stringliteral">&quot;graph/success_rate_plot.png&quot;</span>  <span class="comment"># 저장될 그래프 파일 경로</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="namespacetest__all.html#ab555b7b98d961878951b9cd42d27b204">  133</a></span>&#160;    test_cases = 1000  <span class="comment"># 테스트 케이스 개수</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno"><a class="line" href="namespacetest__all.html#a7086517cdfb2caacf0b564dc078e0051">  134</a></span>&#160;    bit_length = 4096  <span class="comment"># 비트 길이</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <a class="code" href="namespacetest__all.html#aa816b5db146e7e17f2fa055f57370992">plot_success_rate</a>(results, output_file, test_cases, bit_length)</div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="anamespacetest__all_html_ad92d7b051001f7f8bb478b856ddb917b"><div class="ttname"><a href="namespacetest__all.html#ad92d7b051001f7f8bb478b856ddb917b">test_all.read_test_output_from_file</a></div><div class="ttdeci">def read_test_output_from_file(file_path)</div><div class="ttdef"><b>Definition:</b> <a href="test__all_8py_source.html#l00051">test_all.py:51</a></div></div>
+<div class="ttc" id="anamespacetest__all_html_ad92d7b051001f7f8bb478b856ddb917b"><div class="ttname"><a href="namespacetest__all.html#ad92d7b051001f7f8bb478b856ddb917b">test_all.read_test_output_from_file</a></div><div class="ttdeci">def read_test_output_from_file(file_path)</div><div class="ttdef"><b>Definition:</b> <a href="test__all_8py_source.html#l00056">test_all.py:56</a></div></div>
 <div class="ttc" id="anamespacetest__all_html_a828dd0dac9e176e131ced4f4b27e78cd"><div class="ttname"><a href="namespacetest__all.html#a828dd0dac9e176e131ced4f4b27e78cd">test_all.process_test_output</a></div><div class="ttdeci">def process_test_output(output)</div><div class="ttdef"><b>Definition:</b> <a href="test__all_8py_source.html#l00005">test_all.py:5</a></div></div>
-<div class="ttc" id="anamespacetest__all_html_aa816b5db146e7e17f2fa055f57370992"><div class="ttname"><a href="namespacetest__all.html#aa816b5db146e7e17f2fa055f57370992">test_all.plot_success_rate</a></div><div class="ttdeci">def plot_success_rate(results, output_path, test_cases, bit_length)</div><div class="ttdef"><b>Definition:</b> <a href="test__all_8py_source.html#l00061">test_all.py:61</a></div></div>
+<div class="ttc" id="anamespacetest__all_html_aa816b5db146e7e17f2fa055f57370992"><div class="ttname"><a href="namespacetest__all.html#aa816b5db146e7e17f2fa055f57370992">test_all.plot_success_rate</a></div><div class="ttdeci">def plot_success_rate(results, output_path, test_cases, bit_length)</div><div class="ttdef"><b>Definition:</b> <a href="test__all_8py_source.html#l00071">test_all.py:71</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

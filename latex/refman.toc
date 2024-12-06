@@ -1,0 +1,183 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\contentsline {chapter}{\numberline {1}Class Index}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Class List}{1}{section.1.1}%
+\contentsline {chapter}{\numberline {2}File Index}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}File List}{3}{section.2.1}%
+\contentsline {chapter}{\numberline {3}Class Documentation}{5}{chapter.3}%
+\contentsline {section}{\numberline {3.1}bigint Struct Reference}{5}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Detailed Description}{5}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Member Data Documentation}{5}{subsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.2.1}a}{6}{subsubsection.3.1.2.1}%
+\contentsline {subsubsection}{\numberline {3.1.2.2}sign}{6}{subsubsection.3.1.2.2}%
+\contentsline {subsubsection}{\numberline {3.1.2.3}wordlen}{6}{subsubsection.3.1.2.3}%
+\contentsline {chapter}{\numberline {4}File Documentation}{7}{chapter.4}%
+\contentsline {section}{\numberline {4.1}include/arithmetic.h File Reference}{7}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Detailed Description}{9}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Function Documentation}{9}{subsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.2.1}add()}{9}{subsubsection.4.1.2.1}%
+\contentsline {subsubsection}{\numberline {4.1.2.2}add\_core()}{11}{subsubsection.4.1.2.2}%
+\contentsline {subsubsection}{\numberline {4.1.2.3}add\_single\_word()}{12}{subsubsection.4.1.2.3}%
+\contentsline {subsubsection}{\numberline {4.1.2.4}barret\_reduction()}{13}{subsubsection.4.1.2.4}%
+\contentsline {subsubsection}{\numberline {4.1.2.5}bi\_long\_div()}{14}{subsubsection.4.1.2.5}%
+\contentsline {subsubsection}{\numberline {4.1.2.6}bigint\_or()}{16}{subsubsection.4.1.2.6}%
+\contentsline {subsubsection}{\numberline {4.1.2.7}exp\_mod\_montgomery()}{17}{subsubsection.4.1.2.7}%
+\contentsline {subsubsection}{\numberline {4.1.2.8}general\_div\_core()}{19}{subsubsection.4.1.2.8}%
+\contentsline {subsubsection}{\numberline {4.1.2.9}L2R()}{20}{subsubsection.4.1.2.9}%
+\contentsline {subsubsection}{\numberline {4.1.2.10}mul\_core\_improved()}{22}{subsubsection.4.1.2.10}%
+\contentsline {subsubsection}{\numberline {4.1.2.11}mul\_core\_karatsuba()}{23}{subsubsection.4.1.2.11}%
+\contentsline {subsubsection}{\numberline {4.1.2.12}mul\_core\_tx()}{25}{subsubsection.4.1.2.12}%
+\contentsline {subsubsection}{\numberline {4.1.2.13}mul\_single\_word()}{27}{subsubsection.4.1.2.13}%
+\contentsline {subsubsection}{\numberline {4.1.2.14}quotient()}{27}{subsubsection.4.1.2.14}%
+\contentsline {subsubsection}{\numberline {4.1.2.15}R2L()}{28}{subsubsection.4.1.2.15}%
+\contentsline {subsubsection}{\numberline {4.1.2.16}squ\_karatsuba()}{31}{subsubsection.4.1.2.16}%
+\contentsline {subsubsection}{\numberline {4.1.2.17}squ\_single\_word()}{33}{subsubsection.4.1.2.17}%
+\contentsline {subsubsection}{\numberline {4.1.2.18}squ\_tx()}{34}{subsubsection.4.1.2.18}%
+\contentsline {subsubsection}{\numberline {4.1.2.19}squaring()}{35}{subsubsection.4.1.2.19}%
+\contentsline {subsubsection}{\numberline {4.1.2.20}sub()}{37}{subsubsection.4.1.2.20}%
+\contentsline {subsubsection}{\numberline {4.1.2.21}sub\_core()}{38}{subsubsection.4.1.2.21}%
+\contentsline {subsubsection}{\numberline {4.1.2.22}sub\_single\_word()}{39}{subsubsection.4.1.2.22}%
+\contentsline {section}{\numberline {4.2}include/bigint.h File Reference}{40}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Detailed Description}{42}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Macro Definition Documentation}{42}{subsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.2.1}MAXIMUM}{42}{subsubsection.4.2.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2.2}MINIMUM}{43}{subsubsection.4.2.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.2.3}ONE}{43}{subsubsection.4.2.2.3}%
+\contentsline {subsubsection}{\numberline {4.2.2.4}WORD\_BITLEN}{44}{subsubsection.4.2.2.4}%
+\contentsline {subsubsection}{\numberline {4.2.2.5}ZERO}{44}{subsubsection.4.2.2.5}%
+\contentsline {subsection}{\numberline {4.2.3}Typedef Documentation}{44}{subsection.4.2.3}%
+\contentsline {subsubsection}{\numberline {4.2.3.1}word}{44}{subsubsection.4.2.3.1}%
+\contentsline {section}{\numberline {4.3}include/config.h File Reference}{45}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Detailed Description}{46}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Macro Definition Documentation}{46}{subsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.2.1}FLAG}{46}{subsubsection.4.3.2.1}%
+\contentsline {subsubsection}{\numberline {4.3.2.2}IN}{47}{subsubsection.4.3.2.2}%
+\contentsline {subsubsection}{\numberline {4.3.2.3}INOUT}{47}{subsubsection.4.3.2.3}%
+\contentsline {subsubsection}{\numberline {4.3.2.4}NEGATIVE}{47}{subsubsection.4.3.2.4}%
+\contentsline {subsubsection}{\numberline {4.3.2.5}NON\_NEGATIVE}{47}{subsubsection.4.3.2.5}%
+\contentsline {subsubsection}{\numberline {4.3.2.6}OUT}{48}{subsubsection.4.3.2.6}%
+\contentsline {subsection}{\numberline {4.3.3}Typedef Documentation}{48}{subsection.4.3.3}%
+\contentsline {subsubsection}{\numberline {4.3.3.1}i32}{48}{subsubsection.4.3.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.3.2}i64}{48}{subsubsection.4.3.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.3.3}i8}{48}{subsubsection.4.3.3.3}%
+\contentsline {subsubsection}{\numberline {4.3.3.4}u32}{48}{subsubsection.4.3.3.4}%
+\contentsline {subsubsection}{\numberline {4.3.3.5}u64}{49}{subsubsection.4.3.3.5}%
+\contentsline {subsubsection}{\numberline {4.3.3.6}u8}{49}{subsubsection.4.3.3.6}%
+\contentsline {section}{\numberline {4.4}include/test.h File Reference}{49}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Detailed Description}{51}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Macro Definition Documentation}{51}{subsection.4.4.2}%
+\contentsline {subsubsection}{\numberline {4.4.2.1}MAX\_BIT\_LEN}{51}{subsubsection.4.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.4.2.2}TEST\_CASE}{51}{subsubsection.4.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.4.2.3}TIME}{52}{subsubsection.4.4.2.3}%
+\contentsline {subsection}{\numberline {4.4.3}Function Documentation}{52}{subsection.4.4.3}%
+\contentsline {subsubsection}{\numberline {4.4.3.1}measure\_clock\_cycles()}{52}{subsubsection.4.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.4.3.2}measure\_cycles()}{53}{subsubsection.4.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.4.3.3}print\_bi\_hex\_py()}{54}{subsubsection.4.4.3.3}%
+\contentsline {subsubsection}{\numberline {4.4.3.4}test\_barret()}{55}{subsubsection.4.4.3.4}%
+\contentsline {subsubsection}{\numberline {4.4.3.5}test\_basic\_operation()}{57}{subsubsection.4.4.3.5}%
+\contentsline {subsubsection}{\numberline {4.4.3.6}test\_div()}{58}{subsubsection.4.4.3.6}%
+\contentsline {subsubsection}{\numberline {4.4.3.7}test\_exp\_mod()}{59}{subsubsection.4.4.3.7}%
+\contentsline {subsubsection}{\numberline {4.4.3.8}test\_squ()}{60}{subsubsection.4.4.3.8}%
+\contentsline {section}{\numberline {4.5}include/utils.h File Reference}{61}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Detailed Description}{63}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Macro Definition Documentation}{63}{subsection.4.5.2}%
+\contentsline {subsubsection}{\numberline {4.5.2.1}INVAILD\_DATA}{64}{subsubsection.4.5.2.1}%
+\contentsline {subsubsection}{\numberline {4.5.2.2}MEM\_ALLOCATION\_FAIL}{64}{subsubsection.4.5.2.2}%
+\contentsline {subsubsection}{\numberline {4.5.2.3}SET\_ARRAY\_FAIL}{65}{subsubsection.4.5.2.3}%
+\contentsline {subsubsection}{\numberline {4.5.2.4}SET\_STRING\_FAIL}{65}{subsubsection.4.5.2.4}%
+\contentsline {subsection}{\numberline {4.5.3}Function Documentation}{65}{subsection.4.5.3}%
+\contentsline {subsubsection}{\numberline {4.5.3.1}array\_init()}{65}{subsubsection.4.5.3.1}%
+\contentsline {subsubsection}{\numberline {4.5.3.2}array\_rand()}{67}{subsubsection.4.5.3.2}%
+\contentsline {subsubsection}{\numberline {4.5.3.3}bi\_assign()}{68}{subsubsection.4.5.3.3}%
+\contentsline {subsubsection}{\numberline {4.5.3.4}bi\_delete()}{69}{subsubsection.4.5.3.4}%
+\contentsline {subsubsection}{\numberline {4.5.3.5}bi\_gen\_rand()}{71}{subsubsection.4.5.3.5}%
+\contentsline {subsubsection}{\numberline {4.5.3.6}bi\_new()}{73}{subsubsection.4.5.3.6}%
+\contentsline {subsubsection}{\numberline {4.5.3.7}bi\_refine()}{74}{subsubsection.4.5.3.7}%
+\contentsline {subsubsection}{\numberline {4.5.3.8}bi\_refine\_word()}{75}{subsubsection.4.5.3.8}%
+\contentsline {subsubsection}{\numberline {4.5.3.9}bi\_reset()}{76}{subsubsection.4.5.3.9}%
+\contentsline {subsubsection}{\numberline {4.5.3.10}bi\_set\_by\_array()}{77}{subsubsection.4.5.3.10}%
+\contentsline {subsubsection}{\numberline {4.5.3.11}bi\_set\_by\_string()}{78}{subsubsection.4.5.3.11}%
+\contentsline {subsubsection}{\numberline {4.5.3.12}bi\_set\_one()}{79}{subsubsection.4.5.3.12}%
+\contentsline {subsubsection}{\numberline {4.5.3.13}bi\_set\_zero()}{79}{subsubsection.4.5.3.13}%
+\contentsline {subsubsection}{\numberline {4.5.3.14}bi\_show\_hex()}{80}{subsubsection.4.5.3.14}%
+\contentsline {subsubsection}{\numberline {4.5.3.15}compare()}{81}{subsubsection.4.5.3.15}%
+\contentsline {subsubsection}{\numberline {4.5.3.16}compareABS()}{82}{subsubsection.4.5.3.16}%
+\contentsline {subsubsection}{\numberline {4.5.3.17}get\_bit\_length()}{83}{subsubsection.4.5.3.17}%
+\contentsline {subsubsection}{\numberline {4.5.3.18}get\_jth\_bit()}{84}{subsubsection.4.5.3.18}%
+\contentsline {subsubsection}{\numberline {4.5.3.19}get\_word()}{84}{subsubsection.4.5.3.19}%
+\contentsline {subsubsection}{\numberline {4.5.3.20}is\_zero()}{85}{subsubsection.4.5.3.20}%
+\contentsline {subsubsection}{\numberline {4.5.3.21}left\_shift\_bit()}{86}{subsubsection.4.5.3.21}%
+\contentsline {subsubsection}{\numberline {4.5.3.22}left\_shift\_word()}{87}{subsubsection.4.5.3.22}%
+\contentsline {subsubsection}{\numberline {4.5.3.23}makeEven()}{88}{subsubsection.4.5.3.23}%
+\contentsline {subsubsection}{\numberline {4.5.3.24}match\_wordlen()}{89}{subsubsection.4.5.3.24}%
+\contentsline {subsubsection}{\numberline {4.5.3.25}reduction()}{91}{subsubsection.4.5.3.25}%
+\contentsline {subsubsection}{\numberline {4.5.3.26}right\_shift\_bit()}{92}{subsubsection.4.5.3.26}%
+\contentsline {subsubsection}{\numberline {4.5.3.27}right\_shift\_word()}{92}{subsubsection.4.5.3.27}%
+\contentsline {subsubsection}{\numberline {4.5.3.28}swap\_bigint()}{93}{subsubsection.4.5.3.28}%
+\contentsline {section}{\numberline {4.6}src/arithmetic.c File Reference}{94}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}Function Documentation}{95}{subsection.4.6.1}%
+\contentsline {subsubsection}{\numberline {4.6.1.1}add()}{95}{subsubsection.4.6.1.1}%
+\contentsline {subsubsection}{\numberline {4.6.1.2}add\_core()}{97}{subsubsection.4.6.1.2}%
+\contentsline {subsubsection}{\numberline {4.6.1.3}add\_single\_word()}{98}{subsubsection.4.6.1.3}%
+\contentsline {subsubsection}{\numberline {4.6.1.4}barret\_reduction()}{99}{subsubsection.4.6.1.4}%
+\contentsline {subsubsection}{\numberline {4.6.1.5}bi\_long\_div()}{100}{subsubsection.4.6.1.5}%
+\contentsline {subsubsection}{\numberline {4.6.1.6}bigint\_or()}{102}{subsubsection.4.6.1.6}%
+\contentsline {subsubsection}{\numberline {4.6.1.7}exp\_mod\_montgomery()}{103}{subsubsection.4.6.1.7}%
+\contentsline {subsubsection}{\numberline {4.6.1.8}general\_div\_core()}{105}{subsubsection.4.6.1.8}%
+\contentsline {subsubsection}{\numberline {4.6.1.9}L2R()}{106}{subsubsection.4.6.1.9}%
+\contentsline {subsubsection}{\numberline {4.6.1.10}mul\_core\_improved()}{108}{subsubsection.4.6.1.10}%
+\contentsline {subsubsection}{\numberline {4.6.1.11}mul\_core\_karatsuba()}{109}{subsubsection.4.6.1.11}%
+\contentsline {subsubsection}{\numberline {4.6.1.12}mul\_core\_tx()}{111}{subsubsection.4.6.1.12}%
+\contentsline {subsubsection}{\numberline {4.6.1.13}mul\_single\_word()}{113}{subsubsection.4.6.1.13}%
+\contentsline {subsubsection}{\numberline {4.6.1.14}quotient()}{113}{subsubsection.4.6.1.14}%
+\contentsline {subsubsection}{\numberline {4.6.1.15}R2L()}{114}{subsubsection.4.6.1.15}%
+\contentsline {subsubsection}{\numberline {4.6.1.16}squ\_karatsuba()}{117}{subsubsection.4.6.1.16}%
+\contentsline {subsubsection}{\numberline {4.6.1.17}squ\_single\_word()}{119}{subsubsection.4.6.1.17}%
+\contentsline {subsubsection}{\numberline {4.6.1.18}squ\_tx()}{120}{subsubsection.4.6.1.18}%
+\contentsline {subsubsection}{\numberline {4.6.1.19}squaring()}{121}{subsubsection.4.6.1.19}%
+\contentsline {subsubsection}{\numberline {4.6.1.20}sub()}{123}{subsubsection.4.6.1.20}%
+\contentsline {subsubsection}{\numberline {4.6.1.21}sub\_core()}{124}{subsubsection.4.6.1.21}%
+\contentsline {subsubsection}{\numberline {4.6.1.22}sub\_single\_word()}{126}{subsubsection.4.6.1.22}%
+\contentsline {section}{\numberline {4.7}src/bigint.c File Reference}{127}{section.4.7}%
+\contentsline {section}{\numberline {4.8}src/main.c File Reference}{127}{section.4.8}%
+\contentsline {subsection}{\numberline {4.8.1}Function Documentation}{128}{subsection.4.8.1}%
+\contentsline {subsubsection}{\numberline {4.8.1.1}main()}{128}{subsubsection.4.8.1.1}%
+\contentsline {section}{\numberline {4.9}src/utils.c File Reference}{129}{section.4.9}%
+\contentsline {subsection}{\numberline {4.9.1}Function Documentation}{131}{subsection.4.9.1}%
+\contentsline {subsubsection}{\numberline {4.9.1.1}array\_init()}{131}{subsubsection.4.9.1.1}%
+\contentsline {subsubsection}{\numberline {4.9.1.2}array\_rand()}{133}{subsubsection.4.9.1.2}%
+\contentsline {subsubsection}{\numberline {4.9.1.3}bi\_assign()}{133}{subsubsection.4.9.1.3}%
+\contentsline {subsubsection}{\numberline {4.9.1.4}bi\_delete()}{134}{subsubsection.4.9.1.4}%
+\contentsline {subsubsection}{\numberline {4.9.1.5}bi\_gen\_rand()}{136}{subsubsection.4.9.1.5}%
+\contentsline {subsubsection}{\numberline {4.9.1.6}bi\_new()}{138}{subsubsection.4.9.1.6}%
+\contentsline {subsubsection}{\numberline {4.9.1.7}bi\_refine()}{139}{subsubsection.4.9.1.7}%
+\contentsline {subsubsection}{\numberline {4.9.1.8}bi\_refine\_word()}{140}{subsubsection.4.9.1.8}%
+\contentsline {subsubsection}{\numberline {4.9.1.9}bi\_reset()}{141}{subsubsection.4.9.1.9}%
+\contentsline {subsubsection}{\numberline {4.9.1.10}bi\_set\_by\_array()}{142}{subsubsection.4.9.1.10}%
+\contentsline {subsubsection}{\numberline {4.9.1.11}bi\_set\_by\_string()}{143}{subsubsection.4.9.1.11}%
+\contentsline {subsubsection}{\numberline {4.9.1.12}bi\_set\_one()}{144}{subsubsection.4.9.1.12}%
+\contentsline {subsubsection}{\numberline {4.9.1.13}bi\_set\_zero()}{144}{subsubsection.4.9.1.13}%
+\contentsline {subsubsection}{\numberline {4.9.1.14}bi\_show\_hex()}{145}{subsubsection.4.9.1.14}%
+\contentsline {subsubsection}{\numberline {4.9.1.15}compare()}{146}{subsubsection.4.9.1.15}%
+\contentsline {subsubsection}{\numberline {4.9.1.16}compareABS()}{147}{subsubsection.4.9.1.16}%
+\contentsline {subsubsection}{\numberline {4.9.1.17}get\_bit\_length()}{148}{subsubsection.4.9.1.17}%
+\contentsline {subsubsection}{\numberline {4.9.1.18}get\_jth\_bit()}{149}{subsubsection.4.9.1.18}%
+\contentsline {subsubsection}{\numberline {4.9.1.19}get\_word()}{149}{subsubsection.4.9.1.19}%
+\contentsline {subsubsection}{\numberline {4.9.1.20}is\_zero()}{150}{subsubsection.4.9.1.20}%
+\contentsline {subsubsection}{\numberline {4.9.1.21}left\_shift\_bit()}{151}{subsubsection.4.9.1.21}%
+\contentsline {subsubsection}{\numberline {4.9.1.22}left\_shift\_word()}{152}{subsubsection.4.9.1.22}%
+\contentsline {subsubsection}{\numberline {4.9.1.23}makeEven()}{153}{subsubsection.4.9.1.23}%
+\contentsline {subsubsection}{\numberline {4.9.1.24}match\_wordlen()}{154}{subsubsection.4.9.1.24}%
+\contentsline {subsubsection}{\numberline {4.9.1.25}reduction()}{156}{subsubsection.4.9.1.25}%
+\contentsline {subsubsection}{\numberline {4.9.1.26}right\_shift\_bit()}{157}{subsubsection.4.9.1.26}%
+\contentsline {subsubsection}{\numberline {4.9.1.27}right\_shift\_word()}{157}{subsubsection.4.9.1.27}%
+\contentsline {subsubsection}{\numberline {4.9.1.28}swap\_bigint()}{158}{subsubsection.4.9.1.28}%
+\contentsline {section}{\numberline {4.10}test/test.c File Reference}{159}{section.4.10}%
+\contentsline {subsection}{\numberline {4.10.1}Function Documentation}{160}{subsection.4.10.1}%
+\contentsline {subsubsection}{\numberline {4.10.1.1}measure\_clock\_cycles()}{160}{subsubsection.4.10.1.1}%
+\contentsline {subsubsection}{\numberline {4.10.1.2}measure\_cycles()}{161}{subsubsection.4.10.1.2}%
+\contentsline {subsubsection}{\numberline {4.10.1.3}print\_bi\_hex\_py()}{161}{subsubsection.4.10.1.3}%
+\contentsline {subsubsection}{\numberline {4.10.1.4}test\_barret()}{162}{subsubsection.4.10.1.4}%
+\contentsline {subsubsection}{\numberline {4.10.1.5}test\_basic\_operation()}{164}{subsubsection.4.10.1.5}%
+\contentsline {subsubsection}{\numberline {4.10.1.6}test\_div()}{165}{subsubsection.4.10.1.6}%
+\contentsline {subsubsection}{\numberline {4.10.1.7}test\_exp\_mod()}{166}{subsubsection.4.10.1.7}%
+\contentsline {subsubsection}{\numberline {4.10.1.8}test\_squ()}{167}{subsubsection.4.10.1.8}%

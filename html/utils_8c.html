@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: src/utils.c File Reference</title>
+<title>Big Integer Library: src/utils.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -20,8 +20,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">Big Integer Library
+   &#160;<span id="projectnumber">0.0.1</span>
    </div>
   </td>
  </tr>
@@ -102,7 +104,7 @@ Functions</h2></td></tr>
 <tr class="memitem:a7288a6de8e0ee93e4f9dc542336efa46"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#a7288a6de8e0ee93e4f9dc542336efa46">bi_new</a> (<a class="el" href="config_8h.html#ac2bbd6d630a06a980d9a92ddb9a49928">IN</a> <a class="el" href="structbigint.html">bigint</a> **x, <a class="el" href="config_8h.html#ac2bbd6d630a06a980d9a92ddb9a49928">IN</a> int wordlen)</td></tr>
 <tr class="memdesc:a7288a6de8e0ee93e4f9dc542336efa46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates memory for a new bigint structure.  <a href="utils_8c.html#a7288a6de8e0ee93e4f9dc542336efa46">More...</a><br /></td></tr>
 <tr class="separator:a7288a6de8e0ee93e4f9dc542336efa46"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97cc4eb5eae289b31e5d69edabf69490"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#a97cc4eb5eae289b31e5d69edabf69490">array_init</a> (<a class="el" href="config_8h.html#ac2bbd6d630a06a980d9a92ddb9a49928">IN</a> <a class="el" href="bigint_8h.html#a05d9608d9715ad0ed6a53b795cc133ca">word</a> *array, <a class="el" href="config_8h.html#ac2bbd6d630a06a980d9a92ddb9a49928">IN</a> int length)</td></tr>
+<tr class="memitem:a97cc4eb5eae289b31e5d69edabf69490"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#a97cc4eb5eae289b31e5d69edabf69490">array_init</a> (<a class="el" href="config_8h.html#ac2bbd6d630a06a980d9a92ddb9a49928">IN</a> <a class="el" href="bigint_8h.html#aebc41b6d0c2740d77cf66d33521012e3">word</a> *array, <a class="el" href="config_8h.html#ac2bbd6d630a06a980d9a92ddb9a49928">IN</a> int length)</td></tr>
 <tr class="memdesc:a97cc4eb5eae289b31e5d69edabf69490"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes an array with a given length to a default value (0x00000000).  <a href="utils_8c.html#a97cc4eb5eae289b31e5d69edabf69490">More...</a><br /></td></tr>
 <tr class="separator:a97cc4eb5eae289b31e5d69edabf69490"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a19f86cf37a9d5dc56d630031ba94ab20"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#a19f86cf37a9d5dc56d630031ba94ab20">bi_delete</a> (<a class="el" href="config_8h.html#a62766f3ea8784d1db62df989f8f33d2d">INOUT</a> <a class="el" href="structbigint.html">bigint</a> **x)</td></tr>
@@ -111,7 +113,7 @@ Functions</h2></td></tr>
 <tr class="memitem:a15460b0c08c669bcc8bb28bbc84cc0c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#a15460b0c08c669bcc8bb28bbc84cc0c5">bi_show_hex</a> (<a class="el" href="config_8h.html#ac2bbd6d630a06a980d9a92ddb9a49928">IN</a> <a class="el" href="structbigint.html">bigint</a> *x)</td></tr>
 <tr class="memdesc:a15460b0c08c669bcc8bb28bbc84cc0c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays the hexadecimal representation of a bigint.  <a href="utils_8c.html#a15460b0c08c669bcc8bb28bbc84cc0c5">More...</a><br /></td></tr>
 <tr class="separator:a15460b0c08c669bcc8bb28bbc84cc0c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f0a35a8add356e6f63c1520d8a4869b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#a8f0a35a8add356e6f63c1520d8a4869b">bi_set_by_array</a> (<a class="el" href="config_8h.html#aec78e7a9e90a406a56f859ee456e8eae">OUT</a> <a class="el" href="structbigint.html">bigint</a> **x, <a class="el" href="config_8h.html#ac2bbd6d630a06a980d9a92ddb9a49928">IN</a> int sign, <a class="el" href="config_8h.html#ac2bbd6d630a06a980d9a92ddb9a49928">IN</a> <a class="el" href="bigint_8h.html#a05d9608d9715ad0ed6a53b795cc133ca">word</a> *a, <a class="el" href="config_8h.html#ac2bbd6d630a06a980d9a92ddb9a49928">IN</a> int wordlen)</td></tr>
+<tr class="memitem:a8f0a35a8add356e6f63c1520d8a4869b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#a8f0a35a8add356e6f63c1520d8a4869b">bi_set_by_array</a> (<a class="el" href="config_8h.html#aec78e7a9e90a406a56f859ee456e8eae">OUT</a> <a class="el" href="structbigint.html">bigint</a> **x, <a class="el" href="config_8h.html#ac2bbd6d630a06a980d9a92ddb9a49928">IN</a> int sign, <a class="el" href="config_8h.html#ac2bbd6d630a06a980d9a92ddb9a49928">IN</a> <a class="el" href="bigint_8h.html#aebc41b6d0c2740d77cf66d33521012e3">word</a> *a, <a class="el" href="config_8h.html#ac2bbd6d630a06a980d9a92ddb9a49928">IN</a> int wordlen)</td></tr>
 <tr class="memdesc:a8f0a35a8add356e6f63c1520d8a4869b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a bigint structure using an array of words and sets its sign.  <a href="utils_8c.html#a8f0a35a8add356e6f63c1520d8a4869b">More...</a><br /></td></tr>
 <tr class="separator:a8f0a35a8add356e6f63c1520d8a4869b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c149a5086b2991711d0f4dffd4e7035"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#a0c149a5086b2991711d0f4dffd4e7035">bi_set_by_string</a> (<a class="el" href="config_8h.html#aec78e7a9e90a406a56f859ee456e8eae">OUT</a> <a class="el" href="structbigint.html">bigint</a> **x, <a class="el" href="config_8h.html#ac2bbd6d630a06a980d9a92ddb9a49928">IN</a> int sign, <a class="el" href="config_8h.html#ac2bbd6d630a06a980d9a92ddb9a49928">IN</a> char *str, <a class="el" href="config_8h.html#ac2bbd6d630a06a980d9a92ddb9a49928">IN</a> int base)</td></tr>
@@ -129,7 +131,7 @@ Functions</h2></td></tr>
 <tr class="memitem:a3d2a94f37b629bd9f3cb3afb2e178e19"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#a3d2a94f37b629bd9f3cb3afb2e178e19">bi_gen_rand</a> (<a class="el" href="config_8h.html#aec78e7a9e90a406a56f859ee456e8eae">OUT</a> <a class="el" href="structbigint.html">bigint</a> **x, <a class="el" href="config_8h.html#ac2bbd6d630a06a980d9a92ddb9a49928">IN</a> int sign, <a class="el" href="config_8h.html#ac2bbd6d630a06a980d9a92ddb9a49928">IN</a> int wordlen)</td></tr>
 <tr class="memdesc:a3d2a94f37b629bd9f3cb3afb2e178e19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a random bigint with a specified sign and word length.  <a href="utils_8c.html#a3d2a94f37b629bd9f3cb3afb2e178e19">More...</a><br /></td></tr>
 <tr class="separator:a3d2a94f37b629bd9f3cb3afb2e178e19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1fcdfec5fbe7acd8cee783a05dc84eb8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#a1fcdfec5fbe7acd8cee783a05dc84eb8">array_rand</a> (<a class="el" href="config_8h.html#aec78e7a9e90a406a56f859ee456e8eae">OUT</a> <a class="el" href="bigint_8h.html#a05d9608d9715ad0ed6a53b795cc133ca">word</a> *dst, <a class="el" href="config_8h.html#ac2bbd6d630a06a980d9a92ddb9a49928">IN</a> int wordlen)</td></tr>
+<tr class="memitem:a1fcdfec5fbe7acd8cee783a05dc84eb8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#a1fcdfec5fbe7acd8cee783a05dc84eb8">array_rand</a> (<a class="el" href="config_8h.html#aec78e7a9e90a406a56f859ee456e8eae">OUT</a> <a class="el" href="bigint_8h.html#aebc41b6d0c2740d77cf66d33521012e3">word</a> *dst, <a class="el" href="config_8h.html#ac2bbd6d630a06a980d9a92ddb9a49928">IN</a> int wordlen)</td></tr>
 <tr class="memdesc:a1fcdfec5fbe7acd8cee783a05dc84eb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fills an array with random bytes.  <a href="utils_8c.html#a1fcdfec5fbe7acd8cee783a05dc84eb8">More...</a><br /></td></tr>
 <tr class="separator:a1fcdfec5fbe7acd8cee783a05dc84eb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7387425ebbba576c8892a1fc1e27c621"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#a7387425ebbba576c8892a1fc1e27c621">bi_set_one</a> (<a class="el" href="config_8h.html#aec78e7a9e90a406a56f859ee456e8eae">OUT</a> <a class="el" href="structbigint.html">bigint</a> **x)</td></tr>
@@ -180,7 +182,7 @@ Functions</h2></td></tr>
 <tr class="memitem:a370713de059c620d4e4b512d91d72d61"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#a370713de059c620d4e4b512d91d72d61">bi_reset</a> (<a class="el" href="config_8h.html#a62766f3ea8784d1db62df989f8f33d2d">INOUT</a> <a class="el" href="structbigint.html">bigint</a> *x)</td></tr>
 <tr class="memdesc:a370713de059c620d4e4b512d91d72d61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets all words in a <code>bigint</code> to zero.  <a href="utils_8c.html#a370713de059c620d4e4b512d91d72d61">More...</a><br /></td></tr>
 <tr class="separator:a370713de059c620d4e4b512d91d72d61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34e51dbf790f1aff199d7856d54f5b52"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bigint_8h.html#a05d9608d9715ad0ed6a53b795cc133ca">word</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#a34e51dbf790f1aff199d7856d54f5b52">get_word</a> (<a class="el" href="config_8h.html#ac2bbd6d630a06a980d9a92ddb9a49928">IN</a> <a class="el" href="structbigint.html">bigint</a> *x, <a class="el" href="config_8h.html#ac2bbd6d630a06a980d9a92ddb9a49928">IN</a> int m_th)</td></tr>
+<tr class="memitem:a34e51dbf790f1aff199d7856d54f5b52"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bigint_8h.html#aebc41b6d0c2740d77cf66d33521012e3">word</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#a34e51dbf790f1aff199d7856d54f5b52">get_word</a> (<a class="el" href="config_8h.html#ac2bbd6d630a06a980d9a92ddb9a49928">IN</a> <a class="el" href="structbigint.html">bigint</a> *x, <a class="el" href="config_8h.html#ac2bbd6d630a06a980d9a92ddb9a49928">IN</a> int m_th)</td></tr>
 <tr class="memdesc:a34e51dbf790f1aff199d7856d54f5b52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the value of the m-th word from a <code>bigint</code>.  <a href="utils_8c.html#a34e51dbf790f1aff199d7856d54f5b52">More...</a><br /></td></tr>
 <tr class="separator:a34e51dbf790f1aff199d7856d54f5b52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -194,7 +196,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void array_init </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="config_8h.html#ac2bbd6d630a06a980d9a92ddb9a49928">IN</a> <a class="el" href="bigint_8h.html#a05d9608d9715ad0ed6a53b795cc133ca">word</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#ac2bbd6d630a06a980d9a92ddb9a49928">IN</a> <a class="el" href="bigint_8h.html#aebc41b6d0c2740d77cf66d33521012e3">word</a> *&#160;</td>
           <td class="paramname"><em>array</em>, </td>
         </tr>
         <tr>
@@ -230,42 +232,40 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="utils_8c_a97cc4eb5eae289b31e5d69edabf69490_icgraph.png" border="0" usemap="#utils_8c_a97cc4eb5eae289b31e5d69edabf69490_icgraph" alt=""/></div>
 <map name="utils_8c_a97cc4eb5eae289b31e5d69edabf69490_icgraph" id="utils_8c_a97cc4eb5eae289b31e5d69edabf69490_icgraph">
-<area shape="rect" title="Initializes an array with a given length to a default value (0x00000000)." alt="" coords="1653,2221,1737,2248"/>
-<area shape="rect" href="utils_8c.html#a19f86cf37a9d5dc56d630031ba94ab20" title="Frees the memory occupied by a bigint structure." alt="" coords="1523,2221,1605,2248"/>
-<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="854,1461,983,1488"/>
-<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title=" " alt="" coords="148,1512,241,1539"/>
-<area shape="rect" href="utils_8c.html#a397f34e2a802e6b4f4ce79807be22f32" title="Assigns the value of one bigint to another." alt="" coords="1253,1208,1336,1235"/>
-<area shape="rect" href="arithmetic_8c.html#ac3d9958de09996999309eae72a9c6c37" title="Performs binary long division on big integers." alt="" coords="493,803,589,829"/>
-<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="108,397,281,424"/>
-<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="171,448,218,475"/>
-<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="171,752,218,779"/>
-<area shape="rect" href="test_8c.html#a902e27e16b84669baf0d345646575646" title=" " alt="" coords="350,2779,425,2805"/>
-<area shape="rect" href="arithmetic_8c.html#ae8f41e34a2ba4610a43e43525d220038" title="Performs division of two large integers using an optimized algorithm." alt="" coords="655,1867,788,1893"/>
-<area shape="rect" href="test_8c.html#ab738e5f79117949b42e3f38192147edd" title=" " alt="" coords="637,2525,805,2552"/>
-<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="645,1968,798,1995"/>
-<area shape="rect" href="test_8c.html#a9819f5969402ace9a8362a92e666a859" title=" " alt="" coords="502,2171,581,2197"/>
-<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="329,1829,445,1856"/>
-<area shape="rect" href="arithmetic_8c.html#abe4d38cd1f269c7456d5e135114392cb" title="Squares a single word and stores the result in a bigint structure." alt="" coords="656,904,787,931"/>
-<area shape="rect" href="arithmetic_8c.html#ab6d85f9b8bb24a78b72bcc76b2041eba" title="Squares a bigint and stores the result in another bigint." alt="" coords="509,929,574,956"/>
-<area shape="rect" href="test_8c.html#ae1a3968e7947464bee7714f6d43b7002" title=" " alt="" coords="698,2576,745,2603"/>
-<area shape="rect" href="arithmetic_8c.html#a7b908fbd3e606d234606762740bbb88c" title="Multiplies two binary integers using an improved Textbook Multiplication algorithm." alt="" coords="1032,1309,1183,1336"/>
-<area shape="rect" href="arithmetic_8c.html#ae7363c251c275cd77fc1a5d55ecbfd5a" title="Multiplies two big integers and stores the result in the output." alt="" coords="1056,2069,1159,2096"/>
-<area shape="rect" href="arithmetic_8c.html#a1ab9d3f216cef0f3115fb217f387bec1" title="Subtracts big integer y from big integer x and stores the result in z." alt="" coords="1085,1664,1130,1691"/>
-<area shape="rect" href="utils_8c.html#a7288a6de8e0ee93e4f9dc542336efa46" title="Allocates memory for a new bigint structure." alt="" coords="1407,1487,1475,1513"/>
-<area shape="rect" href="test_8c.html#a9d93a29974cedfb203aa43a6b201d3f3" title=" " alt="" coords="643,2880,800,2907"/>
-<area shape="rect" href="test_8c.html#a6a42e4cc5dc66146294e6e85c7c71ffc" title=" " alt="" coords="664,2931,779,2957"/>
-<area shape="rect" href="test_8c.html#a20359ee58d2afd8e7bb537768b91c2ac" title=" " alt="" coords="683,2981,760,3008"/>
-<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,1829,60,1856"/>
-<area shape="rect" href="arithmetic_8c.html#ade73826c2f3045af8b80cdabaf5098cd" title="Adds two big integers x and y, and stores the result in z." alt="" coords="895,1715,942,1741"/>
-<area shape="rect" href="arithmetic_8c.html#ae5134211b0e18baa99df9d4038d5d089" title="Squares a bigint if it is non&#45;zero and stores the result." alt="" coords="348,701,427,728"/>
-<area shape="rect" href="arithmetic_8c.html#aeaae7ee27becf956a201d182af144832" title="Performs subtraction of B from A and manages borrowing." alt="" coords="853,1512,984,1539"/>
-<area shape="rect" href="arithmetic_8c.html#a8230dd5cc3a2543220a0472619633d2a" title="Performs subtraction of two big integers." alt="" coords="681,1208,761,1235"/>
-<area shape="rect" href="arithmetic_8c.html#af0f3d3a24fcc57fb03d3387ddf1fedd4" title="Adds two big integers and stores the result in a third bigint." alt="" coords="1254,1664,1335,1691"/>
-<area shape="rect" href="utils_8c.html#a3d2a94f37b629bd9f3cb3afb2e178e19" title="Generates a random bigint with a specified sign and word length." alt="" coords="868,2728,969,2755"/>
-<area shape="rect" href="utils_8c.html#a8f0a35a8add356e6f63c1520d8a4869b" title="Initializes a bigint structure using an array of words and sets its sign." alt="" coords="1232,1765,1357,1792"/>
-<area shape="rect" href="utils_8c.html#a0c149a5086b2991711d0f4dffd4e7035" title="Initializes a bigint structure from a character string representing a number." alt="" coords="1231,1816,1359,1843"/>
-<area shape="rect" href="utils_8c.html#a7387425ebbba576c8892a1fc1e27c621" title="Sets a bigint to the value of one." alt="" coords="1061,499,1153,525"/>
-<area shape="rect" href="utils_8c.html#a60481dc2edd27dfcf89351e6c1ff1311" title="Sets a bigint to the value of zero." alt="" coords="1247,1467,1343,1493"/>
+<area shape="rect" title="Initializes an array with a given length to a default value (0x00000000)." alt="" coords="1687,1816,1771,1843"/>
+<area shape="rect" href="utils_8c.html#a19f86cf37a9d5dc56d630031ba94ab20" title="Frees the memory occupied by a bigint structure." alt="" coords="1556,1816,1639,1843"/>
+<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="493,524,623,551"/>
+<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title="Tests Barrett reduction for modular arithmetic." alt="" coords="148,815,241,841"/>
+<area shape="rect" href="utils_8c.html#a397f34e2a802e6b4f4ce79807be22f32" title="Assigns the value of one bigint to another." alt="" coords="1287,1487,1369,1513"/>
+<area shape="rect" href="arithmetic_8c.html#ac3d9958de09996999309eae72a9c6c37" title="Performs binary long division on big integers." alt="" coords="510,815,606,841"/>
+<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="108,764,281,791"/>
+<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="171,1360,218,1387"/>
+<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="171,1841,218,1868"/>
+<area shape="rect" href="test_8c.html#a902e27e16b84669baf0d345646575646" title="Tests division by verifying the quotient and remainder." alt="" coords="350,2513,425,2540"/>
+<area shape="rect" href="arithmetic_8c.html#ae8f41e34a2ba4610a43e43525d220038" title="Performs division of two large integers using an optimized algorithm." alt="" coords="688,1144,821,1171"/>
+<area shape="rect" href="test_8c.html#ab738e5f79117949b42e3f38192147edd" title="Measures and prints the clock cycles for various operations." alt="" coords="671,2424,839,2451"/>
+<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="678,1461,831,1488"/>
+<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="329,1867,445,1893"/>
+<area shape="rect" href="arithmetic_8c.html#abe4d38cd1f269c7456d5e135114392cb" title="Squares a single word and stores the result in a bigint structure." alt="" coords="689,1867,820,1893"/>
+<area shape="rect" href="arithmetic_8c.html#ab6d85f9b8bb24a78b72bcc76b2041eba" title="Squares a bigint and stores the result in another bigint." alt="" coords="525,1867,591,1893"/>
+<area shape="rect" href="arithmetic_8c.html#a7b908fbd3e606d234606762740bbb88c" title="Multiplies two binary integers using an improved Textbook Multiplication algorithm." alt="" coords="1065,1968,1216,1995"/>
+<area shape="rect" href="arithmetic_8c.html#ae7363c251c275cd77fc1a5d55ecbfd5a" title="Multiplies two big integers and stores the result in the output." alt="" coords="1089,1816,1192,1843"/>
+<area shape="rect" href="arithmetic_8c.html#a1ab9d3f216cef0f3115fb217f387bec1" title="Subtracts big integer y from big integer x and stores the result in z." alt="" coords="1118,1005,1163,1032"/>
+<area shape="rect" href="utils_8c.html#a7288a6de8e0ee93e4f9dc542336efa46" title="Allocates memory for a new bigint structure." alt="" coords="1440,1284,1508,1311"/>
+<area shape="rect" href="test_8c.html#a9d93a29974cedfb203aa43a6b201d3f3" title="Tests basic arithmetic operations on randomly generated bigint values." alt="" coords="676,2627,833,2653"/>
+<area shape="rect" href="test_8c.html#a6a42e4cc5dc66146294e6e85c7c71ffc" title="Tests modular exponentiation with randomly generated values." alt="" coords="697,2677,812,2704"/>
+<area shape="rect" href="test_8c.html#a20359ee58d2afd8e7bb537768b91c2ac" title="Tests the squaring operation on randomly generated bigint values." alt="" coords="716,2728,793,2755"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,1791,60,1817"/>
+<area shape="rect" href="arithmetic_8c.html#ade73826c2f3045af8b80cdabaf5098cd" title="Adds two big integers x and y, and stores the result in z." alt="" coords="929,1664,975,1691"/>
+<area shape="rect" href="arithmetic_8c.html#ae5134211b0e18baa99df9d4038d5d089" title="Squares a bigint if it is non&#45;zero and stores the result." alt="" coords="348,1411,427,1437"/>
+<area shape="rect" href="arithmetic_8c.html#aeaae7ee27becf956a201d182af144832" title="Performs subtraction of B from A and manages borrowing." alt="" coords="887,955,1017,981"/>
+<area shape="rect" href="arithmetic_8c.html#a8230dd5cc3a2543220a0472619633d2a" title="Performs subtraction of two big integers." alt="" coords="715,865,795,892"/>
+<area shape="rect" href="arithmetic_8c.html#af0f3d3a24fcc57fb03d3387ddf1fedd4" title="Adds two big integers and stores the result in a third bigint." alt="" coords="1287,1867,1369,1893"/>
+<area shape="rect" href="utils_8c.html#a3d2a94f37b629bd9f3cb3afb2e178e19" title="Generates a random bigint with a specified sign and word length." alt="" coords="901,2525,1003,2552"/>
+<area shape="rect" href="utils_8c.html#a8f0a35a8add356e6f63c1520d8a4869b" title="Initializes a bigint structure using an array of words and sets its sign." alt="" coords="1265,1208,1391,1235"/>
+<area shape="rect" href="utils_8c.html#a0c149a5086b2991711d0f4dffd4e7035" title="Initializes a bigint structure from a character string representing a number." alt="" coords="1264,1259,1392,1285"/>
+<area shape="rect" href="utils_8c.html#a7387425ebbba576c8892a1fc1e27c621" title="Sets a bigint to the value of one." alt="" coords="1095,499,1187,525"/>
+<area shape="rect" href="utils_8c.html#a60481dc2edd27dfcf89351e6c1ff1311" title="Sets a bigint to the value of zero." alt="" coords="1280,727,1376,753"/>
 </map>
 </div>
 
@@ -280,7 +280,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">void array_rand </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="config_8h.html#aec78e7a9e90a406a56f859ee456e8eae">OUT</a> <a class="el" href="bigint_8h.html#a05d9608d9715ad0ed6a53b795cc133ca">word</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#aec78e7a9e90a406a56f859ee456e8eae">OUT</a> <a class="el" href="bigint_8h.html#aebc41b6d0c2740d77cf66d33521012e3">word</a> *&#160;</td>
           <td class="paramname"><em>dst</em>, </td>
         </tr>
         <tr>
@@ -313,17 +313,15 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="utils_8c_a1fcdfec5fbe7acd8cee783a05dc84eb8_icgraph.png" border="0" usemap="#utils_8c_a1fcdfec5fbe7acd8cee783a05dc84eb8_icgraph" alt=""/></div>
 <map name="utils_8c_a1fcdfec5fbe7acd8cee783a05dc84eb8_icgraph" id="utils_8c_a1fcdfec5fbe7acd8cee783a05dc84eb8_icgraph">
-<area shape="rect" title="Fills an array with random bytes." alt="" coords="473,183,565,209"/>
-<area shape="rect" href="utils_8c.html#a3d2a94f37b629bd9f3cb3afb2e178e19" title="Generates a random bigint with a specified sign and word length." alt="" coords="324,183,425,209"/>
-<area shape="rect" href="test_8c.html#a9819f5969402ace9a8362a92e666a859" title=" " alt="" coords="153,5,231,32"/>
-<area shape="rect" href="test_8c.html#ab738e5f79117949b42e3f38192147edd" title=" " alt="" coords="108,56,276,83"/>
-<area shape="rect" href="test_8c.html#ae1a3968e7947464bee7714f6d43b7002" title=" " alt="" coords="169,107,215,133"/>
-<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title=" " alt="" coords="145,157,239,184"/>
-<area shape="rect" href="test_8c.html#a9d93a29974cedfb203aa43a6b201d3f3" title=" " alt="" coords="113,208,271,235"/>
-<area shape="rect" href="test_8c.html#a902e27e16b84669baf0d345646575646" title=" " alt="" coords="155,259,229,285"/>
-<area shape="rect" href="test_8c.html#a6a42e4cc5dc66146294e6e85c7c71ffc" title=" " alt="" coords="135,309,249,336"/>
-<area shape="rect" href="test_8c.html#a20359ee58d2afd8e7bb537768b91c2ac" title=" " alt="" coords="153,360,231,387"/>
-<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,259,60,285"/>
+<area shape="rect" title="Fills an array with random bytes." alt="" coords="473,132,565,159"/>
+<area shape="rect" href="utils_8c.html#a3d2a94f37b629bd9f3cb3afb2e178e19" title="Generates a random bigint with a specified sign and word length." alt="" coords="324,132,425,159"/>
+<area shape="rect" href="test_8c.html#ab738e5f79117949b42e3f38192147edd" title="Measures and prints the clock cycles for various operations." alt="" coords="108,5,276,32"/>
+<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title="Tests Barrett reduction for modular arithmetic." alt="" coords="145,56,239,83"/>
+<area shape="rect" href="test_8c.html#a9d93a29974cedfb203aa43a6b201d3f3" title="Tests basic arithmetic operations on randomly generated bigint values." alt="" coords="113,107,271,133"/>
+<area shape="rect" href="test_8c.html#a902e27e16b84669baf0d345646575646" title="Tests division by verifying the quotient and remainder." alt="" coords="155,157,229,184"/>
+<area shape="rect" href="test_8c.html#a6a42e4cc5dc66146294e6e85c7c71ffc" title="Tests modular exponentiation with randomly generated values." alt="" coords="135,208,249,235"/>
+<area shape="rect" href="test_8c.html#a20359ee58d2afd8e7bb537768b91c2ac" title="Tests the squaring operation on randomly generated bigint values." alt="" coords="153,259,231,285"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,157,60,184"/>
 </map>
 </div>
 
@@ -382,30 +380,28 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="utils_8c_a397f34e2a802e6b4f4ce79807be22f32_icgraph.png" border="0" usemap="#utils_8c_a397f34e2a802e6b4f4ce79807be22f32_icgraph" alt=""/></div>
 <map name="utils_8c_a397f34e2a802e6b4f4ce79807be22f32_icgraph" id="utils_8c_a397f34e2a802e6b4f4ce79807be22f32_icgraph">
-<area shape="rect" title="Assigns the value of one bigint to another." alt="" coords="1128,549,1211,576"/>
-<area shape="rect" href="arithmetic_8c.html#ade73826c2f3045af8b80cdabaf5098cd" title="Adds two big integers x and y, and stores the result in z." alt="" coords="888,1031,935,1057"/>
-<area shape="rect" href="arithmetic_8c.html#ac3d9958de09996999309eae72a9c6c37" title="Performs binary long division on big integers." alt="" coords="339,397,435,424"/>
-<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="108,372,281,399"/>
-<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="171,524,218,551"/>
-<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="171,321,218,348"/>
-<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title=" " alt="" coords="148,271,241,297"/>
-<area shape="rect" href="arithmetic_8c.html#ae8f41e34a2ba4610a43e43525d220038" title="Performs division of two large integers using an optimized algorithm." alt="" coords="637,701,771,728"/>
-<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="627,853,781,880"/>
-<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="329,1005,445,1032"/>
-<area shape="rect" href="arithmetic_8c.html#abe4d38cd1f269c7456d5e135114392cb" title="Squares a single word and stores the result in a bigint structure." alt="" coords="639,955,769,981"/>
-<area shape="rect" href="arithmetic_8c.html#ab6d85f9b8bb24a78b72bcc76b2041eba" title="Squares a bigint and stores the result in another bigint." alt="" coords="500,1005,565,1032"/>
-<area shape="rect" href="arithmetic_8c.html#ae5134211b0e18baa99df9d4038d5d089" title="Squares a bigint if it is non&#45;zero and stores the result." alt="" coords="348,448,427,475"/>
-<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="639,195,769,221"/>
-<area shape="rect" href="arithmetic_8c.html#a7b908fbd3e606d234606762740bbb88c" title="Multiplies two binary integers using an improved Textbook Multiplication algorithm." alt="" coords="836,359,987,385"/>
-<area shape="rect" href="arithmetic_8c.html#ae7363c251c275cd77fc1a5d55ecbfd5a" title="Multiplies two big integers and stores the result in the output." alt="" coords="860,575,963,601"/>
-<area shape="rect" href="arithmetic_8c.html#a1ab9d3f216cef0f3115fb217f387bec1" title="Subtracts big integer y from big integer x and stores the result in z." alt="" coords="1035,752,1080,779"/>
-<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,499,60,525"/>
-<area shape="rect" href="test_8c.html#ab738e5f79117949b42e3f38192147edd" title=" " alt="" coords="620,1107,788,1133"/>
-<area shape="rect" href="test_8c.html#ae1a3968e7947464bee7714f6d43b7002" title=" " alt="" coords="681,1005,727,1032"/>
-<area shape="rect" href="test_8c.html#a902e27e16b84669baf0d345646575646" title=" " alt="" coords="157,423,232,449"/>
-<area shape="rect" href="test_8c.html#a9819f5969402ace9a8362a92e666a859" title=" " alt="" coords="493,600,572,627"/>
-<area shape="rect" href="arithmetic_8c.html#aeaae7ee27becf956a201d182af144832" title="Performs subtraction of B from A and manages borrowing." alt="" coords="846,727,977,753"/>
-<area shape="rect" href="arithmetic_8c.html#a8230dd5cc3a2543220a0472619633d2a" title="Performs subtraction of two big integers." alt="" coords="664,752,744,779"/>
+<area shape="rect" title="Assigns the value of one bigint to another." alt="" coords="1196,752,1279,779"/>
+<area shape="rect" href="arithmetic_8c.html#ade73826c2f3045af8b80cdabaf5098cd" title="Adds two big integers x and y, and stores the result in z." alt="" coords="966,651,1013,677"/>
+<area shape="rect" href="arithmetic_8c.html#ac3d9958de09996999309eae72a9c6c37" title="Performs binary long division on big integers." alt="" coords="346,625,442,652"/>
+<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="108,625,281,652"/>
+<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="171,777,218,804"/>
+<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="171,727,218,753"/>
+<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title="Tests Barrett reduction for modular arithmetic." alt="" coords="148,524,241,551"/>
+<area shape="rect" href="arithmetic_8c.html#ae8f41e34a2ba4610a43e43525d220038" title="Performs division of two large integers using an optimized algorithm." alt="" coords="725,828,859,855"/>
+<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="507,879,660,905"/>
+<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="329,347,459,373"/>
+<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="336,676,452,703"/>
+<area shape="rect" href="arithmetic_8c.html#abe4d38cd1f269c7456d5e135114392cb" title="Squares a single word and stores the result in a bigint structure." alt="" coords="727,473,857,500"/>
+<area shape="rect" href="arithmetic_8c.html#ab6d85f9b8bb24a78b72bcc76b2041eba" title="Squares a bigint and stores the result in another bigint." alt="" coords="551,575,616,601"/>
+<area shape="rect" href="arithmetic_8c.html#ae5134211b0e18baa99df9d4038d5d089" title="Squares a bigint if it is non&#45;zero and stores the result." alt="" coords="355,575,433,601"/>
+<area shape="rect" href="arithmetic_8c.html#a7b908fbd3e606d234606762740bbb88c" title="Multiplies two binary integers using an improved Textbook Multiplication algorithm." alt="" coords="717,1132,867,1159"/>
+<area shape="rect" href="arithmetic_8c.html#ae7363c251c275cd77fc1a5d55ecbfd5a" title="Multiplies two big integers and stores the result in the output." alt="" coords="938,1081,1041,1108"/>
+<area shape="rect" href="arithmetic_8c.html#a1ab9d3f216cef0f3115fb217f387bec1" title="Subtracts big integer y from big integer x and stores the result in z." alt="" coords="1103,448,1148,475"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,752,60,779"/>
+<area shape="rect" href="test_8c.html#ab738e5f79117949b42e3f38192147edd" title="Measures and prints the clock cycles for various operations." alt="" coords="708,625,876,652"/>
+<area shape="rect" href="test_8c.html#a902e27e16b84669baf0d345646575646" title="Tests division by verifying the quotient and remainder." alt="" coords="157,676,232,703"/>
+<area shape="rect" href="arithmetic_8c.html#aeaae7ee27becf956a201d182af144832" title="Performs subtraction of B from A and manages borrowing." alt="" coords="924,372,1055,399"/>
+<area shape="rect" href="arithmetic_8c.html#a8230dd5cc3a2543220a0472619633d2a" title="Performs subtraction of two big integers." alt="" coords="752,372,832,399"/>
 </map>
 </div>
 
@@ -452,41 +448,39 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="utils_8c_a19f86cf37a9d5dc56d630031ba94ab20_icgraph.png" border="0" usemap="#utils_8c_a19f86cf37a9d5dc56d630031ba94ab20_icgraph" alt=""/></div>
 <map name="utils_8c_a19f86cf37a9d5dc56d630031ba94ab20_icgraph" id="utils_8c_a19f86cf37a9d5dc56d630031ba94ab20_icgraph">
-<area shape="rect" title="Frees the memory occupied by a bigint structure." alt="" coords="1523,2221,1605,2248"/>
-<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="854,1461,983,1488"/>
-<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title=" " alt="" coords="148,1512,241,1539"/>
-<area shape="rect" href="utils_8c.html#a397f34e2a802e6b4f4ce79807be22f32" title="Assigns the value of one bigint to another." alt="" coords="1253,1208,1336,1235"/>
-<area shape="rect" href="arithmetic_8c.html#ac3d9958de09996999309eae72a9c6c37" title="Performs binary long division on big integers." alt="" coords="493,803,589,829"/>
-<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="108,397,281,424"/>
-<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="171,448,218,475"/>
-<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="171,752,218,779"/>
-<area shape="rect" href="test_8c.html#a902e27e16b84669baf0d345646575646" title=" " alt="" coords="350,2779,425,2805"/>
-<area shape="rect" href="arithmetic_8c.html#ae8f41e34a2ba4610a43e43525d220038" title="Performs division of two large integers using an optimized algorithm." alt="" coords="655,1867,788,1893"/>
-<area shape="rect" href="test_8c.html#ab738e5f79117949b42e3f38192147edd" title=" " alt="" coords="637,2525,805,2552"/>
-<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="645,1968,798,1995"/>
-<area shape="rect" href="test_8c.html#a9819f5969402ace9a8362a92e666a859" title=" " alt="" coords="502,2171,581,2197"/>
-<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="329,1829,445,1856"/>
-<area shape="rect" href="arithmetic_8c.html#abe4d38cd1f269c7456d5e135114392cb" title="Squares a single word and stores the result in a bigint structure." alt="" coords="656,904,787,931"/>
-<area shape="rect" href="arithmetic_8c.html#ab6d85f9b8bb24a78b72bcc76b2041eba" title="Squares a bigint and stores the result in another bigint." alt="" coords="509,929,574,956"/>
-<area shape="rect" href="test_8c.html#ae1a3968e7947464bee7714f6d43b7002" title=" " alt="" coords="698,2576,745,2603"/>
-<area shape="rect" href="arithmetic_8c.html#a7b908fbd3e606d234606762740bbb88c" title="Multiplies two binary integers using an improved Textbook Multiplication algorithm." alt="" coords="1032,1309,1183,1336"/>
-<area shape="rect" href="arithmetic_8c.html#ae7363c251c275cd77fc1a5d55ecbfd5a" title="Multiplies two big integers and stores the result in the output." alt="" coords="1056,2069,1159,2096"/>
-<area shape="rect" href="arithmetic_8c.html#a1ab9d3f216cef0f3115fb217f387bec1" title="Subtracts big integer y from big integer x and stores the result in z." alt="" coords="1085,1664,1130,1691"/>
-<area shape="rect" href="utils_8c.html#a7288a6de8e0ee93e4f9dc542336efa46" title="Allocates memory for a new bigint structure." alt="" coords="1407,1487,1475,1513"/>
-<area shape="rect" href="test_8c.html#a9d93a29974cedfb203aa43a6b201d3f3" title=" " alt="" coords="643,2880,800,2907"/>
-<area shape="rect" href="test_8c.html#a6a42e4cc5dc66146294e6e85c7c71ffc" title=" " alt="" coords="664,2931,779,2957"/>
-<area shape="rect" href="test_8c.html#a20359ee58d2afd8e7bb537768b91c2ac" title=" " alt="" coords="683,2981,760,3008"/>
-<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,1829,60,1856"/>
-<area shape="rect" href="arithmetic_8c.html#ade73826c2f3045af8b80cdabaf5098cd" title="Adds two big integers x and y, and stores the result in z." alt="" coords="895,1715,942,1741"/>
-<area shape="rect" href="arithmetic_8c.html#ae5134211b0e18baa99df9d4038d5d089" title="Squares a bigint if it is non&#45;zero and stores the result." alt="" coords="348,701,427,728"/>
-<area shape="rect" href="arithmetic_8c.html#aeaae7ee27becf956a201d182af144832" title="Performs subtraction of B from A and manages borrowing." alt="" coords="853,1512,984,1539"/>
-<area shape="rect" href="arithmetic_8c.html#a8230dd5cc3a2543220a0472619633d2a" title="Performs subtraction of two big integers." alt="" coords="681,1208,761,1235"/>
-<area shape="rect" href="arithmetic_8c.html#af0f3d3a24fcc57fb03d3387ddf1fedd4" title="Adds two big integers and stores the result in a third bigint." alt="" coords="1254,1664,1335,1691"/>
-<area shape="rect" href="utils_8c.html#a3d2a94f37b629bd9f3cb3afb2e178e19" title="Generates a random bigint with a specified sign and word length." alt="" coords="868,2728,969,2755"/>
-<area shape="rect" href="utils_8c.html#a8f0a35a8add356e6f63c1520d8a4869b" title="Initializes a bigint structure using an array of words and sets its sign." alt="" coords="1232,1765,1357,1792"/>
-<area shape="rect" href="utils_8c.html#a0c149a5086b2991711d0f4dffd4e7035" title="Initializes a bigint structure from a character string representing a number." alt="" coords="1231,1816,1359,1843"/>
-<area shape="rect" href="utils_8c.html#a7387425ebbba576c8892a1fc1e27c621" title="Sets a bigint to the value of one." alt="" coords="1061,499,1153,525"/>
-<area shape="rect" href="utils_8c.html#a60481dc2edd27dfcf89351e6c1ff1311" title="Sets a bigint to the value of zero." alt="" coords="1247,1467,1343,1493"/>
+<area shape="rect" title="Frees the memory occupied by a bigint structure." alt="" coords="1556,1816,1639,1843"/>
+<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="493,524,623,551"/>
+<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title="Tests Barrett reduction for modular arithmetic." alt="" coords="148,815,241,841"/>
+<area shape="rect" href="utils_8c.html#a397f34e2a802e6b4f4ce79807be22f32" title="Assigns the value of one bigint to another." alt="" coords="1287,1487,1369,1513"/>
+<area shape="rect" href="arithmetic_8c.html#ac3d9958de09996999309eae72a9c6c37" title="Performs binary long division on big integers." alt="" coords="510,815,606,841"/>
+<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="108,764,281,791"/>
+<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="171,1360,218,1387"/>
+<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="171,1841,218,1868"/>
+<area shape="rect" href="test_8c.html#a902e27e16b84669baf0d345646575646" title="Tests division by verifying the quotient and remainder." alt="" coords="350,2513,425,2540"/>
+<area shape="rect" href="arithmetic_8c.html#ae8f41e34a2ba4610a43e43525d220038" title="Performs division of two large integers using an optimized algorithm." alt="" coords="688,1144,821,1171"/>
+<area shape="rect" href="test_8c.html#ab738e5f79117949b42e3f38192147edd" title="Measures and prints the clock cycles for various operations." alt="" coords="671,2424,839,2451"/>
+<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="678,1461,831,1488"/>
+<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="329,1867,445,1893"/>
+<area shape="rect" href="arithmetic_8c.html#abe4d38cd1f269c7456d5e135114392cb" title="Squares a single word and stores the result in a bigint structure." alt="" coords="689,1867,820,1893"/>
+<area shape="rect" href="arithmetic_8c.html#ab6d85f9b8bb24a78b72bcc76b2041eba" title="Squares a bigint and stores the result in another bigint." alt="" coords="525,1867,591,1893"/>
+<area shape="rect" href="arithmetic_8c.html#a7b908fbd3e606d234606762740bbb88c" title="Multiplies two binary integers using an improved Textbook Multiplication algorithm." alt="" coords="1065,1968,1216,1995"/>
+<area shape="rect" href="arithmetic_8c.html#ae7363c251c275cd77fc1a5d55ecbfd5a" title="Multiplies two big integers and stores the result in the output." alt="" coords="1089,1816,1192,1843"/>
+<area shape="rect" href="arithmetic_8c.html#a1ab9d3f216cef0f3115fb217f387bec1" title="Subtracts big integer y from big integer x and stores the result in z." alt="" coords="1118,1005,1163,1032"/>
+<area shape="rect" href="utils_8c.html#a7288a6de8e0ee93e4f9dc542336efa46" title="Allocates memory for a new bigint structure." alt="" coords="1440,1284,1508,1311"/>
+<area shape="rect" href="test_8c.html#a9d93a29974cedfb203aa43a6b201d3f3" title="Tests basic arithmetic operations on randomly generated bigint values." alt="" coords="676,2627,833,2653"/>
+<area shape="rect" href="test_8c.html#a6a42e4cc5dc66146294e6e85c7c71ffc" title="Tests modular exponentiation with randomly generated values." alt="" coords="697,2677,812,2704"/>
+<area shape="rect" href="test_8c.html#a20359ee58d2afd8e7bb537768b91c2ac" title="Tests the squaring operation on randomly generated bigint values." alt="" coords="716,2728,793,2755"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,1791,60,1817"/>
+<area shape="rect" href="arithmetic_8c.html#ade73826c2f3045af8b80cdabaf5098cd" title="Adds two big integers x and y, and stores the result in z." alt="" coords="929,1664,975,1691"/>
+<area shape="rect" href="arithmetic_8c.html#ae5134211b0e18baa99df9d4038d5d089" title="Squares a bigint if it is non&#45;zero and stores the result." alt="" coords="348,1411,427,1437"/>
+<area shape="rect" href="arithmetic_8c.html#aeaae7ee27becf956a201d182af144832" title="Performs subtraction of B from A and manages borrowing." alt="" coords="887,955,1017,981"/>
+<area shape="rect" href="arithmetic_8c.html#a8230dd5cc3a2543220a0472619633d2a" title="Performs subtraction of two big integers." alt="" coords="715,865,795,892"/>
+<area shape="rect" href="arithmetic_8c.html#af0f3d3a24fcc57fb03d3387ddf1fedd4" title="Adds two big integers and stores the result in a third bigint." alt="" coords="1287,1867,1369,1893"/>
+<area shape="rect" href="utils_8c.html#a3d2a94f37b629bd9f3cb3afb2e178e19" title="Generates a random bigint with a specified sign and word length." alt="" coords="901,2525,1003,2552"/>
+<area shape="rect" href="utils_8c.html#a8f0a35a8add356e6f63c1520d8a4869b" title="Initializes a bigint structure using an array of words and sets its sign." alt="" coords="1265,1208,1391,1235"/>
+<area shape="rect" href="utils_8c.html#a0c149a5086b2991711d0f4dffd4e7035" title="Initializes a bigint structure from a character string representing a number." alt="" coords="1264,1259,1392,1285"/>
+<area shape="rect" href="utils_8c.html#a7387425ebbba576c8892a1fc1e27c621" title="Sets a bigint to the value of one." alt="" coords="1095,499,1187,525"/>
+<area shape="rect" href="utils_8c.html#a60481dc2edd27dfcf89351e6c1ff1311" title="Sets a bigint to the value of zero." alt="" coords="1280,727,1376,753"/>
 </map>
 </div>
 
@@ -554,16 +548,14 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="utils_8c_a3d2a94f37b629bd9f3cb3afb2e178e19_icgraph.png" border="0" usemap="#utils_8c_a3d2a94f37b629bd9f3cb3afb2e178e19_icgraph" alt=""/></div>
 <map name="utils_8c_a3d2a94f37b629bd9f3cb3afb2e178e19_icgraph" id="utils_8c_a3d2a94f37b629bd9f3cb3afb2e178e19_icgraph">
-<area shape="rect" title="Generates a random bigint with a specified sign and word length." alt="" coords="324,183,425,209"/>
-<area shape="rect" href="test_8c.html#a9819f5969402ace9a8362a92e666a859" title=" " alt="" coords="153,5,231,32"/>
-<area shape="rect" href="test_8c.html#ab738e5f79117949b42e3f38192147edd" title=" " alt="" coords="108,56,276,83"/>
-<area shape="rect" href="test_8c.html#ae1a3968e7947464bee7714f6d43b7002" title=" " alt="" coords="169,107,215,133"/>
-<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title=" " alt="" coords="145,157,239,184"/>
-<area shape="rect" href="test_8c.html#a9d93a29974cedfb203aa43a6b201d3f3" title=" " alt="" coords="113,208,271,235"/>
-<area shape="rect" href="test_8c.html#a902e27e16b84669baf0d345646575646" title=" " alt="" coords="155,259,229,285"/>
-<area shape="rect" href="test_8c.html#a6a42e4cc5dc66146294e6e85c7c71ffc" title=" " alt="" coords="135,309,249,336"/>
-<area shape="rect" href="test_8c.html#a20359ee58d2afd8e7bb537768b91c2ac" title=" " alt="" coords="153,360,231,387"/>
-<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,259,60,285"/>
+<area shape="rect" title="Generates a random bigint with a specified sign and word length." alt="" coords="324,132,425,159"/>
+<area shape="rect" href="test_8c.html#ab738e5f79117949b42e3f38192147edd" title="Measures and prints the clock cycles for various operations." alt="" coords="108,5,276,32"/>
+<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title="Tests Barrett reduction for modular arithmetic." alt="" coords="145,56,239,83"/>
+<area shape="rect" href="test_8c.html#a9d93a29974cedfb203aa43a6b201d3f3" title="Tests basic arithmetic operations on randomly generated bigint values." alt="" coords="113,107,271,133"/>
+<area shape="rect" href="test_8c.html#a902e27e16b84669baf0d345646575646" title="Tests division by verifying the quotient and remainder." alt="" coords="155,157,229,184"/>
+<area shape="rect" href="test_8c.html#a6a42e4cc5dc66146294e6e85c7c71ffc" title="Tests modular exponentiation with randomly generated values." alt="" coords="135,208,249,235"/>
+<area shape="rect" href="test_8c.html#a20359ee58d2afd8e7bb537768b91c2ac" title="Tests the squaring operation on randomly generated bigint values." alt="" coords="153,259,231,285"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,157,60,184"/>
 </map>
 </div>
 
@@ -622,40 +614,38 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="utils_8c_a7288a6de8e0ee93e4f9dc542336efa46_icgraph.png" border="0" usemap="#utils_8c_a7288a6de8e0ee93e4f9dc542336efa46_icgraph" alt=""/></div>
 <map name="utils_8c_a7288a6de8e0ee93e4f9dc542336efa46_icgraph" id="utils_8c_a7288a6de8e0ee93e4f9dc542336efa46_icgraph">
-<area shape="rect" title="Allocates memory for a new bigint structure." alt="" coords="1477,1284,1545,1311"/>
-<area shape="rect" href="arithmetic_8c.html#af0f3d3a24fcc57fb03d3387ddf1fedd4" title="Adds two big integers and stores the result in a third bigint." alt="" coords="1325,879,1406,905"/>
-<area shape="rect" href="arithmetic_8c.html#ac3d9958de09996999309eae72a9c6c37" title="Performs binary long division on big integers." alt="" coords="571,1512,667,1539"/>
-<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="108,1436,281,1463"/>
-<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="171,955,218,981"/>
-<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="171,1233,218,1260"/>
-<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title=" " alt="" coords="148,1613,241,1640"/>
-<area shape="rect" href="arithmetic_8c.html#ae8f41e34a2ba4610a43e43525d220038" title="Performs division of two large integers using an optimized algorithm." alt="" coords="761,448,894,475"/>
-<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="751,803,904,829"/>
-<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="350,688,466,715"/>
-<area shape="rect" href="arithmetic_8c.html#abe4d38cd1f269c7456d5e135114392cb" title="Squares a single word and stores the result in a bigint structure." alt="" coords="762,651,893,677"/>
-<area shape="rect" href="arithmetic_8c.html#ab6d85f9b8bb24a78b72bcc76b2041eba" title="Squares a bigint and stores the result in another bigint." alt="" coords="586,651,651,677"/>
-<area shape="rect" href="arithmetic_8c.html#a7b908fbd3e606d234606762740bbb88c" title="Multiplies two binary integers using an improved Textbook Multiplication algorithm." alt="" coords="952,1107,1103,1133"/>
-<area shape="rect" href="arithmetic_8c.html#ae7363c251c275cd77fc1a5d55ecbfd5a" title="Multiplies two big integers and stores the result in the output." alt="" coords="1151,347,1253,373"/>
-<area shape="rect" href="arithmetic_8c.html#a1ab9d3f216cef0f3115fb217f387bec1" title="Subtracts big integer y from big integer x and stores the result in z." alt="" coords="1179,1056,1225,1083"/>
-<area shape="rect" href="arithmetic_8c.html#a8230dd5cc3a2543220a0472619633d2a" title="Performs subtraction of two big integers." alt="" coords="787,1411,867,1437"/>
-<area shape="rect" href="utils_8c.html#a397f34e2a802e6b4f4ce79807be22f32" title="Assigns the value of one bigint to another." alt="" coords="1324,955,1407,981"/>
-<area shape="rect" href="utils_8c.html#a3d2a94f37b629bd9f3cb3afb2e178e19" title="Generates a random bigint with a specified sign and word length." alt="" coords="777,1968,878,1995"/>
-<area shape="rect" href="utils_8c.html#a8f0a35a8add356e6f63c1520d8a4869b" title="Initializes a bigint structure using an array of words and sets its sign." alt="" coords="1303,1816,1428,1843"/>
-<area shape="rect" href="utils_8c.html#a0c149a5086b2991711d0f4dffd4e7035" title="Initializes a bigint structure from a character string representing a number." alt="" coords="1301,1867,1429,1893"/>
-<area shape="rect" href="utils_8c.html#a7387425ebbba576c8892a1fc1e27c621" title="Sets a bigint to the value of one." alt="" coords="1156,1765,1248,1792"/>
-<area shape="rect" href="utils_8c.html#a60481dc2edd27dfcf89351e6c1ff1311" title="Sets a bigint to the value of zero." alt="" coords="1317,1576,1413,1603"/>
-<area shape="rect" href="arithmetic_8c.html#ade73826c2f3045af8b80cdabaf5098cd" title="Adds two big integers x and y, and stores the result in z." alt="" coords="1004,904,1051,931"/>
-<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,1157,60,1184"/>
-<area shape="rect" href="test_8c.html#ab738e5f79117949b42e3f38192147edd" title=" " alt="" coords="535,1715,703,1741"/>
-<area shape="rect" href="test_8c.html#ae1a3968e7947464bee7714f6d43b7002" title=" " alt="" coords="595,1563,642,1589"/>
-<area shape="rect" href="test_8c.html#a902e27e16b84669baf0d345646575646" title=" " alt="" coords="371,1917,445,1944"/>
-<area shape="rect" href="test_8c.html#a9819f5969402ace9a8362a92e666a859" title=" " alt="" coords="579,892,658,919"/>
-<area shape="rect" href="arithmetic_8c.html#ae5134211b0e18baa99df9d4038d5d089" title="Squares a bigint if it is non&#45;zero and stores the result." alt="" coords="369,1157,447,1184"/>
-<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="763,1664,892,1691"/>
-<area shape="rect" href="arithmetic_8c.html#aeaae7ee27becf956a201d182af144832" title="Performs subtraction of B from A and manages borrowing." alt="" coords="962,1208,1093,1235"/>
-<area shape="rect" href="test_8c.html#a9d93a29974cedfb203aa43a6b201d3f3" title=" " alt="" coords="329,2019,487,2045"/>
-<area shape="rect" href="test_8c.html#a6a42e4cc5dc66146294e6e85c7c71ffc" title=" " alt="" coords="351,2069,465,2096"/>
-<area shape="rect" href="test_8c.html#a20359ee58d2afd8e7bb537768b91c2ac" title=" " alt="" coords="156,1841,233,1868"/>
+<area shape="rect" title="Allocates memory for a new bigint structure." alt="" coords="1425,1310,1493,1336"/>
+<area shape="rect" href="arithmetic_8c.html#af0f3d3a24fcc57fb03d3387ddf1fedd4" title="Adds two big integers and stores the result in a third bigint." alt="" coords="1273,416,1354,443"/>
+<area shape="rect" href="arithmetic_8c.html#ac3d9958de09996999309eae72a9c6c37" title="Performs binary long division on big integers." alt="" coords="510,1512,606,1539"/>
+<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="108,854,281,880"/>
+<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="171,1208,218,1235"/>
+<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="171,955,218,982"/>
+<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title="Tests Barrett reduction for modular arithmetic." alt="" coords="148,1360,241,1387"/>
+<area shape="rect" href="arithmetic_8c.html#ae8f41e34a2ba4610a43e43525d220038" title="Performs division of two large integers using an optimized algorithm." alt="" coords="681,663,814,690"/>
+<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="671,1006,824,1032"/>
+<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="329,638,445,664"/>
+<area shape="rect" href="arithmetic_8c.html#abe4d38cd1f269c7456d5e135114392cb" title="Squares a single word and stores the result in a bigint structure." alt="" coords="682,612,813,639"/>
+<area shape="rect" href="arithmetic_8c.html#ab6d85f9b8bb24a78b72bcc76b2041eba" title="Squares a bigint and stores the result in another bigint." alt="" coords="525,612,591,639"/>
+<area shape="rect" href="arithmetic_8c.html#a7b908fbd3e606d234606762740bbb88c" title="Multiplies two binary integers using an improved Textbook Multiplication algorithm." alt="" coords="1051,398,1201,424"/>
+<area shape="rect" href="arithmetic_8c.html#ae7363c251c275cd77fc1a5d55ecbfd5a" title="Multiplies two big integers and stores the result in the output." alt="" coords="1075,347,1177,374"/>
+<area shape="rect" href="arithmetic_8c.html#a1ab9d3f216cef0f3115fb217f387bec1" title="Subtracts big integer y from big integer x and stores the result in z." alt="" coords="1103,1360,1149,1387"/>
+<area shape="rect" href="arithmetic_8c.html#a8230dd5cc3a2543220a0472619633d2a" title="Performs subtraction of two big integers." alt="" coords="707,1512,787,1539"/>
+<area shape="rect" href="utils_8c.html#a397f34e2a802e6b4f4ce79807be22f32" title="Assigns the value of one bigint to another." alt="" coords="1272,904,1355,931"/>
+<area shape="rect" href="utils_8c.html#a3d2a94f37b629bd9f3cb3afb2e178e19" title="Generates a random bigint with a specified sign and word length." alt="" coords="337,1752,438,1779"/>
+<area shape="rect" href="utils_8c.html#a8f0a35a8add356e6f63c1520d8a4869b" title="Initializes a bigint structure using an array of words and sets its sign." alt="" coords="1251,1842,1376,1868"/>
+<area shape="rect" href="utils_8c.html#a0c149a5086b2991711d0f4dffd4e7035" title="Initializes a bigint structure from a character string representing a number." alt="" coords="1249,1892,1377,1919"/>
+<area shape="rect" href="utils_8c.html#a7387425ebbba576c8892a1fc1e27c621" title="Sets a bigint to the value of one." alt="" coords="891,1715,983,1742"/>
+<area shape="rect" href="utils_8c.html#a60481dc2edd27dfcf89351e6c1ff1311" title="Sets a bigint to the value of zero." alt="" coords="1265,1614,1361,1640"/>
+<area shape="rect" href="arithmetic_8c.html#ade73826c2f3045af8b80cdabaf5098cd" title="Adds two big integers x and y, and stores the result in z." alt="" coords="914,803,961,830"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,1107,60,1134"/>
+<area shape="rect" href="test_8c.html#ab738e5f79117949b42e3f38192147edd" title="Measures and prints the clock cycles for various operations." alt="" coords="111,1411,279,1438"/>
+<area shape="rect" href="test_8c.html#a902e27e16b84669baf0d345646575646" title="Tests division by verifying the quotient and remainder." alt="" coords="157,1600,232,1627"/>
+<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="493,1310,623,1336"/>
+<area shape="rect" href="arithmetic_8c.html#ae5134211b0e18baa99df9d4038d5d089" title="Squares a bigint if it is non&#45;zero and stores the result." alt="" coords="348,1056,427,1083"/>
+<area shape="rect" href="arithmetic_8c.html#aeaae7ee27becf956a201d182af144832" title="Performs subtraction of B from A and manages borrowing." alt="" coords="872,1512,1003,1539"/>
+<area shape="rect" href="test_8c.html#a9d93a29974cedfb203aa43a6b201d3f3" title="Tests basic arithmetic operations on randomly generated bigint values." alt="" coords="116,1752,273,1779"/>
+<area shape="rect" href="test_8c.html#a6a42e4cc5dc66146294e6e85c7c71ffc" title="Tests modular exponentiation with randomly generated values." alt="" coords="137,1651,252,1678"/>
+<area shape="rect" href="test_8c.html#a20359ee58d2afd8e7bb537768b91c2ac" title="Tests the squaring operation on randomly generated bigint values." alt="" coords="156,1702,233,1728"/>
 </map>
 </div>
 
@@ -692,36 +682,34 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="utils_8c_acdbd53c3ec22f7b78154f439fba9ea79_icgraph.png" border="0" usemap="#utils_8c_acdbd53c3ec22f7b78154f439fba9ea79_icgraph" alt=""/></div>
 <map name="utils_8c_acdbd53c3ec22f7b78154f439fba9ea79_icgraph" id="utils_8c_acdbd53c3ec22f7b78154f439fba9ea79_icgraph">
-<area shape="rect" title="Refines a bigint by removing leading zeros and adjusting its length." alt="" coords="1376,856,1455,883"/>
-<area shape="rect" href="arithmetic_8c.html#af0f3d3a24fcc57fb03d3387ddf1fedd4" title="Adds two big integers and stores the result in a third bigint." alt="" coords="1232,527,1313,553"/>
-<area shape="rect" href="arithmetic_8c.html#ac3d9958de09996999309eae72a9c6c37" title="Performs binary long division on big integers." alt="" coords="365,831,461,857"/>
-<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="108,729,281,756"/>
-<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="171,577,218,604"/>
-<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="171,679,218,705"/>
-<area shape="rect" href="arithmetic_8c.html#ae8f41e34a2ba4610a43e43525d220038" title="Performs division of two large integers using an optimized algorithm." alt="" coords="755,805,889,832"/>
-<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="545,400,699,427"/>
-<area shape="rect" href="arithmetic_8c.html#a7b908fbd3e606d234606762740bbb88c" title="Multiplies two binary integers using an improved Textbook Multiplication algorithm." alt="" coords="747,603,897,629"/>
-<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="557,856,687,883"/>
-<area shape="rect" href="arithmetic_8c.html#a1ab9d3f216cef0f3115fb217f387bec1" title="Subtracts big integer y from big integer x and stores the result in z." alt="" coords="1124,704,1169,731"/>
-<area shape="rect" href="arithmetic_8c.html#a8230dd5cc3a2543220a0472619633d2a" title="Performs subtraction of two big integers." alt="" coords="782,856,862,883"/>
-<area shape="rect" href="utils_8c.html#a3d2a94f37b629bd9f3cb3afb2e178e19" title="Generates a random bigint with a specified sign and word length." alt="" coords="571,1160,673,1187"/>
-<area shape="rect" href="utils_8c.html#a228afb7f4ecdf5b082894f50c7afd91f" title="Perform a right shift operation on a bigint." alt="" coords="1217,1211,1328,1237"/>
-<area shape="rect" href="arithmetic_8c.html#ade73826c2f3045af8b80cdabaf5098cd" title="Adds two big integers x and y, and stores the result in z." alt="" coords="987,501,1034,528"/>
-<area shape="rect" href="arithmetic_8c.html#ab6d85f9b8bb24a78b72bcc76b2041eba" title="Squares a bigint and stores the result in another bigint." alt="" coords="589,451,655,477"/>
-<area shape="rect" href="arithmetic_8c.html#ae7363c251c275cd77fc1a5d55ecbfd5a" title="Multiplies two big integers and stores the result in the output." alt="" coords="959,147,1062,173"/>
-<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,628,60,655"/>
-<area shape="rect" href="test_8c.html#ab738e5f79117949b42e3f38192147edd" title=" " alt="" coords="329,1033,497,1060"/>
-<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="355,375,471,401"/>
-<area shape="rect" href="arithmetic_8c.html#abe4d38cd1f269c7456d5e135114392cb" title="Squares a single word and stores the result in a bigint structure." alt="" coords="757,501,887,528"/>
-<area shape="rect" href="test_8c.html#ae1a3968e7947464bee7714f6d43b7002" title=" " alt="" coords="390,983,437,1009"/>
-<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title=" " alt="" coords="148,799,241,825"/>
-<area shape="rect" href="test_8c.html#a902e27e16b84669baf0d345646575646" title=" " alt="" coords="157,849,232,876"/>
-<area shape="rect" href="test_8c.html#a9819f5969402ace9a8362a92e666a859" title=" " alt="" coords="374,476,453,503"/>
-<area shape="rect" href="arithmetic_8c.html#ae5134211b0e18baa99df9d4038d5d089" title="Squares a bigint if it is non&#45;zero and stores the result." alt="" coords="374,628,453,655"/>
-<area shape="rect" href="arithmetic_8c.html#aeaae7ee27becf956a201d182af144832" title="Performs subtraction of B from A and manages borrowing." alt="" coords="945,755,1076,781"/>
-<area shape="rect" href="test_8c.html#a9d93a29974cedfb203aa43a6b201d3f3" title=" " alt="" coords="116,937,273,964"/>
-<area shape="rect" href="test_8c.html#a6a42e4cc5dc66146294e6e85c7c71ffc" title=" " alt="" coords="137,1064,252,1091"/>
-<area shape="rect" href="test_8c.html#a20359ee58d2afd8e7bb537768b91c2ac" title=" " alt="" coords="375,1287,452,1313"/>
+<area shape="rect" title="Refines a bigint by removing leading zeros and adjusting its length." alt="" coords="1408,503,1487,530"/>
+<area shape="rect" href="arithmetic_8c.html#af0f3d3a24fcc57fb03d3387ddf1fedd4" title="Adds two big integers and stores the result in a third bigint." alt="" coords="1264,579,1345,606"/>
+<area shape="rect" href="arithmetic_8c.html#ac3d9958de09996999309eae72a9c6c37" title="Performs binary long division on big integers." alt="" coords="339,427,435,454"/>
+<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="108,275,281,302"/>
+<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="171,326,218,352"/>
+<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="171,478,218,504"/>
+<area shape="rect" href="arithmetic_8c.html#ae8f41e34a2ba4610a43e43525d220038" title="Performs division of two large integers using an optimized algorithm." alt="" coords="681,756,814,783"/>
+<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="671,402,824,428"/>
+<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="493,174,623,200"/>
+<area shape="rect" href="arithmetic_8c.html#a7b908fbd3e606d234606762740bbb88c" title="Multiplies two binary integers using an improved Textbook Multiplication algorithm." alt="" coords="1051,706,1201,732"/>
+<area shape="rect" href="arithmetic_8c.html#a1ab9d3f216cef0f3115fb217f387bec1" title="Subtracts big integer y from big integer x and stores the result in z." alt="" coords="1103,452,1149,479"/>
+<area shape="rect" href="arithmetic_8c.html#a8230dd5cc3a2543220a0472619633d2a" title="Performs subtraction of two big integers." alt="" coords="707,351,787,378"/>
+<area shape="rect" href="utils_8c.html#a3d2a94f37b629bd9f3cb3afb2e178e19" title="Generates a random bigint with a specified sign and word length." alt="" coords="337,934,438,960"/>
+<area shape="rect" href="utils_8c.html#a228afb7f4ecdf5b082894f50c7afd91f" title="Perform a right shift operation on a bigint." alt="" coords="1249,1060,1360,1087"/>
+<area shape="rect" href="arithmetic_8c.html#ade73826c2f3045af8b80cdabaf5098cd" title="Adds two big integers x and y, and stores the result in z." alt="" coords="914,604,961,631"/>
+<area shape="rect" href="arithmetic_8c.html#ab6d85f9b8bb24a78b72bcc76b2041eba" title="Squares a bigint and stores the result in another bigint." alt="" coords="525,579,591,606"/>
+<area shape="rect" href="arithmetic_8c.html#ae7363c251c275cd77fc1a5d55ecbfd5a" title="Multiplies two big integers and stores the result in the output." alt="" coords="886,858,989,884"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,579,60,606"/>
+<area shape="rect" href="test_8c.html#ab738e5f79117949b42e3f38192147edd" title="Measures and prints the clock cycles for various operations." alt="" coords="111,883,279,910"/>
+<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="329,579,445,606"/>
+<area shape="rect" href="arithmetic_8c.html#abe4d38cd1f269c7456d5e135114392cb" title="Squares a single word and stores the result in a bigint structure." alt="" coords="682,503,813,530"/>
+<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title="Tests Barrett reduction for modular arithmetic." alt="" coords="148,427,241,454"/>
+<area shape="rect" href="test_8c.html#a902e27e16b84669baf0d345646575646" title="Tests division by verifying the quotient and remainder." alt="" coords="157,630,232,656"/>
+<area shape="rect" href="arithmetic_8c.html#ae5134211b0e18baa99df9d4038d5d089" title="Squares a bigint if it is non&#45;zero and stores the result." alt="" coords="348,326,427,352"/>
+<area shape="rect" href="arithmetic_8c.html#aeaae7ee27becf956a201d182af144832" title="Performs subtraction of B from A and manages borrowing." alt="" coords="872,351,1003,378"/>
+<area shape="rect" href="test_8c.html#a9d93a29974cedfb203aa43a6b201d3f3" title="Tests basic arithmetic operations on randomly generated bigint values." alt="" coords="116,984,273,1011"/>
+<area shape="rect" href="test_8c.html#a6a42e4cc5dc66146294e6e85c7c71ffc" title="Tests modular exponentiation with randomly generated values." alt="" coords="137,1035,252,1062"/>
+<area shape="rect" href="test_8c.html#a20359ee58d2afd8e7bb537768b91c2ac" title="Tests the squaring operation on randomly generated bigint values." alt="" coords="156,934,233,960"/>
 </map>
 </div>
 
@@ -781,17 +769,16 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="utils_8c_aaf7f96c5fa20b3dce7bdec81d45b4de9_icgraph.png" border="0" usemap="#utils_8c_aaf7f96c5fa20b3dce7bdec81d45b4de9_icgraph" alt=""/></div>
 <map name="utils_8c_aaf7f96c5fa20b3dce7bdec81d45b4de9_icgraph" id="utils_8c_aaf7f96c5fa20b3dce7bdec81d45b4de9_icgraph">
-<area shape="rect" title="Refines the word length of a bigint by removing a specified number of words." alt="" coords="729,157,847,184"/>
-<area shape="rect" href="arithmetic_8c.html#a7b908fbd3e606d234606762740bbb88c" title="Multiplies two binary integers using an improved Textbook Multiplication algorithm." alt="" coords="531,157,681,184"/>
-<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="341,5,471,32"/>
-<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,157,60,184"/>
-<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="108,107,281,133"/>
-<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="383,157,429,184"/>
-<area shape="rect" href="test_8c.html#a9819f5969402ace9a8362a92e666a859" title=" " alt="" coords="155,208,234,235"/>
-<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="329,259,483,285"/>
-<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="383,335,429,361"/>
-<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title=" " alt="" coords="148,5,241,32"/>
-<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="137,309,253,336"/>
+<area shape="rect" title="Refines the word length of a bigint by removing a specified number of words." alt="" coords="907,85,1024,112"/>
+<area shape="rect" href="arithmetic_8c.html#a7b908fbd3e606d234606762740bbb88c" title="Multiplies two binary integers using an improved Textbook Multiplication algorithm." alt="" coords="708,85,859,112"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,161,60,188"/>
+<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="507,161,660,188"/>
+<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="329,110,459,137"/>
+<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="108,161,281,188"/>
+<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="171,212,218,238"/>
+<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="371,262,417,289"/>
+<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="336,313,452,340"/>
+<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title="Tests Barrett reduction for modular arithmetic." alt="" coords="148,110,241,137"/>
 </map>
 </div>
 
@@ -830,17 +817,16 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="utils_8c_a370713de059c620d4e4b512d91d72d61_icgraph.png" border="0" usemap="#utils_8c_a370713de059c620d4e4b512d91d72d61_icgraph" alt=""/></div>
 <map name="utils_8c_a370713de059c620d4e4b512d91d72d61_icgraph" id="utils_8c_a370713de059c620d4e4b512d91d72d61_icgraph">
-<area shape="rect" title="Resets all words in a bigint to zero." alt="" coords="729,157,804,184"/>
-<area shape="rect" href="arithmetic_8c.html#a7b908fbd3e606d234606762740bbb88c" title="Multiplies two binary integers using an improved Textbook Multiplication algorithm." alt="" coords="531,157,681,184"/>
-<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="341,5,471,32"/>
-<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,157,60,184"/>
-<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="108,107,281,133"/>
-<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="383,157,429,184"/>
-<area shape="rect" href="test_8c.html#a9819f5969402ace9a8362a92e666a859" title=" " alt="" coords="155,208,234,235"/>
-<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="329,259,483,285"/>
-<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="383,335,429,361"/>
-<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title=" " alt="" coords="148,5,241,32"/>
-<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="137,309,253,336"/>
+<area shape="rect" title="Resets all words in a bigint to zero." alt="" coords="907,85,981,112"/>
+<area shape="rect" href="arithmetic_8c.html#a7b908fbd3e606d234606762740bbb88c" title="Multiplies two binary integers using an improved Textbook Multiplication algorithm." alt="" coords="708,85,859,112"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,161,60,188"/>
+<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="507,161,660,188"/>
+<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="329,110,459,137"/>
+<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="108,161,281,188"/>
+<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="171,212,218,238"/>
+<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="371,262,417,289"/>
+<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="336,313,452,340"/>
+<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title="Tests Barrett reduction for modular arithmetic." alt="" coords="148,110,241,137"/>
 </map>
 </div>
 
@@ -867,7 +853,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="config_8h.html#ac2bbd6d630a06a980d9a92ddb9a49928">IN</a> <a class="el" href="bigint_8h.html#a05d9608d9715ad0ed6a53b795cc133ca">word</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#ac2bbd6d630a06a980d9a92ddb9a49928">IN</a> <a class="el" href="bigint_8h.html#aebc41b6d0c2740d77cf66d33521012e3">word</a> *&#160;</td>
           <td class="paramname"><em>a</em>, </td>
         </tr>
         <tr>
@@ -1023,8 +1009,8 @@ Here is the caller graph for this function:</div>
 <area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="108,5,281,32"/>
 <area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="171,56,218,83"/>
 <area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="171,107,218,133"/>
-<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title=" " alt="" coords="148,157,241,184"/>
-<area shape="rect" href="test_8c.html#a902e27e16b84669baf0d345646575646" title=" " alt="" coords="157,208,232,235"/>
+<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title="Tests Barrett reduction for modular arithmetic." alt="" coords="148,157,241,184"/>
+<area shape="rect" href="test_8c.html#a902e27e16b84669baf0d345646575646" title="Tests division by verifying the quotient and remainder." alt="" coords="157,208,232,235"/>
 <area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,107,60,133"/>
 </map>
 </div>
@@ -1073,28 +1059,26 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="utils_8c_a60481dc2edd27dfcf89351e6c1ff1311_icgraph.png" border="0" usemap="#utils_8c_a60481dc2edd27dfcf89351e6c1ff1311_icgraph" alt=""/></div>
 <map name="utils_8c_a60481dc2edd27dfcf89351e6c1ff1311_icgraph" id="utils_8c_a60481dc2edd27dfcf89351e6c1ff1311_icgraph">
-<area shape="rect" title="Sets a bigint to the value of zero." alt="" coords="1108,309,1204,336"/>
-<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="837,5,966,32"/>
-<area shape="rect" href="arithmetic_8c.html#ac3d9958de09996999309eae72a9c6c37" title="Performs binary long division on big integers." alt="" coords="339,436,435,463"/>
-<area shape="rect" href="arithmetic_8c.html#a1ab9d3f216cef0f3115fb217f387bec1" title="Subtracts big integer y from big integer x and stores the result in z." alt="" coords="1015,309,1060,336"/>
-<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title=" " alt="" coords="148,309,241,336"/>
-<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,335,60,361"/>
-<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="108,461,281,488"/>
-<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="171,360,218,387"/>
-<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="171,411,218,437"/>
-<area shape="rect" href="test_8c.html#a902e27e16b84669baf0d345646575646" title=" " alt="" coords="157,512,232,539"/>
-<area shape="rect" href="arithmetic_8c.html#ade73826c2f3045af8b80cdabaf5098cd" title="Adds two big integers x and y, and stores the result in z." alt="" coords="878,309,925,336"/>
-<area shape="rect" href="arithmetic_8c.html#ae8f41e34a2ba4610a43e43525d220038" title="Performs division of two large integers using an optimized algorithm." alt="" coords="637,107,771,133"/>
-<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="627,512,781,539"/>
-<area shape="rect" href="arithmetic_8c.html#aeaae7ee27becf956a201d182af144832" title="Performs subtraction of B from A and manages borrowing." alt="" coords="836,551,967,577"/>
-<area shape="rect" href="test_8c.html#ab738e5f79117949b42e3f38192147edd" title=" " alt="" coords="620,411,788,437"/>
-<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="329,271,445,297"/>
-<area shape="rect" href="arithmetic_8c.html#abe4d38cd1f269c7456d5e135114392cb" title="Squares a single word and stores the result in a bigint structure." alt="" coords="639,309,769,336"/>
-<area shape="rect" href="arithmetic_8c.html#ab6d85f9b8bb24a78b72bcc76b2041eba" title="Squares a bigint and stores the result in another bigint." alt="" coords="500,335,565,361"/>
-<area shape="rect" href="test_8c.html#ae1a3968e7947464bee7714f6d43b7002" title=" " alt="" coords="681,259,727,285"/>
-<area shape="rect" href="test_8c.html#a9819f5969402ace9a8362a92e666a859" title=" " alt="" coords="493,512,572,539"/>
-<area shape="rect" href="arithmetic_8c.html#ae5134211b0e18baa99df9d4038d5d089" title="Squares a bigint if it is non&#45;zero and stores the result." alt="" coords="348,347,427,373"/>
-<area shape="rect" href="arithmetic_8c.html#a8230dd5cc3a2543220a0472619633d2a" title="Performs subtraction of two big integers." alt="" coords="664,563,744,589"/>
+<area shape="rect" title="Sets a bigint to the value of zero." alt="" coords="1196,195,1292,221"/>
+<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="329,169,459,196"/>
+<area shape="rect" href="arithmetic_8c.html#ac3d9958de09996999309eae72a9c6c37" title="Performs binary long division on big integers." alt="" coords="346,284,442,311"/>
+<area shape="rect" href="arithmetic_8c.html#a1ab9d3f216cef0f3115fb217f387bec1" title="Subtracts big integer y from big integer x and stores the result in z." alt="" coords="1103,195,1148,221"/>
+<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title="Tests Barrett reduction for modular arithmetic." alt="" coords="148,284,241,311"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,411,60,437"/>
+<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="108,335,281,361"/>
+<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="171,385,218,412"/>
+<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="171,436,218,463"/>
+<area shape="rect" href="test_8c.html#a902e27e16b84669baf0d345646575646" title="Tests division by verifying the quotient and remainder." alt="" coords="157,233,232,260"/>
+<area shape="rect" href="arithmetic_8c.html#ade73826c2f3045af8b80cdabaf5098cd" title="Adds two big integers x and y, and stores the result in z." alt="" coords="966,499,1013,525"/>
+<area shape="rect" href="arithmetic_8c.html#ae8f41e34a2ba4610a43e43525d220038" title="Performs division of two large integers using an optimized algorithm." alt="" coords="725,347,859,373"/>
+<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="507,487,660,513"/>
+<area shape="rect" href="arithmetic_8c.html#aeaae7ee27becf956a201d182af144832" title="Performs subtraction of B from A and manages borrowing." alt="" coords="924,195,1055,221"/>
+<area shape="rect" href="test_8c.html#ab738e5f79117949b42e3f38192147edd" title="Measures and prints the clock cycles for various operations." alt="" coords="708,448,876,475"/>
+<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="336,588,452,615"/>
+<area shape="rect" href="arithmetic_8c.html#abe4d38cd1f269c7456d5e135114392cb" title="Squares a single word and stores the result in a bigint structure." alt="" coords="727,600,857,627"/>
+<area shape="rect" href="arithmetic_8c.html#ab6d85f9b8bb24a78b72bcc76b2041eba" title="Squares a bigint and stores the result in another bigint." alt="" coords="551,575,616,601"/>
+<area shape="rect" href="arithmetic_8c.html#ae5134211b0e18baa99df9d4038d5d089" title="Squares a bigint if it is non&#45;zero and stores the result." alt="" coords="355,436,433,463"/>
+<area shape="rect" href="arithmetic_8c.html#a8230dd5cc3a2543220a0472619633d2a" title="Performs subtraction of two big integers." alt="" coords="752,195,832,221"/>
 </map>
 </div>
 
@@ -1183,7 +1167,7 @@ Here is the caller graph for this function:</div>
 <map name="utils_8c_a0c725a878f05fdf3f897f2d5d8623b7a_icgraph" id="utils_8c_a0c725a878f05fdf3f897f2d5d8623b7a_icgraph">
 <area shape="rect" title="Compare two bigint numbers, taking into account their signs." alt="" coords="427,31,505,57"/>
 <area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="249,5,379,32"/>
-<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title=" " alt="" coords="108,31,201,57"/>
+<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title="Tests Barrett reduction for modular arithmetic." alt="" coords="108,31,201,57"/>
 <area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,31,60,57"/>
 </map>
 </div>
@@ -1239,29 +1223,27 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="utils_8c_a1f0c3b4c42f3bde48fba1999ef79933a_icgraph.png" border="0" usemap="#utils_8c_a1f0c3b4c42f3bde48fba1999ef79933a_icgraph" alt=""/></div>
 <map name="utils_8c_a1f0c3b4c42f3bde48fba1999ef79933a_icgraph" id="utils_8c_a1f0c3b4c42f3bde48fba1999ef79933a_icgraph">
-<area shape="rect" title="Compares the absolute values of two bigint numbers." alt="" coords="1141,195,1247,221"/>
-<area shape="rect" href="arithmetic_8c.html#ac3d9958de09996999309eae72a9c6c37" title="Performs binary long division on big integers." alt="" coords="339,276,435,303"/>
-<area shape="rect" href="utils_8c.html#a0c725a878f05fdf3f897f2d5d8623b7a" title="Compare two bigint numbers, taking into account their signs." alt="" coords="1015,43,1093,69"/>
-<area shape="rect" href="arithmetic_8c.html#a1ab9d3f216cef0f3115fb217f387bec1" title="Subtracts big integer y from big integer x and stores the result in z." alt="" coords="1031,195,1077,221"/>
-<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="108,301,281,328"/>
-<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="171,352,218,379"/>
-<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="171,403,218,429"/>
-<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title=" " alt="" coords="148,200,241,227"/>
-<area shape="rect" href="test_8c.html#a902e27e16b84669baf0d345646575646" title=" " alt="" coords="157,251,232,277"/>
-<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,428,60,455"/>
-<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="837,43,966,69"/>
-<area shape="rect" href="arithmetic_8c.html#ade73826c2f3045af8b80cdabaf5098cd" title="Adds two big integers x and y, and stores the result in z." alt="" coords="878,308,925,335"/>
-<area shape="rect" href="arithmetic_8c.html#ae8f41e34a2ba4610a43e43525d220038" title="Performs division of two large integers using an optimized algorithm." alt="" coords="637,144,771,171"/>
-<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="627,627,781,653"/>
-<area shape="rect" href="arithmetic_8c.html#aeaae7ee27becf956a201d182af144832" title="Performs subtraction of B from A and manages borrowing." alt="" coords="836,144,967,171"/>
-<area shape="rect" href="test_8c.html#ab738e5f79117949b42e3f38192147edd" title=" " alt="" coords="620,245,788,272"/>
-<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="329,479,445,505"/>
-<area shape="rect" href="arithmetic_8c.html#abe4d38cd1f269c7456d5e135114392cb" title="Squares a single word and stores the result in a bigint structure." alt="" coords="639,347,769,373"/>
-<area shape="rect" href="arithmetic_8c.html#ab6d85f9b8bb24a78b72bcc76b2041eba" title="Squares a bigint and stores the result in another bigint." alt="" coords="500,371,565,397"/>
-<area shape="rect" href="test_8c.html#ae1a3968e7947464bee7714f6d43b7002" title=" " alt="" coords="681,296,727,323"/>
-<area shape="rect" href="test_8c.html#a9819f5969402ace9a8362a92e666a859" title=" " alt="" coords="493,627,572,653"/>
-<area shape="rect" href="arithmetic_8c.html#ae5134211b0e18baa99df9d4038d5d089" title="Squares a bigint if it is non&#45;zero and stores the result." alt="" coords="348,359,427,385"/>
-<area shape="rect" href="arithmetic_8c.html#a8230dd5cc3a2543220a0472619633d2a" title="Performs subtraction of two big integers." alt="" coords="664,93,744,120"/>
+<area shape="rect" title="Compares the absolute values of two bigint numbers." alt="" coords="1196,68,1301,95"/>
+<area shape="rect" href="arithmetic_8c.html#ac3d9958de09996999309eae72a9c6c37" title="Performs binary long division on big integers." alt="" coords="346,220,442,247"/>
+<area shape="rect" href="utils_8c.html#a0c725a878f05fdf3f897f2d5d8623b7a" title="Compare two bigint numbers, taking into account their signs." alt="" coords="544,43,623,69"/>
+<area shape="rect" href="arithmetic_8c.html#a1ab9d3f216cef0f3115fb217f387bec1" title="Subtracts big integer y from big integer x and stores the result in z." alt="" coords="1103,245,1148,272"/>
+<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="108,271,281,297"/>
+<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="171,321,218,348"/>
+<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="171,423,218,449"/>
+<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title="Tests Barrett reduction for modular arithmetic." alt="" coords="148,169,241,196"/>
+<area shape="rect" href="test_8c.html#a902e27e16b84669baf0d345646575646" title="Tests division by verifying the quotient and remainder." alt="" coords="157,220,232,247"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,347,60,373"/>
+<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="329,169,459,196"/>
+<area shape="rect" href="arithmetic_8c.html#ade73826c2f3045af8b80cdabaf5098cd" title="Adds two big integers x and y, and stores the result in z." alt="" coords="966,473,1013,500"/>
+<area shape="rect" href="arithmetic_8c.html#ae8f41e34a2ba4610a43e43525d220038" title="Performs division of two large integers using an optimized algorithm." alt="" coords="725,321,859,348"/>
+<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="507,423,660,449"/>
+<area shape="rect" href="arithmetic_8c.html#aeaae7ee27becf956a201d182af144832" title="Performs subtraction of B from A and manages borrowing." alt="" coords="924,271,1055,297"/>
+<area shape="rect" href="test_8c.html#ab738e5f79117949b42e3f38192147edd" title="Measures and prints the clock cycles for various operations." alt="" coords="708,423,876,449"/>
+<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="336,524,452,551"/>
+<area shape="rect" href="arithmetic_8c.html#abe4d38cd1f269c7456d5e135114392cb" title="Squares a single word and stores the result in a bigint structure." alt="" coords="727,575,857,601"/>
+<area shape="rect" href="arithmetic_8c.html#ab6d85f9b8bb24a78b72bcc76b2041eba" title="Squares a bigint and stores the result in another bigint." alt="" coords="551,524,616,551"/>
+<area shape="rect" href="arithmetic_8c.html#ae5134211b0e18baa99df9d4038d5d089" title="Squares a bigint if it is non&#45;zero and stores the result." alt="" coords="355,372,433,399"/>
+<area shape="rect" href="arithmetic_8c.html#a8230dd5cc3a2543220a0472619633d2a" title="Performs subtraction of two big integers." alt="" coords="752,220,832,247"/>
 </map>
 </div>
 
@@ -1308,15 +1290,16 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="utils_8c_abcba3e9422491d8d36594260d5469fe0_icgraph.png" border="0" usemap="#utils_8c_abcba3e9422491d8d36594260d5469fe0_icgraph" alt=""/></div>
 <map name="utils_8c_abcba3e9422491d8d36594260d5469fe0_icgraph" id="utils_8c_abcba3e9422491d8d36594260d5469fe0_icgraph">
-<area shape="rect" title="Calculate the bit length of a given bigint." alt="" coords="624,81,739,108"/>
-<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="272,5,445,32"/>
-<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="335,56,382,83"/>
-<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="511,107,558,133"/>
-<area shape="rect" href="utils_8c.html#a51b36ceaf8915fb9b17f825f57d9878e" title="Perform a reduction operation on a bigint." alt="" coords="493,208,576,235"/>
-<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,107,60,133"/>
-<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="282,208,435,235"/>
-<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="108,259,224,285"/>
-<area shape="rect" href="test_8c.html#a9819f5969402ace9a8362a92e666a859" title=" " alt="" coords="127,208,205,235"/>
+<area shape="rect" title="Calculate the bit length of a given bigint." alt="" coords="803,101,917,128"/>
+<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="249,5,423,32"/>
+<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="313,56,359,83"/>
+<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="313,259,359,285"/>
+<area shape="rect" href="utils_8c.html#a51b36ceaf8915fb9b17f825f57d9878e" title="Perform a reduction operation on a bigint." alt="" coords="672,139,755,165"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,132,60,159"/>
+<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="471,139,624,165"/>
+<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="278,208,394,235"/>
+<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="271,157,401,184"/>
+<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title="Tests Barrett reduction for modular arithmetic." alt="" coords="108,157,201,184"/>
 </map>
 </div>
 
@@ -1365,16 +1348,17 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="utils_8c_a17820be0f8f929f8010460b9aafa9684_icgraph.png" border="0" usemap="#utils_8c_a17820be0f8f929f8010460b9aafa9684_icgraph" alt=""/></div>
 <map name="utils_8c_a17820be0f8f929f8010460b9aafa9684_icgraph" id="utils_8c_a17820be0f8f929f8010460b9aafa9684_icgraph">
-<area shape="rect" title="Get the value of the j&#45;th bit from a bigint." alt="" coords="857,81,948,108"/>
-<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="473,5,647,32"/>
-<area shape="rect" href="utils_8c.html#abcba3e9422491d8d36594260d5469fe0" title="Calculate the bit length of a given bigint." alt="" coords="695,107,809,133"/>
-<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="537,56,583,83"/>
-<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="537,157,583,184"/>
-<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,107,60,133"/>
-<area shape="rect" href="utils_8c.html#a51b36ceaf8915fb9b17f825f57d9878e" title="Perform a reduction operation on a bigint." alt="" coords="519,107,601,133"/>
-<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="272,157,425,184"/>
-<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="108,107,224,133"/>
-<area shape="rect" href="test_8c.html#a9819f5969402ace9a8362a92e666a859" title=" " alt="" coords="127,157,205,184"/>
+<area shape="rect" title="Get the value of the j&#45;th bit from a bigint." alt="" coords="965,81,1056,108"/>
+<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="249,5,423,32"/>
+<area shape="rect" href="utils_8c.html#abcba3e9422491d8d36594260d5469fe0" title="Calculate the bit length of a given bigint." alt="" coords="803,107,917,133"/>
+<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="313,56,359,83"/>
+<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="313,259,359,285"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,132,60,159"/>
+<area shape="rect" href="utils_8c.html#a51b36ceaf8915fb9b17f825f57d9878e" title="Perform a reduction operation on a bigint." alt="" coords="672,157,755,184"/>
+<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="471,157,624,184"/>
+<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="278,208,394,235"/>
+<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="271,107,401,133"/>
+<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title="Tests Barrett reduction for modular arithmetic." alt="" coords="108,107,201,133"/>
 </map>
 </div>
 
@@ -1387,7 +1371,7 @@ Here is the caller graph for this function:</div>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="bigint_8h.html#a05d9608d9715ad0ed6a53b795cc133ca">word</a> get_word </td>
+          <td class="memname"><a class="el" href="bigint_8h.html#aebc41b6d0c2740d77cf66d33521012e3">word</a> get_word </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="config_8h.html#ac2bbd6d630a06a980d9a92ddb9a49928">IN</a> <a class="el" href="structbigint.html">bigint</a> *&#160;</td>
           <td class="paramname"><em>x</em>, </td>
@@ -1474,28 +1458,26 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="utils_8c_a48cae2f79aab2418e37f1f9e076d7e54_icgraph.png" border="0" usemap="#utils_8c_a48cae2f79aab2418e37f1f9e076d7e54_icgraph" alt=""/></div>
 <map name="utils_8c_a48cae2f79aab2418e37f1f9e076d7e54_icgraph" id="utils_8c_a48cae2f79aab2418e37f1f9e076d7e54_icgraph">
-<area shape="rect" title="Checks if a bigint is zero." alt="" coords="1159,169,1227,196"/>
-<area shape="rect" href="arithmetic_8c.html#ade73826c2f3045af8b80cdabaf5098cd" title="Adds two big integers x and y, and stores the result in z." alt="" coords="929,347,975,373"/>
-<area shape="rect" href="arithmetic_8c.html#ac3d9958de09996999309eae72a9c6c37" title="Performs binary long division on big integers." alt="" coords="339,195,435,221"/>
-<area shape="rect" href="arithmetic_8c.html#ae5134211b0e18baa99df9d4038d5d089" title="Squares a bigint if it is non&#45;zero and stores the result." alt="" coords="348,144,427,171"/>
-<area shape="rect" href="arithmetic_8c.html#a1ab9d3f216cef0f3115fb217f387bec1" title="Subtracts big integer y from big integer x and stores the result in z." alt="" coords="1065,372,1111,399"/>
-<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,321,60,348"/>
-<area shape="rect" href="arithmetic_8c.html#ae8f41e34a2ba4610a43e43525d220038" title="Performs division of two large integers using an optimized algorithm." alt="" coords="688,499,821,525"/>
-<area shape="rect" href="test_8c.html#ab738e5f79117949b42e3f38192147edd" title=" " alt="" coords="671,245,839,272"/>
-<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="678,600,831,627"/>
-<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="329,397,445,424"/>
-<area shape="rect" href="arithmetic_8c.html#abe4d38cd1f269c7456d5e135114392cb" title="Squares a single word and stores the result in a bigint structure." alt="" coords="689,296,820,323"/>
-<area shape="rect" href="arithmetic_8c.html#ab6d85f9b8bb24a78b72bcc76b2041eba" title="Squares a bigint and stores the result in another bigint." alt="" coords="525,321,591,348"/>
-<area shape="rect" href="test_8c.html#ae1a3968e7947464bee7714f6d43b7002" title=" " alt="" coords="731,195,778,221"/>
-<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="108,144,281,171"/>
-<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="171,195,218,221"/>
-<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="171,245,218,272"/>
-<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title=" " alt="" coords="148,347,241,373"/>
-<area shape="rect" href="test_8c.html#a902e27e16b84669baf0d345646575646" title=" " alt="" coords="157,296,232,323"/>
-<area shape="rect" href="test_8c.html#a9819f5969402ace9a8362a92e666a859" title=" " alt="" coords="519,549,597,576"/>
-<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="493,499,623,525"/>
-<area shape="rect" href="arithmetic_8c.html#aeaae7ee27becf956a201d182af144832" title="Performs subtraction of B from A and manages borrowing." alt="" coords="887,257,1017,284"/>
-<area shape="rect" href="arithmetic_8c.html#a8230dd5cc3a2543220a0472619633d2a" title="Performs subtraction of two big integers." alt="" coords="715,93,795,120"/>
+<area shape="rect" title="Checks if a bigint is zero." alt="" coords="1196,488,1264,515"/>
+<area shape="rect" href="arithmetic_8c.html#ade73826c2f3045af8b80cdabaf5098cd" title="Adds two big integers x and y, and stores the result in z." alt="" coords="966,235,1013,261"/>
+<area shape="rect" href="arithmetic_8c.html#ac3d9958de09996999309eae72a9c6c37" title="Performs binary long division on big integers." alt="" coords="346,425,442,452"/>
+<area shape="rect" href="arithmetic_8c.html#ae5134211b0e18baa99df9d4038d5d089" title="Squares a bigint if it is non&#45;zero and stores the result." alt="" coords="355,476,433,503"/>
+<area shape="rect" href="arithmetic_8c.html#a1ab9d3f216cef0f3115fb217f387bec1" title="Subtracts big integer y from big integer x and stores the result in z." alt="" coords="1103,437,1148,464"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,349,60,376"/>
+<area shape="rect" href="arithmetic_8c.html#ae8f41e34a2ba4610a43e43525d220038" title="Performs division of two large integers using an optimized algorithm." alt="" coords="725,361,859,388"/>
+<area shape="rect" href="test_8c.html#ab738e5f79117949b42e3f38192147edd" title="Measures and prints the clock cycles for various operations." alt="" coords="708,57,876,84"/>
+<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="507,260,660,287"/>
+<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="336,172,452,199"/>
+<area shape="rect" href="arithmetic_8c.html#abe4d38cd1f269c7456d5e135114392cb" title="Squares a single word and stores the result in a bigint structure." alt="" coords="727,209,857,236"/>
+<area shape="rect" href="arithmetic_8c.html#ab6d85f9b8bb24a78b72bcc76b2041eba" title="Squares a bigint and stores the result in another bigint." alt="" coords="551,184,616,211"/>
+<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="108,273,281,300"/>
+<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="171,324,218,351"/>
+<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="171,425,218,452"/>
+<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title="Tests Barrett reduction for modular arithmetic." alt="" coords="148,527,241,553"/>
+<area shape="rect" href="test_8c.html#a902e27e16b84669baf0d345646575646" title="Tests division by verifying the quotient and remainder." alt="" coords="157,375,232,401"/>
+<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="329,527,459,553"/>
+<area shape="rect" href="arithmetic_8c.html#aeaae7ee27becf956a201d182af144832" title="Performs subtraction of B from A and manages borrowing." alt="" coords="924,463,1055,489"/>
+<area shape="rect" href="arithmetic_8c.html#a8230dd5cc3a2543220a0472619633d2a" title="Performs subtraction of two big integers." alt="" coords="752,463,832,489"/>
 </map>
 </div>
 
@@ -1552,8 +1534,8 @@ Here is the caller graph for this function:</div>
 <area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="108,208,281,235"/>
 <area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="171,56,218,83"/>
 <area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="171,107,218,133"/>
-<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title=" " alt="" coords="148,157,241,184"/>
-<area shape="rect" href="test_8c.html#a902e27e16b84669baf0d345646575646" title=" " alt="" coords="157,5,232,32"/>
+<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title="Tests Barrett reduction for modular arithmetic." alt="" coords="148,157,241,184"/>
+<area shape="rect" href="test_8c.html#a902e27e16b84669baf0d345646575646" title="Tests division by verifying the quotient and remainder." alt="" coords="157,5,232,32"/>
 <area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,157,60,184"/>
 <area shape="rect" href="arithmetic_8c.html#ae5134211b0e18baa99df9d4038d5d089" title="Squares a bigint if it is non&#45;zero and stores the result." alt="" coords="348,171,427,197"/>
 </map>
@@ -1617,21 +1599,20 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="utils_8c_a2b1432c20fb14d8890382e89cf98d43d_icgraph.png" border="0" usemap="#utils_8c_a2b1432c20fb14d8890382e89cf98d43d_icgraph" alt=""/></div>
 <map name="utils_8c_a2b1432c20fb14d8890382e89cf98d43d_icgraph" id="utils_8c_a2b1432c20fb14d8890382e89cf98d43d_icgraph">
-<area shape="rect" title="Left&#45;shifts a bigint by a specified number of words." alt="" coords="729,368,847,395"/>
-<area shape="rect" href="arithmetic_8c.html#a7b908fbd3e606d234606762740bbb88c" title="Multiplies two binary integers using an improved Textbook Multiplication algorithm." alt="" coords="531,191,681,217"/>
-<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="329,343,483,369"/>
-<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="137,393,253,420"/>
-<area shape="rect" href="arithmetic_8c.html#ae7363c251c275cd77fc1a5d55ecbfd5a" title="Multiplies two big integers and stores the result in the output." alt="" coords="355,495,457,521"/>
-<area shape="rect" href="arithmetic_8c.html#ab6d85f9b8bb24a78b72bcc76b2041eba" title="Squares a bigint and stores the result in another bigint." alt="" coords="573,317,639,344"/>
-<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="341,241,471,268"/>
-<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,191,60,217"/>
-<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="108,39,281,65"/>
-<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="171,89,218,116"/>
-<area shape="rect" href="test_8c.html#a9819f5969402ace9a8362a92e666a859" title=" " alt="" coords="155,343,234,369"/>
-<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="171,140,218,167"/>
-<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title=" " alt="" coords="148,241,241,268"/>
-<area shape="rect" href="arithmetic_8c.html#ae8f41e34a2ba4610a43e43525d220038" title="Performs division of two large integers using an optimized algorithm." alt="" coords="128,495,261,521"/>
-<area shape="rect" href="arithmetic_8c.html#ae5134211b0e18baa99df9d4038d5d089" title="Squares a bigint if it is non&#45;zero and stores the result." alt="" coords="367,191,445,217"/>
+<area shape="rect" title="Left&#45;shifts a bigint by a specified number of words." alt="" coords="907,311,1024,338"/>
+<area shape="rect" href="arithmetic_8c.html#a7b908fbd3e606d234606762740bbb88c" title="Multiplies two binary integers using an improved Textbook Multiplication algorithm." alt="" coords="708,210,859,236"/>
+<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="507,210,660,236"/>
+<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="336,362,452,388"/>
+<area shape="rect" href="arithmetic_8c.html#ae7363c251c275cd77fc1a5d55ecbfd5a" title="Multiplies two big integers and stores the result in the output." alt="" coords="732,412,835,439"/>
+<area shape="rect" href="arithmetic_8c.html#ab6d85f9b8bb24a78b72bcc76b2041eba" title="Squares a bigint and stores the result in another bigint." alt="" coords="551,311,616,338"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,210,60,236"/>
+<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="329,108,459,135"/>
+<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="108,159,281,186"/>
+<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="171,210,218,236"/>
+<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="171,311,218,338"/>
+<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title="Tests Barrett reduction for modular arithmetic." alt="" coords="148,108,241,135"/>
+<area shape="rect" href="arithmetic_8c.html#ae8f41e34a2ba4610a43e43525d220038" title="Performs division of two large integers using an optimized algorithm." alt="" coords="517,463,650,490"/>
+<area shape="rect" href="arithmetic_8c.html#ae5134211b0e18baa99df9d4038d5d089" title="Squares a bigint if it is non&#45;zero and stores the result." alt="" coords="355,260,433,287"/>
 </map>
 </div>
 
@@ -1685,17 +1666,16 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="utils_8c_aa7d74c57724c8e6a0743fd66e27bc4e4_icgraph.png" border="0" usemap="#utils_8c_aa7d74c57724c8e6a0743fd66e27bc4e4_icgraph" alt=""/></div>
 <map name="utils_8c_aa7d74c57724c8e6a0743fd66e27bc4e4_icgraph" id="utils_8c_aa7d74c57724c8e6a0743fd66e27bc4e4_icgraph">
-<area shape="rect" title="Ensures that the word length of a bigint is even." alt="" coords="729,157,820,184"/>
-<area shape="rect" href="arithmetic_8c.html#a7b908fbd3e606d234606762740bbb88c" title="Multiplies two binary integers using an improved Textbook Multiplication algorithm." alt="" coords="531,157,681,184"/>
-<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="341,5,471,32"/>
-<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,157,60,184"/>
-<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="108,107,281,133"/>
-<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="383,157,429,184"/>
-<area shape="rect" href="test_8c.html#a9819f5969402ace9a8362a92e666a859" title=" " alt="" coords="155,208,234,235"/>
-<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="329,259,483,285"/>
-<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="383,335,429,361"/>
-<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title=" " alt="" coords="148,5,241,32"/>
-<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="137,309,253,336"/>
+<area shape="rect" title="Ensures that the word length of a bigint is even." alt="" coords="907,85,997,112"/>
+<area shape="rect" href="arithmetic_8c.html#a7b908fbd3e606d234606762740bbb88c" title="Multiplies two binary integers using an improved Textbook Multiplication algorithm." alt="" coords="708,85,859,112"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,161,60,188"/>
+<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="507,161,660,188"/>
+<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="329,110,459,137"/>
+<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="108,161,281,188"/>
+<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="171,212,218,238"/>
+<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="371,262,417,289"/>
+<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="336,313,452,340"/>
+<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title="Tests Barrett reduction for modular arithmetic." alt="" coords="148,110,241,137"/>
 </map>
 </div>
 
@@ -1759,19 +1739,18 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="utils_8c_a4d18441f81f0f5678800a029a904d7f6_icgraph.png" border="0" usemap="#utils_8c_a4d18441f81f0f5678800a029a904d7f6_icgraph" alt=""/></div>
 <map name="utils_8c_a4d18441f81f0f5678800a029a904d7f6_icgraph" id="utils_8c_a4d18441f81f0f5678800a029a904d7f6_icgraph">
-<area shape="rect" title="Matches the word lengths of two bigint objects by resizing them to the larger of their current length..." alt="" coords="729,259,852,285"/>
-<area shape="rect" href="arithmetic_8c.html#a7b908fbd3e606d234606762740bbb88c" title="Multiplies two binary integers using an improved Textbook Multiplication algorithm." alt="" coords="531,183,681,209"/>
-<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="329,259,483,285"/>
-<area shape="rect" href="arithmetic_8c.html#ae7363c251c275cd77fc1a5d55ecbfd5a" title="Multiplies two big integers and stores the result in the output." alt="" coords="355,385,457,412"/>
-<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="341,107,471,133"/>
-<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,183,60,209"/>
-<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="108,157,281,184"/>
-<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="383,208,429,235"/>
-<area shape="rect" href="test_8c.html#a9819f5969402ace9a8362a92e666a859" title=" " alt="" coords="155,360,234,387"/>
-<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="383,5,429,32"/>
-<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title=" " alt="" coords="148,107,241,133"/>
-<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="137,259,253,285"/>
-<area shape="rect" href="arithmetic_8c.html#ae8f41e34a2ba4610a43e43525d220038" title="Performs division of two large integers using an optimized algorithm." alt="" coords="128,461,261,488"/>
+<area shape="rect" title="Matches the word lengths of two bigint objects by resizing them to the larger of their current length..." alt="" coords="907,209,1029,236"/>
+<area shape="rect" href="arithmetic_8c.html#a7b908fbd3e606d234606762740bbb88c" title="Multiplies two binary integers using an improved Textbook Multiplication algorithm." alt="" coords="708,158,859,185"/>
+<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="507,184,660,210"/>
+<area shape="rect" href="arithmetic_8c.html#ae7363c251c275cd77fc1a5d55ecbfd5a" title="Multiplies two big integers and stores the result in the output." alt="" coords="732,361,835,388"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,184,60,210"/>
+<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="329,108,459,134"/>
+<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="108,158,281,185"/>
+<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="171,209,218,236"/>
+<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="371,260,417,286"/>
+<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="336,310,452,337"/>
+<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title="Tests Barrett reduction for modular arithmetic." alt="" coords="148,108,241,134"/>
+<area shape="rect" href="arithmetic_8c.html#ae8f41e34a2ba4610a43e43525d220038" title="Performs division of two large integers using an optimized algorithm." alt="" coords="517,412,650,438"/>
 </map>
 </div>
 
@@ -1831,11 +1810,15 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="utils_8c_a51b36ceaf8915fb9b17f825f57d9878e_icgraph.png" border="0" usemap="#utils_8c_a51b36ceaf8915fb9b17f825f57d9878e_icgraph" alt=""/></div>
 <map name="utils_8c_a51b36ceaf8915fb9b17f825f57d9878e_icgraph" id="utils_8c_a51b36ceaf8915fb9b17f825f57d9878e_icgraph">
-<area shape="rect" title="Perform a reduction operation on a bigint." alt="" coords="473,47,556,74"/>
-<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="272,22,425,48"/>
-<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="108,72,224,99"/>
-<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,22,60,48"/>
-<area shape="rect" href="test_8c.html#a9819f5969402ace9a8362a92e666a859" title=" " alt="" coords="127,22,205,48"/>
+<area shape="rect" title="Perform a reduction operation on a bigint." alt="" coords="708,208,791,235"/>
+<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="507,157,660,184"/>
+<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="336,259,452,285"/>
+<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="329,5,459,32"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,132,60,159"/>
+<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="108,107,281,133"/>
+<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="171,157,218,184"/>
+<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="371,208,417,235"/>
+<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title="Tests Barrett reduction for modular arithmetic." alt="" coords="148,5,241,32"/>
 </map>
 </div>
 
@@ -1946,13 +1929,15 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="utils_8c_ac6f8cc4d57f1da8a4292ec17a1897295_icgraph.png" border="0" usemap="#utils_8c_ac6f8cc4d57f1da8a4292ec17a1897295_icgraph" alt=""/></div>
 <map name="utils_8c_ac6f8cc4d57f1da8a4292ec17a1897295_icgraph" id="utils_8c_ac6f8cc4d57f1da8a4292ec17a1897295_icgraph">
-<area shape="rect" title="Right&#45;shifts a bigint by a specified number of words." alt="" coords="473,107,600,133"/>
-<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="284,31,413,57"/>
-<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="272,107,425,133"/>
-<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="108,157,224,184"/>
-<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title=" " alt="" coords="119,5,213,32"/>
-<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,56,60,83"/>
-<area shape="rect" href="test_8c.html#a9819f5969402ace9a8362a92e666a859" title=" " alt="" coords="127,107,205,133"/>
+<area shape="rect" title="Right&#45;shifts a bigint by a specified number of words." alt="" coords="708,132,835,159"/>
+<area shape="rect" href="arithmetic_8c.html#a3a7a20771df57b838849f5f78a318ee1" title="Performs Barrett reduction to reduce x modulo y." alt="" coords="329,5,459,32"/>
+<area shape="rect" href="arithmetic_8c.html#ae5465f45da023f5305d2241da02e9387" title="Multiplies two binary integers using the Karatsuba multiplication algorithm." alt="" coords="507,132,660,159"/>
+<area shape="rect" href="arithmetic_8c.html#ae5c34ac2cc31d8704c378da344f282d2" title="Computes the square of a binary integer using the Karatsuba squaring algorithm." alt="" coords="336,259,452,285"/>
+<area shape="rect" href="test_8c.html#a2036d4748dee050f0733d406043bfab1" title="Tests Barrett reduction for modular arithmetic." alt="" coords="148,5,241,32"/>
+<area shape="rect" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,132,60,159"/>
+<area shape="rect" href="arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8" title="Performs modular exponentiation using Montgomery multiplication." alt="" coords="108,107,281,133"/>
+<area shape="rect" href="arithmetic_8c.html#a0240085c1251fe74ceffee9f622fd278" title="Computes modular exponentiation using the Left&#45;to&#45;Right binary method." alt="" coords="171,157,218,184"/>
+<area shape="rect" href="arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363" title="Computes modular exponentiation using the Right&#45;to&#45;Left binary method." alt="" coords="371,208,417,235"/>
 </map>
 </div>
 

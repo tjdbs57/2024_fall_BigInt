@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['plot_5fsuccess_5frate_99',['plot_success_rate',['../namespacetest__all.html#aa816b5db146e7e17f2fa055f57370992',1,'test_all.plot_success_rate()'],['../namespacetest.html#a4be51d920debae31d5a0db086a1098c6',1,'test.plot_success_rate()']]],
-  ['print_5fbi_5fhex_5fpy_100',['print_bi_hex_py',['../test_8c.html#aeeac9fa9820f0adf13369ea064624bd1',1,'test.c']]],
-  ['process_5ftest_5foutput_101',['process_test_output',['../namespacetest__all.html#a828dd0dac9e176e131ced4f4b27e78cd',1,'test_all']]]
+  ['r2l_65',['R2L',['../arithmetic_8h.html#ae6fc4f36fe7b7c901154d71d93f69363',1,'R2L(IN bigint **x, IN bigint **y, OUT bigint **z, IN bigint **M):&#160;arithmetic.c'],['../arithmetic_8c.html#ae6fc4f36fe7b7c901154d71d93f69363',1,'R2L(IN bigint **x, IN bigint **y, OUT bigint **z, IN bigint **M):&#160;arithmetic.c']]],
+  ['reduction_66',['reduction',['../utils_8h.html#a51b36ceaf8915fb9b17f825f57d9878e',1,'reduction(IN bigint **x, IN int r):&#160;utils.c'],['../utils_8c.html#a51b36ceaf8915fb9b17f825f57d9878e',1,'reduction(IN bigint **x, IN int r):&#160;utils.c']]],
+  ['right_5fshift_5fbit_67',['right_shift_bit',['../utils_8h.html#a228afb7f4ecdf5b082894f50c7afd91f',1,'right_shift_bit(INOUT bigint *x, IN int shift):&#160;utils.c'],['../utils_8c.html#a228afb7f4ecdf5b082894f50c7afd91f',1,'right_shift_bit(INOUT bigint *x, IN int shift):&#160;utils.c']]],
+  ['right_5fshift_5fword_68',['right_shift_word',['../utils_8h.html#ac6f8cc4d57f1da8a4292ec17a1897295',1,'right_shift_word(INOUT bigint **x, IN int shift_words):&#160;utils.c'],['../utils_8c.html#ac6f8cc4d57f1da8a4292ec17a1897295',1,'right_shift_word(INOUT bigint **x, IN int shift_words):&#160;utils.c']]]
 ];

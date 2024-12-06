@@ -16,20 +16,46 @@
 #ifndef UTILS_H
 #include "bigint.h"
 
+/**
+ * @brief Reports a memory allocation failure.
+ * @details This macro prints an error message to `stderr` when memory allocation fails, 
+ *          including the file name and line number where the failure occurred.
+ * @note This macro is intended to assist in debugging memory issues.
+ * @warning Ensure that memory allocation functions (e.g., `malloc`, `calloc`) are checked 
+ *          for NULL return values before using this macro.
+ */
 #define MEM_ALLOCATION_FAIL                                                    \
-    fprintf(stderr, "Error: Memory allocation failed at %s:%d\n", __FILE__, __LINE__); 
+    fprintf(stderr, "Error: Memory allocation failed at %s:%d\n", __FILE__, __LINE__);
 
+/**
+ * @brief Reports a failure when setting a string or base.
+ * @details This macro prints an error message to `stderr` when an invalid string 
+ *          or base input is encountered in the program, including the file name and line number.
+ * @note Use this macro in functions where input validation for strings or bases is required.
+ * @warning Ensure that the input is properly validated before calling functions that rely on strings or bases.
+ */
 #define SET_STRING_FAIL                                                     \
     fprintf(stderr, "Error: Invalid input for string or base at %s:%d\n", __FILE__, __LINE__);
 
-
+/**
+ * @brief Reports a failure when setting an array.
+ * @details This macro prints an error message to `stderr` if an error occurs 
+ *          while setting up or initializing an array, including the file name and line number.
+ * @note Common scenarios include invalid indices or failed assignments during array initialization.
+ * @warning Verify that the array is properly allocated and accessed within bounds before using this macro.
+ */
 #define SET_ARRAY_FAIL                                          \
     fprintf(stderr, "Error: Set array failed at %s:%d\n", __FILE__, __LINE__);
 
-
+/**
+ * @brief Reports invalid data input.
+ * @details This macro prints an error message to `stderr` when an invalid data input 
+ *          or state is detected, including the file name and line number.
+ * @note Use this macro in functions where invalid data might cause undefined behavior or logic errors.
+ * @warning Ensure that input data is validated before processing to avoid triggering this macro unnecessarily.
+ */
 #define INVAILD_DATA                               \
-    fprintf(stderr, "Error: Invalid data at %s:%d\n", __FILE__, __LINE__); 
-
+    fprintf(stderr, "Error: Invalid data at %s:%d\n", __FILE__, __LINE__);
 
 /**
  * @brief Allocates memory for a new bigint structure.

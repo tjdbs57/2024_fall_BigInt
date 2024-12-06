@@ -31,34 +31,6 @@ void print_bi_hex_py(IN const bigint* x)
 }
 
 
-void test()
-{
-    for(int i = 0 ; i < TEST_CASE; i++)
-    {
-        bigint *x = NULL;
-        bigint *y = NULL;
-        bigint *z = NULL;
-
-        int wordlen1 = rand() % (MAX_BIT_LEN / WORD_BITLEN) + 1; 
-        int wordlen2 = rand() % (MAX_BIT_LEN / WORD_BITLEN) + 1;  
-        int sign1 = rand() % 2;
-        int sign2 = rand() % 2;
-
-        bi_gen_rand(&x, sign1, wordlen1);
-        bi_gen_rand(&y, sign2, wordlen2);
-
-        add(&x, &y, &z);
-        print_bi_hex_py(x);                         
-        printf(" + "); print_bi_hex_py(y);                    
-        printf(" == "); print_bi_hex_py(z);                            
-        printf("\n");  
-
-        bi_delete(&x);
-        bi_delete(&y);
-        bi_delete(&z);
-    }
-}
-
 void test_squ(void(*operation)(IN bigint** , OUT bigint**), const char* operate)
 {
 
@@ -69,15 +41,12 @@ void test_squ(void(*operation)(IN bigint** , OUT bigint**), const char* operate)
         bigint *z = NULL;
 
         int wordlen1 = rand() % (MAX_BIT_LEN / WORD_BITLEN) + 1; 
-        //int wordlen2 = rand() % (MAX_BIT_LEN / WORD_BITLEN) + 1;  
         int sign1 = rand() % 2;
-        //int sign2 = rand() % 2;
 
         bi_gen_rand(&x, sign1, wordlen1);
-        //bi_gen_rand(&y, sign2, wordlen2);
 
         operation(&x, &z);
-        printf("%s: ", operate);  // 연산 이름 출력
+        printf("%s: ", operate);  
 
         print_bi_hex_py(x);                         
         printf(" * "); print_bi_hex_py(x);                    
@@ -107,7 +76,7 @@ void test_basic_operation(void(*operation)(IN bigint** , IN bigint**, OUT bigint
         bi_gen_rand(&y, sign2, wordlen2);
 
         operation(&x, &y, &z);
-        printf("%s: ", operate);  // 연산 이름 출력
+        printf("%s: ", operate); 
         print_bi_hex_py(x);                         
         printf(" %s ", operator); print_bi_hex_py(y);                    
         printf(" == "); print_bi_hex_py(z);                            
@@ -127,21 +96,16 @@ void test_div(const char* operate)
         bigint *q = NULL;
         bigint *r = NULL;
 
-        //int wordlen = 4;
         int wordlen1 = rand() % (MAX_BIT_LEN / WORD_BITLEN) + 1; 
         int wordlen2 = rand() % (MAX_BIT_LEN / WORD_BITLEN) + 1;  
         int sign = NON_NEGATIVE;
 
-        //char* str1 = "123456789abcdef12453fd";
-        //char* str2 = "12345";
-        //bi_set_by_string(&x, sign, str1, 16);
-        //bi_set_by_string(&y, sign, str2, 16);
         bi_gen_rand(&x, sign, wordlen1);
         bi_gen_rand(&y, sign, wordlen2);
 
         bi_long_div(&x, &y, &q, &r);
-        //general_long_div(&x, &y, &q, &r);
-        printf("%s: ", operate);  // 연산 이름 출력
+
+        printf("%s: ", operate);  
 
         print_bi_hex_py(q);              
         printf(" * ");  print_bi_hex_py(y);                    
@@ -178,11 +142,8 @@ void test_exp_mod(void(*operation)(IN bigint** , IN bigint**, OUT bigint**, IN b
 
 
         operation(&x, &y, &z, &mod);
-        //L2R(&x, &y, &z, &mod);
-        //R2L(&x, &y, &z, &mod);
-        //exp_mod_montgomery(&x, &y, &z, &mod);
 
-        printf("%s: ", operate);  // 연산 이름 출력
+        printf("%s: ", operate);  
 
         printf("pow("); 
         print_bi_hex_py(x); 
@@ -264,18 +225,6 @@ void test_barret(const char* operate)
     bi_delete(&tmp);
 }
 
-#define TIME(start, end) ((double)((end) - (start))) / CLOCKS_PER_SEC 
-
-double measure_execution_time(void(*func)(IN bigint** , IN bigint**, OUT bigint**), IN bigint** x, IN bigint** y, OUT bigint** z) 
-{
-    srand((u32)time(NULL));
-
-    clock_t start = clock();
-    func(x, y, z);
-    clock_t end = clock();
-    
-    return TIME(start, end);
-}
 
 void measure_cycles(void(*func)(IN bigint** , IN bigint**, OUT bigint**), IN bigint** x, IN bigint** y, OUT bigint** z) {
     u32 ui;
@@ -319,37 +268,4 @@ void measure_clock_cycles()
         bi_delete(&y);
         bi_delete(&z);
     }
-}
-
-void measure()
-{
-    double total_time_tx = 0.0;
-    double total_time_improved = 0.0;
-    double total_time_karatsuba = 0.0;
-
-
-    for(int i = 0 ; i < TEST_CASE; i++)
-    {
-        bigint *x = NULL;
-        bigint *y = NULL;
-        bigint *z = NULL;
-
-        //int wordlen1 = rand() % 128 + 1; 
-        //int wordlen2 = rand() % 128 + 1;  
-        int sign = rand() % 2;
-        int wordlen = 128;
-        bi_gen_rand(&x, sign, wordlen);
-        bi_gen_rand(&y, sign, wordlen);
-        
-        total_time_tx += measure_execution_time(mul_core_tx, &x, &y, &z);
-        total_time_improved += measure_execution_time(mul_core_improved, &x, &y, &z);
-        total_time_karatsuba += measure_execution_time(mul_core_karatsuba, &x, &y, &z);
-
-        bi_delete(&x);
-        bi_delete(&y);
-        bi_delete(&z);
-    }
-    printf("Average time for mul_core_tx: %.2f ms\n", total_time_tx / TEST_CASE);
-    printf("Average time for mul_core_improved: %.2f ms\n", total_time_improved / TEST_CASE);
-    printf("Average time for mul_core_karatsuba: %.2f ms\n", total_time_karatsuba / TEST_CASE);
 }

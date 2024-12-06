@@ -1,5 +1,7 @@
 CC = gcc
-CFLAGS = -O3 -std=c99 -Wall -Wextra -g -Iinclude -MMD
+CFLAGS = -O3 -std=c99 -Wall -Wextra -g -Iinclude -MMD -fPIC
+LDFLAGS = -shared
+
 
 # Directories
 SRCDIR 		= src
@@ -20,22 +22,31 @@ ifeq ($(OS),Windows_NT)
 	MKDIR = mkdir
 	RMDIR = rmdir /S /Q
 	RUN = $(BINDIR)\program.exe
+	PYTHON_CMD := python
+	LIBTARGET = $(BINDIR)/libbigint.dll
+
+
 else
 	TARGET = $(BINDIR)/program
 	MKDIR = mkdir -p
 	RMDIR = rm -rf
 	RUN = ./$(TARGET)
+	PYTHON_CMD := python3
+	LIBTARGET = $(BINDIR)/libbigint.so
 
 endif
 
 # Default target
-all: dir $(TARGET)
+all: dir $(TARGET) $(LIBTARGET)
 
 dir:
 	@$(MKDIR) $(OBJDIR) $(BINDIR)
 
 $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $@ $(LIBS)
+
+$(LIBTARGET): $(OBJS)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(OBJS)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -45,7 +56,7 @@ $(OBJDIR)/%.o: $(TESTDIR)/%.c
 
 $(OBJDIR)/%.o: $(MEASUREDIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
-	
+
 -include $(DEPS)
 
 clean:
@@ -55,14 +66,6 @@ rebuild: clean all
 
 run: $(TARGET)
 	$(RUN)
-
-UNAME_S := $(shell uname -s)
-
-ifeq ($(UNAME_S),Linux)
-    PYTHON_CMD := python3
-else
-    PYTHON_CMD := python
-endif
 
 # Verify with test script
 verify: $(TARGET)

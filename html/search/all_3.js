@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['data_33',['data',['../namespacetime.html#aa015a980309d0c318e8b5c6e766f6891',1,'time']]],
-  ['dpi_34',['dpi',['../namespacetime.html#a7e9d1688067a94ae2758be73664ac579',1,'time']]]
+  ['exp_5fmod_5fmontgomery_29',['exp_mod_montgomery',['../arithmetic_8h.html#a4ddbe7387309f347e3173f8f1f53cfc8',1,'exp_mod_montgomery(IN bigint **x, IN bigint **y, OUT bigint **z, IN bigint **M):&#160;arithmetic.c'],['../arithmetic_8c.html#a4ddbe7387309f347e3173f8f1f53cfc8',1,'exp_mod_montgomery(IN bigint **x, IN bigint **y, OUT bigint **z, IN bigint **M):&#160;arithmetic.c']]]
 ];

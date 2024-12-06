@@ -13,8 +13,7 @@ Include dependency graph for utils.\+h\+:\nopagebreak
 \includegraphics[width=350pt]{utils_8h__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:
-\nopagebreak
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -25,25 +24,25 @@ This graph shows which files directly or indirectly include this file\+:
 \begin{DoxyCompactItemize}
 \item 
 \#define \mbox{\hyperlink{utils_8h_a948d60a859cb2d28e5734807c018a7c7}{M\+E\+M\+\_\+\+A\+L\+L\+O\+C\+A\+T\+I\+O\+N\+\_\+\+F\+A\+IL}}~fprintf(stderr, \char`\"{}Error\+: Memory allocation failed at \%s\+:\%d\textbackslash{}n\char`\"{}, \+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+);
-\item 
-\#define \mbox{\hyperlink{utils_8h_ac1a8a326f65e8911921f5ed9737b8276}{S\+E\+T\+\_\+\+S\+T\+R\+I\+N\+G\+\_\+\+F\+A\+IL}}~fprintf(stderr, \char`\"{}Error\+: Invalid input for string \mbox{\hyperlink{arithmetic_8c_ab9a3195a9e2cee7462a9b7cb40cfaa10}{or}} base at \%s\+:\%d\textbackslash{}n\char`\"{}, \+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+);
-\item 
+\begin{DoxyCompactList}\small\item\em Reports a memory allocation failure. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{utils_8h_ac1a8a326f65e8911921f5ed9737b8276}{S\+E\+T\+\_\+\+S\+T\+R\+I\+N\+G\+\_\+\+F\+A\+IL}}~fprintf(stderr, \char`\"{}Error\+: Invalid input for string or base at \%s\+:\%d\textbackslash{}n\char`\"{}, \+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+);
+\begin{DoxyCompactList}\small\item\em Reports a failure when setting a string or base. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{utils_8h_abed1294151be907d23ee1ca460262a40}{S\+E\+T\+\_\+\+A\+R\+R\+A\+Y\+\_\+\+F\+A\+IL}}~fprintf(stderr, \char`\"{}Error\+: Set array failed at \%s\+:\%d\textbackslash{}n\char`\"{}, \+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+);
-\item 
+\begin{DoxyCompactList}\small\item\em Reports a failure when setting an array. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{utils_8h_a2497166b7aa61ee3769d57db1f74f0af}{I\+N\+V\+A\+I\+L\+D\+\_\+\+D\+A\+TA}}~fprintf(stderr, \char`\"{}Error\+: Invalid data at \%s\+:\%d\textbackslash{}n\char`\"{}, \+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+);
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Reports invalid data input. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{utils_8h_a7288a6de8e0ee93e4f9dc542336efa46}{bi\+\_\+new}} (\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$x, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int wordlen)
 \begin{DoxyCompactList}\small\item\em Allocates memory for a new bigint structure. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{utils_8h_a97cc4eb5eae289b31e5d69edabf69490}{array\+\_\+init}} (\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{bigint_8h_a05d9608d9715ad0ed6a53b795cc133ca}{word}} $\ast$array, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int length)
+void \mbox{\hyperlink{utils_8h_a97cc4eb5eae289b31e5d69edabf69490}{array\+\_\+init}} (\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{bigint_8h_aebc41b6d0c2740d77cf66d33521012e3}{word}} $\ast$array, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int length)
 \begin{DoxyCompactList}\small\item\em Initializes an array with a given length to a default value (0x00000000). \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{utils_8h_a19f86cf37a9d5dc56d630031ba94ab20}{bi\+\_\+delete}} (\mbox{\hyperlink{config_8h_a62766f3ea8784d1db62df989f8f33d2d}{I\+N\+O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$x)
 \begin{DoxyCompactList}\small\item\em Frees the memory occupied by a bigint structure. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{utils_8h_a15460b0c08c669bcc8bb28bbc84cc0c5}{bi\+\_\+show\+\_\+hex}} (\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$x)
 \begin{DoxyCompactList}\small\item\em Displays the hexadecimal representation of a bigint. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{utils_8h_a8f0a35a8add356e6f63c1520d8a4869b}{bi\+\_\+set\+\_\+by\+\_\+array}} (\mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$x, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int sign, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{bigint_8h_a05d9608d9715ad0ed6a53b795cc133ca}{word}} $\ast$a, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int wordlen)
+int \mbox{\hyperlink{utils_8h_a8f0a35a8add356e6f63c1520d8a4869b}{bi\+\_\+set\+\_\+by\+\_\+array}} (\mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$x, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int sign, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{bigint_8h_aebc41b6d0c2740d77cf66d33521012e3}{word}} $\ast$a, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int wordlen)
 \begin{DoxyCompactList}\small\item\em Initializes a bigint structure using an array of words and sets its sign. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{utils_8h_a0c149a5086b2991711d0f4dffd4e7035}{bi\+\_\+set\+\_\+by\+\_\+string}} (\mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$x, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int sign, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} char $\ast$str, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int base)
 \begin{DoxyCompactList}\small\item\em Initializes a bigint structure from a character string representing a number. \end{DoxyCompactList}\item 
@@ -53,7 +52,7 @@ void \mbox{\hyperlink{utils_8h_a397f34e2a802e6b4f4ce79807be22f32}{bi\+\_\+assign
 \begin{DoxyCompactList}\small\item\em Assigns the value of one bigint to another. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{utils_8h_a3d2a94f37b629bd9f3cb3afb2e178e19}{bi\+\_\+gen\+\_\+rand}} (\mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$x, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int sign, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int wordlen)
 \begin{DoxyCompactList}\small\item\em Generates a random bigint with a specified sign and word length. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{utils_8h_a1fcdfec5fbe7acd8cee783a05dc84eb8}{array\+\_\+rand}} (\mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{bigint_8h_a05d9608d9715ad0ed6a53b795cc133ca}{word}} $\ast$dst, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int wordlen)
+void \mbox{\hyperlink{utils_8h_a1fcdfec5fbe7acd8cee783a05dc84eb8}{array\+\_\+rand}} (\mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{bigint_8h_aebc41b6d0c2740d77cf66d33521012e3}{word}} $\ast$dst, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int wordlen)
 \begin{DoxyCompactList}\small\item\em Fills an array with random bytes. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{utils_8h_a7387425ebbba576c8892a1fc1e27c621}{bi\+\_\+set\+\_\+one}} (\mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$x)
 \begin{DoxyCompactList}\small\item\em Sets a bigint to the value of one. \end{DoxyCompactList}\item 
@@ -89,7 +88,7 @@ void \mbox{\hyperlink{utils_8h_a4d18441f81f0f5678800a029a904d7f6}{match\+\_\+wor
 \begin{DoxyCompactList}\small\item\em Matches the word lengths of two {\ttfamily bigint} objects by resizing them to the larger of their current lengths. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{utils_8h_a370713de059c620d4e4b512d91d72d61}{bi\+\_\+reset}} (\mbox{\hyperlink{config_8h_a62766f3ea8784d1db62df989f8f33d2d}{I\+N\+O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$x)
 \begin{DoxyCompactList}\small\item\em Resets all words in a {\ttfamily bigint} to zero. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{bigint_8h_a05d9608d9715ad0ed6a53b795cc133ca}{word}} \mbox{\hyperlink{utils_8h_a34e51dbf790f1aff199d7856d54f5b52}{get\+\_\+word}} (\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$x, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int m\+\_\+th)
+\mbox{\hyperlink{bigint_8h_aebc41b6d0c2740d77cf66d33521012e3}{word}} \mbox{\hyperlink{utils_8h_a34e51dbf790f1aff199d7856d54f5b52}{get\+\_\+word}} (\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$x, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int m\+\_\+th)
 \begin{DoxyCompactList}\small\item\em Returns the value of the m-\/th word from a {\ttfamily bigint}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -115,7 +114,17 @@ These utility functions are essential for the core functionality of the Big\+Int
 
 
 
-Definition at line 30 of file utils.\+h.
+Reports invalid data input. 
+
+This macro prints an error message to {\ttfamily stderr} when an invalid data input or state is detected, including the file name and line number. \begin{DoxyNote}{Note}
+Use this macro in functions where invalid data might cause undefined behavior or logic errors. 
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+Ensure that input data is validated before processing to avoid triggering this macro unnecessarily. 
+\end{DoxyWarning}
+
+
+Definition at line 57 of file utils.\+h.
 
 \mbox{\Hypertarget{utils_8h_a948d60a859cb2d28e5734807c018a7c7}\label{utils_8h_a948d60a859cb2d28e5734807c018a7c7}} 
 \index{utils.h@{utils.h}!MEM\_ALLOCATION\_FAIL@{MEM\_ALLOCATION\_FAIL}}
@@ -125,7 +134,17 @@ Definition at line 30 of file utils.\+h.
 
 
 
-Definition at line 19 of file utils.\+h.
+Reports a memory allocation failure. 
+
+This macro prints an error message to {\ttfamily stderr} when memory allocation fails, including the file name and line number where the failure occurred. \begin{DoxyNote}{Note}
+This macro is intended to assist in debugging memory issues. 
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+Ensure that memory allocation functions (e.\+g., {\ttfamily malloc}, {\ttfamily calloc}) are checked for N\+U\+LL return values before using this macro. 
+\end{DoxyWarning}
+
+
+Definition at line 27 of file utils.\+h.
 
 \mbox{\Hypertarget{utils_8h_abed1294151be907d23ee1ca460262a40}\label{utils_8h_abed1294151be907d23ee1ca460262a40}} 
 \index{utils.h@{utils.h}!SET\_ARRAY\_FAIL@{SET\_ARRAY\_FAIL}}
@@ -135,17 +154,37 @@ Definition at line 19 of file utils.\+h.
 
 
 
-Definition at line 26 of file utils.\+h.
+Reports a failure when setting an array. 
+
+This macro prints an error message to {\ttfamily stderr} if an error occurs while setting up or initializing an array, including the file name and line number. \begin{DoxyNote}{Note}
+Common scenarios include invalid indices or failed assignments during array initialization. 
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+Verify that the array is properly allocated and accessed within bounds before using this macro. 
+\end{DoxyWarning}
+
+
+Definition at line 47 of file utils.\+h.
 
 \mbox{\Hypertarget{utils_8h_ac1a8a326f65e8911921f5ed9737b8276}\label{utils_8h_ac1a8a326f65e8911921f5ed9737b8276}} 
 \index{utils.h@{utils.h}!SET\_STRING\_FAIL@{SET\_STRING\_FAIL}}
 \index{SET\_STRING\_FAIL@{SET\_STRING\_FAIL}!utils.h@{utils.h}}
 \doxysubsubsection{\texorpdfstring{SET\_STRING\_FAIL}{SET\_STRING\_FAIL}}
-{\footnotesize\ttfamily \#define S\+E\+T\+\_\+\+S\+T\+R\+I\+N\+G\+\_\+\+F\+A\+IL~fprintf(stderr, \char`\"{}Error\+: Invalid input for string \mbox{\hyperlink{arithmetic_8c_ab9a3195a9e2cee7462a9b7cb40cfaa10}{or}} base at \%s\+:\%d\textbackslash{}n\char`\"{}, \+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+);}
+{\footnotesize\ttfamily \#define S\+E\+T\+\_\+\+S\+T\+R\+I\+N\+G\+\_\+\+F\+A\+IL~fprintf(stderr, \char`\"{}Error\+: Invalid input for string or base at \%s\+:\%d\textbackslash{}n\char`\"{}, \+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+);}
 
 
 
-Definition at line 22 of file utils.\+h.
+Reports a failure when setting a string or base. 
+
+This macro prints an error message to {\ttfamily stderr} when an invalid string or base input is encountered in the program, including the file name and line number. \begin{DoxyNote}{Note}
+Use this macro in functions where input validation for strings or bases is required. 
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+Ensure that the input is properly validated before calling functions that rely on strings or bases. 
+\end{DoxyWarning}
+
+
+Definition at line 37 of file utils.\+h.
 
 
 
@@ -154,7 +193,7 @@ Definition at line 22 of file utils.\+h.
 \index{utils.h@{utils.h}!array\_init@{array\_init}}
 \index{array\_init@{array\_init}!utils.h@{utils.h}}
 \doxysubsubsection{\texorpdfstring{array\_init()}{array\_init()}}
-{\footnotesize\ttfamily void array\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{bigint_8h_a05d9608d9715ad0ed6a53b795cc133ca}{word}} $\ast$}]{array,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int}]{length }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void array\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{bigint_8h_aebc41b6d0c2740d77cf66d33521012e3}{word}} $\ast$}]{array,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int}]{length }\end{DoxyParamCaption})}
 
 
 
@@ -182,19 +221,18 @@ This function assumes the array is writable and properly allocated.
 
 Definition at line 28 of file utils.\+c.
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=550pt]{utils_8h_a97cc4eb5eae289b31e5d69edabf69490_icgraph}
+\includegraphics[width=350pt]{utils_8h_a97cc4eb5eae289b31e5d69edabf69490_icgraph}
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{utils_8h_a1fcdfec5fbe7acd8cee783a05dc84eb8}\label{utils_8h_a1fcdfec5fbe7acd8cee783a05dc84eb8}} 
 \index{utils.h@{utils.h}!array\_rand@{array\_rand}}
 \index{array\_rand@{array\_rand}!utils.h@{utils.h}}
 \doxysubsubsection{\texorpdfstring{array\_rand()}{array\_rand()}}
-{\footnotesize\ttfamily void array\+\_\+rand (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{bigint_8h_a05d9608d9715ad0ed6a53b795cc133ca}{word}} $\ast$}]{dst,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int}]{wordlen }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void array\+\_\+rand (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{bigint_8h_aebc41b6d0c2740d77cf66d33521012e3}{word}} $\ast$}]{dst,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int}]{wordlen }\end{DoxyParamCaption})}
 
 
 
@@ -213,8 +251,7 @@ This function populates the specified array with random bytes using the rand fun
 
 Definition at line 215 of file utils.\+c.
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -244,16 +281,14 @@ This function deletes the existing destination bigint, creates a new bigint of t
 
 Definition at line 189 of file utils.\+c.
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{utils_8h_a397f34e2a802e6b4f4ce79807be22f32_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -284,16 +319,14 @@ void
 
 Definition at line 35 of file utils.\+c.
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=241pt]{utils_8h_a19f86cf37a9d5dc56d630031ba94ab20_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -325,16 +358,14 @@ This function creates a new bigint, sets its sign, generates random values for i
 
 Definition at line 206 of file utils.\+c.
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{utils_8h_a3d2a94f37b629bd9f3cb3afb2e178e19_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -367,16 +398,14 @@ void
 
 Definition at line 5 of file utils.\+c.
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=328pt]{utils_8h_a7288a6de8e0ee93e4f9dc542336efa46_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -404,8 +433,7 @@ This function modifies the given bigint by removing any leading zeros, updating 
 
 Definition at line 139 of file utils.\+c.
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -454,8 +482,7 @@ The {\ttfamily bigint}\textquotesingle{}s word length is reduced by {\ttfamily n
 
 Definition at line 167 of file utils.\+c.
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -490,8 +517,7 @@ This function assumes that the {\ttfamily bigint} structure has an attribute {\t
 
 Definition at line 581 of file utils.\+c.
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -502,7 +528,7 @@ Here is the caller graph for this function\+:
 \index{utils.h@{utils.h}!bi\_set\_by\_array@{bi\_set\_by\_array}}
 \index{bi\_set\_by\_array@{bi\_set\_by\_array}!utils.h@{utils.h}}
 \doxysubsubsection{\texorpdfstring{bi\_set\_by\_array()}{bi\_set\_by\_array()}}
-{\footnotesize\ttfamily int bi\+\_\+set\+\_\+by\+\_\+array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$}]{x,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int}]{sign,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{bigint_8h_a05d9608d9715ad0ed6a53b795cc133ca}{word}} $\ast$}]{a,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int}]{wordlen }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int bi\+\_\+set\+\_\+by\+\_\+array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$}]{x,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int}]{sign,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{bigint_8h_aebc41b6d0c2740d77cf66d33521012e3}{word}} $\ast$}]{a,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int}]{wordlen }\end{DoxyParamCaption})}
 
 
 
@@ -526,8 +552,7 @@ int Returns 0 on success, non-\/zero on failure.
 
 Definition at line 80 of file utils.\+c.
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -562,8 +587,7 @@ int Returns 0 on success, non-\/zero on failure.
 
 Definition at line 98 of file utils.\+c.
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -591,16 +615,14 @@ This function initializes a new bigint structure and sets its value to one. The 
 
 Definition at line 227 of file utils.\+c.
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{utils_8h_a7387425ebbba576c8892a1fc1e27c621_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -628,16 +650,14 @@ This function initializes a new bigint structure and sets its value to zero. The
 
 Definition at line 234 of file utils.\+c.
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{utils_8h_a60481dc2edd27dfcf89351e6c1ff1311_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -691,16 +711,14 @@ This function compares two bigint numbers, considering both their magnitudes and
 
 Definition at line 268 of file utils.\+c.
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=254pt]{utils_8h_a0c725a878f05fdf3f897f2d5d8623b7a_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -741,8 +759,7 @@ Assumes that {\ttfamily x} and {\ttfamily y} are valid bigint pointers with non-
 
 Definition at line 241 of file utils.\+c.
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -773,16 +790,14 @@ The bit length of the bigint. If there are no words, returns 0. If the bigint is
 
 Definition at line 289 of file utils.\+c.
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=270pt]{utils_8h_abcba3e9422491d8d36594260d5469fe0_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -815,8 +830,7 @@ Returns 1 if the bit is set, 0 if the bit is not set, or -\/1 if the input is in
 
 Definition at line 301 of file utils.\+c.
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -827,7 +841,7 @@ Here is the caller graph for this function\+:
 \index{utils.h@{utils.h}!get\_word@{get\_word}}
 \index{get\_word@{get\_word}!utils.h@{utils.h}}
 \doxysubsubsection{\texorpdfstring{get\_word()}{get\_word()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{bigint_8h_a05d9608d9715ad0ed6a53b795cc133ca}{word}} get\+\_\+word (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int}]{m\+\_\+th }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{bigint_8h_aebc41b6d0c2740d77cf66d33521012e3}{word}} get\+\_\+word (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int}]{m\+\_\+th }\end{DoxyParamCaption})}
 
 
 
@@ -856,8 +870,7 @@ This function assumes that the {\ttfamily bigint} structure has an attribute {\t
 
 Definition at line 587 of file utils.\+c.
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -902,8 +915,7 @@ int Returns 1 if any bit in {\ttfamily x} is set to 1, indicating {\ttfamily x} 
 
 Definition at line 495 of file utils.\+c.
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -936,8 +948,7 @@ The function handles memory allocation and will exit the program with an error m
 
 Definition at line 340 of file utils.\+c.
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -985,8 +996,7 @@ This function shifts the bigint {\ttfamily x} to the left by the specified numbe
 
 Definition at line 431 of file utils.\+c.
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -1038,8 +1048,7 @@ If the original word length of {\ttfamily x} is odd\+:
 
 Definition at line 523 of file utils.\+c.
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -1092,8 +1101,7 @@ Both {\ttfamily x} and {\ttfamily y} must point to valid, initialized {\ttfamily
 
 Definition at line 541 of file utils.\+c.
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -1128,16 +1136,14 @@ Memory for the result bigint is allocated inside this function. The caller is re
 
 Definition at line 380 of file utils.\+c.
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{utils_8h_a51b36ceaf8915fb9b17f825f57d9878e_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -1170,8 +1176,7 @@ The function handles memory allocation and will exit the program with an error m
 
 Definition at line 309 of file utils.\+c.
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -1218,8 +1223,7 @@ This function shifts the bigint {\ttfamily x} to the right by the specified numb
 
 Definition at line 462 of file utils.\+c.
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

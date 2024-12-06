@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: test/time.py File Reference</title>
+<title>Big Integer Library: test/time.py File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -20,8 +20,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="crunch_code.jpg"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">Big Integer Library
+   &#160;<span id="projectnumber">0.0.1</span>
    </div>
   </td>
  </tr>
@@ -82,26 +84,60 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
+<tr class="memitem:ac8bb85d23a685e00732d96bf96c71b47"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#ac8bb85d23a685e00732d96bf96c71b47">time.mul_core_tx_speeds</a> = []</td></tr>
+<tr class="separator:ac8bb85d23a685e00732d96bf96c71b47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaed053d63b099709f740405f4a48aa8"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#acaed053d63b099709f740405f4a48aa8">time.mul_core_improved_speeds</a> = []</td></tr>
+<tr class="separator:acaed053d63b099709f740405f4a48aa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa00822c41b9e7aa30ab08f8076ca0b6a"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#aa00822c41b9e7aa30ab08f8076ca0b6a">time.mul_core_karatsuba_speeds</a> = []</td></tr>
+<tr class="separator:aa00822c41b9e7aa30ab08f8076ca0b6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a32ede7bb9cfb1e339e2a7a11232ffe33"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a32ede7bb9cfb1e339e2a7a11232ffe33">time.encoding</a></td></tr>
 <tr class="separator:a32ede7bb9cfb1e339e2a7a11232ffe33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa015a980309d0c318e8b5c6e766f6891"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#aa015a980309d0c318e8b5c6e766f6891">time.data</a> = file.readlines()</td></tr>
-<tr class="separator:aa015a980309d0c318e8b5c6e766f6891"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0048097fb24d0308e617f83638f2e7bd"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a0048097fb24d0308e617f83638f2e7bd">time.function1_speeds</a> = [float(data[i].strip()) for i in range(0, len(data), 1)]</td></tr>
-<tr class="separator:a0048097fb24d0308e617f83638f2e7bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae82307c6de586460d624578b708283b6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#ae82307c6de586460d624578b708283b6">time.average_function1</a> = np.mean(function1_speeds)</td></tr>
-<tr class="separator:ae82307c6de586460d624578b708283b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63446bbaf9e9b609d698ea242e185de3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a63446bbaf9e9b609d698ea242e185de3">time.window_size</a> = 5000</td></tr>
-<tr class="separator:a63446bbaf9e9b609d698ea242e185de3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad755c94a36336c1eceac88b3aef234dd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#ad755c94a36336c1eceac88b3aef234dd">time.function1_smooth</a> = np.convolve(function1_speeds, np.ones(window_size)/window_size, mode='valid')</td></tr>
-<tr class="separator:ad755c94a36336c1eceac88b3aef234dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af086d9079f998eb35ac78738f27915f3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#af086d9079f998eb35ac78738f27915f3">time.lowest_point_smooth</a> = min(function1_smooth)</td></tr>
-<tr class="separator:af086d9079f998eb35ac78738f27915f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f464399dca19a001c6df11eb249ef65"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a1f464399dca19a001c6df11eb249ef65">time.highest_point_smooth</a> = max(function1_smooth)</td></tr>
-<tr class="separator:a1f464399dca19a001c6df11eb249ef65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ea66f8cbf5781d37866a7504e007922"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a1ea66f8cbf5781d37866a7504e007922">time.lowest_index_smooth</a> = np.argmin(function1_smooth)</td></tr>
-<tr class="separator:a1ea66f8cbf5781d37866a7504e007922"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00f7001509b9d9f4842310535fe0613d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a00f7001509b9d9f4842310535fe0613d">time.highest_index_smooth</a> = np.argmax(function1_smooth)</td></tr>
-<tr class="separator:a00f7001509b9d9f4842310535fe0613d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3922219bebbfc2c1666af8240d4c6b10"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a3922219bebbfc2c1666af8240d4c6b10">time.line</a> = line.strip()</td></tr>
+<tr class="separator:a3922219bebbfc2c1666af8240d4c6b10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f23d73150ff26ae093ebc568aa81cea"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a4f23d73150ff26ae093ebc568aa81cea">time.average_mul_core_tx</a> = np.mean(mul_core_tx_speeds)</td></tr>
+<tr class="separator:a4f23d73150ff26ae093ebc568aa81cea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a7e6f63ae457a625e2dd53d08443726"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a7a7e6f63ae457a625e2dd53d08443726">time.average_mul_core_improved</a> = np.mean(mul_core_improved_speeds)</td></tr>
+<tr class="separator:a7a7e6f63ae457a625e2dd53d08443726"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a757e01da8ff165cbd1a25a44086cc2a1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a757e01da8ff165cbd1a25a44086cc2a1">time.average_mul_core_karatsuba</a> = np.mean(mul_core_karatsuba_speeds)</td></tr>
+<tr class="separator:a757e01da8ff165cbd1a25a44086cc2a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2784a8ddcccbee241f40839e598f2664"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a2784a8ddcccbee241f40839e598f2664">time.window_size</a> = 100</td></tr>
+<tr class="separator:a2784a8ddcccbee241f40839e598f2664"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7553119dd1a5f6f2a4ab38e8c0274cd6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a7553119dd1a5f6f2a4ab38e8c0274cd6">time.mul_core_tx_smooth</a> = pd.Series(mul_core_tx_speeds).rolling(window=window_size).mean()</td></tr>
+<tr class="separator:a7553119dd1a5f6f2a4ab38e8c0274cd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe186ab59943e9e272e8378d4a1bef05"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#abe186ab59943e9e272e8378d4a1bef05">time.mul_core_improved_smooth</a> = pd.Series(mul_core_improved_speeds).rolling(window=window_size).mean()</td></tr>
+<tr class="separator:abe186ab59943e9e272e8378d4a1bef05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83ebd39f3bc7d17818f872a4341de0ca"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a83ebd39f3bc7d17818f872a4341de0ca">time.mul_core_karatsuba_smooth</a> = pd.Series(mul_core_karatsuba_speeds).rolling(window=window_size).mean()</td></tr>
+<tr class="separator:a83ebd39f3bc7d17818f872a4341de0ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ba4f808a4156484e065466f146ce06f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a1ba4f808a4156484e065466f146ce06f">time.mul_core_tx_smooth_no_nan</a> = mul_core_tx_smooth.dropna()</td></tr>
+<tr class="separator:a1ba4f808a4156484e065466f146ce06f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad132677bb7acdfc451855cc633a835f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#aad132677bb7acdfc451855cc633a835f">time.mul_core_improved_smooth_no_nan</a> = mul_core_improved_smooth.dropna()</td></tr>
+<tr class="separator:aad132677bb7acdfc451855cc633a835f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a835b5dd412c79f06ce945fa069b9f7f0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a835b5dd412c79f06ce945fa069b9f7f0">time.mul_core_karatsuba_smooth_no_nan</a> = mul_core_karatsuba_smooth.dropna()</td></tr>
+<tr class="separator:a835b5dd412c79f06ce945fa069b9f7f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac93fef4caeb625c7d63ade1f9a7b5aa0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#ac93fef4caeb625c7d63ade1f9a7b5aa0">time.lowest_mul_core_tx</a> = mul_core_tx_smooth_no_nan.min()</td></tr>
+<tr class="separator:ac93fef4caeb625c7d63ade1f9a7b5aa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1c7276e955d51e617f8526fc51a3d14"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#ae1c7276e955d51e617f8526fc51a3d14">time.highest_mul_core_tx</a> = mul_core_tx_smooth_no_nan.max()</td></tr>
+<tr class="separator:ae1c7276e955d51e617f8526fc51a3d14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9c461d0d35e92f366fa47765b46744c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#ac9c461d0d35e92f366fa47765b46744c">time.lowest_index_mul_core_tx</a> = mul_core_tx_smooth_no_nan.idxmin()</td></tr>
+<tr class="separator:ac9c461d0d35e92f366fa47765b46744c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7c965c72051086d207ff143595d9afb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#ad7c965c72051086d207ff143595d9afb">time.highest_index_mul_core_tx</a> = mul_core_tx_smooth_no_nan.idxmax()</td></tr>
+<tr class="separator:ad7c965c72051086d207ff143595d9afb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5057cc44c7e45a4f263145d79b3c980b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a5057cc44c7e45a4f263145d79b3c980b">time.lowest_mul_core_improved</a> = mul_core_improved_smooth_no_nan.min()</td></tr>
+<tr class="separator:a5057cc44c7e45a4f263145d79b3c980b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a338ad5cc3105ce44d52452fa405ca794"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a338ad5cc3105ce44d52452fa405ca794">time.highest_mul_core_improved</a> = mul_core_improved_smooth_no_nan.max()</td></tr>
+<tr class="separator:a338ad5cc3105ce44d52452fa405ca794"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cb405491f301740548b0343739c7802"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a1cb405491f301740548b0343739c7802">time.lowest_index_mul_core_improved</a> = mul_core_improved_smooth_no_nan.idxmin()</td></tr>
+<tr class="separator:a1cb405491f301740548b0343739c7802"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac85d031714ddbf5ec735e2ee439daa24"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#ac85d031714ddbf5ec735e2ee439daa24">time.highest_index_mul_core_improved</a> = mul_core_improved_smooth_no_nan.idxmax()</td></tr>
+<tr class="separator:ac85d031714ddbf5ec735e2ee439daa24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a950d871b583e31ee178338d1ea5e7df8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a950d871b583e31ee178338d1ea5e7df8">time.lowest_mul_core_karatsuba</a> = mul_core_karatsuba_smooth_no_nan.min()</td></tr>
+<tr class="separator:a950d871b583e31ee178338d1ea5e7df8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d6f591c50d24bce9df0c6e2401bf3a9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a0d6f591c50d24bce9df0c6e2401bf3a9">time.highest_mul_core_karatsuba</a> = mul_core_karatsuba_smooth_no_nan.max()</td></tr>
+<tr class="separator:a0d6f591c50d24bce9df0c6e2401bf3a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a970bddcd79ec38b9bcb44b2bc15665ab"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a970bddcd79ec38b9bcb44b2bc15665ab">time.lowest_index_mul_core_karatsuba</a> = mul_core_karatsuba_smooth_no_nan.idxmin()</td></tr>
+<tr class="separator:a970bddcd79ec38b9bcb44b2bc15665ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2caa749885e27ef65baa1073f03376ed"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a2caa749885e27ef65baa1073f03376ed">time.highest_index_mul_core_karatsuba</a> = mul_core_karatsuba_smooth_no_nan.idxmax()</td></tr>
+<tr class="separator:a2caa749885e27ef65baa1073f03376ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a5fa3f4b6a4701f3ab98dca726b7c67"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a5a5fa3f4b6a4701f3ab98dca726b7c67">time.fig</a></td></tr>
 <tr class="separator:a5a5fa3f4b6a4701f3ab98dca726b7c67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4d3ea33922e7897a2cfc19c317c6e28"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#ab4d3ea33922e7897a2cfc19c317c6e28">time.ax1</a></td></tr>
@@ -120,10 +156,6 @@ Variables</h2></td></tr>
 <tr class="separator:a39529859412d52b6e81e015a3e4f9102"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0aed376869fbb1cd21f79db5159eeabf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a0aed376869fbb1cd21f79db5159eeabf">time.linestyle</a></td></tr>
 <tr class="separator:a0aed376869fbb1cd21f79db5159eeabf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace8bbba0e2fdf6ad607afde2fb450a92"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#ace8bbba0e2fdf6ad607afde2fb450a92">time.marker</a></td></tr>
-<tr class="separator:ace8bbba0e2fdf6ad607afde2fb450a92"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1464cf8d170be61e215962b6bf9524d5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a1464cf8d170be61e215962b6bf9524d5">time.markevery</a></td></tr>
-<tr class="separator:a1464cf8d170be61e215962b6bf9524d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9eb048c6bd09ed2d41b322f03e051bf4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a9eb048c6bd09ed2d41b322f03e051bf4">time.markersize</a></td></tr>
 <tr class="separator:a9eb048c6bd09ed2d41b322f03e051bf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99c9d8b18eb9c3843664617275974756"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a99c9d8b18eb9c3843664617275974756">time.va</a></td></tr>
@@ -140,16 +172,20 @@ Variables</h2></td></tr>
 <tr class="separator:a95086d853ad727dec3882500a43bb599"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46af8838d691f6dd3b4a1f7de827cc39"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a46af8838d691f6dd3b4a1f7de827cc39">time.loc</a></td></tr>
 <tr class="separator:a46af8838d691f6dd3b4a1f7de827cc39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa790d50e7e8e9394ea37eb4ca57d74d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#afa790d50e7e8e9394ea37eb4ca57d74d">time.bbox_to_anchor</a></td></tr>
+<tr class="separator:afa790d50e7e8e9394ea37eb4ca57d74d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae84b8da278d7ce67ffd2ca92bf88c81e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#ae84b8da278d7ce67ffd2ca92bf88c81e">time.frameon</a></td></tr>
 <tr class="separator:ae84b8da278d7ce67ffd2ca92bf88c81e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2125ae8453a65240551b42987cf399b9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a2125ae8453a65240551b42987cf399b9">time.True</a></td></tr>
 <tr class="separator:a2125ae8453a65240551b42987cf399b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7af1f3320de5cbaa8d9b2a47a7f330f0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a7af1f3320de5cbaa8d9b2a47a7f330f0">time.framealpha</a></td></tr>
-<tr class="separator:a7af1f3320de5cbaa8d9b2a47a7f330f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0af6fcc36e486f1950194eea3d72b030"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a0af6fcc36e486f1950194eea3d72b030">time.shadow</a></td></tr>
 <tr class="separator:a0af6fcc36e486f1950194eea3d72b030"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33f1b64b7e7c9a99c6c45c4279a30e49"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a33f1b64b7e7c9a99c6c45c4279a30e49">time.fancybox</a></td></tr>
 <tr class="separator:a33f1b64b7e7c9a99c6c45c4279a30e49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75ad4c4e098b194fdf84a1c20ad5960b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a75ad4c4e098b194fdf84a1c20ad5960b">time.ncol</a></td></tr>
+<tr class="separator:a75ad4c4e098b194fdf84a1c20ad5960b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b769def23d0f2608ce1aef4921fe236"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetime.html#a7b769def23d0f2608ce1aef4921fe236">time.rect</a></td></tr>
+<tr class="separator:a7b769def23d0f2608ce1aef4921fe236"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->

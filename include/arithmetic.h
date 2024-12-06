@@ -34,7 +34,7 @@
  * @note This function assumes that the `bigint` structure has attributes `a` (an array of words), 
  *       `wordlen` (length of the array), and `sign` (the sign of the integer).
  */
-void or(IN bigint** x, IN bigint** y, OUT bigint** z);
+void bigint_or(IN bigint** x, IN bigint** y, OUT bigint** z);
 
 
 

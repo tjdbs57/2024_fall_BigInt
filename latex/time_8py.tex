@@ -8,25 +8,59 @@
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
+list \mbox{\hyperlink{namespacetime_ac8bb85d23a685e00732d96bf96c71b47}{time.\+mul\+\_\+core\+\_\+tx\+\_\+speeds}} = \mbox{[}$\,$\mbox{]}
+\item 
+list \mbox{\hyperlink{namespacetime_acaed053d63b099709f740405f4a48aa8}{time.\+mul\+\_\+core\+\_\+improved\+\_\+speeds}} = \mbox{[}$\,$\mbox{]}
+\item 
+list \mbox{\hyperlink{namespacetime_aa00822c41b9e7aa30ab08f8076ca0b6a}{time.\+mul\+\_\+core\+\_\+karatsuba\+\_\+speeds}} = \mbox{[}$\,$\mbox{]}
+\item 
 \mbox{\hyperlink{namespacetime_a32ede7bb9cfb1e339e2a7a11232ffe33}{time.\+encoding}}
 \item 
-\mbox{\hyperlink{namespacetime_aa015a980309d0c318e8b5c6e766f6891}{time.\+data}} = file.\+readlines()
+\mbox{\hyperlink{namespacetime_a3922219bebbfc2c1666af8240d4c6b10}{time.\+line}} = line.\+strip()
 \item 
-list \mbox{\hyperlink{namespacetime_a0048097fb24d0308e617f83638f2e7bd}{time.\+function1\+\_\+speeds}} = \mbox{[}float(data\mbox{[}i\mbox{]}.strip()) for i in range(0, len(data), 1)\mbox{]}
+\mbox{\hyperlink{namespacetime_a4f23d73150ff26ae093ebc568aa81cea}{time.\+average\+\_\+mul\+\_\+core\+\_\+tx}} = np.\+mean(mul\+\_\+core\+\_\+tx\+\_\+speeds)
 \item 
-\mbox{\hyperlink{namespacetime_ae82307c6de586460d624578b708283b6}{time.\+average\+\_\+function1}} = np.\+mean(function1\+\_\+speeds)
+\mbox{\hyperlink{namespacetime_a7a7e6f63ae457a625e2dd53d08443726}{time.\+average\+\_\+mul\+\_\+core\+\_\+improved}} = np.\+mean(mul\+\_\+core\+\_\+improved\+\_\+speeds)
 \item 
-int \mbox{\hyperlink{namespacetime_a63446bbaf9e9b609d698ea242e185de3}{time.\+window\+\_\+size}} = 5000
+\mbox{\hyperlink{namespacetime_a757e01da8ff165cbd1a25a44086cc2a1}{time.\+average\+\_\+mul\+\_\+core\+\_\+karatsuba}} = np.\+mean(mul\+\_\+core\+\_\+karatsuba\+\_\+speeds)
 \item 
-\mbox{\hyperlink{namespacetime_ad755c94a36336c1eceac88b3aef234dd}{time.\+function1\+\_\+smooth}} = np.\+convolve(function1\+\_\+speeds, np.\+ones(window\+\_\+size)/window\+\_\+size, mode=\textquotesingle{}valid\textquotesingle{})
+int \mbox{\hyperlink{namespacetime_a2784a8ddcccbee241f40839e598f2664}{time.\+window\+\_\+size}} = 100
 \item 
-\mbox{\hyperlink{namespacetime_af086d9079f998eb35ac78738f27915f3}{time.\+lowest\+\_\+point\+\_\+smooth}} = min(function1\+\_\+smooth)
+\mbox{\hyperlink{namespacetime_a7553119dd1a5f6f2a4ab38e8c0274cd6}{time.\+mul\+\_\+core\+\_\+tx\+\_\+smooth}} = pd.\+Series(mul\+\_\+core\+\_\+tx\+\_\+speeds).rolling(window=window\+\_\+size).mean()
 \item 
-\mbox{\hyperlink{namespacetime_a1f464399dca19a001c6df11eb249ef65}{time.\+highest\+\_\+point\+\_\+smooth}} = max(function1\+\_\+smooth)
+\mbox{\hyperlink{namespacetime_abe186ab59943e9e272e8378d4a1bef05}{time.\+mul\+\_\+core\+\_\+improved\+\_\+smooth}} = pd.\+Series(mul\+\_\+core\+\_\+improved\+\_\+speeds).rolling(window=window\+\_\+size).mean()
 \item 
-\mbox{\hyperlink{namespacetime_a1ea66f8cbf5781d37866a7504e007922}{time.\+lowest\+\_\+index\+\_\+smooth}} = np.\+argmin(function1\+\_\+smooth)
+\mbox{\hyperlink{namespacetime_a83ebd39f3bc7d17818f872a4341de0ca}{time.\+mul\+\_\+core\+\_\+karatsuba\+\_\+smooth}} = pd.\+Series(mul\+\_\+core\+\_\+karatsuba\+\_\+speeds).rolling(window=window\+\_\+size).mean()
 \item 
-\mbox{\hyperlink{namespacetime_a00f7001509b9d9f4842310535fe0613d}{time.\+highest\+\_\+index\+\_\+smooth}} = np.\+argmax(function1\+\_\+smooth)
+\mbox{\hyperlink{namespacetime_a1ba4f808a4156484e065466f146ce06f}{time.\+mul\+\_\+core\+\_\+tx\+\_\+smooth\+\_\+no\+\_\+nan}} = mul\+\_\+core\+\_\+tx\+\_\+smooth.\+dropna()
+\item 
+\mbox{\hyperlink{namespacetime_aad132677bb7acdfc451855cc633a835f}{time.\+mul\+\_\+core\+\_\+improved\+\_\+smooth\+\_\+no\+\_\+nan}} = mul\+\_\+core\+\_\+improved\+\_\+smooth.\+dropna()
+\item 
+\mbox{\hyperlink{namespacetime_a835b5dd412c79f06ce945fa069b9f7f0}{time.\+mul\+\_\+core\+\_\+karatsuba\+\_\+smooth\+\_\+no\+\_\+nan}} = mul\+\_\+core\+\_\+karatsuba\+\_\+smooth.\+dropna()
+\item 
+\mbox{\hyperlink{namespacetime_ac93fef4caeb625c7d63ade1f9a7b5aa0}{time.\+lowest\+\_\+mul\+\_\+core\+\_\+tx}} = mul\+\_\+core\+\_\+tx\+\_\+smooth\+\_\+no\+\_\+nan.\+min()
+\item 
+\mbox{\hyperlink{namespacetime_ae1c7276e955d51e617f8526fc51a3d14}{time.\+highest\+\_\+mul\+\_\+core\+\_\+tx}} = mul\+\_\+core\+\_\+tx\+\_\+smooth\+\_\+no\+\_\+nan.\+max()
+\item 
+\mbox{\hyperlink{namespacetime_ac9c461d0d35e92f366fa47765b46744c}{time.\+lowest\+\_\+index\+\_\+mul\+\_\+core\+\_\+tx}} = mul\+\_\+core\+\_\+tx\+\_\+smooth\+\_\+no\+\_\+nan.\+idxmin()
+\item 
+\mbox{\hyperlink{namespacetime_ad7c965c72051086d207ff143595d9afb}{time.\+highest\+\_\+index\+\_\+mul\+\_\+core\+\_\+tx}} = mul\+\_\+core\+\_\+tx\+\_\+smooth\+\_\+no\+\_\+nan.\+idxmax()
+\item 
+\mbox{\hyperlink{namespacetime_a5057cc44c7e45a4f263145d79b3c980b}{time.\+lowest\+\_\+mul\+\_\+core\+\_\+improved}} = mul\+\_\+core\+\_\+improved\+\_\+smooth\+\_\+no\+\_\+nan.\+min()
+\item 
+\mbox{\hyperlink{namespacetime_a338ad5cc3105ce44d52452fa405ca794}{time.\+highest\+\_\+mul\+\_\+core\+\_\+improved}} = mul\+\_\+core\+\_\+improved\+\_\+smooth\+\_\+no\+\_\+nan.\+max()
+\item 
+\mbox{\hyperlink{namespacetime_a1cb405491f301740548b0343739c7802}{time.\+lowest\+\_\+index\+\_\+mul\+\_\+core\+\_\+improved}} = mul\+\_\+core\+\_\+improved\+\_\+smooth\+\_\+no\+\_\+nan.\+idxmin()
+\item 
+\mbox{\hyperlink{namespacetime_ac85d031714ddbf5ec735e2ee439daa24}{time.\+highest\+\_\+index\+\_\+mul\+\_\+core\+\_\+improved}} = mul\+\_\+core\+\_\+improved\+\_\+smooth\+\_\+no\+\_\+nan.\+idxmax()
+\item 
+\mbox{\hyperlink{namespacetime_a950d871b583e31ee178338d1ea5e7df8}{time.\+lowest\+\_\+mul\+\_\+core\+\_\+karatsuba}} = mul\+\_\+core\+\_\+karatsuba\+\_\+smooth\+\_\+no\+\_\+nan.\+min()
+\item 
+\mbox{\hyperlink{namespacetime_a0d6f591c50d24bce9df0c6e2401bf3a9}{time.\+highest\+\_\+mul\+\_\+core\+\_\+karatsuba}} = mul\+\_\+core\+\_\+karatsuba\+\_\+smooth\+\_\+no\+\_\+nan.\+max()
+\item 
+\mbox{\hyperlink{namespacetime_a970bddcd79ec38b9bcb44b2bc15665ab}{time.\+lowest\+\_\+index\+\_\+mul\+\_\+core\+\_\+karatsuba}} = mul\+\_\+core\+\_\+karatsuba\+\_\+smooth\+\_\+no\+\_\+nan.\+idxmin()
+\item 
+\mbox{\hyperlink{namespacetime_a2caa749885e27ef65baa1073f03376ed}{time.\+highest\+\_\+index\+\_\+mul\+\_\+core\+\_\+karatsuba}} = mul\+\_\+core\+\_\+karatsuba\+\_\+smooth\+\_\+no\+\_\+nan.\+idxmax()
 \item 
 \mbox{\hyperlink{namespacetime_a5a5fa3f4b6a4701f3ab98dca726b7c67}{time.\+fig}}
 \item 
@@ -46,10 +80,6 @@ int \mbox{\hyperlink{namespacetime_a63446bbaf9e9b609d698ea242e185de3}{time.\+win
 \item 
 \mbox{\hyperlink{namespacetime_a0aed376869fbb1cd21f79db5159eeabf}{time.\+linestyle}}
 \item 
-\mbox{\hyperlink{namespacetime_ace8bbba0e2fdf6ad607afde2fb450a92}{time.\+marker}}
-\item 
-\mbox{\hyperlink{namespacetime_a1464cf8d170be61e215962b6bf9524d5}{time.\+markevery}}
-\item 
 \mbox{\hyperlink{namespacetime_a9eb048c6bd09ed2d41b322f03e051bf4}{time.\+markersize}}
 \item 
 \mbox{\hyperlink{namespacetime_a99c9d8b18eb9c3843664617275974756}{time.\+va}}
@@ -66,13 +96,17 @@ int \mbox{\hyperlink{namespacetime_a63446bbaf9e9b609d698ea242e185de3}{time.\+win
 \item 
 \mbox{\hyperlink{namespacetime_a46af8838d691f6dd3b4a1f7de827cc39}{time.\+loc}}
 \item 
+\mbox{\hyperlink{namespacetime_afa790d50e7e8e9394ea37eb4ca57d74d}{time.\+bbox\+\_\+to\+\_\+anchor}}
+\item 
 \mbox{\hyperlink{namespacetime_ae84b8da278d7ce67ffd2ca92bf88c81e}{time.\+frameon}}
 \item 
 \mbox{\hyperlink{namespacetime_a2125ae8453a65240551b42987cf399b9}{time.\+True}}
 \item 
-\mbox{\hyperlink{namespacetime_a7af1f3320de5cbaa8d9b2a47a7f330f0}{time.\+framealpha}}
-\item 
 \mbox{\hyperlink{namespacetime_a0af6fcc36e486f1950194eea3d72b030}{time.\+shadow}}
 \item 
 \mbox{\hyperlink{namespacetime_a33f1b64b7e7c9a99c6c45c4279a30e49}{time.\+fancybox}}
+\item 
+\mbox{\hyperlink{namespacetime_a75ad4c4e098b194fdf84a1c20ad5960b}{time.\+ncol}}
+\item 
+\mbox{\hyperlink{namespacetime_a7b769def23d0f2608ce1aef4921fe236}{time.\+rect}}
 \end{DoxyCompactItemize}

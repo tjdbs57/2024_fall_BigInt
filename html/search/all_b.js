@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['negative_93',['NEGATIVE',['../config_8h.html#ae8da539b402ed6856028a0a60240bbff',1,'config.h']]],
-  ['non_5fnegative_94',['NON_NEGATIVE',['../config_8h.html#a0fbb909b8d4ba1d6cfc47b3a14ade051',1,'config.h']]]
+  ['print_5fbi_5fhex_5fpy_63',['print_bi_hex_py',['../test_8h.html#aeeac9fa9820f0adf13369ea064624bd1',1,'print_bi_hex_py(IN const bigint *x):&#160;test.c'],['../test_8c.html#aeeac9fa9820f0adf13369ea064624bd1',1,'print_bi_hex_py(IN const bigint *x):&#160;test.c']]]
 ];
