@@ -54,11 +54,7 @@ def process_test_output(output):
 
 
 def read_test_output_from_file(file_path):
-    """
-    @brief Reads a test file and processes its output.
-    @param file_path The path to the test file.
-    @return A dictionary containing success and failure counts for each operation, or an empty dictionary on failure.
-    """
+
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             output = f.read()
@@ -125,11 +121,11 @@ def plot_success_rate(results, output_path, test_cases, bit_length):
 
 
 # 파일에서 결과 읽기
-test_file_path = 'test/test_all.txt'  # 테스트 파일 경로
+test_file_path = 'test_all.txt'  # 테스트 파일 경로
 results = read_test_output_from_file(test_file_path)
 
 if results:
-    output_file = "graph/success_rate_plot.png"  # 저장될 그래프 파일 경로
+    output_file = "../graph/success_rate_plot.png"  # 저장될 그래프 파일 경로
     test_cases = 1000  # 테스트 케이스 개수
     bit_length = 4096  # 비트 길이
     plot_success_rate(results, output_file, test_cases, bit_length)
