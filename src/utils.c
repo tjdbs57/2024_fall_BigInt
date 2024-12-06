@@ -97,40 +97,50 @@ int bi_set_by_array(OUT bigint** x, IN int sign, IN word* a, IN int wordlen)
 
 int bi_set_by_string(OUT bigint** x, IN int sign, IN char* str, IN int base) 
 {
-    if (str == NULL || base < 2 || base > 16) {
+    if (str == NULL ||  base != 16) {
         SET_STRING_FAIL;
         exit(1);
     }
 
     size_t len = strlen(str);
+
     size_t wordlen = (len * 4 + (WORD_BITLEN - 1)) / WORD_BITLEN;
     
     bi_new(x, wordlen);
+
     (*x)->sign = sign; 
-
+    
+    // Loop through each word and set its value from the input string
     for (size_t current_word = 0; current_word < wordlen; current_word++) {
-        (*x)->a[current_word] = 0; 
-
-        size_t bits_per_word = WORD_BITLEN / 4;
-        for (size_t j = 0; j < bits_per_word; j++) {
-            size_t index = len - 1 - (current_word * bits_per_word + j); 
-            if (index >= len) break;
+        (*x)->a[current_word] = 0;
+    
+        // Loop through each 4-bit chunk in the word and fill it
+        for (size_t j = 0; j < WORD_BITLEN / 4; j++) {
+            // Calculate the index in the string for the current 4-bit chunk
+            size_t index = len - 1 - (current_word * (WORD_BITLEN / 4) + j);
+            
+            // If the index is out of bounds of the string, skip this chunk
+            if (index >= len) continue;
+    
             char c = str[index];
-            int value;
+            int value = 0;
+    
 
+            // Convert the character to its numeric value (0-9 for digits, 10-15 for 'a'-'f')
             if (isdigit(c)) {
-                value = c - '0'; 
+                value = c - '0';    // '0' to '9' -> 0 to 9
             } else if (isxdigit(c)) {
-                value = tolower(c) - 'a' + 10;
+                value = tolower(c) - 'a' + 10;   // 'a'-'f' -> 10 to 15
             } else {
                 INVAILD_DATA;
                 exit(1);
             }
-
-            (*x)->a[current_word] |= (value << (j * 4)); 
     
+            // Set the corresponding bits in the current word by shifting the value into position
+            (*x)->a[current_word] |= ((word)value << (j * 4)); 
         }
     }
+    
 
     return 0; 
 }
@@ -337,43 +347,39 @@ void right_shift_bit(INOUT bigint* x, IN int shift)
     bi_refine(x);
 }
 
-void left_shift_bit(bigint* pptrBint, int shift_amount) {
-    if (!(pptrBint) || !pptrBint) {
+void left_shift_bit(bigint* x, int shift) {
+    if (!(x) || !x) {
         fprintf(stderr, "Parameter is NULL in 'left_shift_bit'\n");
         return; // Invalid parameters or no shift needed.
     }
-    if (shift_amount <= 0) {
+    if (shift <= 0) {
         return; // No shift is needed for non-positive shift amounts
     }
 
     // Shift loop
-    while (shift_amount > 0) {
+    while (shift > 0) {
         word carry = 0;  // Carry bit for the shift
-        for (int i = 0; i < (pptrBint)->wordlen; ++i) {
+        for (int i = 0; i < (x)->wordlen; ++i) {
             // Extract the bit that will be shifted out
-            word next_carry = ((pptrBint)->a[i] >> (WORD_BITLEN - 1)) & ONE;
+            word next_carry = ((x)->a[i] >> (WORD_BITLEN - 1)) & ONE;
             // Perform the shift left operation
-            (pptrBint)->a[i] = ((pptrBint)->a[i] << 1) | carry;
+            (x)->a[i] = ((x)->a[i] << 1) | carry;
             carry = next_carry; // Update carry for the next iteration
         }
         if (carry) {
             // We need to increase the size of val to accommodate the new bit.
-            word* new_val = (pptrBint)->a;
-            new_val = realloc((pptrBint)->a, ((pptrBint)->wordlen + 1) * sizeof(word));
-            if (new_val) {
-                (pptrBint)->a = new_val;
-                (pptrBint)->a[(pptrBint)->wordlen] = carry; // Add the carried bit in the new WORD
-                (pptrBint)->wordlen++; // Increment word length
-                // (*pptrBint)->val = new_val;
-                // (*pptrBint)->val[(*pptrBint)->wordlen] = 0; // Initialize the new WORD to zero before setting the carry bit.
-                // (*pptrBint)->val[(*pptrBint)->wordlen] |= carry; // Add the carried bit in the new WORD.
-                // (*pptrBint)->wordlen++;
+            x->a = realloc((x)->a, ((x)->wordlen + 1) * sizeof(word));
+            if (x->a) {
+
+                (x)->a[(x)->wordlen] = carry; // Add the carried bit in the new WORD
+                (x)->wordlen++; // Increment word length
+      
             } else {
                 fprintf(stderr, "Memory allocation failure during left shift operation.\n");
                 return; // Stop the function upon allocation failure.
             }
         }
-        shift_amount--;
+        shift--;
     }
 
 }
@@ -386,19 +392,14 @@ void reduction(IN bigint** x, IN int r)
     if (r % WORD_BITLEN == 0 && r < get_bit_length(*x)) {
 #if WORD_BITLEN == 8
         // For 8-bit words, allocate memory for pwOf2/8 words
-        word* tmp = (*x)->a;
-        tmp = (word*)realloc(tmp, (r / WORD_BITLEN));
-        (*x)->a = tmp;
+        (*x)->a = (word*)realloc((*x)->a, (r / WORD_BITLEN));
+     
 #elif WORD_BITLEN == 64
         // For 64-bit words, allocate memory for 8 times (pwOf2/64) words
-        word* tmp = (*x)->a;
-        tmp = (word*)realloc(tmp, 8 * (r / WORD_BITLEN));
-        (*x)->a = tmp;
+        (*x)->a = (word*)realloc((*x)->a, 8 * (r / WORD_BITLEN));
 #else
         // For other word sizes (typically 32-bit), allocate memory for 4 times (pwOf2/WORD_BITLEN) words
-        word* tmp = (*x)->a;
-        tmp = (word*)realloc(tmp, 4 * (r / WORD_BITLEN));
-        (*x)->a = tmp;
+        (*x)->a = (word*)realloc((*x)->a, 4 * (r / WORD_BITLEN));
 #endif
         // Update the word length of the BINT structure
         (*x)->wordlen = r / WORD_BITLEN;
@@ -409,17 +410,11 @@ void reduction(IN bigint** x, IN int r)
     (*x)->a[r / WORD_BITLEN] = (*x)->a[r / WORD_BITLEN] && (0xFF >> (r % WORD_BITLEN));
 
 #if WORD_BITLEN == 8
-    word* tmp = (*x)->a;
-    tmp = (word*)realloc(tmp, (r / WORD_BITLEN));
-    (*x)->a = tmp;
+    (*x)->a = (word*)realloc((*x)->a, (r / WORD_BITLEN));
 #elif WORD_BITLEN == 64
-    word* tmp = (*x)->a;
-    tmp = (word*)realloc(tmp, 8 * (r / WORD_BITLEN));
-    (*x)->a = tmp;
+    (*x)->a = (word*)realloc((*x)->a, 8 * (r / WORD_BITLEN));
 #else
-    word* tmp = (*x)->a;
-    tmp = (word*)realloc(tmp, 4 * (r / WORD_BITLEN));
-    (*x)->a = tmp;
+    (*x)->a = (word*)realloc((*x)->a, 4 * (r / WORD_BITLEN));
 #endif
 
     // Update the word length to reflect the new size
@@ -436,13 +431,12 @@ void left_shift_word(INOUT bigint** x, IN int shift_words)
     }
 
     int new_wordlen =  (*x)->wordlen + shift_words;
-    word *new_array = (*x)->a; 
-    new_array = (word *) realloc((*x)->a, new_wordlen * sizeof(word));
-    if (!new_array) {
+
+    (*x)->a = (word *) realloc((*x)->a, new_wordlen * sizeof(word));
+    if (!((*x)->a)) {
         MEM_ALLOCATION_FAIL;
         exit(1);
     }
-    (*x)->a = new_array;
 
     // Shift the existing words to the left by the shift amount
     for (int i = new_wordlen - 1; i >= shift_words; i--) {
@@ -481,13 +475,11 @@ void right_shift_word(INOUT bigint** x, IN int shift_words)
     }
 
         // Reallocate memory for the new word length
-    word* new_val = (*x)->a;
-    new_val = (word*)realloc((*x)->a, new_wordlen * sizeof(word));
-    if (!new_val) {
+    (*x)->a = (word*)realloc((*x)->a, new_wordlen * sizeof(word));
+    if (!((*x)->a)) {
         fprintf(stderr, "Error: Memory reallocation failed in 'right_shift_word'\n");
         exit(1);
     }
-    (*x)->a = new_val;
     // Update the word length
     (*x)->wordlen = new_wordlen;
 }
@@ -544,13 +536,12 @@ void match_wordlen(INOUT bigint* x, INOUT bigint* y)
 
     // Resize x if its wordlen is smaller than max_wordlen
     if(x->wordlen < max_wordlen) {
-        word *tmp = x->a;
-        tmp = (word*)realloc(x->a, max_wordlen * sizeof(word));
-        if (!tmp) {
+
+        x->a = (word*)realloc(x->a, max_wordlen * sizeof(word));
+        if (!(x->a)) {
             MEM_ALLOCATION_FAIL;
             exit(1);
         }
-        x->a = tmp;
 
         // Initialize the newly allocated WORDs with 0
         for(int i = x->wordlen; i < max_wordlen; i++)
@@ -561,13 +552,12 @@ void match_wordlen(INOUT bigint* x, INOUT bigint* y)
 
     // Resize y if its wordlen is smaller than max_wordlen
     if(y->wordlen < max_wordlen) {
-       word *tmp = y->a;
-        tmp = (word*)realloc(y->a, max_wordlen * sizeof(word));
-        if (!tmp) {
+
+         y->a = (word*)realloc(y->a, max_wordlen * sizeof(word));
+        if (!( y->a)) {
             MEM_ALLOCATION_FAIL;
             exit(1);
         }
-        y->a = tmp;
     
 
         // Initialize the newly allocated WORDs with 0
@@ -588,7 +578,7 @@ word get_word(IN bigint* x, IN int m_th)
 {
     // Check if the requested word index is out of bounds
     if (m_th < 0 || m_th >= x->wordlen) {
-        // fprintf(stderr, "Error: Requested word index %d is out of bounds.\n", m_th);
+        fprintf(stderr, "Error: Requested word index %d is out of bounds.\n", m_th);
         return 0;
     }
 
