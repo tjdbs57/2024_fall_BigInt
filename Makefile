@@ -83,4 +83,8 @@ measure:
 	(cd bin && move cycle_single.txt ../test/)
 	(cd test && $(PYTHON_CMD) time.py)
 
+compare: $(TARGET)
+	$(RUN) > ./test/cycle.txt
+	(cd test && $(PYTHON_CMD) time.py)
+
 .PHONY: all clean rebuild run verify check dir measure

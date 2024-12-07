@@ -52,6 +52,3 @@ Mkfile.old
 dkms.conf
 
 #Exclude test files
-/test/test_all.txt
-/test/cycle_single.txt
-/test/test.txt

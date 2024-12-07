@@ -198,6 +198,11 @@ void bi_refine_word(IN bigint* x, IN int num_words)
 
 void bi_assign(OUT bigint** dest, IN bigint* src)
 {
+    if (src == NULL) {
+        fprintf(stderr, "Error: src is NULL in bi_assign.\n");
+        return; // or handle appropriately
+    }
+    
     if(*dest != NULL)
         bi_delete(dest);
     

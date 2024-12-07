@@ -244,28 +244,68 @@ void measure_cycles(void(*func)(IN bigint** , IN bigint**, OUT bigint**), IN big
     printf("%ld\n", (unsigned long)(cycles) / num);
 }
 
-void measure_clock_cycles()
-{
+#define MEASURE_CLOCK_CYCLES(func, x, y, z) \
+    measure_cycles(func, &x, &y, &z);
 
-    for(int i = 0 ; i < TEST_CASE; i++)
-    {
-        bigint *x = NULL;
-        bigint *y = NULL;
-        bigint *z = NULL;
-
-        int sign1 = rand() % 2;
-        int sign2 = rand() % 2;
-        int wordlen = (MAX_BIT_LEN / WORD_BITLEN);
-        bi_gen_rand(&x, sign1, wordlen);
-        bi_gen_rand(&y, sign2, wordlen);
-        
-        //measure_cycles(mul_core_tx, &x, &y, &z);
-        //measure_cycles(mul_core_improved, &x, &y, &z);
-        //measure_cycles(mul_core_karatsuba, &x, &y, &z);
-        measure_cycles(add, &x, &y, &z);
-
-        bi_delete(&x);
-        bi_delete(&y);
-        bi_delete(&z);
+#define TEST_CLOCK_CYCLES() \
+    for(int i = 0; i < TEST_CASE; i++) { \
+        bigint *x = NULL; \
+        bigint *y = NULL; \
+        bigint *z = NULL; \
+        \
+        int sign1 = rand() % 2; \
+        int sign2 = rand() % 2; \
+        int wordlen = (MAX_BIT_LEN / WORD_BITLEN); \
+        bi_gen_rand(&x, sign1, wordlen); \
+        bi_gen_rand(&y, sign2, wordlen); \
+        \
+        MEASURE_CLOCK_CYCLES(mul_core_tx, x, y, z); \
+        MEASURE_CLOCK_CYCLES(mul_core_improved, x, y, z); \
+        MEASURE_CLOCK_CYCLES(mul_core_karatsuba, x, y, z); \
+        /*MEASURE_CLOCK_CYCLES(add, x, y, z);*/ \
+        \
+        bi_delete(&x); \
+        bi_delete(&y); \
+        bi_delete(&z); \
     }
+
+
+void test_bi_string() {
+    bigint* x = NULL; 
+    bigint* y = NULL; 
+    bigint* z = NULL;
+    char* test_str1 = "123456789abcdfed654213560102013fadccaabbccddeeff"; 
+    char* test_str2 = "345198450213541acdeffedcbaaabbddeeffcc12540000064"; 
+
+    int base = 16; 
+    int sign = NEGATIVE; 
+
+
+    if (bi_set_by_string(&x, sign, test_str1, base) != 0) {
+        printf("Failed to set bigint from string '%s'.\n", test_str1);
+        return;
+    }
+    printf("\n");
+    printf("Frist bigint: ");
+    bi_show_hex(x);
+
+    if (bi_set_by_string(&y, sign, test_str2, base) != 0) {
+        printf("Failed to set bigint from string '%s'.\n", test_str2);
+        bi_delete(&x);
+        return;
+    }
+    printf("\nSecond bigint: ");
+    bi_show_hex(y);
+
+    add(&x, &y, &z);
+
+    printf("\n");
+
+    print_bi_hex_py(x);                         
+    printf(" + "); print_bi_hex_py(y);                    
+    printf(" == "); print_bi_hex_py(z);                            
+    printf("\n");  
+
+    bi_delete(&x);
+    bi_delete(&y);
 }

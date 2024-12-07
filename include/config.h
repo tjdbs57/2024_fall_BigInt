@@ -70,7 +70,7 @@
  * @details This macro defines a constant value `FLAG` with a default value of `20`. 
  * @note The purpose of this flag may vary depending on the specific implementation.
  */
-#define FLAG    20
+#define FLAG    240
 
 /**
  * @brief Type aliases for unsigned integers.

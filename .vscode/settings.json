@@ -65,6 +65,7 @@
     "test.h": "c",
     "arithmetic.h": "c",
     "x86intrin.h": "c",
-    "math.h": "c"
+    "math.h": "c",
+    "random": "c"
   }
 }
