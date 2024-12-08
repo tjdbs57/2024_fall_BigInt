@@ -26,7 +26,7 @@
  * @note Increasing the value of `TEST_CASE` can lead to more thorough testing 
  *       but may significantly increase execution time.
  */
-#define TEST_CASE 1
+#define TEST_CASE 10000
 
 /**
  * @brief Maximum bit length for `bigint` operations.
@@ -36,7 +36,7 @@
  * @note Adjusting `MAX_BIT_LEN` affects memory usage and computational overhead. 
  *       Larger values allow for testing larger integers but require more resources.
  */
-#define MAX_BIT_LEN 4096
+#define MAX_BIT_LEN 128
 
 /**
  * @brief Calculates the time difference between two clock values.

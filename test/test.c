@@ -174,7 +174,7 @@ void test_barret(const char* operate)
     bigint* N = NULL;
     bi_gen_rand(&N,NON_NEGATIVE, N_len);
         
-    while(compare(Wn_1, N)==1){ // W^(n-1) > N 이면  N 다시 생성
+    while(compare(Wn_1, N) > 0){ // W^(n-1) > N 이면  N 다시 생성
         bi_gen_rand(&N,NON_NEGATIVE, N_len); 
     }
 
@@ -270,15 +270,19 @@ void measure_cycles(void(*func)(IN bigint** , IN bigint**, OUT bigint**), IN big
     }
 
 
+
 void test_bi_string() {
     bigint* x = NULL; 
     bigint* y = NULL; 
     bigint* z = NULL;
-    char* test_str1 = "123456789abcdfed654213560102013fadccaabbccddeeff"; 
-    char* test_str2 = "345198450213541acdeffedcbaaabbddeeffcc12540000064"; 
+    bigint* m = NULL;
+    char* test_str1 = "51b47b5c8c7d4854e15cbc164795eca3fa992156556475c6be472b4aa7b8b83a"; 
+    char* test_str2 = "16"; 
+    char* test_str3 = "8628631d322cb3d73aff4ba5a83a6ea1184ac27ea6ec7dd4605adf03702d4469"; 
+    
 
     int base = 16; 
-    int sign = NEGATIVE; 
+    int sign = NON_NEGATIVE; 
 
 
     if (bi_set_by_string(&x, sign, test_str1, base) != 0) {
@@ -297,15 +301,32 @@ void test_bi_string() {
     printf("\nSecond bigint: ");
     bi_show_hex(y);
 
-    add(&x, &y, &z);
+    if (bi_set_by_string(&m, sign, test_str3, base) != 0) {
+        printf("Failed to set bigint from string '%s'.\n", test_str2);
+        bi_delete(&x);
+        return;
+    }
+    printf("\n mod : ");
+    bi_show_hex(m);
 
+    
+    //add(&x, &y, &z);
+    exp_mod_montgomery(&x, &y, &z, &m);
     printf("\n");
 
-    print_bi_hex_py(x);                         
-    printf(" + "); print_bi_hex_py(y);                    
-    printf(" == "); print_bi_hex_py(z);                            
-    printf("\n");  
+    printf("pow("); 
+    print_bi_hex_py(x); 
+    printf(", "); 
+    print_bi_hex_py(y); 
+    printf(", "); 
+    print_bi_hex_py(m); 
+    printf(") == "); 
+    print_bi_hex_py(z); 
+    printf("\n"); 
 
     bi_delete(&x);
     bi_delete(&y);
+    bi_delete(&z);
+    bi_delete(&m);
+    
 }

@@ -255,50 +255,47 @@ void bi_set_zero(OUT bigint** x)
 
 int compareABS(IN bigint* x, IN bigint* y)
 {
-    //x>y => return 1
-    //x<y => return 0
-    //x=y => return -1
-    int n = x->wordlen;
-    int m = y->wordlen;
+    // Step 1: 자릿수(wordlen) 비교
+    if (x->wordlen > y->wordlen) {
+        return 1; // x > y
+    } 
+    if (x->wordlen < y->wordlen) {
+        return -1; // x < y
+    }
 
-    if (n>m){
-        return 1;
-    }
-    else if(n<m){
-        return 0;
-    }
-    else{
-        for(int j=n-1; j>=0; j--){
-            if(x->a[j] > y->a[j]){
-                return 1;
-            }
-            else if(x->a[j]<y->a[j]){
-                return 0;
-            }
+    // Step 2: 자릿수가 같다면 높은 자리부터 비교
+    for (int j = x->wordlen - 1; j >= 0; j--) {
+        if (x->a[j] > y->a[j]) {
+            return 1; // x > y
+        } 
+        if (x->a[j] < y->a[j]) {
+            return -1; // x < y
         }
     }
-    return -1; //같을 땐 -1 반환
+
+    // Step 3: 모든 자리수가 같다면 x == y
+    return 0;
 }
 
 int compare(IN bigint* x, IN bigint* y)
 {
-    if(x->sign == NON_NEGATIVE && y->sign == NEGATIVE){
-        return 1;
+    // Step 1: 부호 비교
+    if (x->sign == NON_NEGATIVE && y->sign == NEGATIVE) {
+        return 1; // 양수 > 음수
     }
-    else if(x->sign == NEGATIVE && y->sign == NON_NEGATIVE){
-        return 0;
+    if (x->sign == NEGATIVE && y->sign == NON_NEGATIVE) {
+        return -1; // 음수 < 양수
     }
-    else{
-        int ret = compareABS(x, y);
 
-        if(x->sign == NON_NEGATIVE){
+    // Step 2: 부호가 같은 경우 절댓값 비교
+    int abs_compare = compareABS(x, y);
 
-            return ret;
-        }
-        else{
-            return ret;
-        }
-    } 
+    // Step 3: 부호에 따라 반환 값 조정
+    if (x->sign == NON_NEGATIVE) {
+        return abs_compare; // 양수일 경우 그대로 반환
+    } else {
+        return -abs_compare; // 음수일 경우 결과 반전
+    }
 }
 
 int get_bit_length(IN bigint* x) {

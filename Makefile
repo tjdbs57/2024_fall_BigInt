@@ -23,7 +23,7 @@ ifeq ($(OS),Windows_NT)
 	RMDIR = rmdir /S /Q
 	RUN = $(BINDIR)\program.exe
 	PYTHON_CMD := python
-	LIBTARGET = $(LIBDIR)/libbigint_32bit.dll
+	LIBTARGET = $(LIBDIR)/libbigint_64bit.dll
 
 
 else

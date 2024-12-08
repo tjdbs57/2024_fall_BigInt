@@ -26,7 +26,7 @@
  * @details Specifies the number of bits in a single word used for the `bigint` data type.
  * @note This macro controls the word size, which impacts memory usage and computation speed.
  */
-#define WORD_BITLEN 8
+#define WORD_BITLEN 64
 
 /**
  * @brief Defines the word type based on the `WORD_BITLEN`.

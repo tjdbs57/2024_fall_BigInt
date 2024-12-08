@@ -147,7 +147,7 @@ int is_prime(bigint *n, int k) {
 void generate_large_prime(bigint **prime, int bit_length, int k) {
     bigint *candidate = NULL;
 
-    srand((unsigned int)time(NULL));
+    //srand((unsigned int)time(NULL));
     do {
         bi_gen_rand(&candidate, NON_NEGATIVE, (bit_length + WORD_BIT - 1) / WORD_BIT);
         candidate->a[0] |= 1;

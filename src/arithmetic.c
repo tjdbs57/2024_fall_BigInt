@@ -620,121 +620,64 @@ void squ_karatsuba(IN bigint** x, OUT bigint** z)
 }
 
 
-void bi_long_div(IN bigint** x, IN bigint** y, OUT bigint** q, OUT bigint** r)
-{
-    
-    bigint* tmp=NULL;
-    bi_new(&tmp,1);
-    if(is_zero(*y)==0){ // A / 0 = INVALID
-        INVAILD_DATA;
-        bi_delete(&tmp);
-
-        return;
+void bi_long_div(IN bigint** x, IN bigint** y, OUT bigint** q, OUT bigint** r) {
+    if ((*y)->wordlen == 0 || ((*y)->wordlen == 1 && (*y)->a[0] == 0)) {
+        fprintf(stderr, "Division by zero error.\n");
+        exit(1);
     }
 
-    if(is_zero(*x)==0){ // 0 / B = 0...0
-        
-        bi_set_zero(q);
-        bi_set_zero(r);
-        bi_delete(&tmp);
-
-        return;
+    // Initialize q and r if they are NULL
+    if (*q == NULL) {
+        bi_new(q, 1);  // Allocate memory for q
     }
-    
-    if(compareABS(*x,*y)==0){ //A < B -> Q=0, R=A 
-        bi_set_zero(q);
-        bi_assign(r,*x);
-
-        if((*x)->sign==NEGATIVE && (*y)->sign==NON_NEGATIVE){
-            bigint* one=NULL;
-            bi_set_one(&one);
-        
-            // Q <- -Q-1
-            add(q,&one,&tmp);
-            bi_assign(q,tmp);
-            (*q)->sign=NEGATIVE;
-
-            //R <- B-R
-            sub_core(y,r,&tmp);
-            bi_assign(r,tmp);
-        }
-        bi_delete(&tmp);
-
-        return;
+    if (*r == NULL) {
+        bi_new(r, 1);  // Allocate memory for r
     }
 
-    if(compareABS(*x,*y)==-1){ // |A| == |B| =>Q=1, R=0
-        bi_set_one(q);
-        bi_set_zero(r);
+    (*q)->sign = ((*x)->sign == NEGATIVE) ^ ((*y)->sign == NEGATIVE);  // Set the sign of Q
 
-        if((*x)->sign==NEGATIVE && (*y)->sign==NON_NEGATIVE){
-            (*q)->sign=NEGATIVE;
-        }
-        bi_delete(&tmp);
 
-        return;
-    }
+    int n = (*x)->wordlen;
+    bi_new(q, 1);
+    (*q)->sign = ((*x)->sign == NEGATIVE) ^ ((*y)->sign == NEGATIVE);  // Set the sign of Q
+    bi_new(r, 1);
 
-    int q_len=(*x)->wordlen - (*y)->wordlen +1;
-    int r_len=(*y)->wordlen;
-    bi_new(q, q_len);
-    bi_new(r,r_len);
-    
-    for(int i=(*x)->wordlen*WORD_BITLEN-1; i>=0; i--){
+    bigint* tmp_sub = NULL;
+    bi_new(&tmp_sub, 1);
+    bigint* tmp_add = NULL;
+    bi_new(&tmp_add, 1);
 
-        //R<-2R+a_j
-        left_shift_bit(*r,1); // 2R
+    match_wordlen(*x, *y);  // Ensure both numbers have the same word length
+    for (int i = n * WORD_BITLEN - 1; i >= 0; i--) {
+        left_shift_bit(*r, 1);  // R <- 2R (Shift left to make room for the next bit)
+        (*r)->a[0] ^= get_jth_bit(*x, i);  // Add the j-th bit from x to r
 
-        (*r)->a[0] ^= (((*x)->a[i / WORD_BITLEN] >> (i % WORD_BITLEN)) & 1); // +a_j
+        match_wordlen(*r, *y);  // Ensure word lengths match after the shift
 
-        //if R >= B
-        int comp=compareABS(*r,*y);
-        if (comp==1 || comp==-1) { //r >= B
-            
-            //Q <- Q+2^j = Q^(1<<j)
-            int word_index = i / WORD_BITLEN;       
-            int bit_index = i % WORD_BITLEN;        
+        if (compare(*r, *y) >= 0) {  // If R >= Y
+            sub(r, y, &tmp_sub);  // Subtract y from r
+            bi_assign(r, tmp_sub);  // Store result in r
 
-            (*q)->a[word_index] ^= (ONE << bit_index);
-     
-            //r <- r-b
-            sub_core(r,y,&tmp);
-            bi_assign(r,tmp);
+            bi_new(&tmp_add, 1);  // Initialize tmp_add
+            tmp_add->a[0] = ONE;
+            left_shift_bit(tmp_add, i);  // Set the i-th bit of quotient
+            match_wordlen(*q, tmp_add);  // Match word length for q
+
+            for (int j = 0; j < tmp_add->wordlen; j++) {
+                (*q)->a[j] ^= tmp_add->a[j];  // Update quotient
+            }
         }
     }
 
-    if((*x)->sign==NEGATIVE){
-
-        if(is_zero(*r)==0){
-
-            //q <- -q
-            (*q)->sign=NEGATIVE;
-            bi_delete(&tmp);
-
-            return;
-        }
-        else{
-            
-            //R <- B-R
-            sub_core(y,r,&tmp);
-            bi_assign(r,tmp);
-            
-            bigint* one=NULL;
-            bi_set_one(&one);
-        
-            // Q <- -Q-1
-            add(q,&one,&tmp);
-            bi_assign(q,tmp);
-            (*q)->sign=NEGATIVE;
-        }
-
-    }
-       
+    bi_refine(*x);
+    bi_refine(*y);
     bi_refine(*q);
     bi_refine(*r);
-    bi_delete(&tmp);
 
+    bi_delete(&tmp_add);
+    bi_delete(&tmp_sub);
 }
+
 
 word quotient(IN word dividend1, IN word dividend0, IN word divisor) 
 {
@@ -952,12 +895,12 @@ void exp_mod_montgomery(IN bigint** x, IN bigint** y, OUT bigint** z, IN bigint*
 void barret_reduction(IN bigint** x, IN bigint** y, IN bigint** z, OUT bigint** result)
 {
     
-    if(compare(*x, *y)==0){ // A < N
+    if(compare(*x, *y) < 0){ // A < N
         bi_assign(result,*x);
         return;
     }
 
-    else if(compare(*x, *y)==-1){ // A = N
+    else if(compare(*x, *y) == 0){ // A = N
         bi_set_zero(result);
         return;
     }
@@ -987,7 +930,7 @@ void barret_reduction(IN bigint** x, IN bigint** y, IN bigint** z, OUT bigint** 
     bi_refine(R);
 
 
-    while(compare(R, N)!=0){
+    while(compare(R, N) >= 0){
 
         bi_assign(&N, *y);
         sub(&R, &N, &tmp);
