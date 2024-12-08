@@ -1,44 +1,33 @@
-#include "bigint.h"
-#include "arithmetic.h"
-#include "utils.h"
-#include "config.h"
-#include <stdlib.h>
-#include <time.h>
-#include <stdio.h>
+#include "prime.h"
 
 #define WORD_BIT     64
 void bi_set_random_in_range(bigint **b, char *lower_bound, bigint *upper_bound) {
     bigint *lower = NULL, *tmp = NULL, *range = NULL, *rand_value = NULL;
 
-    // lower_bound 값을 bigint로 설정 (기본적으로 "2" 사용)
     bi_set_by_string(&lower, NON_NEGATIVE, lower_bound, 16);
+    //bi_show_hex(lower);
+    sub(&upper_bound, &lower, &range);
+    //bi_show_hex(range);
+    if (range == NULL || range->wordlen == 0) {
+        fprintf(stderr, "Error: Invalid range.\n");
+        bi_delete(&lower);
+        return;
+    }
 
-    // upper_bound - lower_bound 계산하여 범위를 구함
-    sub(&upper_bound, &lower, &range); // range = upper_bound - lower_bound
-
-    // 난수 초기화
-    srand((unsigned int)time(NULL));
-
-    // [0, range) 범위의 난수 생성
     do {
-        int wordlen = range->wordlen;  // upper_bound와 동일한 워드 길이로 난수 생성
-        bi_gen_rand(&rand_value, NON_NEGATIVE, wordlen);
+        bi_gen_rand(&rand_value, NON_NEGATIVE, range->wordlen);
+        //printf("comapre\n");
+        //bi_show_hex(rand_value);
+        if (compare(rand_value, range) > 0) 
+        {break;}
+        //printf("ldkfs\n");
+        bi_delete(&rand_value);
 
-        // 난수 값이 range 이상이면 다시 생성
-        if (compare(rand_value, range) != -1) {
-            bi_delete(&rand_value);
-        } else {
-            break;
-        }
     } while (1);
 
-    // rand_value를 lower_bound만큼 올려서 최종 범위로 설정
-    add(&rand_value, &lower, &tmp);  // tmp = rand_value + lower
-
-    // 결과를 b에 저장
+    add(&rand_value, &lower, &tmp);
     bi_assign(b, tmp);
 
-    // 메모리 해제
     bi_delete(&lower);
     bi_delete(&tmp);
     bi_delete(&range);
@@ -56,7 +45,7 @@ int miller_rabin_test(bigint *n, bigint *b, int s, bigint *t) {
     sub(&n, &one, &n_minus_1);  // n_minus_1 = n - 1
 
     // 초기 조건: x == 1 or x == n - 1
-    if (compare(x, one) == -1 || compare(x, n_minus_1) == -1) {
+    if (compare(x, one) == 0 || compare(x, n_minus_1) == 0) {
         bi_delete(&x);
         bi_delete(&n_minus_1);
         bi_delete(&one);
@@ -69,7 +58,7 @@ int miller_rabin_test(bigint *n, bigint *b, int s, bigint *t) {
         exp_mod_montgomery(&x, &two, &tmp_x, &n);  // x = x^2 % n
         bi_assign(&x, tmp_x);
 
-        if (compare(x, n_minus_1) == -1) {
+        if (compare(x, n_minus_1) == 0) {
             bi_delete(&x);
             bi_delete(&n_minus_1);
             bi_delete(&one);
@@ -85,7 +74,7 @@ int miller_rabin_test(bigint *n, bigint *b, int s, bigint *t) {
 }
 
 int is_even(const bigint *x) {
-    if (x == NULL) return 0;  // NULL 포인터 처리
+    if (x == NULL || x->wordlen == 0) return 0;  // NULL 포인터 처리 및 빈 bigint 처리
 
     // BigInt의 가장 마지막 워드 확인 (x->a[x->wordlen - 1]은 마지막 워드)
     word last_word = x->a[x->wordlen - 1];
@@ -94,83 +83,95 @@ int is_even(const bigint *x) {
     return (last_word & 1) == 0;
 }
 
-// 소수 테스트 (is_prime)
+
 int is_prime(bigint *n, int k) {
     bigint *two = NULL;
     bi_set_by_string(&two, NON_NEGATIVE, "2", 16);
 
     if (compare(n, two) == 0) {
-        return 0;  // 1과 0은 소수가 아님
-    }
-    if (compare(n, two) == -1) {
+        //printf("Special case: n == 2 (prime).\n");
         return 1;  // 2는 소수
     }
-
-    // n - 1 = 2^s * t로 분해
-    bigint *n_minus_1 = NULL;
-    bigint *t = NULL;
-    bi_set_one(&t);  // t = 1
-    sub(&n, &t, &n_minus_1);  // n_minus_1 = n - 1
-    int s = 0;
-
-
-    while (is_even(n_minus_1)) {
-        bigint *tmp = NULL;
-        
-        bi_long_div(&n_minus_1, &two, &tmp, NULL);  // n_minus_1 /= 2
-        bi_assign(&n_minus_1, tmp);
-        s++;
+    if (compare(n, two) == -1) {
+        //printf("Special case: n < 2 (not prime).\n");
+        return 0;  // 2보다 작은 수는 소수가 아님
     }
 
-    // k번 테스트 수행
+    bigint *n_minus_1 = NULL, *t = NULL, *r = NULL;
+    bi_set_one(&t);
+    sub(&n, &t, &n_minus_1);  // n_minus_1 = n - 1
+    int s = 0;
+    //int res;
+    //res = is_even(n_minus_1);
+    //printf("is_even : %d\n", res);
+    // n-1을 2^s * t 형태로 분해
+    while (is_even(n_minus_1)) {
+        bigint *tmp = NULL;
+        bi_long_div(&n_minus_1, &two, &tmp, &r);  // n_minus_1 / 2
+        bi_assign(&n_minus_1, tmp);
+        bi_delete(&tmp);
+        s++;  // s를 증가시킴
+    }
+
+    // `s` 값이 0일 경우를 처리합니다.
+    if (s == 0) {
+        bi_assign(&t, n_minus_1);
+        //printf("n-1 is odd, s = 0\n");
+    } 
+
+    // Miller-Rabin 테스트 반복
     for (int i = 0; i < k; i++) {
         bigint *b = NULL;
-        bi_set_random_in_range(&b, "2", n);  // b를 [2, n-2]에서 랜덤 선택
-
+        bi_set_random_in_range(&b, "2", n);
+        //bi_show_hex(b);
         if (!miller_rabin_test(n, b, s, n_minus_1)) {
+            //printf("Failed Miller-Rabin test. Composite detected.\n");
             bi_delete(&b);
             bi_delete(&n_minus_1);
             bi_delete(&t);
-            return 0;  // 합성수
+            bi_delete(&r);
+
+            return 0;  // 합성수로 판별됨
         }
         bi_delete(&b);
+
     }
 
     bi_delete(&n_minus_1);
     bi_delete(&t);
-    return 1;  // 소수
+    bi_delete(&r);
+    printf("\nPassed all Miller-Rabin tests. Likely prime.\n");
+    return 1;  // 소수일 가능성이 있음
 }
 
-// Function to generate a random large prime number
 void generate_large_prime(bigint **prime, int bit_length, int k) {
     bigint *candidate = NULL;
 
-    // Initialize random number generator
     srand((unsigned int)time(NULL));
-
     do {
-        // Generate a random number with the specified bit length
-        bi_gen_rand(&candidate, NON_NEGATIVE, (bit_length + WORD_BIT - 1) / WORD_BIT);  // Bit length to word conversion
-        // Ensure the number is odd (necessary for primality testing)
+        bi_gen_rand(&candidate, NON_NEGATIVE, (bit_length + WORD_BIT - 1) / WORD_BIT);
         candidate->a[0] |= 1;
 
-        // Perform Miller-Rabin primality test
+        printf(".");
+        //bi_show_hex(candidate);
+
         if (is_prime(candidate, k)) {
-            break;  // Found a prime number
+            printf("Found prime!\n");
+            bi_show_hex(candidate);
+            break;
         }
 
-        bi_delete(&candidate);  // Delete candidate if not prime
+        bi_delete(&candidate);
         candidate = NULL;
-
     } while (1);
 
-    // Assign the generated prime to the output
     bi_assign(prime, candidate);
-
-    // Free memory
     bi_delete(&candidate);
 }
 
+
+
+/*
 int main() {
     bigint *prime = NULL;
 
@@ -186,3 +187,4 @@ int main() {
 
     return 0;
 }
+*/

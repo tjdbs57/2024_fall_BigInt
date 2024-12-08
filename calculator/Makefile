@@ -1,6 +1,7 @@
 CC = gcc
 
-CFLAGS = -O3 -std=c99 -Wall -Wextra -g -I../include -MMD
+# CFLAGS에 헤더 파일 경로 추가
+CFLAGS = -O3 -std=c99 -Wall -Wextra -g  -I../include -MMD
 LDFLAGS = -L../lib
 LIBS = -lbigint_64bit
 
@@ -44,7 +45,7 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 # clean 명령어 수정
 clean:
 	$(RMDIR) $(OBJDIR) $(BINDIR)
-	
+
 # 빌드 후 실행하는 타겟
 run: $(TARGET)
 	$(RUN)
@@ -53,4 +54,3 @@ rebuild: clean all
 
 valgrind:
 	(valgrind --leak-check=yes ./bin/DH)
-
