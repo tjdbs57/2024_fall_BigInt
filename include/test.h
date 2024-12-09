@@ -132,13 +132,5 @@ void test_squ(void(*operation)(IN bigint** , OUT bigint**), const char* operate)
  */
 void measure_cycles(void(*func)(IN bigint** , IN bigint**, OUT bigint**), IN bigint** x, IN bigint** y, OUT bigint** z);
 
-/**
- * @brief Measures and prints the clock cycles for various operations.
- * @details This function executes different arithmetic operations multiple times and measures the 
- *          average CPU clock cycles required for each operation.
- * @pre All operations to be measured must have properly defined function implementations.
- * @post The average clock cycles for each operation are printed to the standard output.
- */
-void measure_clock_cycles();
 
 #endif

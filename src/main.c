@@ -53,6 +53,6 @@ int main()
     
     //measure_clock_cycles();
     //test_set_by_array();
-    test_bi_string();
+    //test_bi_string();
     return 0;
 }
