@@ -1,18 +1,20 @@
 CC = gcc
-CFLAGS = -O3 -std=c99 -Wall -Wextra -g -Iinclude -MMD
+CFLAGS = -O3 -std=c99 -Wall -Wextra -g -Iinclude -MMD -fPIC
+LDFLAGS = -shared
 
 # Directories
 SRCDIR 		= src
 TESTDIR 	= test
-MEASUREDIR 	= measure
 INCDIR 		= include
 OBJDIR 		= obj
 BINDIR 		= bin
+LIBDIR		= lib
 
-SRCS = $(wildcard $(SRCDIR)/*.c) $(wildcard $(TESTDIR)/*.c) $(wildcard $(MEASUREDIR)/*.c)
+
+
+SRCS = $(wildcard $(SRCDIR)/*.c) $(wildcard $(TESTDIR)/*.c) 
 OBJS = $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRCS))
 OBJS := $(patsubst $(TESTDIR)/%.c,$(OBJDIR)/%.o,$(OBJS))
-OBJS := $(patsubst $(MEASUREDIR)/%.c,$(OBJDIR)/%.o,$(OBJS))
 DEPS = $(OBJS:.o=.d)
 
 ifeq ($(OS),Windows_NT)
@@ -21,23 +23,30 @@ ifeq ($(OS),Windows_NT)
 	RMDIR = rmdir /S /Q
 	RUN = $(BINDIR)\program.exe
 	PYTHON_CMD := python
+	LIBTARGET = $(LIBDIR)/libbigint_64bit.dll
+
+
 else
 	TARGET = $(BINDIR)/program
 	MKDIR = mkdir -p
 	RMDIR = rm -rf
 	RUN = ./$(TARGET)
 	PYTHON_CMD := python3
+	LIBTARGET = $(LIBDIR)/libbigint_64bit.so
 
 endif
 
 # Default target
-all: dir $(TARGET)
+all: dir $(TARGET) $(LIBTARGET)
 
 dir:
-	@$(MKDIR) $(OBJDIR) $(BINDIR)
+	@$(MKDIR) $(OBJDIR) $(BINDIR) $(LIBDIR)
 
 $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $@ $(LIBS)
+
+$(LIBTARGET): $(OBJS)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(OBJS)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -47,17 +56,16 @@ $(OBJDIR)/%.o: $(TESTDIR)/%.c
 
 $(OBJDIR)/%.o: $(MEASUREDIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
-	
+
 -include $(DEPS)
 
 clean:
-	$(RMDIR) $(OBJDIR) $(BINDIR)
+	$(RMDIR) $(OBJDIR) $(BINDIR) $(LIBDIR)
 
 rebuild: clean all
 
 run: $(TARGET)
 	$(RUN)
-
 
 # Verify with test script
 verify: $(TARGET)
@@ -65,15 +73,20 @@ verify: $(TARGET)
 	(cd test && $(PYTHON_CMD) test_all.py)
 
 check:
-	(cd test && $(PYTHON_CMD) cal.py)
+	(cd calculator && $(PYTHON_CMD) check.py)
+
+valgrind:
+	(valgrind --leak-check=yes ./bin/program)
 
 measure:
 	(cd bin && program > cycle_single.txt)
 	(cd bin && move cycle_single.txt ../test/)
-	(cd test && $(PYTHON_CMD) single_time.py)
-compare:
-	(cd bin && program > cycle.txt)
-	(cd bin && move cycle.txt ../test/)
 	(cd test && $(PYTHON_CMD) time.py)
 
+compare: $(TARGET)
+	$(RUN) > ./test/cycle.txt
+	(cd test && $(PYTHON_CMD) time.py)
+
+move : 
+	(cd lib && move libbigint_64bit.dll ../dh/lib)
 .PHONY: all clean rebuild run verify check dir measure
