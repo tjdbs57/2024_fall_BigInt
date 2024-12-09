@@ -142,3 +142,80 @@ The Makefile automatically detects your operating system and adjusts file naming
 Python 3 is required to run the test scripts (test_all.py, time.py).
 
 Ensure valgrind is installed on your system if you want to perform memory leak detection.
+
+
+# Diffie-Hellman Key Exchange Program
+
+This project implements a Diffie-Hellman key exchange program with a server-client architecture. The build process and execution are automated using the provided `Makefile`.
+
+## Prerequisites
+
+Ensure the following tools and libraries are installed on your system before proceeding:
+
+### System Requirements
+- **GCC**: A C compiler (e.g., `gcc`).
+- **Make**: A build automation tool.
+
+### Required Libraries
+- **GMP (GNU Multiple Precision Arithmetic Library)**: Required for handling large integers.
+- **libbigint_64bit**: A custom library used by the program. This library should be located in the `../lib` directory relative to this project.
+
+## Setting Library Path
+Before running the program, ensure that the libbigint_64bit library is accessible by the system. You can do this by setting the LD_LIBRARY_PATH as follows:
+
+```bash
+export LD_LIBRARY_PATH=../lib:$LD_LIBRARY_PATH
+```
+This command adds the ../lib directory to the library search path, allowing the program to find libbigint_64bit.so at runtime.
+
+## Build Instructions
+
+### 1. Compile the Project
+To compile both the server and client programs, run:
+
+```bash
+make
+```
+
+### 2. Clean Build Artifacts
+To remove all compiled files and directories created during the build process, use:
+
+```bash
+make clean
+```
+
+### 3. Rebuild the Project
+To clean and recompile the project from scratch, run:
+
+```bash
+make rebuild
+```
+
+## Program Execution
+
+### Running the Server
+To start the Diffie-Hellman key exchange server, use the following command:
+
+```bash
+make run_server
+```
+
+### Running the Client
+To start the Diffie-Hellman key exchange client, use the following command:
+
+```bash
+make run_client
+```
+
+## Notes
+The Makefile automatically creates the necessary directories (obj and bin) during the build process.
+
+The libbigint_64bit library must be present in the ../lib directory, and the header files should be located in the ../include directory.
+
+Ensure the GMP library is installed on your system. On Debian/Ubuntu, it can be installed with:
+
+```bash
+sudo apt-get install libgmp-dev
+```
+
+The server and client executables are placed in the bin directory as server and client, respectively. For Linux/Unix systems, they can be executed directly, while .exe extensions are used for Windows builds.
