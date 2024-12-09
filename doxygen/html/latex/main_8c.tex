@@ -1,0 +1,93 @@
+\hypertarget{main_8c}{}\doxysection{src/main.c File Reference}
+\label{main_8c}\index{src/main.c@{src/main.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}test.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}bigint.\+h\char`\"{}}\newline
+Include dependency graph for main.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{main_8c_a35813543600beb3cd69661a18412fcdf}{M\+E\+A\+S\+U\+R\+E\+\_\+\+C\+L\+O\+C\+K\+\_\+\+C\+Y\+C\+L\+ES}}(func,  x,  y,  z)~\mbox{\hyperlink{test_8c_a7a48047b578158185a709e47e4a92e72}{measure\+\_\+cycles}}(func, \&x, \&y, \&z);
+\item 
+\#define \mbox{\hyperlink{main_8c_a96c6de825f0048cf07a3e39cde80312b}{T\+E\+S\+T\+\_\+\+C\+L\+O\+C\+K\+\_\+\+C\+Y\+C\+L\+ES}}()
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{main_8c_a35813543600beb3cd69661a18412fcdf}\label{main_8c_a35813543600beb3cd69661a18412fcdf}} 
+\index{main.c@{main.c}!MEASURE\_CLOCK\_CYCLES@{MEASURE\_CLOCK\_CYCLES}}
+\index{MEASURE\_CLOCK\_CYCLES@{MEASURE\_CLOCK\_CYCLES}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{MEASURE\_CLOCK\_CYCLES}{MEASURE\_CLOCK\_CYCLES}}
+{\footnotesize\ttfamily \#define M\+E\+A\+S\+U\+R\+E\+\_\+\+C\+L\+O\+C\+K\+\_\+\+C\+Y\+C\+L\+ES(\begin{DoxyParamCaption}\item[{}]{func,  }\item[{}]{x,  }\item[{}]{y,  }\item[{}]{z }\end{DoxyParamCaption})~\mbox{\hyperlink{test_8c_a7a48047b578158185a709e47e4a92e72}{measure\+\_\+cycles}}(func, \&x, \&y, \&z);}
+
+
+
+Definition at line 9 of file main.\+c.
+
+\mbox{\Hypertarget{main_8c_a96c6de825f0048cf07a3e39cde80312b}\label{main_8c_a96c6de825f0048cf07a3e39cde80312b}} 
+\index{main.c@{main.c}!TEST\_CLOCK\_CYCLES@{TEST\_CLOCK\_CYCLES}}
+\index{TEST\_CLOCK\_CYCLES@{TEST\_CLOCK\_CYCLES}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_CLOCK\_CYCLES}{TEST\_CLOCK\_CYCLES}}
+{\footnotesize\ttfamily \#define T\+E\+S\+T\+\_\+\+C\+L\+O\+C\+K\+\_\+\+C\+Y\+C\+L\+ES(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < \mbox{\hyperlink{test_8h_a5ab5b9aaf3850b085ca39abf901b2751}{TEST\_CASE}}; i++) \{ \(\backslash\)}
+\DoxyCodeLine{        bigint *x = NULL; \(\backslash\)}
+\DoxyCodeLine{        bigint *y = NULL; \(\backslash\)}
+\DoxyCodeLine{        bigint *z = NULL; \(\backslash\)}
+\DoxyCodeLine{        \(\backslash\)}
+\DoxyCodeLine{        int sign1 = rand() \% 2; \(\backslash\)}
+\DoxyCodeLine{        int sign2 = rand() \% 2; \(\backslash\)}
+\DoxyCodeLine{        int wordlen = (\mbox{\hyperlink{test_8h_add2ab92fcca278ab5d72e9a6e7321ab5}{MAX\_BIT\_LEN}} / \mbox{\hyperlink{bigint_8h_a7563c37101bcd29d9631e59166adb57c}{WORD\_BITLEN}}); \(\backslash\)}
+\DoxyCodeLine{        bi\_gen\_rand(\&x, sign1, wordlen); \(\backslash\)}
+\DoxyCodeLine{        bi\_gen\_rand(\&y, sign2, wordlen); \mbox{\hyperlink{main_8c_a35813543600beb3cd69661a18412fcdf}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{main_8c_a35813543600beb3cd69661a18412fcdf}{        \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{main_8c_a35813543600beb3cd69661a18412fcdf}{        MEASURE\_CLOCK\_CYCLES}}(\mbox{\hyperlink{arithmetic_8h_ae7363c251c275cd77fc1a5d55ecbfd5a}{mul\_core\_tx}}, x, y, z); \(\backslash\)}
+\DoxyCodeLine{        MEASURE\_CLOCK\_CYCLES(\mbox{\hyperlink{arithmetic_8h_a7b908fbd3e606d234606762740bbb88c}{mul\_core\_improved}}, x, y, z); \(\backslash\)}
+\DoxyCodeLine{        MEASURE\_CLOCK\_CYCLES(\mbox{\hyperlink{arithmetic_8h_ae5465f45da023f5305d2241da02e9387}{mul\_core\_karatsuba}}, x, y, z); \(\backslash\)}
+\DoxyCodeLine{        \textcolor{comment}{/*MEASURE\_CLOCK\_CYCLES(add, x, y, z);*/} \mbox{\hyperlink{utils_8h_a19f86cf37a9d5dc56d630031ba94ab20}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{utils_8h_a19f86cf37a9d5dc56d630031ba94ab20}{        \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{utils_8h_a19f86cf37a9d5dc56d630031ba94ab20}{        bi\_delete}}(\&x); \(\backslash\)}
+\DoxyCodeLine{        bi\_delete(\&y); \(\backslash\)}
+\DoxyCodeLine{        bi\_delete(\&z); \(\backslash\)}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+
+
+Definition at line 12 of file main.\+c.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 35 of file main.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4_cgraph}
+\end{center}
+\end{figure}

@@ -1,0 +1,1159 @@
+\hypertarget{utils_8c}{}\doxysection{src/utils.c File Reference}
+\label{utils_8c}\index{src/utils.c@{src/utils.c}}
+{\ttfamily \#include \char`\"{}utils.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+Include dependency graph for utils.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{utils_8c_a7288a6de8e0ee93e4f9dc542336efa46}{bi\+\_\+new}} (\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$x, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int wordlen)
+\begin{DoxyCompactList}\small\item\em Allocates memory for a new bigint structure. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{utils_8c_a97cc4eb5eae289b31e5d69edabf69490}{array\+\_\+init}} (\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{bigint_8h_a05d9608d9715ad0ed6a53b795cc133ca}{word}} $\ast$array, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int length)
+\begin{DoxyCompactList}\small\item\em Initializes an array with a given length to a default value (0x00000000). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{utils_8c_a19f86cf37a9d5dc56d630031ba94ab20}{bi\+\_\+delete}} (\mbox{\hyperlink{config_8h_a62766f3ea8784d1db62df989f8f33d2d}{I\+N\+O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$x)
+\begin{DoxyCompactList}\small\item\em Frees the memory occupied by a bigint structure. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{utils_8c_a15460b0c08c669bcc8bb28bbc84cc0c5}{bi\+\_\+show\+\_\+hex}} (\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$x)
+\begin{DoxyCompactList}\small\item\em Displays the hexadecimal representation of a bigint. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{utils_8c_a8f0a35a8add356e6f63c1520d8a4869b}{bi\+\_\+set\+\_\+by\+\_\+array}} (\mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$x, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int sign, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{bigint_8h_a05d9608d9715ad0ed6a53b795cc133ca}{word}} $\ast$a, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int wordlen)
+\begin{DoxyCompactList}\small\item\em Initializes a bigint structure using an array of words and sets its sign. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{utils_8c_a0c149a5086b2991711d0f4dffd4e7035}{bi\+\_\+set\+\_\+by\+\_\+string}} (\mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$x, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int sign, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} char $\ast$str, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int base)
+\begin{DoxyCompactList}\small\item\em Initializes a bigint structure from a character string representing a number. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{utils_8c_acdbd53c3ec22f7b78154f439fba9ea79}{bi\+\_\+refine}} (\mbox{\hyperlink{config_8h_a62766f3ea8784d1db62df989f8f33d2d}{I\+N\+O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$x)
+\begin{DoxyCompactList}\small\item\em Refines a bigint by removing leading zeros and adjusting its length. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{utils_8c_aaf7f96c5fa20b3dce7bdec81d45b4de9}{bi\+\_\+refine\+\_\+word}} (\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$x, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int num\+\_\+words)
+\begin{DoxyCompactList}\small\item\em Refines the word length of a {\ttfamily bigint} by removing a specified number of words. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{utils_8c_a397f34e2a802e6b4f4ce79807be22f32}{bi\+\_\+assign}} (\mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$dest, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$src)
+\begin{DoxyCompactList}\small\item\em Assigns the value of one bigint to another. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{utils_8c_a3d2a94f37b629bd9f3cb3afb2e178e19}{bi\+\_\+gen\+\_\+rand}} (\mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$x, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int sign, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int wordlen)
+\begin{DoxyCompactList}\small\item\em Generates a random bigint with a specified sign and word length. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{utils_8c_a1fcdfec5fbe7acd8cee783a05dc84eb8}{array\+\_\+rand}} (\mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{bigint_8h_a05d9608d9715ad0ed6a53b795cc133ca}{word}} $\ast$dst, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int wordlen)
+\begin{DoxyCompactList}\small\item\em Fills an array with random bytes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{utils_8c_a7387425ebbba576c8892a1fc1e27c621}{bi\+\_\+set\+\_\+one}} (\mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$x)
+\begin{DoxyCompactList}\small\item\em Sets a bigint to the value of one. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{utils_8c_a60481dc2edd27dfcf89351e6c1ff1311}{bi\+\_\+set\+\_\+zero}} (\mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$x)
+\begin{DoxyCompactList}\small\item\em Sets a bigint to the value of zero. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{utils_8c_a1f0c3b4c42f3bde48fba1999ef79933a}{compare\+A\+BS}} (\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$x, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$y)
+\begin{DoxyCompactList}\small\item\em Compares the absolute values of two bigint numbers. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{utils_8c_a0c725a878f05fdf3f897f2d5d8623b7a}{compare}} (\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$x, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$y)
+\begin{DoxyCompactList}\small\item\em Compare two bigint numbers, taking into account their signs. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{utils_8c_abcba3e9422491d8d36594260d5469fe0}{get\+\_\+bit\+\_\+length}} (\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$x)
+\begin{DoxyCompactList}\small\item\em Calculate the bit length of a given bigint. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{utils_8c_a17820be0f8f929f8010460b9aafa9684}{get\+\_\+jth\+\_\+bit}} (\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$x, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int j)
+\begin{DoxyCompactList}\small\item\em Get the value of the j-\/th bit from a bigint. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{utils_8c_a228afb7f4ecdf5b082894f50c7afd91f}{right\+\_\+shift\+\_\+bit}} (\mbox{\hyperlink{config_8h_a62766f3ea8784d1db62df989f8f33d2d}{I\+N\+O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$x, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int shift)
+\begin{DoxyCompactList}\small\item\em Perform a right shift operation on a bigint. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{utils_8c_a92955d33eb61be000b2b33da0969f43d}{left\+\_\+shift\+\_\+bit}} (\mbox{\hyperlink{structbigint}{bigint}} $\ast$x, int shift)
+\begin{DoxyCompactList}\small\item\em Perform a left shift operation on a bigint. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{utils_8c_a51b36ceaf8915fb9b17f825f57d9878e}{reduction}} (\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$x, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int r)
+\begin{DoxyCompactList}\small\item\em Perform a reduction operation on a bigint. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{utils_8c_a2b1432c20fb14d8890382e89cf98d43d}{left\+\_\+shift\+\_\+word}} (\mbox{\hyperlink{config_8h_a62766f3ea8784d1db62df989f8f33d2d}{I\+N\+O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$x, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int shift\+\_\+words)
+\begin{DoxyCompactList}\small\item\em Left-\/shifts a bigint by a specified number of words. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{utils_8c_ac6f8cc4d57f1da8a4292ec17a1897295}{right\+\_\+shift\+\_\+word}} (\mbox{\hyperlink{config_8h_a62766f3ea8784d1db62df989f8f33d2d}{I\+N\+O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$x, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int shift\+\_\+words)
+\begin{DoxyCompactList}\small\item\em Right-\/shifts a bigint by a specified number of words. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{utils_8c_a48cae2f79aab2418e37f1f9e076d7e54}{is\+\_\+zero}} (\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$x)
+\begin{DoxyCompactList}\small\item\em Checks if a bigint is zero. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{utils_8c_a85d5a703c419fce0bb464b979a292980}{swap\+\_\+bigint}} (\mbox{\hyperlink{config_8h_a62766f3ea8784d1db62df989f8f33d2d}{I\+N\+O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$x, \mbox{\hyperlink{config_8h_a62766f3ea8784d1db62df989f8f33d2d}{I\+N\+O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$y)
+\begin{DoxyCompactList}\small\item\em Swaps the values of two {\ttfamily bigint} pointers. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{utils_8c_aa7d74c57724c8e6a0743fd66e27bc4e4}{make\+Even}} (\mbox{\hyperlink{config_8h_a62766f3ea8784d1db62df989f8f33d2d}{I\+N\+O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$x)
+\begin{DoxyCompactList}\small\item\em Ensures that the word length of a {\ttfamily bigint} is even. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{utils_8c_a4d18441f81f0f5678800a029a904d7f6}{match\+\_\+wordlen}} (\mbox{\hyperlink{config_8h_a62766f3ea8784d1db62df989f8f33d2d}{I\+N\+O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$x, \mbox{\hyperlink{config_8h_a62766f3ea8784d1db62df989f8f33d2d}{I\+N\+O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$y)
+\begin{DoxyCompactList}\small\item\em Matches the word lengths of two {\ttfamily bigint} objects by resizing them to the larger of their current lengths. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{utils_8c_a370713de059c620d4e4b512d91d72d61}{bi\+\_\+reset}} (\mbox{\hyperlink{config_8h_a62766f3ea8784d1db62df989f8f33d2d}{I\+N\+O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$x)
+\begin{DoxyCompactList}\small\item\em Resets all words in a {\ttfamily bigint} to zero. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{bigint_8h_a05d9608d9715ad0ed6a53b795cc133ca}{word}} \mbox{\hyperlink{utils_8c_a34e51dbf790f1aff199d7856d54f5b52}{get\+\_\+word}} (\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$x, \mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int m\+\_\+th)
+\begin{DoxyCompactList}\small\item\em Returns the value of the m-\/th word from a {\ttfamily bigint}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{utils_8c_a97cc4eb5eae289b31e5d69edabf69490}\label{utils_8c_a97cc4eb5eae289b31e5d69edabf69490}} 
+\index{utils.c@{utils.c}!array\_init@{array\_init}}
+\index{array\_init@{array\_init}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{array\_init()}{array\_init()}}
+{\footnotesize\ttfamily void array\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{bigint_8h_a05d9608d9715ad0ed6a53b795cc133ca}{word}} $\ast$}]{array,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int}]{length }\end{DoxyParamCaption})}
+
+
+
+Initializes an array with a given length to a default value (0x00000000). 
+
+This function sets all elements of the input array to 0. It is typically used to clear or reset an array before performing other operations like big integer addition or multiplication.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em array} & The pointer to the array to be initialized. \\
+\hline
+\mbox{\texttt{ in}}  & {\em length} & The number of elements (length) of the array to initialize.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void This function does not return any value.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Ensure that the array has enough allocated memory to hold {\ttfamily length} elements. 
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+This function assumes the array is writable and properly allocated. 
+\end{DoxyWarning}
+
+
+Definition at line 28 of file utils.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_a97cc4eb5eae289b31e5d69edabf69490_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{utils_8c_a1fcdfec5fbe7acd8cee783a05dc84eb8}\label{utils_8c_a1fcdfec5fbe7acd8cee783a05dc84eb8}} 
+\index{utils.c@{utils.c}!array\_rand@{array\_rand}}
+\index{array\_rand@{array\_rand}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{array\_rand()}{array\_rand()}}
+{\footnotesize\ttfamily void array\+\_\+rand (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{bigint_8h_a05d9608d9715ad0ed6a53b795cc133ca}{word}} $\ast$}]{dst,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int}]{wordlen }\end{DoxyParamCaption})}
+
+
+
+Fills an array with random bytes. 
+
+This function populates the specified array with random bytes using the rand function.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em dst} & Pointer to the array to be filled with random values. \\
+\hline
+\mbox{\texttt{ in}}  & {\em wordlen} & The number of words to fill. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 230 of file utils.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_a1fcdfec5fbe7acd8cee783a05dc84eb8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{utils_8c_a397f34e2a802e6b4f4ce79807be22f32}\label{utils_8c_a397f34e2a802e6b4f4ce79807be22f32}} 
+\index{utils.c@{utils.c}!bi\_assign@{bi\_assign}}
+\index{bi\_assign@{bi\_assign}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{bi\_assign()}{bi\_assign()}}
+{\footnotesize\ttfamily void bi\+\_\+assign (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$}]{dest,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$}]{src }\end{DoxyParamCaption})}
+
+
+
+Assigns the value of one bigint to another. 
+
+This function deletes the existing destination bigint, creates a new bigint of the same word length as the source, and copies the sign, word length, and value from the source bigint.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em dest} & Pointer to the destination bigint to be assigned to. \\
+\hline
+\mbox{\texttt{ in}}  & {\em src} & Pointer to the source bigint to copy from. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 199 of file utils.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_a397f34e2a802e6b4f4ce79807be22f32_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_a397f34e2a802e6b4f4ce79807be22f32_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{utils_8c_a19f86cf37a9d5dc56d630031ba94ab20}\label{utils_8c_a19f86cf37a9d5dc56d630031ba94ab20}} 
+\index{utils.c@{utils.c}!bi\_delete@{bi\_delete}}
+\index{bi\_delete@{bi\_delete}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{bi\_delete()}{bi\_delete()}}
+{\footnotesize\ttfamily void bi\+\_\+delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_a62766f3ea8784d1db62df989f8f33d2d}{I\+N\+O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$}]{x }\end{DoxyParamCaption})}
+
+
+
+Frees the memory occupied by a bigint structure. 
+
+This function releases the memory allocated for the bigint structure and sets the pointer to N\+U\+LL to avoid dangling references.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em x} & Pointer to the bigint structure to be deleted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 35 of file utils.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{utils_8c_a19f86cf37a9d5dc56d630031ba94ab20_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_a19f86cf37a9d5dc56d630031ba94ab20_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{utils_8c_a3d2a94f37b629bd9f3cb3afb2e178e19}\label{utils_8c_a3d2a94f37b629bd9f3cb3afb2e178e19}} 
+\index{utils.c@{utils.c}!bi\_gen\_rand@{bi\_gen\_rand}}
+\index{bi\_gen\_rand@{bi\_gen\_rand}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{bi\_gen\_rand()}{bi\_gen\_rand()}}
+{\footnotesize\ttfamily void bi\+\_\+gen\+\_\+rand (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$}]{x,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int}]{sign,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int}]{wordlen }\end{DoxyParamCaption})}
+
+
+
+Generates a random bigint with a specified sign and word length. 
+
+This function creates a new bigint, sets its sign, generates random values for its word array, and then refines it to remove any leading zeros.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em x} & Pointer to the bigint to be generated. \\
+\hline
+\mbox{\texttt{ in}}  & {\em sign} & The sign of the bigint (N\+E\+G\+A\+T\+I\+VE or N\+O\+N\+\_\+\+N\+E\+G\+A\+T\+I\+VE). \\
+\hline
+\mbox{\texttt{ in}}  & {\em wordlen} & The desired length of the word array. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 221 of file utils.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_a3d2a94f37b629bd9f3cb3afb2e178e19_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_a3d2a94f37b629bd9f3cb3afb2e178e19_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{utils_8c_a7288a6de8e0ee93e4f9dc542336efa46}\label{utils_8c_a7288a6de8e0ee93e4f9dc542336efa46}} 
+\index{utils.c@{utils.c}!bi\_new@{bi\_new}}
+\index{bi\_new@{bi\_new}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{bi\_new()}{bi\_new()}}
+{\footnotesize\ttfamily void bi\+\_\+new (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$}]{x,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int}]{wordlen }\end{DoxyParamCaption})}
+
+
+
+Allocates memory for a new bigint structure. 
+
+This function creates a new bigint structure and initializes it with the specified word length. The pointer to the newly created bigint is stored in the provided pointer to a pointer (x).
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em x} & Pointer to the bigint structure to be initialized. \\
+\hline
+\mbox{\texttt{ in}}  & {\em wordlen} & The number of words to allocate for the bigint. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 5 of file utils.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=328pt]{utils_8c_a7288a6de8e0ee93e4f9dc542336efa46_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_a7288a6de8e0ee93e4f9dc542336efa46_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{utils_8c_acdbd53c3ec22f7b78154f439fba9ea79}\label{utils_8c_acdbd53c3ec22f7b78154f439fba9ea79}} 
+\index{utils.c@{utils.c}!bi\_refine@{bi\_refine}}
+\index{bi\_refine@{bi\_refine}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{bi\_refine()}{bi\_refine()}}
+{\footnotesize\ttfamily void bi\+\_\+refine (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_a62766f3ea8784d1db62df989f8f33d2d}{I\+N\+O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$}]{x }\end{DoxyParamCaption})}
+
+
+
+Refines a bigint by removing leading zeros and adjusting its length. 
+
+This function modifies the given bigint by removing any leading zeros, updating its word length accordingly, and ensuring that the sign is set correctly if the bigint becomes zero.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em x} & Pointer to the bigint to be refined (input/output). \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 149 of file utils.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_acdbd53c3ec22f7b78154f439fba9ea79_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{utils_8c_aaf7f96c5fa20b3dce7bdec81d45b4de9}\label{utils_8c_aaf7f96c5fa20b3dce7bdec81d45b4de9}} 
+\index{utils.c@{utils.c}!bi\_refine\_word@{bi\_refine\_word}}
+\index{bi\_refine\_word@{bi\_refine\_word}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{bi\_refine\_word()}{bi\_refine\_word()}}
+{\footnotesize\ttfamily void bi\+\_\+refine\+\_\+word (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int}]{num\+\_\+words }\end{DoxyParamCaption})}
+
+
+
+Refines the word length of a {\ttfamily bigint} by removing a specified number of words. 
+
+This function adjusts the word length of a {\ttfamily bigint} object {\ttfamily x} by reducing it by {\ttfamily num\+\_\+words}. It reallocates memory if necessary and ensures the integrity of the {\ttfamily bigint} structure. If the result represents zero (single word with value {\ttfamily 0}), the sign is reset to {\ttfamily N\+O\+N\+\_\+\+N\+E\+G\+A\+T\+I\+VE}. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em x} & A pointer to the {\ttfamily bigint} object to be refined. \\
+\hline
+\mbox{\texttt{ in}}  & {\em num\+\_\+words} & The number of words to remove from the end of the {\ttfamily bigint}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+{\ttfamily x} must be a valid pointer to an initialized {\ttfamily bigint} object. {\ttfamily num\+\_\+words} should not exceed the current word length of {\ttfamily x}. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The {\ttfamily bigint}\textquotesingle{}s word length is reduced by {\ttfamily num\+\_\+words}, and its memory is resized accordingly. If the resulting {\ttfamily bigint} represents zero, its sign is reset to {\ttfamily N\+O\+N\+\_\+\+N\+E\+G\+A\+T\+I\+VE}. 
+\end{DoxyPostcond}
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item If {\ttfamily x} is {\ttfamily N\+U\+LL}, the function prints an error message ({\ttfamily I\+N\+V\+A\+L\+I\+D\+\_\+\+D\+A\+TA}) and returns without performing any operation.
+\item The function assumes that the {\ttfamily bigint} structure has attributes {\ttfamily a} (an array of words), {\ttfamily wordlen} (length of the array), and {\ttfamily sign} (the sign of the integer).
+\item Memory reallocation is handled using {\ttfamily realloc}. Ensure proper error handling for memory operations if extended. 
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+
+\begin{DoxyItemize}
+\item If {\ttfamily num\+\_\+words} is greater than or equal to {\ttfamily x-\/$>$wordlen}, the behavior may be undefined.
+\item Always ensure that the {\ttfamily bigint} object {\ttfamily x} is valid before calling this function. 
+\end{DoxyItemize}
+\end{DoxyWarning}
+
+
+Definition at line 177 of file utils.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_aaf7f96c5fa20b3dce7bdec81d45b4de9_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{utils_8c_a370713de059c620d4e4b512d91d72d61}\label{utils_8c_a370713de059c620d4e4b512d91d72d61}} 
+\index{utils.c@{utils.c}!bi\_reset@{bi\_reset}}
+\index{bi\_reset@{bi\_reset}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{bi\_reset()}{bi\_reset()}}
+{\footnotesize\ttfamily void bi\+\_\+reset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_a62766f3ea8784d1db62df989f8f33d2d}{I\+N\+O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$}]{x }\end{DoxyParamCaption})}
+
+
+
+Resets all words in a {\ttfamily bigint} to zero. 
+
+This function iterates through all words in the given {\ttfamily bigint} object {\ttfamily x} and sets each word to zero. It does not alter the word length of the {\ttfamily bigint}, only the values of the words. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em x} & A pointer to the {\ttfamily bigint} object to be reset. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+{\ttfamily x} must be a valid pointer to an initialized {\ttfamily bigint} object. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+All words in the {\ttfamily bigint} pointed to by {\ttfamily x} are set to zero, but the word length remains unchanged. 
+\end{DoxyPostcond}
+\begin{DoxyNote}{Note}
+This function assumes that the {\ttfamily bigint} structure has an attribute {\ttfamily a} (an array of words) and {\ttfamily wordlen} (the number of words). 
+\end{DoxyNote}
+
+
+Definition at line 573 of file utils.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_a370713de059c620d4e4b512d91d72d61_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{utils_8c_a8f0a35a8add356e6f63c1520d8a4869b}\label{utils_8c_a8f0a35a8add356e6f63c1520d8a4869b}} 
+\index{utils.c@{utils.c}!bi\_set\_by\_array@{bi\_set\_by\_array}}
+\index{bi\_set\_by\_array@{bi\_set\_by\_array}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{bi\_set\_by\_array()}{bi\_set\_by\_array()}}
+{\footnotesize\ttfamily int bi\+\_\+set\+\_\+by\+\_\+array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$}]{x,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int}]{sign,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{bigint_8h_a05d9608d9715ad0ed6a53b795cc133ca}{word}} $\ast$}]{a,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int}]{wordlen }\end{DoxyParamCaption})}
+
+
+
+Initializes a bigint structure using an array of words and sets its sign. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em x} & Pointer to the bigint structure to be initialized. \\
+\hline
+\mbox{\texttt{ in}}  & {\em sign} & The sign of the bigint (N\+E\+G\+A\+T\+I\+VE or N\+O\+N\+\_\+\+N\+E\+G\+A\+T\+I\+VE). \\
+\hline
+\mbox{\texttt{ in}}  & {\em a} & Array of words to set the value of the bigint. \\
+\hline
+\mbox{\texttt{ in}}  & {\em wordlen} & Length of the word array. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Returns 0 on success, non-\/zero on failure. 
+\end{DoxyReturn}
+
+
+Definition at line 80 of file utils.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_a8f0a35a8add356e6f63c1520d8a4869b_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{utils_8c_a0c149a5086b2991711d0f4dffd4e7035}\label{utils_8c_a0c149a5086b2991711d0f4dffd4e7035}} 
+\index{utils.c@{utils.c}!bi\_set\_by\_string@{bi\_set\_by\_string}}
+\index{bi\_set\_by\_string@{bi\_set\_by\_string}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{bi\_set\_by\_string()}{bi\_set\_by\_string()}}
+{\footnotesize\ttfamily int bi\+\_\+set\+\_\+by\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$}]{x,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int}]{sign,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} char $\ast$}]{str,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int}]{base }\end{DoxyParamCaption})}
+
+
+
+Initializes a bigint structure from a character string representing a number. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em x} & Pointer to the bigint structure to be initialized (output). \\
+\hline
+\mbox{\texttt{ in}}  & {\em sign} & The sign of the bigint (N\+E\+G\+A\+T\+I\+VE or N\+O\+N\+\_\+\+N\+E\+G\+A\+T\+I\+VE) (input). \\
+\hline
+\mbox{\texttt{ in}}  & {\em str} & The string representation of the number to be converted (input). \\
+\hline
+\mbox{\texttt{ in}}  & {\em base} & The base of the number system (e.\+g., 10 for decimal) (input). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Returns 0 on success, non-\/zero on failure. 
+\end{DoxyReturn}
+
+
+Definition at line 98 of file utils.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_a0c149a5086b2991711d0f4dffd4e7035_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_a0c149a5086b2991711d0f4dffd4e7035_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{utils_8c_a7387425ebbba576c8892a1fc1e27c621}\label{utils_8c_a7387425ebbba576c8892a1fc1e27c621}} 
+\index{utils.c@{utils.c}!bi\_set\_one@{bi\_set\_one}}
+\index{bi\_set\_one@{bi\_set\_one}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{bi\_set\_one()}{bi\_set\_one()}}
+{\footnotesize\ttfamily void bi\+\_\+set\+\_\+one (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$}]{x }\end{DoxyParamCaption})}
+
+
+
+Sets a bigint to the value of one. 
+
+This function initializes a new bigint structure and sets its value to one. The sign of the bigint is set to N\+O\+N\+\_\+\+N\+E\+G\+A\+T\+I\+VE.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em x} & Pointer to the bigint structure to be initialized and set to one. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 242 of file utils.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_a7387425ebbba576c8892a1fc1e27c621_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_a7387425ebbba576c8892a1fc1e27c621_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{utils_8c_a60481dc2edd27dfcf89351e6c1ff1311}\label{utils_8c_a60481dc2edd27dfcf89351e6c1ff1311}} 
+\index{utils.c@{utils.c}!bi\_set\_zero@{bi\_set\_zero}}
+\index{bi\_set\_zero@{bi\_set\_zero}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{bi\_set\_zero()}{bi\_set\_zero()}}
+{\footnotesize\ttfamily void bi\+\_\+set\+\_\+zero (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_aec78e7a9e90a406a56f859ee456e8eae}{O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$}]{x }\end{DoxyParamCaption})}
+
+
+
+Sets a bigint to the value of zero. 
+
+This function initializes a new bigint structure and sets its value to zero. The sign of the bigint is set to N\+O\+N\+\_\+\+N\+E\+G\+A\+T\+I\+VE.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em x} & Pointer to the bigint structure to be initialized and set to zero. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 249 of file utils.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_a60481dc2edd27dfcf89351e6c1ff1311_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_a60481dc2edd27dfcf89351e6c1ff1311_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{utils_8c_a15460b0c08c669bcc8bb28bbc84cc0c5}\label{utils_8c_a15460b0c08c669bcc8bb28bbc84cc0c5}} 
+\index{utils.c@{utils.c}!bi\_show\_hex@{bi\_show\_hex}}
+\index{bi\_show\_hex@{bi\_show\_hex}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{bi\_show\_hex()}{bi\_show\_hex()}}
+{\footnotesize\ttfamily void bi\+\_\+show\+\_\+hex (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$}]{x }\end{DoxyParamCaption})}
+
+
+
+Displays the hexadecimal representation of a bigint. 
+
+This function prints the value of the bigint in hexadecimal format. It also handles the sign of the bigint and checks for invalid inputs.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em x} & Pointer to the bigint to be displayed. If N\+U\+LL, an error message is printed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 49 of file utils.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_a15460b0c08c669bcc8bb28bbc84cc0c5_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{utils_8c_a0c725a878f05fdf3f897f2d5d8623b7a}\label{utils_8c_a0c725a878f05fdf3f897f2d5d8623b7a}} 
+\index{utils.c@{utils.c}!compare@{compare}}
+\index{compare@{compare}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{compare()}{compare()}}
+{\footnotesize\ttfamily int compare (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$}]{y }\end{DoxyParamCaption})}
+
+
+
+Compare two bigint numbers, taking into account their signs. 
+
+This function compares two bigint numbers, considering both their magnitudes and signs.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em x} & Pointer to the first bigint number (input). \\
+\hline
+\mbox{\texttt{ in}}  & {\em y} & Pointer to the second bigint number (input). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if x $>$ y, -\/1 if x $<$ y, or 0 if x == y. 
+\end{DoxyReturn}
+
+
+Definition at line 280 of file utils.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=254pt]{utils_8c_a0c725a878f05fdf3f897f2d5d8623b7a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_a0c725a878f05fdf3f897f2d5d8623b7a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{utils_8c_a1f0c3b4c42f3bde48fba1999ef79933a}\label{utils_8c_a1f0c3b4c42f3bde48fba1999ef79933a}} 
+\index{utils.c@{utils.c}!compareABS@{compareABS}}
+\index{compareABS@{compareABS}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{compareABS()}{compareABS()}}
+{\footnotesize\ttfamily int compare\+A\+BS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$}]{y }\end{DoxyParamCaption})}
+
+
+
+Compares the absolute values of two bigint numbers. 
+
+This function compares the absolute values of two {\ttfamily bigint} numbers {\ttfamily x} and {\ttfamily y}. The sign of {\ttfamily x} and {\ttfamily y} is ignored, and only the magnitudes are compared.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em x} & Pointer to the first bigint number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em y} & Pointer to the second bigint number.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int
+\begin{DoxyItemize}
+\item Returns {\ttfamily 1} if $\vert$x$\vert$ $>$ $\vert$y$\vert$
+\item Returns {\ttfamily 0} if $\vert$x$\vert$ $<$ $\vert$y$\vert$
+\item Returns {\ttfamily -\/1} if $\vert$x$\vert$ == $\vert$y$\vert$
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Assumes that {\ttfamily x} and {\ttfamily y} are valid bigint pointers with non-\/null {\ttfamily a} arrays. 
+\end{DoxyNote}
+
+
+Definition at line 256 of file utils.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_a1f0c3b4c42f3bde48fba1999ef79933a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{utils_8c_abcba3e9422491d8d36594260d5469fe0}\label{utils_8c_abcba3e9422491d8d36594260d5469fe0}} 
+\index{utils.c@{utils.c}!get\_bit\_length@{get\_bit\_length}}
+\index{get\_bit\_length@{get\_bit\_length}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{get\_bit\_length()}{get\_bit\_length()}}
+{\footnotesize\ttfamily int get\+\_\+bit\+\_\+length (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$}]{x }\end{DoxyParamCaption})}
+
+
+
+Calculate the bit length of a given bigint. 
+
+This function calculates the bit length of the absolute value of a bigint. It accounts for the number of leading zeros in the last word and adds an extra bit for the sign if the bigint is negative.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em x} & A pointer to the bigint structure (input). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The bit length of the bigint. If there are no words, returns 0. If the bigint is negative, an extra bit for the sign is included. 
+\end{DoxyReturn}
+
+
+Definition at line 301 of file utils.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=270pt]{utils_8c_abcba3e9422491d8d36594260d5469fe0_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_abcba3e9422491d8d36594260d5469fe0_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{utils_8c_a17820be0f8f929f8010460b9aafa9684}\label{utils_8c_a17820be0f8f929f8010460b9aafa9684}} 
+\index{utils.c@{utils.c}!get\_jth\_bit@{get\_jth\_bit}}
+\index{get\_jth\_bit@{get\_jth\_bit}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{get\_jth\_bit()}{get\_jth\_bit()}}
+{\footnotesize\ttfamily bool get\+\_\+jth\+\_\+bit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int}]{j }\end{DoxyParamCaption})}
+
+
+
+Get the value of the j-\/th bit from a bigint. 
+
+This function retrieves the value of the specified bit (j) from the given bigint. The indexing is 0-\/based, where the least significant bit is at index 0.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em x} & Pointer to the bigint structure from which the bit will be retrieved (input). \\
+\hline
+\mbox{\texttt{ in}}  & {\em j} & The index of the bit to retrieve (0-\/based) (input). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns 1 if the bit is set, 0 if the bit is not set, or -\/1 if the input is invalid (e.\+g., N\+U\+LL pointer, out of bounds). 
+\end{DoxyReturn}
+
+
+Definition at line 313 of file utils.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_a17820be0f8f929f8010460b9aafa9684_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{utils_8c_a34e51dbf790f1aff199d7856d54f5b52}\label{utils_8c_a34e51dbf790f1aff199d7856d54f5b52}} 
+\index{utils.c@{utils.c}!get\_word@{get\_word}}
+\index{get\_word@{get\_word}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{get\_word()}{get\_word()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bigint_8h_a05d9608d9715ad0ed6a53b795cc133ca}{word}} get\+\_\+word (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int}]{m\+\_\+th }\end{DoxyParamCaption})}
+
+
+
+Returns the value of the m-\/th word from a {\ttfamily bigint}. 
+
+This function retrieves the word at the specified index {\ttfamily m\+\_\+th} from the {\ttfamily bigint}\textquotesingle{}s internal array of words. If the index is out of bounds, the function returns zero. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em x} & A pointer to the {\ttfamily bigint} object from which the word will be retrieved. \\
+\hline
+\mbox{\texttt{ in}}  & {\em m\+\_\+th} & The index of the word to retrieve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value of the m-\/th word, or 0 if the index is out of bounds. 
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+{\ttfamily x} must be a valid pointer to an initialized {\ttfamily bigint} object. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The function returns the value of the specified word in the {\ttfamily bigint}. 
+\end{DoxyPostcond}
+\begin{DoxyNote}{Note}
+This function assumes that the {\ttfamily bigint} structure has an attribute {\ttfamily a} (an array of words) and {\ttfamily wordlen} (the number of words). 
+\end{DoxyNote}
+
+
+Definition at line 579 of file utils.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=278pt]{utils_8c_a34e51dbf790f1aff199d7856d54f5b52_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{utils_8c_a48cae2f79aab2418e37f1f9e076d7e54}\label{utils_8c_a48cae2f79aab2418e37f1f9e076d7e54}} 
+\index{utils.c@{utils.c}!is\_zero@{is\_zero}}
+\index{is\_zero@{is\_zero}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{is\_zero()}{is\_zero()}}
+{\footnotesize\ttfamily int is\+\_\+zero (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$}]{x }\end{DoxyParamCaption})}
+
+
+
+Checks if a bigint is zero. 
+
+This function checks if all bits in the bigint {\ttfamily x} are zero. It iterates through each word and each bit in {\ttfamily x-\/$>$a} to verify that no bit is set to 1.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em x} & Pointer to the bigint structure to be checked.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Returns 1 if any bit in {\ttfamily x} is set to 1, indicating {\ttfamily x} is not zero. Returns 0 if all bits in {\ttfamily x} are zero.
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item The function uses bitwise operations to examine each bit of {\ttfamily x-\/$>$a}.
+\item If any bit in {\ttfamily x-\/$>$a} is set to 1, the function returns immediately with a result of 1.
+\item If all bits are zero, the function returns 0, indicating that {\ttfamily x} represents zero.
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item The function assumes {\ttfamily x} is a valid pointer to a bigint structure.
+\item The use of an intermediate variable {\ttfamily temp} helps avoid modifying {\ttfamily x-\/$>$a\mbox{[}i\mbox{]}} directly. 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+
+Definition at line 489 of file utils.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_a48cae2f79aab2418e37f1f9e076d7e54_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{utils_8c_a92955d33eb61be000b2b33da0969f43d}\label{utils_8c_a92955d33eb61be000b2b33da0969f43d}} 
+\index{utils.c@{utils.c}!left\_shift\_bit@{left\_shift\_bit}}
+\index{left\_shift\_bit@{left\_shift\_bit}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{left\_shift\_bit()}{left\_shift\_bit()}}
+{\footnotesize\ttfamily void left\+\_\+shift\+\_\+bit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structbigint}{bigint}} $\ast$}]{pptr\+Bint,  }\item[{int}]{shift\+\_\+amount }\end{DoxyParamCaption})}
+
+
+
+Perform a left shift operation on a bigint. 
+
+This function shifts the bits of the given bigint to the left by a specified number of positions. It reallocates memory for the underlying array to accommodate the shift and updates the word length accordingly.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em x} & Pointer to the bigint to be shifted. \\
+\hline
+\mbox{\texttt{ in}}  & {\em shift} & The number of bits to shift to the left.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+The function handles memory allocation and will exit the program with an error message if memory allocation fails. It also removes any leading zero words after the shift operation. 
+\end{DoxyNote}
+
+
+Definition at line 352 of file utils.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_a92955d33eb61be000b2b33da0969f43d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{utils_8c_a2b1432c20fb14d8890382e89cf98d43d}\label{utils_8c_a2b1432c20fb14d8890382e89cf98d43d}} 
+\index{utils.c@{utils.c}!left\_shift\_word@{left\_shift\_word}}
+\index{left\_shift\_word@{left\_shift\_word}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{left\_shift\_word()}{left\_shift\_word()}}
+{\footnotesize\ttfamily void left\+\_\+shift\+\_\+word (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_a62766f3ea8784d1db62df989f8f33d2d}{I\+N\+O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$}]{x,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int}]{shift\+\_\+words }\end{DoxyParamCaption})}
+
+
+
+Left-\/shifts a bigint by a specified number of words. 
+
+This function shifts the bigint {\ttfamily x} to the left by the specified number of words ({\ttfamily shift\+\_\+words}). It reallocates memory for the bigint array {\ttfamily ($\ast$x)-\/$>$a} to accommodate the shift and initializes any newly allocated lower-\/order words to zero.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em x} & Double pointer to the bigint structure to be shifted. \\
+\hline
+\mbox{\texttt{ in}}  & {\em shift\+\_\+words} & The number of words to shift {\ttfamily x} to the left.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item If {\ttfamily shift\+\_\+words} is negative, the function outputs an error message and calls {\ttfamily exit(1)}.
+\item The function reallocates memory for {\ttfamily ($\ast$x)-\/$>$a} to ensure there is enough space for the shift.
+\item The function increases the length of {\ttfamily ($\ast$x)-\/$>$a} by {\ttfamily shift\+\_\+words}.
+\item Existing words in {\ttfamily ($\ast$x)-\/$>$a} are shifted to the left by {\ttfamily shift\+\_\+words}.
+\item Newly added words are set to {\ttfamily Z\+E\+RO}.
+\item The word length of {\ttfamily ($\ast$x)} is updated to the new length.
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+
+\begin{DoxyItemize}
+\item On memory allocation failure, {\ttfamily exit(1)} is called.
+\item The function assumes {\ttfamily x} points to a valid {\ttfamily bigint} structure. 
+\end{DoxyItemize}
+\end{DoxyWarning}
+
+
+Definition at line 428 of file utils.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_a2b1432c20fb14d8890382e89cf98d43d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{utils_8c_aa7d74c57724c8e6a0743fd66e27bc4e4}\label{utils_8c_aa7d74c57724c8e6a0743fd66e27bc4e4}} 
+\index{utils.c@{utils.c}!makeEven@{makeEven}}
+\index{makeEven@{makeEven}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{makeEven()}{makeEven()}}
+{\footnotesize\ttfamily void make\+Even (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_a62766f3ea8784d1db62df989f8f33d2d}{I\+N\+O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$}]{x }\end{DoxyParamCaption})}
+
+
+
+Ensures that the word length of a {\ttfamily bigint} is even. 
+
+This function checks if the word length of the given {\ttfamily bigint} object {\ttfamily x} is odd. If it is, the function increases the word length by one, reallocates memory to accommodate the new size, and initializes the newly added word to zero. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em x} & A pointer to the {\ttfamily bigint} object to be adjusted. The structure is modified to ensure an even word length. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+{\ttfamily x} must be a valid pointer to an initialized {\ttfamily bigint} object. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+If the original word length of {\ttfamily x} is odd\+:
+\begin{DoxyItemize}
+\item The word length is increased by one.
+\item Memory is reallocated to match the new size.
+\item The new higher-\/order word is initialized to zero. 
+\end{DoxyItemize}
+\end{DoxyPostcond}
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item If the word length of {\ttfamily x} is already even, no changes are made.
+\item The function assumes that the {\ttfamily bigint} structure has attributes {\ttfamily a} (an array of words) and {\ttfamily wordlen} (length of the array).
+\item Memory reallocation is handled using {\ttfamily realloc}. Ensure error handling for memory failures. 
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+
+\begin{DoxyItemize}
+\item If memory allocation fails during {\ttfamily realloc}, the program prints an error message ({\ttfamily M\+E\+M\+\_\+\+A\+L\+L\+O\+C\+A\+T\+I\+O\+N\+\_\+\+F\+A\+IL}) and exits.
+\item This function modifies the memory directly, so ensure there are no conflicting references to the same {\ttfamily bigint}. 
+\end{DoxyItemize}
+\end{DoxyWarning}
+
+
+Definition at line 517 of file utils.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_aa7d74c57724c8e6a0743fd66e27bc4e4_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{utils_8c_a4d18441f81f0f5678800a029a904d7f6}\label{utils_8c_a4d18441f81f0f5678800a029a904d7f6}} 
+\index{utils.c@{utils.c}!match\_wordlen@{match\_wordlen}}
+\index{match\_wordlen@{match\_wordlen}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{match\_wordlen()}{match\_wordlen()}}
+{\footnotesize\ttfamily void match\+\_\+wordlen (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_a62766f3ea8784d1db62df989f8f33d2d}{I\+N\+O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{config_8h_a62766f3ea8784d1db62df989f8f33d2d}{I\+N\+O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$}]{y }\end{DoxyParamCaption})}
+
+
+
+Matches the word lengths of two {\ttfamily bigint} objects by resizing them to the larger of their current lengths. 
+
+This function adjusts the word lengths of two {\ttfamily bigint} objects {\ttfamily x} and {\ttfamily y} so that both have the same word length. If either {\ttfamily x} or {\ttfamily y} has a smaller word length than the maximum of the two, it reallocates memory and initializes the newly added words to zero. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em x} & A pointer to the first {\ttfamily bigint} object. Its word length and memory may be modified to match the other {\ttfamily bigint}. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em y} & A pointer to the second {\ttfamily bigint} object. Its word length and memory may be modified to match the other {\ttfamily bigint}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+Both {\ttfamily x} and {\ttfamily y} must point to valid, initialized {\ttfamily bigint} objects. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+
+\begin{DoxyItemize}
+\item The word lengths of {\ttfamily x} and {\ttfamily y} are equal and match the larger of their original word lengths.
+\item Memory is reallocated for either {\ttfamily x} or {\ttfamily y} (or both) if necessary.
+\item Any newly added words are initialized to zero. 
+\end{DoxyItemize}
+\end{DoxyPostcond}
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item The function assumes that the {\ttfamily bigint} structure has attributes {\ttfamily a} (an array of words) and {\ttfamily wordlen} (length of the array).
+\item Memory reallocation is performed using {\ttfamily realloc}. Proper error handling is in place to terminate the program if allocation fails. 
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+
+\begin{DoxyItemize}
+\item If memory allocation fails during {\ttfamily realloc}, the program prints an error message ({\ttfamily M\+E\+M\+\_\+\+A\+L\+L\+O\+C\+A\+T\+I\+O\+N\+\_\+\+F\+A\+IL}) and exits.
+\item Ensure no conflicting references to the same {\ttfamily bigint} objects are active when calling this function. 
+\end{DoxyItemize}
+\end{DoxyWarning}
+
+
+Definition at line 535 of file utils.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_a4d18441f81f0f5678800a029a904d7f6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{utils_8c_a51b36ceaf8915fb9b17f825f57d9878e}\label{utils_8c_a51b36ceaf8915fb9b17f825f57d9878e}} 
+\index{utils.c@{utils.c}!reduction@{reduction}}
+\index{reduction@{reduction}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{reduction()}{reduction()}}
+{\footnotesize\ttfamily void reduction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$}]{x,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int}]{r }\end{DoxyParamCaption})}
+
+
+
+Perform a reduction operation on a bigint. 
+
+This function reduces the given bigint A by shifting its bits to the right by a specified number of positions r. The result is stored in the provided bigint result. If r is greater than or equal to the total bit length of A, the result will be zero. The sign of the result will match the sign of A.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em x} & Pointer to the bigint to be reduced. \\
+\hline
+\mbox{\texttt{ in}}  & {\em r} & The number of bits to shift to the right. \\
+\hline
+\mbox{\texttt{ out}}  & {\em result} & Pointer to the bigint where the result will be stored.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Memory for the result bigint is allocated inside this function. The caller is responsible for freeing the memory used by result. 
+\end{DoxyNote}
+
+
+Definition at line 388 of file utils.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_a51b36ceaf8915fb9b17f825f57d9878e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_a51b36ceaf8915fb9b17f825f57d9878e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{utils_8c_a228afb7f4ecdf5b082894f50c7afd91f}\label{utils_8c_a228afb7f4ecdf5b082894f50c7afd91f}} 
+\index{utils.c@{utils.c}!right\_shift\_bit@{right\_shift\_bit}}
+\index{right\_shift\_bit@{right\_shift\_bit}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{right\_shift\_bit()}{right\_shift\_bit()}}
+{\footnotesize\ttfamily void right\+\_\+shift\+\_\+bit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_a62766f3ea8784d1db62df989f8f33d2d}{I\+N\+O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int}]{shift }\end{DoxyParamCaption})}
+
+
+
+Perform a right shift operation on a bigint. 
+
+This function shifts the bits of the given bigint to the right by a specified number of positions. It reallocates memory for the underlying array to accommodate the shift and updates the word length accordingly. If the shift results in fewer than one word, the function ensures that at least one word remains.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em x} & Pointer to the bigint to be shifted (input/output). \\
+\hline
+\mbox{\texttt{ in}}  & {\em shift} & The number of bits to shift to the right (input).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+The function handles memory allocation and will exit the program with an error message if memory allocation fails. It also removes any leading zero words after the shift operation. 
+\end{DoxyNote}
+
+
+Definition at line 321 of file utils.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=258pt]{utils_8c_a228afb7f4ecdf5b082894f50c7afd91f_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{utils_8c_ac6f8cc4d57f1da8a4292ec17a1897295}\label{utils_8c_ac6f8cc4d57f1da8a4292ec17a1897295}} 
+\index{utils.c@{utils.c}!right\_shift\_word@{right\_shift\_word}}
+\index{right\_shift\_word@{right\_shift\_word}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{right\_shift\_word()}{right\_shift\_word()}}
+{\footnotesize\ttfamily void right\+\_\+shift\+\_\+word (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_a62766f3ea8784d1db62df989f8f33d2d}{I\+N\+O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$}]{x,  }\item[{\mbox{\hyperlink{config_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} int}]{shift\+\_\+words }\end{DoxyParamCaption})}
+
+
+
+Right-\/shifts a bigint by a specified number of words. 
+
+This function shifts the bigint {\ttfamily x} to the right by the specified number of words ({\ttfamily shift\+\_\+words}). It reallocates memory for the bigint array {\ttfamily x-\/$>$a} to accommodate the shift and initializes any newly allocated words to zero.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em x} & Pointer to the bigint structure to be shifted. \\
+\hline
+\mbox{\texttt{ in}}  & {\em shift\+\_\+words} & The number of words to shift {\ttfamily x} to the right.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item If memory reallocation fails, the function outputs {\ttfamily M\+E\+M\+\_\+\+A\+L\+L\+O\+C\+A\+T\+I\+O\+N\+\_\+\+F\+A\+IL} and calls {\ttfamily exit(1)}.
+\item The function assumes that {\ttfamily x} and {\ttfamily x-\/$>$a} are valid pointers with allocated memory.
+\item The function increases the length of {\ttfamily x-\/$>$a} by {\ttfamily shift\+\_\+words}.
+\item After reallocation, newly added words in {\ttfamily x-\/$>$a} are set to {\ttfamily Z\+E\+RO}.
+\item The sign of {\ttfamily x} remains unchanged.
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+
+\begin{DoxyItemize}
+\item {\ttfamily x-\/$>$a} is reallocated, and its size is modified to include the shifted words.
+\item On memory allocation failure, {\ttfamily exit(1)} is called. 
+\end{DoxyItemize}
+\end{DoxyWarning}
+
+
+Definition at line 458 of file utils.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c_ac6f8cc4d57f1da8a4292ec17a1897295_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{utils_8c_a85d5a703c419fce0bb464b979a292980}\label{utils_8c_a85d5a703c419fce0bb464b979a292980}} 
+\index{utils.c@{utils.c}!swap\_bigint@{swap\_bigint}}
+\index{swap\_bigint@{swap\_bigint}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{swap\_bigint()}{swap\_bigint()}}
+{\footnotesize\ttfamily void swap\+\_\+bigint (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8h_a62766f3ea8784d1db62df989f8f33d2d}{I\+N\+O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$}]{x,  }\item[{\mbox{\hyperlink{config_8h_a62766f3ea8784d1db62df989f8f33d2d}{I\+N\+O\+UT}} \mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$}]{y }\end{DoxyParamCaption})}
+
+
+
+Swaps the values of two {\ttfamily bigint} pointers. 
+
+Exchanges the pointers of two {\ttfamily bigint} objects {\ttfamily x} and {\ttfamily y}. This effectively swaps the two {\ttfamily bigint} structures without copying their contents. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em x} & A double pointer to the first {\ttfamily bigint} object. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em y} & A double pointer to the second {\ttfamily bigint} object. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+{\ttfamily x} and {\ttfamily y} must be valid, initialized double pointers to {\ttfamily bigint} objects. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The values of {\ttfamily $\ast$x} and {\ttfamily $\ast$y} are swapped. The {\ttfamily bigint} objects they point to are unchanged, but the pointers themselves are exchanged. 
+\end{DoxyPostcond}
+\begin{DoxyNote}{Note}
+This function operates only on the pointers and does not modify the actual contents of the {\ttfamily bigint} objects. 
+\end{DoxyNote}
+
+
+Definition at line 509 of file utils.\+c.
+

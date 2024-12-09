@@ -1,0 +1,232 @@
+\hypertarget{prime_8h}{}\doxysection{dh/src/prime.h File Reference}
+\label{prime_8h}\index{dh/src/prime.h@{dh/src/prime.h}}
+{\ttfamily \#include \char`\"{}bigint.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}arithmetic.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+Include dependency graph for prime.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{prime_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{prime_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{prime_8h_af4ce733e057947b4b2987294839baaa9}{bi\+\_\+set\+\_\+random\+\_\+in\+\_\+range}} (\mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$b, char $\ast$lower\+\_\+bound, \mbox{\hyperlink{structbigint}{bigint}} $\ast$upper\+\_\+bound)
+\begin{DoxyCompactList}\small\item\em Generates a random bigint within a given range. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{prime_8h_ad0672f560d299d123bf85818182517f9}{miller\+\_\+rabin\+\_\+test}} (\mbox{\hyperlink{structbigint}{bigint}} $\ast$n, \mbox{\hyperlink{structbigint}{bigint}} $\ast$b, int s, \mbox{\hyperlink{structbigint}{bigint}} $\ast$t)
+\begin{DoxyCompactList}\small\item\em Miller-\/\+Rabin primality test for a single base. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{prime_8h_a43c84642a6172034d6bf9eb1af21a12d}{is\+\_\+even}} (const \mbox{\hyperlink{structbigint}{bigint}} $\ast$x)
+\begin{DoxyCompactList}\small\item\em Checks if a bigint is even. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{prime_8h_a97b4b0dad78b219b6cb103230eea9daf}{is\+\_\+prime}} (\mbox{\hyperlink{structbigint}{bigint}} $\ast$n, int k)
+\begin{DoxyCompactList}\small\item\em Determines whether a bigint is prime using the Miller-\/\+Rabin test. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{prime_8h_af6aa9314ffa869c806f1ffd6dd16c908}{generate\+\_\+large\+\_\+prime}} (\mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$prime, int bit\+\_\+length, int k)
+\begin{DoxyCompactList}\small\item\em Generates a large prime number. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{prime_8h_af4ce733e057947b4b2987294839baaa9}\label{prime_8h_af4ce733e057947b4b2987294839baaa9}} 
+\index{prime.h@{prime.h}!bi\_set\_random\_in\_range@{bi\_set\_random\_in\_range}}
+\index{bi\_set\_random\_in\_range@{bi\_set\_random\_in\_range}!prime.h@{prime.h}}
+\doxysubsubsection{\texorpdfstring{bi\_set\_random\_in\_range()}{bi\_set\_random\_in\_range()}}
+{\footnotesize\ttfamily void bi\+\_\+set\+\_\+random\+\_\+in\+\_\+range (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$}]{b,  }\item[{char $\ast$}]{lower\+\_\+bound,  }\item[{\mbox{\hyperlink{structbigint}{bigint}} $\ast$}]{upper\+\_\+bound }\end{DoxyParamCaption})}
+
+
+
+Generates a random bigint within a given range. 
+
+Generates a random bigint value between a given lower bound and an upper bound (exclusive).
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & Pointer to store the resulting random bigint. \\
+\hline
+{\em lower\+\_\+bound} & String representation of the lower bound in hexadecimal format. \\
+\hline
+{\em upper\+\_\+bound} & Upper bound as a bigint. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 4 of file prime.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{prime_8h_af4ce733e057947b4b2987294839baaa9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{prime_8h_af4ce733e057947b4b2987294839baaa9_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{prime_8h_af6aa9314ffa869c806f1ffd6dd16c908}\label{prime_8h_af6aa9314ffa869c806f1ffd6dd16c908}} 
+\index{prime.h@{prime.h}!generate\_large\_prime@{generate\_large\_prime}}
+\index{generate\_large\_prime@{generate\_large\_prime}!prime.h@{prime.h}}
+\doxysubsubsection{\texorpdfstring{generate\_large\_prime()}{generate\_large\_prime()}}
+{\footnotesize\ttfamily void generate\+\_\+large\+\_\+prime (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structbigint}{bigint}} $\ast$$\ast$}]{prime,  }\item[{int}]{bit\+\_\+length,  }\item[{int}]{k }\end{DoxyParamCaption})}
+
+
+
+Generates a large prime number. 
+
+Continuously generates random candidates and tests them for primality until a prime is found.
+
+
+\begin{DoxyParams}{Parameters}
+{\em prime} & Pointer to store the resulting prime bigint. \\
+\hline
+{\em bit\+\_\+length} & Desired bit length of the prime number. \\
+\hline
+{\em k} & Number of Miller-\/\+Rabin iterations for primality testing. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 147 of file prime.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{prime_8h_af6aa9314ffa869c806f1ffd6dd16c908_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=281pt]{prime_8h_af6aa9314ffa869c806f1ffd6dd16c908_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{prime_8h_a43c84642a6172034d6bf9eb1af21a12d}\label{prime_8h_a43c84642a6172034d6bf9eb1af21a12d}} 
+\index{prime.h@{prime.h}!is\_even@{is\_even}}
+\index{is\_even@{is\_even}!prime.h@{prime.h}}
+\doxysubsubsection{\texorpdfstring{is\_even()}{is\_even()}}
+{\footnotesize\ttfamily int is\+\_\+even (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structbigint}{bigint}} $\ast$}]{x }\end{DoxyParamCaption})}
+
+
+
+Checks if a bigint is even. 
+
+Determines whether the given bigint is an even number by inspecting the least significant bit.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Pointer to the bigint to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the number is even; 0 otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 76 of file prime.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{prime_8h_a43c84642a6172034d6bf9eb1af21a12d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{prime_8h_a97b4b0dad78b219b6cb103230eea9daf}\label{prime_8h_a97b4b0dad78b219b6cb103230eea9daf}} 
+\index{prime.h@{prime.h}!is\_prime@{is\_prime}}
+\index{is\_prime@{is\_prime}!prime.h@{prime.h}}
+\doxysubsubsection{\texorpdfstring{is\_prime()}{is\_prime()}}
+{\footnotesize\ttfamily int is\+\_\+prime (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structbigint}{bigint}} $\ast$}]{n,  }\item[{int}]{k }\end{DoxyParamCaption})}
+
+
+
+Determines whether a bigint is prime using the Miller-\/\+Rabin test. 
+
+Uses the Miller-\/\+Rabin primality test to determine if a given bigint is prime.
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & Candidate number to test. \\
+\hline
+{\em k} & Number of Miller-\/\+Rabin iterations to perform. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if (n) is likely prime; 0 if (n) is composite. 
+\end{DoxyReturn}
+
+
+Definition at line 87 of file prime.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{prime_8h_a97b4b0dad78b219b6cb103230eea9daf_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{prime_8h_a97b4b0dad78b219b6cb103230eea9daf_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{prime_8h_ad0672f560d299d123bf85818182517f9}\label{prime_8h_ad0672f560d299d123bf85818182517f9}} 
+\index{prime.h@{prime.h}!miller\_rabin\_test@{miller\_rabin\_test}}
+\index{miller\_rabin\_test@{miller\_rabin\_test}!prime.h@{prime.h}}
+\doxysubsubsection{\texorpdfstring{miller\_rabin\_test()}{miller\_rabin\_test()}}
+{\footnotesize\ttfamily int miller\+\_\+rabin\+\_\+test (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structbigint}{bigint}} $\ast$}]{n,  }\item[{\mbox{\hyperlink{structbigint}{bigint}} $\ast$}]{b,  }\item[{int}]{s,  }\item[{\mbox{\hyperlink{structbigint}{bigint}} $\ast$}]{t }\end{DoxyParamCaption})}
+
+
+
+Miller-\/\+Rabin primality test for a single base. 
+
+Performs a single round of the Miller-\/\+Rabin test for a candidate prime number.
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & Candidate number to test for primality. \\
+\hline
+{\em b} & Random base for the test. \\
+\hline
+{\em s} & The number of divisions by 2 in n-\/1 (used in the test). \\
+\hline
+{\em t} & The odd factor of n-\/1. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if (n) is likely prime; 0 if (n) is composite. 
+\end{DoxyReturn}
+
+
+Definition at line 38 of file prime.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{prime_8h_ad0672f560d299d123bf85818182517f9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{prime_8h_ad0672f560d299d123bf85818182517f9_icgraph}
+\end{center}
+\end{figure}

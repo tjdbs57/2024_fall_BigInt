@@ -1,0 +1,124 @@
+\hypertarget{client_8c}{}\doxysection{dh/src/client.c File Reference}
+\label{client_8c}\index{dh/src/client.c@{dh/src/client.c}}
+
+
+Client implementation for the Diffie-\/\+Hellman key exchange protocol.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}bigint.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}prime.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}arithmetic.\+h\char`\"{}}\newline
+Include dependency graph for client.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{client_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{client_8c_a6b20d41d6252e9871430c242cb1a56e7}{B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}}~8192
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{client_8c_adb3eed61e384e6839880b5f361c11479}{bi\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structbigint}{bigint}} $\ast$x, char $\ast$result)
+\begin{DoxyCompactList}\small\item\em Converts a bigint object to a string. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{client_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\begin{DoxyCompactList}\small\item\em Main function of the client. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Client implementation for the Diffie-\/\+Hellman key exchange protocol. 
+
+This file contains the client-\/side implementation of the Diffie-\/\+Hellman key exchange protocol. The client communicates with the server to receive the prime number (p) and the generator (g), exchanges public keys, and computes a shared secret key. 
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{client_8c_a6b20d41d6252e9871430c242cb1a56e7}\label{client_8c_a6b20d41d6252e9871430c242cb1a56e7}} 
+\index{client.c@{client.c}!BUFFER\_SIZE@{BUFFER\_SIZE}}
+\index{BUFFER\_SIZE@{BUFFER\_SIZE}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{BUFFER\_SIZE}{BUFFER\_SIZE}}
+{\footnotesize\ttfamily \#define B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE~8192}
+
+Defines the buffer size for communication. 
+
+Definition at line 19 of file client.\+c.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{client_8c_adb3eed61e384e6839880b5f361c11479}\label{client_8c_adb3eed61e384e6839880b5f361c11479}} 
+\index{client.c@{client.c}!bi\_to\_string@{bi\_to\_string}}
+\index{bi\_to\_string@{bi\_to\_string}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{bi\_to\_string()}{bi\_to\_string()}}
+{\footnotesize\ttfamily void bi\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structbigint}{bigint}} $\ast$}]{x,  }\item[{char $\ast$}]{result }\end{DoxyParamCaption})}
+
+
+
+Converts a bigint object to a string. 
+
+Converts a given {\ttfamily bigint} object to its hexadecimal string representation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Pointer to the bigint to be converted. \\
+\hline
+{\em result} & Buffer to store the resulting string. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 29 of file client.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=231pt]{client_8c_adb3eed61e384e6839880b5f361c11479_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{client_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{client_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+\index{client.c@{client.c}!main@{main}}
+\index{main@{main}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Main function of the client. 
+
+Implements the client-\/side logic for the Diffie-\/\+Hellman key exchange protocol, including receiving parameters from the server, calculating keys, and exchanging public keys. Create a socket for communication.
+
+Connect to the server.
+
+Receive the seed value from the server.
+
+Receive (p) and (g) from the server.
+
+Split (p) and (g) into separate strings.
+
+Calculate Alice\textquotesingle{}s private key (a) and public key (A).
+
+Send Alice\textquotesingle{}s public key (A) to the server.
+
+Receive Bob\textquotesingle{}s public key (B) from the server.
+
+Compute the shared secret key (keyA = B$^\wedge$a \textbackslash{}mod p).
+
+Clean up memory and close the socket.
+
+Definition at line 59 of file client.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{client_8c_ae66f6b31b5ad750f1fe042a706a4e3d4_cgraph}
+\end{center}
+\end{figure}

@@ -1,0 +1,122 @@
+\hypertarget{server_8c}{}\doxysection{dh/src/server.c File Reference}
+\label{server_8c}\index{dh/src/server.c@{dh/src/server.c}}
+
+
+Server implementation for the Diffie-\/\+Hellman key exchange protocol.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}bigint.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}prime.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}arithmetic.\+h\char`\"{}}\newline
+Include dependency graph for server.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{server_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{server_8c_a6b20d41d6252e9871430c242cb1a56e7}{B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}}~8192
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{server_8c_adb3eed61e384e6839880b5f361c11479}{bi\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structbigint}{bigint}} $\ast$x, char $\ast$result)
+\begin{DoxyCompactList}\small\item\em Converts a bigint object to a string. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{server_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Server implementation for the Diffie-\/\+Hellman key exchange protocol. 
+
+This file contains the server-\/side implementation of the Diffie-\/\+Hellman key exchange protocol. The server communicates with a client to share the prime number (p) and the generator (g), exchanges public keys, and computes a shared secret key. 
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{server_8c_a6b20d41d6252e9871430c242cb1a56e7}\label{server_8c_a6b20d41d6252e9871430c242cb1a56e7}} 
+\index{server.c@{server.c}!BUFFER\_SIZE@{BUFFER\_SIZE}}
+\index{BUFFER\_SIZE@{BUFFER\_SIZE}!server.c@{server.c}}
+\doxysubsubsection{\texorpdfstring{BUFFER\_SIZE}{BUFFER\_SIZE}}
+{\footnotesize\ttfamily \#define B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE~8192}
+
+
+
+Definition at line 19 of file server.\+c.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{server_8c_adb3eed61e384e6839880b5f361c11479}\label{server_8c_adb3eed61e384e6839880b5f361c11479}} 
+\index{server.c@{server.c}!bi\_to\_string@{bi\_to\_string}}
+\index{bi\_to\_string@{bi\_to\_string}!server.c@{server.c}}
+\doxysubsubsection{\texorpdfstring{bi\_to\_string()}{bi\_to\_string()}}
+{\footnotesize\ttfamily void bi\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structbigint}{bigint}} $\ast$}]{x,  }\item[{char $\ast$}]{result }\end{DoxyParamCaption})}
+
+
+
+Converts a bigint object to a string. 
+
+Converts a given {\ttfamily bigint} object to its hexadecimal string representation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Pointer to the bigint to be converted. \\
+\hline
+{\em result} & Buffer to store the resulting string. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 29 of file server.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=231pt]{server_8c_adb3eed61e384e6839880b5f361c11479_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{server_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{server_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+\index{server.c@{server.c}!main@{main}}
+\index{main@{main}!server.c@{server.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Create a server socket.
+
+Bind the socket to the server address.
+
+Start listening for client connections.
+
+Accept a client connection.
+
+Send the seed value to the client.
+
+Perform the Diffie-\/\+Hellman key exchange algorithm.
+
+Send (p) and (g) to the client.
+
+Compute the public key (B = g$^\wedge$b \textbackslash{}mod p).
+
+Receive the public key (A) from the client.
+
+Send the public key (B) to the client.
+
+Compute the shared secret key (keyB = A$^\wedge$b \textbackslash{}mod p).
+
+Definition at line 54 of file server.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{server_8c_ae66f6b31b5ad750f1fe042a706a4e3d4_cgraph}
+\end{center}
+\end{figure}
