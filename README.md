@@ -47,6 +47,7 @@ trash/
 LICENSE
 Makefile
 README.md
+```
 
 # Project Build and Execution Guide
 
@@ -68,25 +69,27 @@ To compile the project, run the following command:
 
 ```bash
 make
-
+```
 ### 2. Clean Build Artifacts
 To remove all compiled files and directories created during the build process, run:
 
 ```bash
 make clean
-
+```
 
 ### 3. Rebuild the Project
 To clean the build artifacts and recompile the project from scratch, use:
 
 ```bash
 make rebuild
+```
 
 ### 4. Run the Executable
 Once the project is successfully compiled, you can run the program using:
 
 ```bash
 make run
+```
 
 ## Testing and Verification
 
@@ -95,6 +98,7 @@ To verify the correctness of the project using test scripts, run:
 
 ```bash
 make verify
+```
 
 ## Performance Measurement
 
@@ -103,18 +107,21 @@ To check for memory leaks (for Linux/Unix systems), run:
 
 ```bash
 make valgrind
+```
 
 ### 2. Execution Time Measurement
 To measure the execution time of the program, use:
 
 ```bash
 make measure
+```
 
 ### 3. Performance Comparison
 To compare the program's performance across different executions, run:
 
 ```bash
 make compare
+```
 
 ## Notes
 The Makefile automatically detects your operating system and adjusts file naming conventions accordingly (e.g., .exe on Windows or .so on Linux).
