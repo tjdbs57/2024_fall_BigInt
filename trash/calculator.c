@@ -2,7 +2,7 @@
 #include "arithmetic.h"
 #include "utils.h"
 #include "config.h"
-#include "prime.h"
+//#include "prime.h"
 
 // Diffie-Hellman 알고리즘을 시연하는 C 프로그램
 int main()

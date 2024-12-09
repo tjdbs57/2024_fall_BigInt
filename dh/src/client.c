@@ -9,7 +9,6 @@
 
 #define BUFFER_SIZE 8192
 
-// bigint를 문자열로 변환하는 함수
 void bi_to_string(bigint *x, char *result) {
     if (x == NULL || result == NULL) {
         return;
@@ -114,7 +113,6 @@ int main() {
     // Alice의 개인 키 및 공개 키 계산
     bi_set_by_string(&a, NON_NEGATIVE, "10", 16);
 
-    //bi_set_by_string(&a, NON_NEGATIVE, "10", 16);
     exp_mod_montgomery(&g, &a, &A, &p);
 
     printf("Alice's public key A: ");

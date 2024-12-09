@@ -25,11 +25,13 @@ void bi_to_string(bigint *x, char *result) {
     for (i = x->wordlen - 1; i >= 0; i--) {
         char buf[64];
         sprintf(buf, "%lx", x->a[i]);  // 16진수로 변환 (word 단위)
-        strcat(temp, buf);            // 임시 버퍼에 이어붙이기
+        strcat(temp, buf);           
     }
 
     // temp 문자열을 결과 변수로 복사
     strncpy(result, temp, BUFFER_SIZE);
+    result[BUFFER_SIZE - 1] = '\0';  // NULL 종료
+
 }
 
 int main() {
@@ -97,17 +99,9 @@ int main() {
 
     // Diffie-Hellman 알고리즘 진행
     generate_large_prime(&p, 256, 25);  // 큰 소수 p 생성
-    // 사용자로부터 g 값 입력받기
-    char g_input[BUFFER_SIZE];
-    printf("Enter the value of g (hexadecimal): ");
-    if (fgets(g_input, sizeof(g_input), stdin) == NULL) {
-        fprintf(stderr, "Error: Failed to read input for g\n");
-        close(client_sock);
-        close(sockfd);
-        exit(1);
-    }    
-    g_input[strcspn(g_input, "\n")] = '\0';  // 개행 문자 제거
-    bi_set_by_string(&g, NON_NEGATIVE, g_input, 16);  // g 설정
+    bi_set_by_string(&g, NON_NEGATIVE, "5", 16); 
+
+
     // p와 g를 문자열로 변환
     char buffer_p[BUFFER_SIZE], buffer_g[BUFFER_SIZE];
     bi_to_string(p, buffer_p);
@@ -133,7 +127,6 @@ int main() {
     printf("Sent p and g successfully:\n%s", combined_buffer);
 
     // 개인 키 b 설정
-    //bi_gen_rand(&b, NON_NEGATIVE, 1);
     bi_set_by_string(&b, NON_NEGATIVE, "f", 16);
 
     // 공개 키 B 계산
