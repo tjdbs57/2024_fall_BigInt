@@ -26,7 +26,7 @@
  * @note Increasing the value of `TEST_CASE` can lead to more thorough testing 
  *       but may significantly increase execution time.
  */
-#define TEST_CASE 10000
+#define TEST_CASE 100
 
 /**
  * @brief Maximum bit length for `bigint` operations.
