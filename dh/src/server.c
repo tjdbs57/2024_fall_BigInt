@@ -16,7 +16,7 @@ void bi_to_string(bigint *x, char *result) {
 
     // bi_to_string 구현
     char temp[BUFFER_SIZE];  // 문자열을 저장할 임시 버퍼
-    int i, len = 0;
+    int i = 0;
 
     // 초기화
     temp[0] = '\0';
@@ -97,8 +97,17 @@ int main() {
 
     // Diffie-Hellman 알고리즘 진행
     generate_large_prime(&p, 256, 25);  // 큰 소수 p 생성
-    bi_set_by_string(&g, NON_NEGATIVE, "25", 16); // base g 생성
-
+    // 사용자로부터 g 값 입력받기
+    char g_input[BUFFER_SIZE];
+    printf("Enter the value of g (hexadecimal): ");
+    if (fgets(g_input, sizeof(g_input), stdin) == NULL) {
+        fprintf(stderr, "Error: Failed to read input for g\n");
+        close(client_sock);
+        close(sockfd);
+        exit(1);
+    }    
+    g_input[strcspn(g_input, "\n")] = '\0';  // 개행 문자 제거
+    bi_set_by_string(&g, NON_NEGATIVE, g_input, 16);  // g 설정
     // p와 g를 문자열로 변환
     char buffer_p[BUFFER_SIZE], buffer_g[BUFFER_SIZE];
     bi_to_string(p, buffer_p);
@@ -107,7 +116,7 @@ int main() {
     // p와 g를 하나의 버퍼에 담아 전송
     char combined_buffer[BUFFER_SIZE * 2];
     int written = snprintf(combined_buffer, sizeof(combined_buffer), "%s\n%s\n", buffer_p, buffer_g);
-    if (written >= sizeof(combined_buffer)) {
+    if ((size_t)written >= sizeof(combined_buffer)) {
         fprintf(stderr, "Error: combined buffer is too small!\n");
         close(client_sock);
         close(sockfd);
