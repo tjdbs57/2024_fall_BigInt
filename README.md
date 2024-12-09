@@ -6,7 +6,6 @@ This project implements a Big Integer (BigInt) library that supports multi-preci
 ## Project Structure
 
 ```plaintext
-.vscode/
 dh/
   ├── lib/
   │   └── libbigint_64bit.so
@@ -16,25 +15,32 @@ dh/
   │   ├── prime.h
   │   └── server.c
   └── Makefile
+
 doxygen/
   ├── html/
   └── Doxyfile
+
 graph/
-  ├── measurement_cycle...
-  ├── measurement_cycle...
+  ├── measurement_cycles( 8bit multiplication).png
+  ├── measurement_cycles(32bit multiplication).png
+  ├── measurement_cycles(64bit multiplication).png
   └── success_rate_plot.png
+
 include/
   ├── arithmetic.h
   ├── bigint.h
   ├── config.h
   ├── test.h
   └── utils.h
+
 lib/
   └── libbigint_64bit.so
+
 src/
   ├── arithmetic.c
   ├── main.c
   └── utils.c
+
 test/
   ├── cal.py
   ├── cycle_single.txt
@@ -42,6 +48,7 @@ test/
   ├── test_all.py
   ├── test.c
   └── time.py
+
 trash/
 .gitignore
 LICENSE
@@ -56,9 +63,15 @@ This document explains how to compile and run the project using the provided `Ma
 ## Prerequisites
 
 Ensure the following tools are installed on your system before proceeding:
+
+### System Requirements
 - **GCC**: A C compiler (e.g., `gcc`).
 - **Make**: A build automation tool.
 - **Python**: Python 3 is required for running test scripts.
+
+### Python Libraries
+The Python scripts used in this project depend on the following libraries:
+- **matplotlib**: Required for generating plots.
 
 ## Build Instructions
 
