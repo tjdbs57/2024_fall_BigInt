@@ -135,7 +135,7 @@ int main() {
      */
     // Diffie-Hellman 알고리즘 진행
     generate_large_prime(&p, 256, 25);  // 큰 소수 p 생성
-    bi_set_by_string(&g, NON_NEGATIVE, "5", 16); 
+    bi_set_by_string(&g, NON_NEGATIVE, "3", 16); 
 
 
     // p와 g를 문자열로 변환

@@ -49,6 +49,7 @@ int miller_rabin_test(bigint *n, bigint *b, int s, bigint *t) {
         bi_delete(&x);
         bi_delete(&n_minus_1);
         bi_delete(&one);
+        
         return 1;  // n은 소수일 가능성 있음
     }
 
@@ -136,7 +137,7 @@ int is_prime(bigint *n, int k) {
         bi_delete(&b);
 
     }
-
+    bi_delete(&two);
     bi_delete(&n_minus_1);
     bi_delete(&t);
     bi_delete(&r);
