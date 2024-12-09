@@ -66,6 +66,7 @@
     "arithmetic.h": "c",
     "x86intrin.h": "c",
     "math.h": "c",
-    "random": "c"
+    "random": "c",
+    "string.h": "c"
   }
 }

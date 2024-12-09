@@ -1,3 +1,12 @@
+/**
+ * @file server.c
+ * @brief Server implementation for the Diffie-Hellman key exchange protocol.
+ *
+ * This file contains the server-side implementation of the Diffie-Hellman key 
+ * exchange protocol. The server communicates with a client to share the prime number \(p\) 
+ * and the generator \(g\), exchanges public keys, and computes a shared secret key.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -9,6 +18,14 @@
 
 #define BUFFER_SIZE 8192
 
+/**
+ * @brief Converts a bigint object to a string.
+ *
+ * Converts a given `bigint` object to its hexadecimal string representation.
+ * 
+ * @param x Pointer to the bigint to be converted.
+ * @param result Buffer to store the resulting string.
+ */
 void bi_to_string(bigint *x, char *result) {
     if (x == NULL || result == NULL) {
         return;
@@ -44,6 +61,9 @@ int main() {
     // Diffie-Hellman 관련 변수
     bigint *p = NULL, *g = NULL, *b = NULL, *B = NULL, *A = NULL, *keyB = NULL;
 
+    /**
+     * @brief Create a server socket.
+     */
     // 서버 소켓 생성
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if (sockfd == -1) {
@@ -64,6 +84,9 @@ int main() {
     server_addr.sin_addr.s_addr = INADDR_ANY;
     server_addr.sin_port = htons(8080);
 
+    /**
+     * @brief Bind the socket to the server address.
+     */
     // 서버 주소에 소켓 바인딩
     if (bind(sockfd, (struct sockaddr *)&server_addr, sizeof(server_addr)) == -1) {
         perror("Bind failed");
@@ -71,6 +94,9 @@ int main() {
         exit(1);
     }
 
+    /**
+     * @brief Start listening for client connections.
+     */
     // 클라이언트 연결 대기
     if (listen(sockfd, 1) == -1) {
         perror("Listen failed");
@@ -79,6 +105,9 @@ int main() {
     }
     printf("Waiting for client connection...\n");
 
+    /**
+     * @brief Accept a client connection.
+     */
     // 클라이언트 연결 수락
     client_sock = accept(sockfd, (struct sockaddr *)&client_addr, &client_addr_len);
     if (client_sock == -1) {
@@ -92,11 +121,18 @@ int main() {
     srand(seed);
     printf("%x\n", seed);
 
+    /**
+     * @brief Send the seed value to the client.
+     */
     // 시드 값을 클라이언트로 전송
     char seed_buffer[BUFFER_SIZE];
     sprintf(seed_buffer, "%u", seed);
     send(client_sock, seed_buffer, strlen(seed_buffer), 0);
 
+
+    /**
+     * @brief Perform the Diffie-Hellman key exchange algorithm.
+     */
     // Diffie-Hellman 알고리즘 진행
     generate_large_prime(&p, 256, 25);  // 큰 소수 p 생성
     bi_set_by_string(&g, NON_NEGATIVE, "5", 16); 
@@ -107,6 +143,10 @@ int main() {
     bi_to_string(p, buffer_p);
     bi_to_string(g, buffer_g);
 
+
+    /**
+     * @brief Send \(p\) and \(g\) to the client.
+     */
     // p와 g를 하나의 버퍼에 담아 전송
     char combined_buffer[BUFFER_SIZE * 2];
     int written = snprintf(combined_buffer, sizeof(combined_buffer), "%s\n%s\n", buffer_p, buffer_g);
@@ -129,12 +169,20 @@ int main() {
     // 개인 키 b 설정
     bi_set_by_string(&b, NON_NEGATIVE, "f", 16);
 
+
+    /**
+     * @brief Compute the public key \(B = g^b \mod p\).
+     */
     // 공개 키 B 계산
     exp_mod_montgomery(&g, &b, &B, &p);
 
     printf("Bob's public key B: ");
     bi_show_hex(B);
 
+
+    /**
+     * @brief Receive the public key \(A\) from the client.
+     */
     // 클라이언트로부터 공개 키 A 수신
     char buffer[BUFFER_SIZE];
     int len = recv(client_sock, buffer, sizeof(buffer), 0);
@@ -150,6 +198,10 @@ int main() {
     printf("Received Alice's public key A: ");
     bi_show_hex(A);
 
+
+    /**
+     * @brief Send the public key \(B\) to the client.
+     */
     // 공개 키 B를 클라이언트로 전송
     char buffer1[BUFFER_SIZE];
     bi_to_string(B, buffer1);
@@ -160,7 +212,9 @@ int main() {
         exit(1);
     }
 
-
+    /**
+     * @brief Compute the shared secret key \(keyB = A^b \mod p\).
+     */
     // 비밀 키 계산
 
     exp_mod_montgomery(&A, &b, &keyB, &p);

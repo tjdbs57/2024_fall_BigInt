@@ -1,3 +1,12 @@
+/**
+ * @file client.c
+ * @brief Client implementation for the Diffie-Hellman key exchange protocol.
+ *
+ * This file contains the client-side implementation of the Diffie-Hellman key 
+ * exchange protocol. The client communicates with the server to receive the prime 
+ * number \(p\) and the generator \(g\), exchanges public keys, and computes a shared secret key.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -7,8 +16,16 @@
 #include "prime.h"
 #include "arithmetic.h"
 
-#define BUFFER_SIZE 8192
+#define BUFFER_SIZE 8192 /**< Defines the buffer size for communication. */
 
+/**
+ * @brief Converts a bigint object to a string.
+ *
+ * Converts a given `bigint` object to its hexadecimal string representation.
+ * 
+ * @param x Pointer to the bigint to be converted.
+ * @param result Buffer to store the resulting string.
+ */
 void bi_to_string(bigint *x, char *result) {
     if (x == NULL || result == NULL) {
         return;
@@ -32,6 +49,13 @@ void bi_to_string(bigint *x, char *result) {
     result[BUFFER_SIZE - 1] = '\0';  // NULL 종료
 }
 
+
+/**
+ * @brief Main function of the client.
+ *
+ * Implements the client-side logic for the Diffie-Hellman key exchange protocol, 
+ * including receiving parameters from the server, calculating keys, and exchanging public keys.
+ */
 int main() {
 
     
@@ -42,6 +66,9 @@ int main() {
 
     bigint *p = NULL, *g = NULL, *a = NULL, *A = NULL, *B = NULL, *keyA = NULL;
 
+    /**
+     * @brief Create a socket for communication.
+     */
     // 소켓 생성
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if (sockfd == -1) {
@@ -55,6 +82,9 @@ int main() {
     server_addr.sin_addr.s_addr = inet_addr(server_ip);
     server_addr.sin_port = htons(server_port);
 
+    /**
+     * @brief Connect to the server.
+     */
     // 서버 연결
     if (connect(sockfd, (struct sockaddr *)&server_addr, sizeof(server_addr)) == -1) {
         perror("Connection to server failed");
@@ -62,6 +92,9 @@ int main() {
         exit(EXIT_FAILURE);
     }
 
+    /**
+     * @brief Receive the seed value from the server.
+     */
     // 클라이언트에서 시드 수신
     char seed_buffer[BUFFER_SIZE];
     int len0 = recv(sockfd, seed_buffer, sizeof(seed_buffer) - 1, 0);
@@ -73,6 +106,9 @@ int main() {
     printf("%x\n", seed);
 
 
+    /**
+     * @brief Receive \(p\) and \(g\) from the server.
+     */
     // 서버로부터 p와 g 수신
     char buffer[BUFFER_SIZE];
     memset(buffer, 0, sizeof(buffer));
@@ -84,6 +120,9 @@ int main() {
     }
     buffer[len] = '\0';
 
+    /**
+     * @brief Split \(p\) and \(g\) into separate strings.
+     */
     // p와 g 분리
     char *token = strtok(buffer, "\n");
     char buffer_p[BUFFER_SIZE], buffer_g[BUFFER_SIZE];
@@ -110,6 +149,10 @@ int main() {
     printf("Received g: ");
     bi_show_hex(g);
 
+
+    /**
+     * @brief Calculate Alice's private key \(a\) and public key \(A\).
+     */
     // Alice의 개인 키 및 공개 키 계산
     bi_set_by_string(&a, NON_NEGATIVE, "10", 16);
 
@@ -118,6 +161,10 @@ int main() {
     printf("Alice's public key A: ");
     bi_show_hex(A);
 
+
+    /**
+     * @brief Send Alice's public key \(A\) to the server.
+     */
     // 공개 키 A 전송
     char buffer_A[BUFFER_SIZE];
     bi_to_string(A, buffer_A);
@@ -127,6 +174,10 @@ int main() {
         exit(EXIT_FAILURE);
     }
 
+
+    /**
+     * @brief Receive Bob's public key \(B\) from the server.
+     */
     // Bob의 공개 키 B 수신
     char buffer_B[BUFFER_SIZE];
     memset(buffer_B, 0, sizeof(buffer_B));
@@ -148,11 +199,19 @@ int main() {
     printf("Received Bob's public key B: ");
     bi_show_hex(B);
 
+
+    /**
+     * @brief Compute the shared secret key \(keyA = B^a \mod p\).
+     */
     // 비밀 키 계산
     exp_mod_montgomery(&B, &a, &keyA, &p);
     printf("Alice's computed secret key: ");
     bi_show_hex(keyA);
 
+
+    /**
+     * @brief Clean up memory and close the socket.
+     */
     // 메모리 해제 및 소켓 종료
     bi_delete(&p);
     bi_delete(&g);

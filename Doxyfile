@@ -831,7 +831,7 @@ WARN_LOGFILE           =
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = ./include/arithmetic.h ./include/bigint.h ./include/config.h ./include/test.h ./include/utils.h ./src/arithmetic.c ./src/bigint.c ./src/main.c ./src/utils.c ./test/test.c 
+INPUT                  = ./include/arithmetic.h ./include/bigint.h ./include/config.h ./include/test.h ./include/utils.h ./src/arithmetic.c ./src/bigint.c ./src/main.c ./src/utils.c ./test/test.c ./dh/prime.c ./dh/prime.h ./dh/server.c ./dh/client.c 
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses
