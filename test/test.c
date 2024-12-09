@@ -33,6 +33,8 @@ void print_bi_hex_py(IN const bigint* x)
 
 #define MAX_BIT_LEN    256
 
+
+
 void test()
 {
     for(int i = 0 ; i < TEST_CASE; i++)
@@ -351,12 +353,10 @@ void measure_clock_cycles()
         int wordlen = (MAX_BIT_LEN / WORD_BITLEN);
         bi_gen_rand(&x, sign1, wordlen);
         bi_gen_rand(&y, sign2, wordlen);
-        
-        //measure_cycles(mul_core_tx, &x, &y, &z);
-        //measure_cycles(mul_core_improved, &x, &y, &z);
-        //measure_cycles(mul_core_karatsuba, &x, &y, &z);
-        //measure_cycles(add, &x, &y, &z);
-        //measure_cycles(sub, &x, &y, &z);
+
+        measure_cycles(mul_core_tx, &x, &y, &z);
+        measure_cycles(mul_core_improved, &x, &y, &z);
+        measure_cycles(mul_core_karatsuba, &x, &y, &z);
 
         bi_delete(&x);
         bi_delete(&y);

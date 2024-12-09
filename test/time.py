@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import os
 
 # 새로운 연산 종류에 대한 데이터 리스트
 mul_core_tx_speeds = []
@@ -126,5 +127,13 @@ plt.tight_layout(rect=[0, 0.2, 1, 1])  # 그래프 크기를 재조정해 하단
 # 플롯 디자인
 fig.patch.set_facecolor('white')
 
-# 그래프 표시
-plt.show()
+# 그래프를 파일로 저장
+output_path = "../graph/measurement_cycles(8bit_multiplication).png"  # 저장될 그래프 파일 경로
+
+# 디렉토리가 없으면 생성
+os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
+# 그래프를 저장
+plt.savefig(output_path)
+print(f"Graph saved to {output_path}")
+plt.close()

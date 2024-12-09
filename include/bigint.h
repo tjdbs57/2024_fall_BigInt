@@ -2,7 +2,7 @@
 #define BIGINT_H
 #include "config.h"
 
-#define WORD_BITLEN 64
+#define WORD_BITLEN 8
 
 // Conditional compilation based on the word size for data type flexibility
 #if WORD_BITLEN == 8

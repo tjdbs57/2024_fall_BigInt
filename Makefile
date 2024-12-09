@@ -61,8 +61,8 @@ run: $(TARGET)
 
 # Verify with test script
 verify: $(TARGET)
-	$(RUN) > ./test/test.txt
-	(cd test && $(PYTHON_CMD) test.py)
+	$(RUN) > ./test/test_all.txt
+	(cd test && $(PYTHON_CMD) test_all.py)
 
 check:
 	(cd test && $(PYTHON_CMD) cal.py)
