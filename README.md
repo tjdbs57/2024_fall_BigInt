@@ -136,6 +136,13 @@ To compare the program's performance across different executions, run:
 make compare
 ```
 
+## Dynamic Library 
+Running the following command will compile the project and generate the dynamic library:
+
+```bash
+make all
+```
+
 ## Notes
 The Makefile automatically detects your operating system and adjusts file naming conventions accordingly (e.g., .exe on Windows or .so on Linux).
 
